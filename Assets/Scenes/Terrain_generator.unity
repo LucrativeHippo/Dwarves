@@ -236,11 +236,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56360064d72b4f746a5a966a59306937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkSizeY: 100
-  chunkSizeX: 100
   waterAmount: 1
+  terrainAmount: 1
   Water: {fileID: 1880581670494450, guid: e12fbd108fd41994588650f838e7e965, type: 2}
   Grass: {fileID: 1239622121905396, guid: 260670a91c7b3b2488f6a5e78b440c4f, type: 2}
+  Dirt: {fileID: 1932556385968796, guid: 8416b0d41f68c314ba5f04bf544c3e2d, type: 2}
+  Stone: {fileID: 1080688609628742, guid: dad4903517e41f04382a0a9642b190b9, type: 2}
+  Snow: {fileID: 1552839559844636, guid: 6b65bf82210535041a8d52695778f5a3, type: 2}
+  Sand: {fileID: 1188605288019344, guid: da52c76678fdc2a45964951cfda9cacd, type: 2}
+  seed: 100
 --- !u!212 &835928472
 SpriteRenderer:
   m_ObjectHideFlags: 0
