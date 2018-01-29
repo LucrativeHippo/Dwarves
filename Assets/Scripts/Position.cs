@@ -2,29 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tuple
+public class Position
 {
 
     //The two coordinate values on the map
-    public float xCoord;
-    public float yCoord;
+    public int xCoord;
+    public int yCoord;
 
 
     //Creation function sets both the x and y coordinates
-    public Tuple(float x, float y)
+    public Position(int x,int y)
     {
         xCoord = x;
         yCoord = y;
     }
 
     //returns the x coordinate
-    public float getxCoord()
+    public int getxCoord()
     {
         return xCoord;
     }
 
     //returns the y coordinate
-    public float getyCoord()
+    public int getyCoord()
     {
         return yCoord;
     }

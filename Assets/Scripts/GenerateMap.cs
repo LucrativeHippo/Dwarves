@@ -14,5 +14,5 @@ public class GenerateMap : MonoBehaviour {
 		
 	}
 
-	Mathf.PerlinNoise(0f,0f);
+	//Mathf.PerlinNoise(0f,0f);
 }
