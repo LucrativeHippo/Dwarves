@@ -25,18 +25,21 @@ public class terrainGenerator : MonoBehaviour
     private static int DIRT = 3;
     private static int SNOW = 4;
 
+	float posNoise(int val){
+		return (float)val / 10f;
+	}
     // Use this for initialization
     void Start()
     {
         terrainMap = new Dictionary<string, float>();
-        System.Random randomNum = new System.Random();
+        //System.Random randomNum = new System.Random();
         for (int y = 0; y < chunkSizeY; y++)
         {
             for (int x = 0; x < chunkSizeX; x++)
             {
-                float xNoiseValue = x;
-                float yNoiseValue = y;
-                terrainMap.Add(x +" " + y, Mathf.PerlinNoise(xNoiseValue, yNoiseValue)*waterAmount);
+				float xNoiseValue = posNoise(x);
+				float yNoiseValue = posNoise(y);
+                terrainMap.Add(x +" " + y, Mathf.PerlinNoise(xNoiseValue, yNoiseValue)/waterAmount);
                 //print(Mathf.PerlinNoise(xNoiseValue, yNoiseValue));
             }
         }
