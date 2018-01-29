@@ -244,7 +244,9 @@ MonoBehaviour:
   Stone: {fileID: 1080688609628742, guid: dad4903517e41f04382a0a9642b190b9, type: 2}
   Snow: {fileID: 1552839559844636, guid: 6b65bf82210535041a8d52695778f5a3, type: 2}
   Sand: {fileID: 1188605288019344, guid: da52c76678fdc2a45964951cfda9cacd, type: 2}
-  seed: 100
+  Desert: {fileID: 1993947185886442, guid: bdd27b05a33dc6a49b70f43bcece9c1c, type: 2}
+  terrainSeed: 50
+  waterSeed: 0
 --- !u!212 &835928472
 SpriteRenderer:
   m_ObjectHideFlags: 0
