@@ -34,10 +34,10 @@ public class terrainGenerator : MonoBehaviour
         {
             for (int x = 0; x < chunkSizeX; x++)
             {
-                float xNoiseValue = x/chunkSizeX - 0.5f;
-                float yNoiseValue = y/chunkSizeY - 0.5f;
+                float xNoiseValue = x;
+                float yNoiseValue = y;
                 terrainMap.Add(x +" " + y, Mathf.PerlinNoise(xNoiseValue, yNoiseValue)*waterAmount);
-                print(Mathf.PerlinNoise(xNoiseValue, yNoiseValue));
+                //print(Mathf.PerlinNoise(xNoiseValue, yNoiseValue));
             }
         }
 
