@@ -9,8 +9,14 @@ public class terrainGenerator : MonoBehaviour
     private Dictionary<string, terrain> terrainMap;
 
 	/// Size of a section side generated for the map
-	private static int chunkSize = 100;
+	private static int CHUNK_SIZE = 100;
+	/// Number of chunks that make up the world
+	private static int WORLD_SIZE = 1;
+	/// World starting point
 	public static int SEED = 0;
+
+	public int xChunk;
+	public int yChunk;
 	/*
     //The y size of a generated section of the map
     public int chunkSizeY;
@@ -98,23 +104,22 @@ public class terrainGenerator : MonoBehaviour
 		}
 	}
 
-
-	float posNoise(int val){
-		return (float)val / 20f + SEED;
+	/// <summary>
+	/// Gets the position to sample noise.
+	/// </summary>
+	/// <returns>The noise.</returns>
+	/// <param name="val">Value.</param>
+	float posNoise(int val, int chunk){
+		return (float)(val+ chunk*CHUNK_SIZE)/20f + SEED;
 	}
     // Use this for initialization
     void Start()
 	{
 
 		terrainMap = new Dictionary<string, terrain>();
-		generateChunk (0,0);
+		generateChunk (xChunk,yChunk);
 
         //System.Random randomNum = new System.Random();
-        
-
-
-
-
     }
 
 
@@ -126,29 +131,29 @@ public class terrainGenerator : MonoBehaviour
 	/// <param name="yPos">Y position.</param>
 	GameObject[,] generateChunk(int xPos, int yPos){
 
-		GameObject[,] tempChunk = new GameObject[chunkSize,chunkSize];
+		GameObject[,] tempChunk = new GameObject[CHUNK_SIZE,CHUNK_SIZE];
 
 
 
-		for (int y = 0; y < chunkSize; y++)
+		for (int y = 0; y < CHUNK_SIZE; y++)
 		{
-			for (int x = 0; x < chunkSize; x++)
+			for (int x = 0; x < CHUNK_SIZE; x++)
 			{
-
 				GameObject tempTile;
-				float xNoiseValue = posNoise(x);
-				float yNoiseValue = posNoise(y);
-				//terrainMap.Add(x +" " + y, Mathf.PerlinNoise(xNoiseValue, yNoiseValue)/waterAmount);
+				Position worldPos = new Position (xPos * CHUNK_SIZE + x, yPos*CHUNK_SIZE+y);
+				string key = worldPos.xCoord+" "+worldPos.yCoord;
 
-				float waterVal = Mathf.PerlinNoise (posNoise (x) + waterSeed, posNoise (y) + waterSeed) / waterAmount;
+				float xNoiseValue = posNoise(x,xChunk);
+				float yNoiseValue = posNoise(y,yChunk);
 
-				float terrainVal = Mathf.PerlinNoise(posNoise(x) + terrainSeed, posNoise(y) + terrainSeed) / terrainAmount;
+				float waterVal = Mathf.PerlinNoise (xNoiseValue + waterSeed, yNoiseValue + waterSeed) / waterAmount;
+				float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed, yNoiseValue + terrainSeed) / terrainAmount;
 
 				// Check if this tile is edited already
-				if(terrainMap.ContainsKey("x y"))
+				if(terrainMap.ContainsKey(key))
 				{
 					// Instantiate saved game object from terrain
-					tempTile = getObject(terrainMap["x y"]);
+					tempTile = getObject(terrainMap[key]);
 				}else if (waterVal < getThreshold(terrain.WATER))
 				{
 					tempTile = Water;
@@ -180,7 +185,8 @@ public class terrainGenerator : MonoBehaviour
 						tempTile = Snow;
 					}
 				}
-				tempTile = Instantiate(tempTile, new Vector3(x, y, 0), Quaternion.identity);
+
+				tempTile = Instantiate(tempTile, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
 				tempChunk [x, y] = tempTile;
 			}
 		}
