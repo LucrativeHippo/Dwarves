@@ -28,5 +28,9 @@ public class Tuple<T>
     {
         return y;
     }
+		
+	public string ToString(){
+		return x+" "+y;
+	}
 
 }

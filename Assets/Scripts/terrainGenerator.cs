@@ -6,14 +6,15 @@ public class terrainGenerator : MonoBehaviour
 {
 
     //The map that shows the terrain value at each existing coordinate
-    private Dictionary<string, terrain> terrainMap;
+	private Dictionary<string, terrain> terrainMap;
+	public Dictionary<string, Chunk> loadedChunks;
 
-	/// Size of a section side generated for the map
-	private static int CHUNK_SIZE = 100;
 	/// Number of chunks that make up the world
 	private static int WORLD_SIZE = 1;
 	/// World starting point
 	public static int SEED = 0;
+
+	public bool DEBUG = false;
 
 	public int xChunk;
 	public int yChunk;
@@ -110,12 +111,12 @@ public class terrainGenerator : MonoBehaviour
 	/// <returns>The noise.</returns>
 	/// <param name="val">Value.</param>
 	float posNoise(int val, int chunk){
-		return (float)(val+ chunk*CHUNK_SIZE)/20f + SEED;
+		return (float)(val+ chunk*Chunk.SIZE)/20f + SEED;
 	}
     // Use this for initialization
-    void Start()
+    public void Start()
 	{
-
+		loadedChunks = new Dictionary<string, Chunk>();
 		terrainMap = new Dictionary<string, terrain>();
 		generateChunk (xChunk,yChunk);
 
@@ -129,18 +130,23 @@ public class terrainGenerator : MonoBehaviour
 	/// <returns>The chunk.</returns>
 	/// <param name="xPos">X position.</param>
 	/// <param name="yPos">Y position.</param>
-	GameObject[,] generateChunk(int xPos, int yPos){
+	void generateChunk(int xPos, int yPos){
 
-		GameObject[,] tempChunk = new GameObject[CHUNK_SIZE,CHUNK_SIZE];
+		// If the chunk is alreaady loaded on screen return
+		if (loadedChunks.ContainsKey (xPos + " " + yPos)) {
+			return;// loadedChunks [xPos + " " + yPos];
+		}
 
 
+		// Create chunk
+		Chunk chunkMap = new Chunk();
 
-		for (int y = 0; y < CHUNK_SIZE; y++)
+		for (int y = 0; y < Chunk.SIZE; y++)
 		{
-			for (int x = 0; x < CHUNK_SIZE; x++)
+			for (int x = 0; x < Chunk.SIZE; x++)
 			{
 				GameObject tempTile;
-				Position worldPos = new Position (xPos * CHUNK_SIZE + x, yPos*CHUNK_SIZE+y);
+				Position worldPos = new Position (xPos * Chunk.SIZE + x, yPos*Chunk.SIZE+y);
 				string key = worldPos.xCoord+" "+worldPos.yCoord;
 
 				float xNoiseValue = posNoise(x,xChunk);
@@ -187,15 +193,28 @@ public class terrainGenerator : MonoBehaviour
 				}
 
 				tempTile = Instantiate(tempTile, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
-				tempChunk [x, y] = tempTile;
+				chunkMap.addTileAt (tempTile, x, y);
 			}
 		}
-		return tempChunk;
+		loadedChunks[xPos+" "+yPos] = chunkMap;
 	}
 
     // Update is called once per frame
     void Update()
     {
+		if (DEBUG) {
+			Position changePos = new Position (0, 0);
+			changePos.xCoord += Input.GetKeyDown (KeyCode.J) ? -1 : 0;
+			changePos.xCoord += Input.GetKeyDown (KeyCode.L) ? 1 : 0;
 
+			changePos.yCoord += Input.GetKeyDown (KeyCode.K) ? -1 : 0;
+			changePos.yCoord += Input.GetKeyDown (KeyCode.I) ? 1 : 0;
+
+			if (changePos.xCoord != 0 || changePos.yCoord != 0) {
+				xChunk += changePos.xCoord;
+				yChunk += changePos.yCoord;
+				generateChunk (xChunk, yChunk);
+			}
+		}
     }
 }
