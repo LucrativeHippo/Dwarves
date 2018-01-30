@@ -6,10 +6,11 @@ public class terrainGenerator : MonoBehaviour
 {
 
     //The map that shows the terrain value at each existing coordinate
-    private Dictionary<string, float> terrainMap;
+    private Dictionary<string, terrain> terrainMap;
 
 	/// Size of a section side generated for the map
-	private int chunkSize = 100;
+	private static int chunkSize = 100;
+	public static int SEED = 0;
 	/*
     //The y size of a generated section of the map
     public int chunkSizeY;
@@ -76,86 +77,115 @@ public class terrainGenerator : MonoBehaviour
 		}
 	}
 
+	private GameObject getObject(terrain t){
+		switch (t) {
+		case terrain.WATER:
+			return Water;
+		case terrain.SAND:
+			return Sand;
+		case terrain.DIRT:
+			return Dirt;
+		case terrain.STONE:
+			return Stone;
+		case terrain.SNOW:
+			return Snow;
+		case terrain.GRASS:
+			return Grass;
+		case terrain.DESERT:
+			return Desert;
+		default:
+			return Grass;
+		}
+	}
+
 
 	float posNoise(int val){
-		return (float)val / 10f;
+		return (float)val / 20f + SEED;
 	}
     // Use this for initialization
     void Start()
 	{
 
-        terrainMap = new Dictionary<string, float>();
+		terrainMap = new Dictionary<string, terrain>();
+		generateChunk (0,0);
+
         //System.Random randomNum = new System.Random();
-        for (int y = 0; y < chunkSize; y++)
-        {
-            for (int x = 0; x < chunkSize; x++)
-            {
+        
+
+
+
+
+    }
+
+
+	/// <summary>
+	/// Generates the chunk at xy chunk position.
+	/// </summary>
+	/// <returns>The chunk.</returns>
+	/// <param name="xPos">X position.</param>
+	/// <param name="yPos">Y position.</param>
+	GameObject[,] generateChunk(int xPos, int yPos){
+
+		GameObject[,] tempChunk = new GameObject[chunkSize,chunkSize];
+
+
+
+		for (int y = 0; y < chunkSize; y++)
+		{
+			for (int x = 0; x < chunkSize; x++)
+			{
+
+				GameObject tempTile;
 				float xNoiseValue = posNoise(x);
 				float yNoiseValue = posNoise(y);
-                terrainMap.Add(x +" " + y, Mathf.PerlinNoise(xNoiseValue, yNoiseValue)/waterAmount);
-                //print(Mathf.PerlinNoise(xNoiseValue, yNoiseValue));
-				//float temp = terrainMap[x +" "+y];
+				//terrainMap.Add(x +" " + y, Mathf.PerlinNoise(xNoiseValue, yNoiseValue)/waterAmount);
 
 				float waterVal = Mathf.PerlinNoise (posNoise (x) + waterSeed, posNoise (y) + waterSeed) / waterAmount;
 
-                float terrainVal = Mathf.PerlinNoise(posNoise(x) + terrainSeed, posNoise(y) + terrainSeed)/terrainAmount;
+				float terrainVal = Mathf.PerlinNoise(posNoise(x) + terrainSeed, posNoise(y) + terrainSeed) / terrainAmount;
 
-				if (waterVal < getThreshold(terrain.WATER))
+				// Check if this tile is edited already
+				if(terrainMap.ContainsKey("x y"))
 				{
-					Instantiate(Water, new Vector3(x, y, 0), Quaternion.identity);
+					// Instantiate saved game object from terrain
+					tempTile = getObject(terrainMap["x y"]);
+				}else if (waterVal < getThreshold(terrain.WATER))
+				{
+					tempTile = Water;
 				}else if (waterVal < getThreshold(terrain.SAND))
-                {
-                    Instantiate(Sand, new Vector3(x, y, 0), Quaternion.identity);
-                }
-                
+				{
+					tempTile = Sand;
+				}
+
 				else
 				{
-                    if (terrainVal <= getThreshold(terrain.DESERT))
-                    {
-                        Instantiate(Desert, new Vector3(x, y, 0), Quaternion.identity);
-                    }
-                    else if (getThreshold(terrain.DESERT) < terrainVal && terrainVal <= getThreshold(terrain.GRASS))
-                    {
-                        Instantiate(Grass, new Vector3(x, y, 0), Quaternion.identity);
-                    }
-                    else if (getThreshold(terrain.GRASS) < terrainVal && terrainVal <= getThreshold(terrain.DIRT))
-                    {
-                        Instantiate(Dirt, new Vector3(x, y, 0), Quaternion.identity);
-                    }
-                    else if (getThreshold(terrain.DIRT) < terrainVal && terrainVal <= getThreshold(terrain.STONE))
-                    {
-                        Instantiate(Stone, new Vector3(x, y, 0), Quaternion.identity);
-                    }
-                    else 
-                    {
-                        Instantiate(Snow, new Vector3(x, y, 0), Quaternion.identity);
-                    }
-                    
+					if (terrainVal <= getThreshold(terrain.DESERT))
+					{
+						tempTile = Desert;
+					}
+					else if (getThreshold(terrain.DESERT) < terrainVal && terrainVal <= getThreshold(terrain.GRASS))
+					{
+						tempTile = Grass;
+					}
+					else if (getThreshold(terrain.GRASS) < terrainVal && terrainVal <= getThreshold(terrain.DIRT))
+					{
+						tempTile = Dirt;
+					}
+					else if (getThreshold(terrain.DIRT) < terrainVal && terrainVal <= getThreshold(terrain.STONE))
+					{
+						tempTile = Stone;
+					}
+					else 
+					{
+						tempTile = Snow;
+					}
 				}
-            }
-        }
-
-
-
-		/*
-        for (int y = 0; y < chunkSize; y++)
-        {
-            for (int x = 0; x < chunkSize; x++)
-            {
-                
-                float temp = terrainMap[x +" "+y];
-                if (temp < 0.3)
-                {
-                    Instantiate(Water, new Vector3(x, y, 0), Quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(Grass, new Vector3(x, y, 0), Quaternion.identity);
-                }
-
-            }
-        }*/
-    }
+				tempTile = Instantiate(tempTile, new Vector3(x, y, 0), Quaternion.identity);
+				tempChunk [x, y] = tempTile;
+			}
+		}
+		return tempChunk;
+	}
 
     // Update is called once per frame
     void Update()
