@@ -121,10 +121,9 @@ public class terrainGenerator : MonoBehaviour
 		loadedChunks = new Dictionary<string, Chunk>();
 		terrainMap = new Dictionary<string, terrain>();
 		generateChunk (xChunk,yChunk);
-        generateChunk(xChunk + 1,yChunk + 0);
         generateChunk(xChunk - 1, yChunk + 0);
-        generateChunk(xChunk - 1, yChunk + 1);
-        generateChunk(xChunk + 0, yChunk + 1);
+        generateChunk(xChunk - 1, yChunk - 1);
+        generateChunk(xChunk + 0, yChunk - 1);
 
         //System.Random randomNum = new System.Random();
     }
