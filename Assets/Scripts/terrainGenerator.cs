@@ -6,21 +6,22 @@ public class terrainGenerator : MonoBehaviour
 {
 
     //The map that shows the terrain value at each existing coordinate
-	private Dictionary<string, terrain> terrainMap;
-	public Dictionary<string, Chunk> loadedChunks;
+    private Dictionary<string, terrain> terrainMap;
+    private Dictionary<string, resource> resourceMap;
+    public Dictionary<string, Chunk> loadedChunks;
 
-	/// Number of chunks that make up the world
-	private static int WORLD_SIZE = 1;
-	/// World starting point
-	public static int SEED = 0;
+    /// Number of chunks that make up the world
+    private static int WORLD_SIZE = 1;
+    /// World starting point
+    public static int SEED = 0;
 
     public static float chunkIntervalSeed = 5f;
 
-	public bool DEBUG = false;
+    public bool DEBUG = false;
 
-	public int xChunk;
-	public int yChunk;
-	/*
+    public int xChunk;
+    public int yChunk;
+    /*
     //The y size of a generated section of the map
     public int chunkSizeY;
     //The x size of a generated section of the map
@@ -33,8 +34,13 @@ public class terrainGenerator : MonoBehaviour
     //A divisor that determines amount of specific terrain based on temperature
     public float terrainAmount;
 
-	private float [] thresholds = new float[(int)terrain.GRASS];
+    //A divisor that determines amount of trees 
+    public float treeAmount;
 
+    private float[] thresholds = new float[(int)terrain.GRASS];
+
+
+    //terrains
     public GameObject Water;
 
     public GameObject Grass;
@@ -49,177 +55,292 @@ public class terrainGenerator : MonoBehaviour
 
     public GameObject Desert;
 
+
+    //resources
+    public GameObject Tree;
+
     //Affects the types of terrain that are generated
     public float terrainSeed;
 
     public float waterSeed;
 
+    public float resourceSeed;
+
     // Enumerate terrain
-	private enum terrain {
-		WATER,
-		DIRT,
-		SNOW,
-		STONE,
-		GRASS,
+    private enum terrain
+    {
+        WATER,
+        DIRT,
+        SNOW,
+        STONE,
+        GRASS,
         SAND,
         DESERT
-	}
+    }
 
-	private float getThreshold(terrain t){
-		switch (t) {
-		case terrain.WATER:
-			return 0.2f;
-        case terrain.SAND:
-            return 0.25f;
-		case terrain.DIRT:
-			return 0.80f;
-		case terrain.STONE:
-			return 0.90f;
-		case terrain.SNOW:
-			return 1.0f;
-		case terrain.GRASS:
-			return 0.65f;
-        case terrain.DESERT:
-            return 0.30f;
-		default:
-			return 0.1f;
-		}
-	}
+    private enum resource
+    {
+        TREE,
+        IRON,
+        STONE,
+        GOLD,
+        FISH,
+        MEAT,
+        VEGETABLES
+    }
 
-	private GameObject getObject(terrain t){
-		switch (t) {
-		case terrain.WATER:
-			return Water;
-		case terrain.SAND:
-			return Sand;
-		case terrain.DIRT:
-			return Dirt;
-		case terrain.STONE:
-			return Stone;
-		case terrain.SNOW:
-			return Snow;
-		case terrain.GRASS:
-			return Grass;
-		case terrain.DESERT:
-			return Desert;
-		default:
-			return Grass;
-		}
-	}
+    private GameObject getResourceObject(resource r)
+    {
+        switch (r)
+        {
+            case resource.FISH:
+            //return Fish;
+            case resource.MEAT:
+            //return Meat;
+            case resource.GOLD:
+            //return Gold;
+            case resource.IRON:
+            //return Iron;
+            case resource.VEGETABLES:
+            //return Vegetables;
+            case resource.TREE:
+                return Tree;
+            case resource.STONE:
+            //return Stone;
+            default:
+                return Tree;
+        }
+    }
 
-	/// <summary>
-	/// Gets the position to sample noise.
-	/// </summary>
-	/// <returns>The noise.</returns>
-	/// <param name="val">Value.</param>
-	float posNoise(int val, int chunk){
-		return (float)(val+ chunk*Chunk.SIZE)/20f + SEED;
-	}
+    private float getThreshold(terrain t)
+    {
+        switch (t)
+        {
+            case terrain.WATER:
+                return 0.2f;
+            case terrain.SAND:
+                return 0.25f;
+            case terrain.DIRT:
+                return 0.80f;
+            case terrain.STONE:
+                return 0.90f;
+            case terrain.SNOW:
+                return 1.0f;
+            case terrain.GRASS:
+                return 0.65f;
+            case terrain.DESERT:
+                return 0.30f;
+            default:
+                return 0.1f;
+        }
+    }
+
+    private float getResourceThreshold(resource r)
+    {
+        switch (r)
+        {
+            case resource.VEGETABLES:
+                return 0.45f;
+            case resource.TREE:
+                return 0.75f;
+            case resource.STONE:
+                return 0.8f;
+            case resource.MEAT:
+                return 0.50f;
+            case resource.IRON:
+                return 0.90f;
+            case resource.GOLD:
+                return 0.57f;
+            case resource.FISH:
+                return 0.55f;
+            default:
+                return 0.4f;
+        }
+    }
+
+    private GameObject getObject(terrain t)
+    {
+        switch (t)
+        {
+            case terrain.WATER:
+                return Water;
+            case terrain.SAND:
+                return Sand;
+            case terrain.DIRT:
+                return Dirt;
+            case terrain.STONE:
+                return Stone;
+            case terrain.SNOW:
+                return Snow;
+            case terrain.GRASS:
+                return Grass;
+            case terrain.DESERT:
+                return Desert;
+            default:
+                return Grass;
+        }
+    }
+
+    /// <summary>
+    /// Gets the position to sample noise.
+    /// </summary>
+    /// <returns>The noise.</returns>
+    /// <param name="val">Value.</param>
+    float posNoise(int val, int chunk)
+    {
+        return (float)(val + chunk * Chunk.SIZE) / 20f + SEED;
+    }
     // Use this for initialization
     public void Start()
-	{
-		loadedChunks = new Dictionary<string, Chunk>();
-		terrainMap = new Dictionary<string, terrain>();
-		generateChunk (xChunk,yChunk);
-        generateChunk(xChunk - 1, yChunk + 0);
-        generateChunk(xChunk - 1, yChunk - 1);
-        generateChunk(xChunk + 0, yChunk - 1);
+    {
+        loadedChunks = new Dictionary<string, Chunk>();
+        terrainMap = new Dictionary<string, terrain>();
+        resourceMap = new Dictionary<string, resource>();
+        generateChunk(xChunk, yChunk);
+        //generateChunk(xChunk + 1,yChunk + 0);
+        //generateChunk(xChunk - 1, yChunk + 0);
+        //generateChunk(xChunk - 1, yChunk + 1);
+        //generateChunk(xChunk + 0, yChunk + 1);
 
         //System.Random randomNum = new System.Random();
     }
 
 
-	/// <summary>
-	/// Generates the chunk at xy chunk position.
-	/// </summary>
-	/// <returns>The chunk.</returns>
-	/// <param name="xPos">X position.</param>
-	/// <param name="yPos">Y position.</param>
-	void generateChunk(int xPos, int yPos){
+    /// <summary>
+    /// Generates the chunk at xy chunk position.
+    /// </summary>
+    /// <returns>The chunk.</returns>
+    /// <param name="xPos">X position.</param>
+    /// <param name="yPos">Y position.</param>
+    void generateChunk(int xPos, int yPos)
+    {
 
-		// If the chunk is alreaady loaded on screen return
-		if (loadedChunks.ContainsKey (xPos + " " + yPos)) {
-			return;// loadedChunks [xPos + " " + yPos];
-		}
+        // If the chunk is alreaady loaded on screen return
+        if (loadedChunks.ContainsKey(xPos + " " + yPos))
+        {
+            return;// loadedChunks [xPos + " " + yPos];
+        }
 
 
-		// Create chunk
-		Chunk chunkMap = new Chunk();
+        // Create chunk
+        Chunk chunkMap = new Chunk();
 
-		for (int y = 0; y < Chunk.SIZE; y++)
-		{
-			for (int x = 0; x < Chunk.SIZE; x++)
-			{
-				GameObject tempTile;
-				Position worldPos = new Position (xPos * Chunk.SIZE + x, yPos*Chunk.SIZE+y);
-				string key = worldPos.xCoord+" "+worldPos.yCoord;
+        for (int y = 0; y < Chunk.SIZE; y++)
+        {
+            for (int x = 0; x < Chunk.SIZE; x++)
+            {
+                GameObject tempTile = null;
+                GameObject tempResource = null;
+                Position worldPos = new Position(xPos * Chunk.SIZE + x, yPos * Chunk.SIZE + y);
+                string key = worldPos.xCoord + " " + worldPos.yCoord;
 
-				float xNoiseValue = posNoise(x,xChunk);
-				float yNoiseValue = posNoise(y,yChunk);
+                float xNoiseValue = posNoise(x, xChunk);
+                float yNoiseValue = posNoise(y, yChunk);
 
-				float waterVal = Mathf.PerlinNoise (xNoiseValue + waterSeed + chunkIntervalSeed*xPos, yNoiseValue + waterSeed + chunkIntervalSeed*yPos) / waterAmount;
-				float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed + chunkIntervalSeed * xPos, yNoiseValue + terrainSeed + chunkIntervalSeed * yPos) / terrainAmount;
+                float waterVal = Mathf.PerlinNoise(xNoiseValue + waterSeed + chunkIntervalSeed * xPos, yNoiseValue + waterSeed + chunkIntervalSeed * yPos) / waterAmount;
+                float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed + chunkIntervalSeed * xPos, yNoiseValue + terrainSeed + chunkIntervalSeed * yPos) / terrainAmount;
+                float resourceVal = Mathf.PerlinNoise(xNoiseValue + resourceSeed + chunkIntervalSeed * xPos, yNoiseValue + resourceSeed + chunkIntervalSeed * yPos) / treeAmount;
 
-				// Check if this tile is edited already
-				if(terrainMap.ContainsKey(key))
-				{
-					// Instantiate saved game object from terrain
-					tempTile = getObject(terrainMap[key]);
-				}else if (waterVal < getThreshold(terrain.WATER))
-				{
-					tempTile = Water;
-				}else if (waterVal < getThreshold(terrain.SAND))
-				{
-					tempTile = Sand;
-				}
+                // Check if this tile is edited already
+                if (terrainMap.ContainsKey(key))
+                {
+                    // Instantiate saved game object from terrain
+                    tempTile = getObject(terrainMap[key]);
+                }
+                else if (waterVal < getThreshold(terrain.WATER))
+                {
+                    terrainMap.Add(key, terrain.WATER);
+                    tempTile = Water;
+                }
+                else if (waterVal < getThreshold(terrain.SAND))
+                {
+                    terrainMap.Add(key, terrain.SAND);
+                    tempTile = Sand;
+                }
 
-				else
-				{
-					if (terrainVal <= getThreshold(terrain.DESERT))
-					{
-						tempTile = Desert;
-					}
-					else if (getThreshold(terrain.DESERT) < terrainVal && terrainVal <= getThreshold(terrain.GRASS))
-					{
-						tempTile = Grass;
-					}
-					else if (getThreshold(terrain.GRASS) < terrainVal && terrainVal <= getThreshold(terrain.DIRT))
-					{
-						tempTile = Dirt;
-					}
-					else if (getThreshold(terrain.DIRT) < terrainVal && terrainVal <= getThreshold(terrain.STONE))
-					{
-						tempTile = Stone;
-					}
-					else 
-					{
-						tempTile = Snow;
-					}
-				}
+                else
+                {
+                    if (terrainVal <= getThreshold(terrain.DESERT))
+                    {
+                        terrainMap.Add(key, terrain.DESERT);
+                        tempTile = Desert;
+                    }
+                    else if (getThreshold(terrain.DESERT) < terrainVal && terrainVal <= getThreshold(terrain.GRASS))
+                    {
+                        terrainMap.Add(key, terrain.GRASS);
+                        tempTile = Grass;
+                    }
+                    else if (getThreshold(terrain.GRASS) < terrainVal && terrainVal <= getThreshold(terrain.DIRT))
+                    {
+                        terrainMap.Add(key, terrain.DIRT);
+                        tempTile = Dirt;
+                    }
+                    else if (getThreshold(terrain.DIRT) < terrainVal && terrainVal <= getThreshold(terrain.STONE))
+                    {
+                        terrainMap.Add(key, terrain.STONE);
+                        tempTile = Stone;
+                    }
+                    else
+                    {
+                        terrainMap.Add(key, terrain.SNOW);
+                        tempTile = Snow;
+                    }
+                }
 
-				tempTile = Instantiate(tempTile, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
-				chunkMap.addTileAt (tempTile, x, y);
-			}
-		}
-		loadedChunks[xPos+" "+yPos] = chunkMap;
-	}
+
+                //Generate resources
+
+                if (resourceMap.ContainsKey(key))
+                {
+                    tempResource = getResourceObject(resourceMap[key]);
+                }
+                else if (getResourceThreshold(resource.GOLD) < resourceVal && resourceVal < getResourceThreshold(resource.TREE))
+                {
+
+                    if (terrainMap[key] == terrain.GRASS)
+                    {
+                        tempResource = Tree;
+                    }
+                    else if (terrainMap[key] == terrain.GRASS)
+                    {
+
+                        tempResource = Tree;
+                    }
+                }
+
+
+                tempTile = Instantiate(tempTile, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+                chunkMap.addTileAt(tempTile, x, y);
+                if (tempResource != null)
+                {
+
+                    tempTile = Instantiate(tempResource, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+                    //Need to add implementation to add resources to chunk
+                    //chunkMap.addTileAt(resource, x, y);
+                }
+            }
+        }
+        loadedChunks[xPos + " " + yPos] = chunkMap;
+    }
 
     // Update is called once per frame
     void Update()
     {
-		if (DEBUG) {
-			Position changePos = new Position (0, 0);
-			changePos.xCoord += Input.GetKeyDown (KeyCode.J) ? -1 : 0;
-			changePos.xCoord += Input.GetKeyDown (KeyCode.L) ? 1 : 0;
+        if (DEBUG)
+        {
+            Position changePos = new Position(0, 0);
+            changePos.xCoord += Input.GetKeyDown(KeyCode.J) ? -1 : 0;
+            changePos.xCoord += Input.GetKeyDown(KeyCode.L) ? 1 : 0;
 
-			changePos.yCoord += Input.GetKeyDown (KeyCode.K) ? -1 : 0;
-			changePos.yCoord += Input.GetKeyDown (KeyCode.I) ? 1 : 0;
+            changePos.yCoord += Input.GetKeyDown(KeyCode.K) ? -1 : 0;
+            changePos.yCoord += Input.GetKeyDown(KeyCode.I) ? 1 : 0;
 
-			if (changePos.xCoord != 0 || changePos.yCoord != 0) {
-				xChunk += changePos.xCoord;
-				yChunk += changePos.yCoord;
-				generateChunk (xChunk, yChunk);
-			}
-		}
+            if (changePos.xCoord != 0 || changePos.yCoord != 0)
+            {
+                xChunk += changePos.xCoord;
+                yChunk += changePos.yCoord;
+                generateChunk(xChunk, yChunk);
+            }
+        }
     }
 }
