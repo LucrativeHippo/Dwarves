@@ -168,7 +168,7 @@ public class Season {
         }
         else if (day >= daysInSeason)
         {
-            day = daysInSeason = 1;
+            day = daysInSeason - 1;
             Debug.LogError("Error: " + functionName + " input day " +
                 "was greater than or equal to the days in the season. " +
                 "The days are indexed starting from 0.");
