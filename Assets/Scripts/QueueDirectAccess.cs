@@ -30,6 +30,7 @@ public class QueueDirectAccess<T> {
                 Debug.LogError("Error: Attempted to set index of direct access " +
                     "queue with index that doesn't exist. " +
                     "Setting index to 0 to attempt recover.");
+                i = 0;
             }
             int index = (i + start) % queue.Length;
             queue[index] = value;
@@ -91,6 +92,10 @@ public class QueueDirectAccess<T> {
             }
 
             size--;
+            if (size < queue.Length / 2 && size > 1)
+            {
+                resize(queue.Length / 2);
+            }
             return output;
         }
     }
@@ -118,15 +123,6 @@ public class QueueDirectAccess<T> {
 
     private void doubleQueueSize()
     {
-        T[] oldQueue = queue;
-        queue = new T[queue.Length * 2];
-
-        for (int i = 0; i < size; i++)
-        {
-            queue[i] = oldQueue[start + i];
-        }
-
-        start = 0;
-        end = size;
+        resize(queue.Length * 2);
     }
 }
