@@ -78,7 +78,7 @@ public class Calendar : MonoBehaviour {
     public void generateNewForecast()
     {
         forecast = new QueueDirectAccess<float>();
-        //forecast.resize(daysToForecast);
+        forecast.resize(daysToForecast);
 
         int daysInSeasons = climate.getDaysPerSeason();
         int seasonsInClimate = climate.getSeasonsInClimate();
