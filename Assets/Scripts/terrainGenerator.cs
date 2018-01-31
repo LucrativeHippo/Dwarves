@@ -14,6 +14,8 @@ public class terrainGenerator : MonoBehaviour
 	/// World starting point
 	public static int SEED = 0;
 
+    public static float chunkIntervalSeed = 5f;
+
 	public bool DEBUG = false;
 
 	public int xChunk;
@@ -119,6 +121,10 @@ public class terrainGenerator : MonoBehaviour
 		loadedChunks = new Dictionary<string, Chunk>();
 		terrainMap = new Dictionary<string, terrain>();
 		generateChunk (xChunk,yChunk);
+        generateChunk(xChunk + 1,yChunk + 0);
+        generateChunk(xChunk - 1, yChunk + 0);
+        generateChunk(xChunk - 1, yChunk + 1);
+        generateChunk(xChunk + 0, yChunk + 1);
 
         //System.Random randomNum = new System.Random();
     }
@@ -152,8 +158,8 @@ public class terrainGenerator : MonoBehaviour
 				float xNoiseValue = posNoise(x,xChunk);
 				float yNoiseValue = posNoise(y,yChunk);
 
-				float waterVal = Mathf.PerlinNoise (xNoiseValue + waterSeed, yNoiseValue + waterSeed) / waterAmount;
-				float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed, yNoiseValue + terrainSeed) / terrainAmount;
+				float waterVal = Mathf.PerlinNoise (xNoiseValue + waterSeed + chunkIntervalSeed*xPos, yNoiseValue + waterSeed + chunkIntervalSeed*yPos) / waterAmount;
+				float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed + chunkIntervalSeed * xPos, yNoiseValue + terrainSeed + chunkIntervalSeed * yPos) / terrainAmount;
 
 				// Check if this tile is edited already
 				if(terrainMap.ContainsKey(key))
