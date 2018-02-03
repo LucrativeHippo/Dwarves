@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class actionManagerPlayerRotation : MonoBehaviour {
 
-	public float speed;
+	public Transform player;
+	public float radious = 1f;
 
-	void FixedUpdate() {
-		if (Input.GetKey(KeyCode.W)) {
-			
-		}
-		if (Input.GetKey(KeyCode.A)) {
-
-		}
-		if (Input.GetKey(KeyCode.S)){
-
-		}
-		if(Input.GetKey(KeyCode.D)){
-
-		}
+	void Start() {
+		player = transform.parent.transform;
 	}
-	
+
+	void Update() {
+		Vector3 actionboxToMouse = Camera.main.ScreenToWorldPoint (Input.mousePosition) - player.position;
+		actionboxToMouse.z = 0;
+		transform.position = player.position + (radious * actionboxToMouse.normalized);
+	}
+
+
 }
