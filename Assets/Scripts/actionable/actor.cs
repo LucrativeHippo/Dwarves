@@ -7,11 +7,9 @@ public class actor : MonoBehaviour {
 	private bool actionable;
 	public KeyCode actionKey;
 	private GameObject collidedGameObject;
-	private bool canSend;
+	private bool canSend = true;
 
-	void Start() {
-		canSend = true;
-	}
+	public int actionCooldownSec = 5;
 
 	void OnTriggerEnter2D(Collider2D other) {
 		actionable = true;
@@ -27,13 +25,23 @@ public class actor : MonoBehaviour {
 	void FixedUpdate() {
 		if(Input.GetKey(actionKey) && actionable && canSend) {
 			Debug.Log ("action Logged.");
-			canSend = false;
 			SendMessage ();
+			StartCoroutine( canSendTimer() );
 		}
 	}
 
 	void SendMessage() {
 		collidedGameObject.SendMessage ("recieveMessage");
 		canSend = true;
+	}
+
+	IEnumerator canSendTimer() {
+		canSend = false;
+
+		for(int i=0; i< actionCooldownSec; i++) {
+			yield return new WaitForSeconds(1.0f);
+		}
+
+		canSend=true;
 	}
 }
