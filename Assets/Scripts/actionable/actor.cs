@@ -31,7 +31,7 @@ public class actor : MonoBehaviour {
 	}
 
 	void SendMessage() {
-		collidedGameObject.SendMessage ("recieveMessage");
+		collidedGameObject.SendMessage ("recieveAction");
 		canSend = true;
 	}
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class exampleAction : MonoBehaviour {
 
-	public void recieveMessage(){ 
+	public void recieveAction(){ 
 		Debug.Log ("MessageRecieve");
 	}
 }
