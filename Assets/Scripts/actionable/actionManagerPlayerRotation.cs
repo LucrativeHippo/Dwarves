@@ -12,7 +12,8 @@ public class actionManagerPlayerRotation : MonoBehaviour {
 	}
 
 	void Update() {
-		Vector3 actionboxToMouse = Camera.main.ScreenToWorldPoint (Input.mousePosition) - player.position;
+//		Vector3 actionboxToMouse = Camera.main.ScreenToWorldPoint (Input.mousePosition) - player.position;
+		Vector3 actionboxToMouse = player.position;
 		actionboxToMouse.z = 0;
 		transform.position = player.position + (radious * actionboxToMouse.normalized);
 	}
