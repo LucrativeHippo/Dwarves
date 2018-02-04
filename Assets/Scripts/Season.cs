@@ -86,6 +86,11 @@ public class Season {
     // Actual Functionality
     // ************************************
 
+    public float getTemperatureTrend()
+    {
+        return Mathf.Sign(beginningMeanTemp - endingMeanTemp);
+    }
+
     // Uses the standard deviation and mean temperature to randomly generate a 
     // new current temperature. Since it is random, a new value is generated on 
     // every call.

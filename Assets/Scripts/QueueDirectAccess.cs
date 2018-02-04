@@ -92,9 +92,14 @@ public class QueueDirectAccess<T> {
             }
 
             size--;
-            if (size < queue.Length / 2 && size > 1)
+
+            // We don't want to trigger excessive size changes,
+            // so the goal is to always have the queue be half full
+            // after any automated resize. That way further automatic
+            // resizes won't happen without some effort.
+            if (size < queue.Length / 4 && size > 1)
             {
-                resize(queue.Length / 2);
+                halveQueueSize();
             }
             return output;
         }
@@ -124,5 +129,10 @@ public class QueueDirectAccess<T> {
     private void doubleQueueSize()
     {
         resize(queue.Length * 2);
+    }
+
+    private void halveQueueSize()
+    {
+        resize(queue.Length / 2);
     }
 }

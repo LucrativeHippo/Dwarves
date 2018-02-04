@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Climate : MonoBehaviour {
+public class Climate : MonoBehaviour
+{
 
     // ************************************
     // Fields
@@ -14,7 +15,9 @@ public class Climate : MonoBehaviour {
 
     public float maxTempAllowed;
     public float minTempAllowed;
+
     public float maxTempChangePerSeason;
+    public float chanceOfTrendInChange;
 
     public float maxStdDeviation;
     public float minStdDeviation;
@@ -26,6 +29,41 @@ public class Climate : MonoBehaviour {
     // Getters, Setters, and Constructor
     // ************************************
 
+    public void setStartingTempInCycle(float startTemp)
+    {
+        startingTempInCycle = startTemp;
+    }
+
+    public void setMaxTempAllowed(float maxTemp)
+    {
+        maxTempAllowed = maxTemp;
+    }
+
+    public void setMinTempAllowed(float minTemp)
+    {
+        minTempAllowed = minTemp;
+    }
+
+    public void setMaxTempChangePerSeason(float maxChange)
+    {
+        maxTempChangePerSeason = maxChange;
+    }
+
+    public void setChanceOfTrendInChange(float chance)
+    {
+        chanceOfTrendInChange = chance;
+    }
+
+    public void setMaxStdDeviation(float stdDev)
+    {
+        maxStdDeviation = stdDev;
+    }
+
+    public void setMinStdDeviation(float stdDev)
+    {
+        minStdDeviation = stdDev;
+    }
+
     public void setSeasonsInClimate(int seasonsCount)
     {
         seasonsInClimate = seasonsCount;
@@ -34,6 +72,41 @@ public class Climate : MonoBehaviour {
     public void setDaysPerSeason(int days)
     {
         daysPerSeason = days;
+    }
+
+    public float getStartingTempInCycle()
+    {
+        return startingTempInCycle;
+    }
+
+    public float getMaxTempAllowed()
+    {
+        return maxTempAllowed;
+    }
+
+    public float getMinTempAllowed()
+    {
+        return minTempAllowed;
+    }
+
+    public float getMaxTempChangePerSeason()
+    {
+        return maxTempChangePerSeason;
+    }
+
+    public float getChanceOfTrendInChange()
+    {
+        return chanceOfTrendInChange;
+    }
+
+    public float getMaxStdDeviation()
+    {
+        return maxStdDeviation;
+    }
+
+    public float getMinStdDeviation()
+    {
+        return minStdDeviation;
     }
 
     public int getSeasonsInClimate()
@@ -51,14 +124,16 @@ public class Climate : MonoBehaviour {
     // ************************************
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public float getTempFromSeasonAndDay(int season, int day)
     {
@@ -97,9 +172,10 @@ public class Climate : MonoBehaviour {
 
     private float generateNewSeasonStartingTemp(int season)
     {
+        float startTemp;
+
         // In order to give more control over the generation,
         // the first season's starting temp is provided
-        float startTemp;
         if (season == 0)
         {
             startTemp = startingTempInCycle;
@@ -147,14 +223,56 @@ public class Climate : MonoBehaviour {
         }
         else
         {
-            endTemp = startTemp + Random.Range(-maxTempChangePerSeason, maxTempChangePerSeason);
+            float minRange = Mathf.Max(startTemp - maxTempChangePerSeason, minTempAllowed);
+            float maxRange = Mathf.Min(startTemp + maxTempChangePerSeason, maxTempAllowed);
+            endTemp = Random.Range(minRange, maxRange);
         }
         endTemp = Mathf.Clamp(endTemp, minTempAllowed, maxTempAllowed);
+        seasons[season].setEndingMeanTemp(endTemp);
 
-        // Since the final season should have an ending mean equal to the first
-        // season's starting mean, we have to make sure that no seasons further
-        // down the line would need an ending mean that differs from it's starting
-        // mean by more than the maximum allowed change per season.
+        // Possibly force the change in temperature to be in the same direction as last season.
+        if (season > 0 && Random.Range(0, 100) <= chanceOfTrendInChange
+            && startTemp != minTempAllowed && startTemp != maxTempAllowed)
+        {
+            endTemp = forceTemperatureTrend(season, endTemp);
+        }
+
+        // We want to make sure we don't need to change any season's temperature more
+        // than the allowed amount. So, we have to account for ending the cycle where it started.
+        endTemp = clampTemperatureForCycleRepeat(season);
+
+        return endTemp;
+    }
+
+    private float forceTemperatureTrend(int season, float endTemp)
+    {
+        if (season < 1 || season > seasonsInClimate - 1)
+        {
+            Debug.LogError("Error: attempted to force a trend in climate when no trend possible.");
+            return endTemp;
+        }
+
+        float lastTrend = seasons[season - 1].getTemperatureTrend();
+        float currentTrend = seasons[season].getTemperatureTrend();
+
+        if (lastTrend != currentTrend)
+        {
+            float oldChange = endTemp - seasons[season].getBeginningMeanTemp();
+            endTemp = seasons[season].getBeginningMeanTemp() + (oldChange * -1);
+        }
+        seasons[season].setEndingMeanTemp(endTemp);
+
+        return endTemp;
+    }
+
+    // Since the final season should have an ending mean equal to the first
+    // season's starting mean, we have to make sure that no seasons further
+    // down the line would need an ending mean that differs from it's starting
+    // mean by more than the maximum allowed change per season.
+    private float clampTemperatureForCycleRepeat(int season)
+    {
+        float endTemp = seasons[season].getEndingMeanTemp();
+
         int seasonsLeft = seasonsInClimate - season - 1;
         float cycleEndTemp = seasons[0].getBeginningMeanTemp();
         float changePossible = seasonsLeft * maxTempChangePerSeason;
@@ -186,7 +304,17 @@ public class Climate : MonoBehaviour {
                 "higher than the max temp. Values were swapped, but this may be worth " +
                 "looking into.");
         }
-        
+
+        if (startingTempInCycle > maxTempAllowed 
+            || startingTempInCycle < minTempAllowed)
+        {
+            startingTempInCycle = (minTempAllowed + maxTempAllowed) / 2;
+
+            Debug.LogError("Error: During climate generation, the starting temp was " +
+                "set to outside the allowed temperature range. Starting temp was set to " +
+                "the average of the range boundaries to attempt recovery.");
+        }
+
         if (maxTempChangePerSeason < 0)
         {
             maxTempChangePerSeason = Mathf.Abs(maxTempChangePerSeason);
@@ -194,6 +322,22 @@ public class Climate : MonoBehaviour {
             Debug.LogError("Error: During climate generation, the maximum change " +
                 "in temp per season was negative. Value was recovered, but this may be worth " +
                "looking into.");
+        }
+
+        if (chanceOfTrendInChange < 0)
+        {
+            chanceOfTrendInChange = 0;
+
+            Debug.LogError("Error: During climate generation, there was a negative chance for " +
+                "a temperature trend. We've set it to 0 for now to recover.");
+        }
+
+        if (chanceOfTrendInChange > 100)
+        {
+            chanceOfTrendInChange = 100;
+
+            Debug.LogError("Error: During climate generation, there was a greater than 100% chance " +
+                "for a temperature trend. We've set it to 100 for now to recover.");
         }
 
         if (minStdDeviation > maxStdDeviation)
@@ -222,5 +366,6 @@ public class Climate : MonoBehaviour {
             Debug.LogError("Error: During climate generation, each season was set to have " +
                 "fewer than 1 day. We've set it to 1 for now to recover.");
         }
+    }
 }
-}
+
