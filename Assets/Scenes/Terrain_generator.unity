@@ -252,7 +252,8 @@ MonoBehaviour:
   Tree: {fileID: 1401740055908112, guid: 6db16e8df1cfcb34bb94f920a1e08ed3, type: 2}
   terrainSeed: 15
   waterSeed: 11
-  resourceSeed: 1
+  resourceSeed: 5
+  resourceSeed2: 0
 --- !u!212 &835928472
 SpriteRenderer:
   m_ObjectHideFlags: 0

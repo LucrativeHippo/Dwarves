@@ -47,7 +47,7 @@ public class terrainGenerator : MonoBehaviour
 
     public GameObject Dirt;
 
-    public GameObject Stone;
+    public GameObject Mountain;
 
     public GameObject Snow;
 
@@ -59,6 +59,10 @@ public class terrainGenerator : MonoBehaviour
     //resources
     public GameObject Tree;
 
+    public GameObject Stone;
+
+    public GameObject Iron;
+
     //Affects the types of terrain that are generated
     public float terrainSeed;
 
@@ -66,13 +70,15 @@ public class terrainGenerator : MonoBehaviour
 
     public float resourceSeed;
 
+    public float resourceSeed2;
+
     // Enumerate terrain
     private enum terrain
     {
         WATER,
         DIRT,
         SNOW,
-        STONE,
+        MOUNTAIN,
         GRASS,
         SAND,
         DESERT
@@ -122,7 +128,7 @@ public class terrainGenerator : MonoBehaviour
                 return 0.25f;
             case terrain.DIRT:
                 return 0.80f;
-            case terrain.STONE:
+            case terrain.MOUNTAIN:
                 return 0.90f;
             case terrain.SNOW:
                 return 1.0f;
@@ -140,21 +146,21 @@ public class terrainGenerator : MonoBehaviour
         switch (r)
         {
             case resource.VEGETABLES:
-                return 0.45f;
+                return 0.10f;
             case resource.TREE:
-                return 0.75f;
+                return 0.45f;
             case resource.STONE:
-                return 0.8f;
-            case resource.MEAT:
-                return 0.50f;
-            case resource.IRON:
                 return 0.90f;
+            case resource.MEAT:
+                return 0.10f;
+            case resource.IRON:
+                return 0.46f;
             case resource.GOLD:
-                return 0.57f;
+                return 0.01f;
             case resource.FISH:
-                return 0.55f;
+                return 0.10f;
             default:
-                return 0.4f;
+                return 1.0f;
         }
     }
 
@@ -168,7 +174,7 @@ public class terrainGenerator : MonoBehaviour
                 return Sand;
             case terrain.DIRT:
                 return Dirt;
-            case terrain.STONE:
+            case terrain.MOUNTAIN:
                 return Stone;
             case terrain.SNOW:
                 return Snow;
@@ -240,6 +246,7 @@ public class terrainGenerator : MonoBehaviour
                 float waterVal = Mathf.PerlinNoise(xNoiseValue + waterSeed + chunkIntervalSeed * xPos, yNoiseValue + waterSeed + chunkIntervalSeed * yPos) / waterAmount;
                 float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed + chunkIntervalSeed * xPos, yNoiseValue + terrainSeed + chunkIntervalSeed * yPos) / terrainAmount;
                 float resourceVal = Mathf.PerlinNoise(xNoiseValue + resourceSeed + chunkIntervalSeed * xPos, yNoiseValue + resourceSeed + chunkIntervalSeed * yPos) / treeAmount;
+                float resourceVal2 = Mathf.PerlinNoise(xNoiseValue + resourceSeed2 + chunkIntervalSeed * xPos, yNoiseValue + resourceSeed2 + chunkIntervalSeed * yPos) / treeAmount;
 
                 // Check if this tile is edited already
                 if (terrainMap.ContainsKey(key))
@@ -272,13 +279,13 @@ public class terrainGenerator : MonoBehaviour
                     }
                     else if (getThreshold(terrain.GRASS) < terrainVal && terrainVal <= getThreshold(terrain.DIRT))
                     {
-                        terrainMap.Add(key, terrain.DIRT);
-                        tempTile = Dirt;
+                        terrainMap.Add(key, terrain.MOUNTAIN);
+                        tempTile = Mountain;
                     }
-                    else if (getThreshold(terrain.DIRT) < terrainVal && terrainVal <= getThreshold(terrain.STONE))
+                    else if (getThreshold(terrain.DIRT) < terrainVal && terrainVal <= getThreshold(terrain.MOUNTAIN))
                     {
-                        terrainMap.Add(key, terrain.STONE);
-                        tempTile = Stone;
+                        terrainMap.Add(key, terrain.MOUNTAIN);
+                        tempTile = Mountain;
                     }
                     else
                     {
@@ -294,17 +301,34 @@ public class terrainGenerator : MonoBehaviour
                 {
                     tempResource = getResourceObject(resourceMap[key]);
                 }
-                else if (getResourceThreshold(resource.GOLD) < resourceVal && resourceVal < getResourceThreshold(resource.TREE))
+                else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.TREE)&& 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.TREE))
                 {
 
                     if (terrainMap[key] == terrain.GRASS)
                     {
                         tempResource = Tree;
+                        resourceMap.Add(key, resource.TREE);
                     }
                     else if (terrainMap[key] == terrain.GRASS)
                     {
 
                         tempResource = Tree;
+                    }
+                }
+                else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.IRON) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.IRON))
+                {
+                    if (terrainMap[key] == terrain.MOUNTAIN)
+                    {
+                        tempResource = Iron;
+                        resourceMap.Add(key, resource.IRON);
+                    }
+                }
+                else if (getResourceThreshold(resource.STONE)-0.4 <= resourceVal && resourceVal < getResourceThreshold(resource.STONE) && getResourceThreshold(resource.STONE)-0.4 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.STONE))
+                {
+                    if (terrainMap[key] == terrain.MOUNTAIN && !resourceMap.ContainsKey(key))
+                    {
+                        tempResource = Stone;
+                        resourceMap.Add(key, resource.STONE);
                     }
                 }
 
