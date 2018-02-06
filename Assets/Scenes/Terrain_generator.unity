@@ -245,15 +245,19 @@ MonoBehaviour:
   Water: {fileID: 1880581670494450, guid: e12fbd108fd41994588650f838e7e965, type: 2}
   Grass: {fileID: 1239622121905396, guid: 260670a91c7b3b2488f6a5e78b440c4f, type: 2}
   Dirt: {fileID: 1932556385968796, guid: 8416b0d41f68c314ba5f04bf544c3e2d, type: 2}
-  Stone: {fileID: 1080688609628742, guid: dad4903517e41f04382a0a9642b190b9, type: 2}
+  Mountain: {fileID: 1080688609628742, guid: dad4903517e41f04382a0a9642b190b9, type: 2}
   Snow: {fileID: 1552839559844636, guid: 6b65bf82210535041a8d52695778f5a3, type: 2}
   Sand: {fileID: 1188605288019344, guid: da52c76678fdc2a45964951cfda9cacd, type: 2}
   Desert: {fileID: 1993947185886442, guid: bdd27b05a33dc6a49b70f43bcece9c1c, type: 2}
   Tree: {fileID: 1401740055908112, guid: 6db16e8df1cfcb34bb94f920a1e08ed3, type: 2}
+  Stone: {fileID: 1528277530889838, guid: 679624f1d7d07e84e832ce82938b310a, type: 2}
+  Iron: {fileID: 1509994566159360, guid: 71acbd840a08d7c4e9ba4c19aecd303c, type: 2}
+  Gold: {fileID: 1518998995545862, guid: 4dd0c1254d6d02a4abdc4c6efb227d77, type: 2}
   terrainSeed: 15
+  terrainSeed2: 3
   waterSeed: 11
   resourceSeed: 5
-  resourceSeed2: 0
+  resourceSeed2: 6
 --- !u!212 &835928472
 SpriteRenderer:
   m_ObjectHideFlags: 0

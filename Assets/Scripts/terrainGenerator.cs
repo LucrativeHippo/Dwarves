@@ -63,8 +63,12 @@ public class terrainGenerator : MonoBehaviour
 
     public GameObject Iron;
 
+    public GameObject Gold;
+
     //Affects the types of terrain that are generated
     public float terrainSeed;
+
+    public float terrainSeed2;
 
     public float waterSeed;
 
@@ -125,11 +129,11 @@ public class terrainGenerator : MonoBehaviour
             case terrain.WATER:
                 return 0.2f;
             case terrain.SAND:
-                return 0.25f;
+                return 0.23f;
             case terrain.DIRT:
                 return 0.80f;
             case terrain.MOUNTAIN:
-                return 0.90f;
+                return 0.50f;
             case terrain.SNOW:
                 return 1.0f;
             case terrain.GRASS:
@@ -156,7 +160,7 @@ public class terrainGenerator : MonoBehaviour
             case resource.IRON:
                 return 0.46f;
             case resource.GOLD:
-                return 0.01f;
+                return 0.05f;
             case resource.FISH:
                 return 0.10f;
             default:
@@ -203,10 +207,10 @@ public class terrainGenerator : MonoBehaviour
         terrainMap = new Dictionary<string, terrain>();
         resourceMap = new Dictionary<string, resource>();
         generateChunk(xChunk, yChunk);
-        //generateChunk(xChunk + 1,yChunk + 0);
-        //generateChunk(xChunk - 1, yChunk + 0);
-        //generateChunk(xChunk - 1, yChunk + 1);
-        //generateChunk(xChunk + 0, yChunk + 1);
+        generateChunk(xChunk + 1,yChunk + 0);
+        generateChunk(xChunk - 1, yChunk + 0);
+        generateChunk(xChunk - 1, yChunk + 1);
+        generateChunk(xChunk + 0, yChunk + 1);
 
         //System.Random randomNum = new System.Random();
     }
@@ -235,120 +239,139 @@ public class terrainGenerator : MonoBehaviour
         {
             for (int x = 0; x < Chunk.SIZE; x++)
             {
-                GameObject tempTile = null;
-                GameObject tempResource = null;
-                Position worldPos = new Position(xPos * Chunk.SIZE + x, yPos * Chunk.SIZE + y);
-                string key = worldPos.xCoord + " " + worldPos.yCoord;
-
-                float xNoiseValue = posNoise(x, xChunk);
-                float yNoiseValue = posNoise(y, yChunk);
-
-                float waterVal = Mathf.PerlinNoise(xNoiseValue + waterSeed + chunkIntervalSeed * xPos, yNoiseValue + waterSeed + chunkIntervalSeed * yPos) / waterAmount;
-                float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed + chunkIntervalSeed * xPos, yNoiseValue + terrainSeed + chunkIntervalSeed * yPos) / terrainAmount;
-                float resourceVal = Mathf.PerlinNoise(xNoiseValue + resourceSeed + chunkIntervalSeed * xPos, yNoiseValue + resourceSeed + chunkIntervalSeed * yPos) / treeAmount;
-                float resourceVal2 = Mathf.PerlinNoise(xNoiseValue + resourceSeed2 + chunkIntervalSeed * xPos, yNoiseValue + resourceSeed2 + chunkIntervalSeed * yPos) / treeAmount;
-
+                
+                    
                 // Check if this tile is edited already
-                if (terrainMap.ContainsKey(key))
+                if (!addTerrain(x, y, xPos, yPos, chunkMap, terrainMap))
                 {
-                    // Instantiate saved game object from terrain
-                    tempTile = getObject(terrainMap[key]);
-                }
-                else if (waterVal < getThreshold(terrain.WATER))
-                {
-                    terrainMap.Add(key, terrain.WATER);
-                    tempTile = Water;
-                }
-                else if (waterVal < getThreshold(terrain.SAND))
-                {
-                    terrainMap.Add(key, terrain.SAND);
-                    tempTile = Sand;
-                }
-
-                else
-                {
-                    if (terrainVal <= getThreshold(terrain.DESERT))
-                    {
-                        terrainMap.Add(key, terrain.DESERT);
-                        tempTile = Desert;
-                    }
-                    else if (getThreshold(terrain.DESERT) < terrainVal && terrainVal <= getThreshold(terrain.GRASS))
-                    {
-                        terrainMap.Add(key, terrain.GRASS);
-                        tempTile = Grass;
-                    }
-                    else if (getThreshold(terrain.GRASS) < terrainVal && terrainVal <= getThreshold(terrain.DIRT))
-                    {
-                        terrainMap.Add(key, terrain.MOUNTAIN);
-                        tempTile = Mountain;
-                    }
-                    else if (getThreshold(terrain.DIRT) < terrainVal && terrainVal <= getThreshold(terrain.MOUNTAIN))
-                    {
-                        terrainMap.Add(key, terrain.MOUNTAIN);
-                        tempTile = Mountain;
-                    }
-                    else
-                    {
-                        terrainMap.Add(key, terrain.SNOW);
-                        tempTile = Snow;
-                    }
+                    Debug.Log("Terrain was not correctly added to tile " + x + " " + y);
                 }
 
 
                 //Generate resources
-
-                if (resourceMap.ContainsKey(key))
-                {
-                    tempResource = getResourceObject(resourceMap[key]);
-                }
-                else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.TREE)&& 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.TREE))
-                {
-
-                    if (terrainMap[key] == terrain.GRASS)
-                    {
-                        tempResource = Tree;
-                        resourceMap.Add(key, resource.TREE);
-                    }
-                    else if (terrainMap[key] == terrain.GRASS)
-                    {
-
-                        tempResource = Tree;
-                    }
-                }
-                else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.IRON) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.IRON))
-                {
-                    if (terrainMap[key] == terrain.MOUNTAIN)
-                    {
-                        tempResource = Iron;
-                        resourceMap.Add(key, resource.IRON);
-                    }
-                }
-                else if (getResourceThreshold(resource.STONE)-0.4 <= resourceVal && resourceVal < getResourceThreshold(resource.STONE) && getResourceThreshold(resource.STONE)-0.4 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.STONE))
-                {
-                    if (terrainMap[key] == terrain.MOUNTAIN && !resourceMap.ContainsKey(key))
-                    {
-                        tempResource = Stone;
-                        resourceMap.Add(key, resource.STONE);
-                    }
-                }
-
-
-                tempTile = Instantiate(tempTile, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
-                chunkMap.addTileAt(tempTile, x, y);
-                if (tempResource != null)
-                {
-
-                    tempTile = Instantiate(tempResource, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
-                    //Need to add implementation to add resources to chunk
-                    //chunkMap.addTileAt(resource, x, y);
-                }
+                addResource(x, y, xPos, yPos, chunkMap, resourceMap);
+               
             }
         }
         loadedChunks[xPos + " " + yPos] = chunkMap;
     }
 
-    // Update is called once per frame
-    void Update()
+    bool addTerrain(int xCoord, int yCoord, int xChunkCoord, int yChunkCoord, Chunk chunk, Dictionary<string, terrain> terrainMap)
+    {
+        GameObject tempTile = null;
+        Position worldPos = new Position(xChunkCoord * Chunk.SIZE + xCoord, yChunkCoord * Chunk.SIZE + yCoord);
+        string key = worldPos.xCoord + " " + worldPos.yCoord;
+        float xNoiseValue = posNoise(xCoord, xChunkCoord);
+        float yNoiseValue = posNoise(yCoord, yChunkCoord);
+        float waterVal = Mathf.PerlinNoise(xNoiseValue + waterSeed + chunkIntervalSeed * xChunkCoord, yNoiseValue + waterSeed + chunkIntervalSeed * yChunkCoord) / waterAmount;
+        float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed + chunkIntervalSeed * xChunkCoord, yNoiseValue + terrainSeed + chunkIntervalSeed * yChunkCoord) / terrainAmount;
+        float terrainVal2 = Mathf.PerlinNoise(xNoiseValue + terrainSeed2 + chunkIntervalSeed * xChunkCoord, yNoiseValue + terrainSeed2 + chunkIntervalSeed * yChunkCoord) / terrainAmount;
+
+        if (terrainMap.ContainsKey(key))
+        {
+            // Instantiate saved game object from terrain
+            tempTile = getObject(terrainMap[key]);
+        }
+        else if (waterVal < getThreshold(terrain.WATER))
+        {
+            terrainMap.Add(key, terrain.WATER);
+            tempTile = Water;
+        }
+        else if (waterVal < getThreshold(terrain.SAND))
+        {
+            terrainMap.Add(key, terrain.SAND);
+            tempTile = Sand;
+        }
+
+        else
+        {
+            if (terrainVal <= getThreshold(terrain.DESERT) && terrainVal2 <= getThreshold(terrain.DESERT))
+            {
+                terrainMap.Add(key, terrain.DESERT);
+                tempTile = Desert;
+            }
+            else if (getThreshold(terrain.DESERT) < terrainVal && terrainVal <= getThreshold(terrain.MOUNTAIN)&& getThreshold(terrain.DESERT) < terrainVal2 && terrainVal2 <= getThreshold(terrain.MOUNTAIN))
+            {
+                terrainMap.Add(key, terrain.MOUNTAIN);
+                tempTile = Mountain;
+            }
+            else 
+            {
+                terrainMap.Add(key, terrain.GRASS);
+                tempTile = Grass;
+            }           
+        }
+        if(tempTile == null)
+        {
+            return false;
+        }
+        tempTile = Instantiate(tempTile, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+        //Adds the terrain into the correct chunk into the first layer
+        chunk.addTileAt(tempTile, xCoord, yCoord, 0);
+        return true;
+
+    }
+
+    void addResource(int xCoord, int yCoord, int xChunkCoord, int yChunkCoord, Chunk chunk, Dictionary<string, resource> resourceMap)
+    {
+        GameObject tempResource = null;
+        Position worldPos = new Position(xChunkCoord * Chunk.SIZE + xCoord, yChunkCoord * Chunk.SIZE + yCoord);
+        string key = worldPos.xCoord + " " + worldPos.yCoord;
+        float xNoiseValue = posNoise(xCoord, xChunkCoord);
+        float yNoiseValue = posNoise(yCoord, yChunkCoord);
+        float resourceVal = Mathf.PerlinNoise(xNoiseValue + resourceSeed + chunkIntervalSeed * xChunkCoord, yNoiseValue + resourceSeed + chunkIntervalSeed * yChunkCoord) / treeAmount;
+        float resourceVal2 = Mathf.PerlinNoise(xNoiseValue + resourceSeed2 + chunkIntervalSeed * xChunkCoord, yNoiseValue + resourceSeed2 + chunkIntervalSeed * yChunkCoord) / treeAmount;
+        if (resourceMap.ContainsKey(key))
+        {
+            tempResource = getResourceObject(resourceMap[key]);
+        }
+        else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.TREE) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.TREE))
+        {
+
+            if (terrainMap[key] == terrain.GRASS)
+            {
+                tempResource = Tree;
+                resourceMap.Add(key, resource.TREE);
+            }
+            else if (terrainMap[key] == terrain.GRASS)
+            {
+
+                tempResource = Tree;
+            }
+        }
+        else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.IRON) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.IRON))
+        {
+            if (terrainMap[key] == terrain.MOUNTAIN)
+            {
+                tempResource = Iron;
+                resourceMap.Add(key, resource.IRON);
+            }
+        }
+        else if (getResourceThreshold(resource.STONE) - 0.4 <= resourceVal && resourceVal < getResourceThreshold(resource.STONE) && getResourceThreshold(resource.STONE) - 0.4 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.STONE))
+        {
+            if (terrainMap[key] == terrain.MOUNTAIN && !resourceMap.ContainsKey(key))
+            {
+                tempResource = Stone;
+                resourceMap.Add(key, resource.STONE);
+            }
+        }
+        else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.GOLD) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.GOLD))
+        {
+            tempResource = Gold;
+            resourceMap.Add(key, resource.GOLD);
+        }
+
+            if (tempResource != null)
+        {
+
+            tempResource = Instantiate(tempResource, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+            chunk.addTileAt(tempResource, xCoord, yCoord, 1);
+        }
+    }
+
+
+        // Update is called once per frame
+        void Update()
     {
         if (DEBUG)
         {
