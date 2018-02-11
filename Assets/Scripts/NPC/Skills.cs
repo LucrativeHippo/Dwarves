@@ -8,7 +8,6 @@ public class Skills {
 	/// All job based skills available to the NPCs
 	/// Adapts regardless of size
 	public enum skillList{wood, stone, gold, food};
-
 	public static int skillNPCSize = Enum.GetNames(typeof(skillList)).Length;
 
 	// npc skill level (translates to its cost)
@@ -23,10 +22,10 @@ public class Skills {
 	float attackDMG = 1.0f;
 	float attackSPD = 1.0f;
 
-	Dictionary<skillList,float> skillMultiplier;
+	TraitDict<skillList,float> skillMultiplier;
 
 	public Skills(bool random){
-		skillMultiplier = new Dictionary<skillList,float> (skillNPCSize);
+		skillMultiplier = new TraitDict<skillList,float> (skillNPCSize,1.0f);
 		if(random){
 			randomizeSkills (UnityEngine.Random.Range(0,skillNPCSize));
 		}
@@ -42,20 +41,11 @@ public class Skills {
 				rand = UnityEngine.Random.value;
 			} while(skillMultiplier.ContainsKey ((skillList)randSkill));
 			//linear spread
-			skillMultiplier [(skillList)randSkill] = rand + 0.5f;
+			skillMultiplier.setValue((skillList)randSkill, rand + 0.5f);
 		}
 	}
 
-	public float getSkillVal(skillList s){
-		if (skillMultiplier.ContainsKey (s))
-			return skillMultiplier [s];
-		else
-			return 1f;
+	public float getValue(skillList s){
+		return skillMultiplier.getValue (s);
 	}
-
-	public void setSkillVal(skillList s, float newVal){
-		skillMultiplier [s] = newVal;
-	}
-
-
 }
