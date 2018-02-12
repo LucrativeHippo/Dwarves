@@ -51,6 +51,29 @@ public class Calendar : MonoBehaviour {
         return currentDay;
     }
 
+    public int getDaysToForecast()
+    {
+        return daysToForecast;
+    }
+
+    public float getForecastTemp(int day)
+    {
+        if (day < 0)
+        {
+            Debug.LogError("Attempted to get forecast of a day less than zero. " +
+                "Attempting to recover by setting to current day.");
+            return forecast[0];
+        }
+        if (day > daysToForecast - 1)
+        {
+            Debug.LogError("Attempted to get forecast of a day outside forecast. " +
+                "Attempting to recover by setting to last day in forecast.");
+            return forecast[daysToForecast - 1];
+        }
+
+        return forecast[day];
+    }
+
 
     // ************************************
     // Actual Functionality
