@@ -1,0 +1,43 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class enemyAI : MonoBehaviour {	
+	Transform destination;
+	NavMeshAgent agentCtrl;
+	Vector3 spawnPoint;
+	public bool ok = false;
+
+
+	// Use this for initialization
+	void Start () {
+		agentCtrl = this.GetComponent<NavMeshAgent>();
+		spawnPoint = this.gameObject.transform.position;
+		setDestination ();
+//		gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if (agentCtrl.remainingDistance <= 10) {
+			setDestination ();
+		} else {
+			backToSpawn ();
+		}
+	}
+
+
+	private void setDestination(){
+			if (destination != null) {
+			Vector3 targetVector = destination.transform.position;
+			agentCtrl.SetDestination (targetVector);
+		}
+	}
+
+	private void backToSpawn(){
+		
+		Debug.Log (spawnPoint);
+		agentCtrl.SetDestination (spawnPoint);
+	}
+}
