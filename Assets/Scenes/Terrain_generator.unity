@@ -236,6 +236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56360064d72b4f746a5a966a59306937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xPlayerPos: 50
+  yPlayerPos: 50
+  xPLayerChunkPos: 0
+  yPlayerChunkPos: 0
   DEBUG: 0
   xChunk: 0
   yChunk: 0
@@ -249,15 +253,19 @@ MonoBehaviour:
   Snow: {fileID: 1552839559844636, guid: 6b65bf82210535041a8d52695778f5a3, type: 2}
   Sand: {fileID: 1188605288019344, guid: da52c76678fdc2a45964951cfda9cacd, type: 2}
   Desert: {fileID: 1993947185886442, guid: bdd27b05a33dc6a49b70f43bcece9c1c, type: 2}
+  Campsite: {fileID: 1449760790929312, guid: 279151a52f3fa754687374591f3eeb87, type: 2}
+  Plot: {fileID: 1932556385968796, guid: 8416b0d41f68c314ba5f04bf544c3e2d, type: 2}
   Tree: {fileID: 1401740055908112, guid: 6db16e8df1cfcb34bb94f920a1e08ed3, type: 2}
   Stone: {fileID: 1528277530889838, guid: 679624f1d7d07e84e832ce82938b310a, type: 2}
   Iron: {fileID: 1509994566159360, guid: 71acbd840a08d7c4e9ba4c19aecd303c, type: 2}
   Gold: {fileID: 1518998995545862, guid: 4dd0c1254d6d02a4abdc4c6efb227d77, type: 2}
-  terrainSeed: 15
-  terrainSeed2: 3
-  waterSeed: 11
-  resourceSeed: 5
-  resourceSeed2: 6
+  Fish: {fileID: 1111354217460792, guid: e7b4be0db07f987409b35f998ce55fb9, type: 2}
+  Berries: {fileID: 1633713140390822, guid: a383142b7c6882040898fa3aff3396e8, type: 2}
+  terrainSeed: 5
+  terrainSeed2: 6
+  waterSeed: 2
+  resourceSeed: 10
+  resourceSeed2: 16
 --- !u!212 &835928472
 SpriteRenderer:
   m_ObjectHideFlags: 0

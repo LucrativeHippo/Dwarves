@@ -10,6 +10,13 @@ public class terrainGenerator : MonoBehaviour
     private Dictionary<string, resource> resourceMap;
     public Dictionary<string, Chunk> loadedChunks;
 
+
+    //Starting positions of the player
+    public int xPlayerPos;
+    public int yPlayerPos;
+    public int xPLayerChunkPos;
+    public int yPlayerChunkPos;
+
     /// Number of chunks that make up the world
     private static int WORLD_SIZE = 1;
     /// World starting point
@@ -55,6 +62,10 @@ public class terrainGenerator : MonoBehaviour
 
     public GameObject Desert;
 
+    public GameObject Campsite;
+
+    public GameObject Plot;
+
 
     //resources
     public GameObject Tree;
@@ -64,6 +75,11 @@ public class terrainGenerator : MonoBehaviour
     public GameObject Iron;
 
     public GameObject Gold;
+
+    public GameObject Fish;
+
+    public GameObject Berries;
+
 
     //Affects the types of terrain that are generated
     public float terrainSeed;
@@ -85,7 +101,9 @@ public class terrainGenerator : MonoBehaviour
         MOUNTAIN,
         GRASS,
         SAND,
-        DESERT
+        DESERT,
+        CAMPSITE,
+        PLOT
     }
 
     private enum resource
@@ -96,7 +114,7 @@ public class terrainGenerator : MonoBehaviour
         GOLD,
         FISH,
         MEAT,
-        VEGETABLES
+        BERRIES
     }
 
     private GameObject getResourceObject(resource r)
@@ -104,19 +122,19 @@ public class terrainGenerator : MonoBehaviour
         switch (r)
         {
             case resource.FISH:
-            //return Fish;
+            return Fish;
             case resource.MEAT:
             //return Meat;
             case resource.GOLD:
-            //return Gold;
+            return Gold;
             case resource.IRON:
-            //return Iron;
-            case resource.VEGETABLES:
-            //return Vegetables;
+            return Iron;
+            case resource.BERRIES:
+            return Berries;
             case resource.TREE:
                 return Tree;
             case resource.STONE:
-            //return Stone;
+            return Stone;
             default:
                 return Tree;
         }
@@ -149,8 +167,8 @@ public class terrainGenerator : MonoBehaviour
     {
         switch (r)
         {
-            case resource.VEGETABLES:
-                return 0.10f;
+            case resource.BERRIES:
+                return 0.40f;
             case resource.TREE:
                 return 0.45f;
             case resource.STONE:
@@ -160,7 +178,7 @@ public class terrainGenerator : MonoBehaviour
             case resource.IRON:
                 return 0.46f;
             case resource.GOLD:
-                return 0.05f;
+                return 0.10f;
             case resource.FISH:
                 return 0.10f;
             default:
@@ -179,13 +197,17 @@ public class terrainGenerator : MonoBehaviour
             case terrain.DIRT:
                 return Dirt;
             case terrain.MOUNTAIN:
-                return Stone;
+                return Mountain;
             case terrain.SNOW:
                 return Snow;
             case terrain.GRASS:
                 return Grass;
             case terrain.DESERT:
                 return Desert;
+            case terrain.CAMPSITE:
+                return Campsite;
+            case terrain.PLOT:
+                return Plot;
             default:
                 return Grass;
         }
@@ -209,8 +231,8 @@ public class terrainGenerator : MonoBehaviour
         generateChunk(xChunk, yChunk);
         generateChunk(xChunk + 1,yChunk + 0);
         generateChunk(xChunk - 1, yChunk + 0);
-        generateChunk(xChunk - 1, yChunk + 1);
-        generateChunk(xChunk + 0, yChunk + 1);
+        //generateChunk(xChunk - 1, yChunk + 1);
+        // generateChunk(xChunk + 0, yChunk + 1);
 
         //System.Random randomNum = new System.Random();
     }
@@ -239,8 +261,8 @@ public class terrainGenerator : MonoBehaviour
         {
             for (int x = 0; x < Chunk.SIZE; x++)
             {
-                
-                    
+
+
                 // Check if this tile is edited already
                 if (!addTerrain(x, y, xPos, yPos, chunkMap, terrainMap))
                 {
@@ -250,94 +272,182 @@ public class terrainGenerator : MonoBehaviour
 
                 //Generate resources
                 addResource(x, y, xPos, yPos, chunkMap, resourceMap);
-               
+
             }
         }
         loadedChunks[xPos + " " + yPos] = chunkMap;
+        GameObject tempTile;
+        GameObject tempResource;
+        for (int y = 0; y < Chunk.SIZE; y++)
+        {
+            for (int x = 0; x < Chunk.SIZE; x++)
+            {
+                Position worldPos = new Position(xPos * Chunk.SIZE + x, yPos * Chunk.SIZE + y);
+                string key = worldPos.xCoord + " " + worldPos.yCoord;
+                tempTile = Instantiate(getObject(terrainMap[key]), new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+                //Adds the terrain into the correct chunk into the first layer
+                chunkMap.addTileAt(tempTile, x, y, 0);
+                if (resourceMap.ContainsKey(key))
+                {
+                    tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+                    chunkMap.addTileAt(tempTile, x, y, 1);
+                }
+                
+            }
+
+        }
     }
 
     bool addTerrain(int xCoord, int yCoord, int xChunkCoord, int yChunkCoord, Chunk chunk, Dictionary<string, terrain> terrainMap)
     {
+        
         GameObject tempTile = null;
         Position worldPos = new Position(xChunkCoord * Chunk.SIZE + xCoord, yChunkCoord * Chunk.SIZE + yCoord);
         string key = worldPos.xCoord + " " + worldPos.yCoord;
         float xNoiseValue = posNoise(xCoord, xChunkCoord);
         float yNoiseValue = posNoise(yCoord, yChunkCoord);
-        float waterVal = Mathf.PerlinNoise(xNoiseValue + waterSeed + chunkIntervalSeed * xChunkCoord, yNoiseValue + waterSeed + chunkIntervalSeed * yChunkCoord) / waterAmount;
-        float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed + chunkIntervalSeed * xChunkCoord, yNoiseValue + terrainSeed + chunkIntervalSeed * yChunkCoord) / terrainAmount;
-        float terrainVal2 = Mathf.PerlinNoise(xNoiseValue + terrainSeed2 + chunkIntervalSeed * xChunkCoord, yNoiseValue + terrainSeed2 + chunkIntervalSeed * yChunkCoord) / terrainAmount;
+        float waterVal = Mathf.PerlinNoise(xNoiseValue + waterSeed + chunkIntervalSeed * xChunk, yNoiseValue + waterSeed + chunkIntervalSeed * yChunk) / waterAmount;
+        float terrainVal = Mathf.PerlinNoise(xNoiseValue + terrainSeed + chunkIntervalSeed * xChunk, yNoiseValue + terrainSeed + chunkIntervalSeed * yChunk) / terrainAmount;
+        float terrainVal2 = Mathf.PerlinNoise(xNoiseValue + terrainSeed2 + chunkIntervalSeed * xChunk, yNoiseValue + terrainSeed2 + chunkIntervalSeed * yChunk) / terrainAmount;
 
         if (terrainMap.ContainsKey(key))
         {
             // Instantiate saved game object from terrain
             tempTile = getObject(terrainMap[key]);
+        } else if (xChunkCoord == xPLayerChunkPos && yChunkCoord == yPlayerChunkPos && xCoord == xPlayerPos && yCoord == yPlayerPos)
+        {
+            for (int i = xPlayerPos - 1; i <= xPlayerPos + 1; i++)
+            {
+                for (int j = yPlayerPos - 1; j <= yPlayerPos + 1; j++)
+                {
+                    
+                    if (i == xPlayerPos && j == yPlayerPos)
+                    {
+                       
+                        worldPos = new Position(xChunkCoord * Chunk.SIZE + i, yChunkCoord * Chunk.SIZE + j);
+                        key = worldPos.xCoord + " " + worldPos.yCoord;
+                        if (terrainMap.ContainsKey(key))
+                        {
+                            terrainMap[key] = terrain.CAMPSITE;
+                        }
+                        else
+                        {
+                            terrainMap.Add(key, terrain.CAMPSITE);
+                        }
+
+                    }
+                    else
+                    {
+                        
+                        worldPos = new Position(xChunkCoord * Chunk.SIZE + i, yChunkCoord * Chunk.SIZE + j);
+                        key = worldPos.xCoord + " " + worldPos.yCoord;
+                        if (terrainMap.ContainsKey(key))
+                        {
+                            terrainMap[key] = terrain.PLOT;
+                        }
+                        else
+                        {
+                            terrainMap.Add(key, terrain.PLOT);
+                        }
+                    }
+                }
+            }
         }
         else if (waterVal < getThreshold(terrain.WATER))
         {
+            if (!terrainMap.ContainsKey(key)) { 
             terrainMap.Add(key, terrain.WATER);
-            tempTile = Water;
+            
+        }
         }
         else if (waterVal < getThreshold(terrain.SAND))
         {
-            terrainMap.Add(key, terrain.SAND);
-            tempTile = Sand;
+            if (!terrainMap.ContainsKey(key))
+            {
+                terrainMap.Add(key, terrain.SAND);
+                tempTile = Sand;
+            }
         }
 
         else
         {
             if (terrainVal <= getThreshold(terrain.DESERT) && terrainVal2 <= getThreshold(terrain.DESERT))
             {
-                terrainMap.Add(key, terrain.DESERT);
-                tempTile = Desert;
+                if (!terrainMap.ContainsKey(key))
+                {
+                    terrainMap.Add(key, terrain.DESERT);
+                    tempTile = Desert;
+                }
             }
             else if (getThreshold(terrain.DESERT) < terrainVal && terrainVal <= getThreshold(terrain.MOUNTAIN)&& getThreshold(terrain.DESERT) < terrainVal2 && terrainVal2 <= getThreshold(terrain.MOUNTAIN))
             {
-                terrainMap.Add(key, terrain.MOUNTAIN);
-                tempTile = Mountain;
+                if (!terrainMap.ContainsKey(key))
+                {
+                    terrainMap.Add(key, terrain.MOUNTAIN);
+                    tempTile = Mountain;
+                }
             }
             else 
             {
-                terrainMap.Add(key, terrain.GRASS);
-                tempTile = Grass;
+                if (!terrainMap.ContainsKey(key))
+                {
+                    terrainMap.Add(key, terrain.GRASS);
+                    tempTile = Grass;
+                }
             }           
         }
-        if(tempTile == null)
-        {
-            return false;
-        }
-        tempTile = Instantiate(tempTile, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+        
+        //tempTile = Instantiate(tempTile, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
         //Adds the terrain into the correct chunk into the first layer
-        chunk.addTileAt(tempTile, xCoord, yCoord, 0);
+        //chunk.addTileAt(tempTile, xCoord, yCoord, 0);
         return true;
 
     }
 
+
     void addResource(int xCoord, int yCoord, int xChunkCoord, int yChunkCoord, Chunk chunk, Dictionary<string, resource> resourceMap)
     {
+        
         GameObject tempResource = null;
         Position worldPos = new Position(xChunkCoord * Chunk.SIZE + xCoord, yChunkCoord * Chunk.SIZE + yCoord);
         string key = worldPos.xCoord + " " + worldPos.yCoord;
         float xNoiseValue = posNoise(xCoord, xChunkCoord);
         float yNoiseValue = posNoise(yCoord, yChunkCoord);
-        float resourceVal = Mathf.PerlinNoise(xNoiseValue + resourceSeed + chunkIntervalSeed * xChunkCoord, yNoiseValue + resourceSeed + chunkIntervalSeed * yChunkCoord) / treeAmount;
-        float resourceVal2 = Mathf.PerlinNoise(xNoiseValue + resourceSeed2 + chunkIntervalSeed * xChunkCoord, yNoiseValue + resourceSeed2 + chunkIntervalSeed * yChunkCoord) / treeAmount;
+        float waterVal = Mathf.PerlinNoise(xNoiseValue + waterSeed + chunkIntervalSeed * xChunk, yNoiseValue + waterSeed + chunkIntervalSeed * yChunk) / waterAmount;
+        float resourceVal = Mathf.PerlinNoise(xNoiseValue + resourceSeed + chunkIntervalSeed * xChunk, yNoiseValue + resourceSeed + chunkIntervalSeed * yChunk) / treeAmount;
+        float resourceVal2 = Mathf.PerlinNoise(xNoiseValue + resourceSeed2 + chunkIntervalSeed * xChunk, yNoiseValue + resourceSeed2 + chunkIntervalSeed * yChunk) / treeAmount;
         if (resourceMap.ContainsKey(key))
         {
             tempResource = getResourceObject(resourceMap[key]);
         }
+        else if (waterVal < getThreshold(terrain.WATER))
+        {
+
+            if(Random.Range(0,30)< 2)
+            {
+                tempResource = Fish;
+                resourceMap.Add(key, resource.FISH);
+            }
+
+        }
         else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.TREE) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.TREE))
         {
 
-            if (terrainMap[key] == terrain.GRASS)
+            if (terrainMap[key] == terrain.GRASS && !resourceMap.ContainsKey(key))
             {
-                tempResource = Tree;
-                resourceMap.Add(key, resource.TREE);
+                if (Random.Range(0, 30) < 2)
+                {
+                    tempResource = Berries;
+                    resourceMap.Add(key, resource.BERRIES);
+                }
+                else
+                {
+                    tempResource = Tree;
+                    resourceMap.Add(key, resource.TREE);
+                }
+                
             }
-            else if (terrainMap[key] == terrain.GRASS)
-            {
-
-                tempResource = Tree;
-            }
+            
         }
         else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.IRON) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.IRON))
         {
@@ -364,8 +474,8 @@ public class terrainGenerator : MonoBehaviour
             if (tempResource != null)
         {
 
-            tempResource = Instantiate(tempResource, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
-            chunk.addTileAt(tempResource, xCoord, yCoord, 1);
+           // tempResource = Instantiate(tempResource, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+            //chunk.addTileAt(tempResource, xCoord, yCoord, 1);
         }
     }
 
