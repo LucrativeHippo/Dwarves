@@ -80,6 +80,8 @@ public class terrainGenerator : MonoBehaviour
 
     public GameObject Berries;
 
+    public GameObject Player;
+
 
     //Affects the types of terrain that are generated
     public float terrainSeed;
@@ -229,12 +231,34 @@ public class terrainGenerator : MonoBehaviour
         terrainMap = new Dictionary<string, terrain>();
         resourceMap = new Dictionary<string, resource>();
         generateChunk(xChunk, yChunk);
-        generateChunk(xChunk + 1,yChunk + 0);
-        generateChunk(xChunk - 1, yChunk + 0);
-        //generateChunk(xChunk - 1, yChunk + 1);
-        // generateChunk(xChunk + 0, yChunk + 1);
+        
+    }
 
-        //System.Random randomNum = new System.Random();
+    public void FixedUpdate()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            int x = (int)player.transform.position.x / 25;
+            int y = (int)player.transform.position.y / 25;
+            
+            if (!loadedChunks.ContainsKey(x + 1 + " " + y))
+            {
+                generateChunk(x + 1, y);
+            }
+            if (!loadedChunks.ContainsKey(x - 1 + " " + y))
+            {
+                generateChunk(x - 1, y);
+            }
+            if (!loadedChunks.ContainsKey(x + " " + y + 1))
+            {
+                generateChunk(x, y + 1);
+            }
+            if (!loadedChunks.ContainsKey(x + " " + (y - 1)))
+            {
+                generateChunk(x, y - 1);
+            }
+        }
     }
 
 
@@ -287,6 +311,10 @@ public class terrainGenerator : MonoBehaviour
                 tempTile = Instantiate(getObject(terrainMap[key]), new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
                 //Adds the terrain into the correct chunk into the first layer
                 chunkMap.addTileAt(tempTile, x, y, 0);
+                if(terrainMap[key] == terrain.CAMPSITE)
+                {
+                    Instantiate(Player ,new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+                }
                 if (resourceMap.ContainsKey(key))
                 {
                     tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);

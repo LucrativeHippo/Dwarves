@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56360064d72b4f746a5a966a59306937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPlayerPos: 50
-  yPlayerPos: 50
+  xPlayerPos: 12
+  yPlayerPos: 12
   xPLayerChunkPos: 0
   yPlayerChunkPos: 0
   DEBUG: 0
@@ -261,6 +261,7 @@ MonoBehaviour:
   Gold: {fileID: 1518998995545862, guid: 4dd0c1254d6d02a4abdc4c6efb227d77, type: 2}
   Fish: {fileID: 1111354217460792, guid: e7b4be0db07f987409b35f998ce55fb9, type: 2}
   Berries: {fileID: 1633713140390822, guid: a383142b7c6882040898fa3aff3396e8, type: 2}
+  Player: {fileID: 1294367326131454, guid: 77c6b79fc507c87468d8db05db63954e, type: 2}
   terrainSeed: 5
   terrainSeed2: 6
   waterSeed: 2

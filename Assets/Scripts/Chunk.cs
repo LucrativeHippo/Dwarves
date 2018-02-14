@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Chunk{
 	/// Size of a section side generated for the map
-	public const int SIZE = 100;
+	public const int SIZE = 25;
 
     public const int LAYERS = 3; 
 	/// The map.
