@@ -82,6 +82,10 @@ public class terrainGenerator : MonoBehaviour
 
     public GameObject Player;
 
+    public GameObject Enemy;
+
+    public GameObject NPC;
+
 
     //Affects the types of terrain that are generated
     public float terrainSeed;
@@ -116,7 +120,9 @@ public class terrainGenerator : MonoBehaviour
         GOLD,
         FISH,
         MEAT,
-        BERRIES
+        BERRIES,
+        NPC,
+        ENEMY
     }
 
     private GameObject getResourceObject(resource r)
@@ -124,19 +130,23 @@ public class terrainGenerator : MonoBehaviour
         switch (r)
         {
             case resource.FISH:
-            return Fish;
+                return Fish;
             case resource.MEAT:
             //return Meat;
             case resource.GOLD:
-            return Gold;
+                return Gold;
             case resource.IRON:
-            return Iron;
+                return Iron;
             case resource.BERRIES:
-            return Berries;
+                return Berries;
             case resource.TREE:
                 return Tree;
             case resource.STONE:
             return Stone;
+            case resource.ENEMY:
+                return Enemy;
+            case resource.NPC:
+                return NPC;
             default:
                 return Tree;
         }
@@ -499,11 +509,17 @@ public class terrainGenerator : MonoBehaviour
             resourceMap.Add(key, resource.GOLD);
         }
 
-            if (tempResource != null)
+            if (tempResource == null)
         {
 
-           // tempResource = Instantiate(tempResource, new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
-            //chunk.addTileAt(tempResource, xCoord, yCoord, 1);
+            if (Random.Range(0, 100)< 3)
+            {
+                resourceMap.Add(key, resource.NPC);
+            }
+            if (Random.Range(0, 100) < 3)
+            {
+                resourceMap.Add(key, resource.ENEMY);
+            }
         }
     }
 
