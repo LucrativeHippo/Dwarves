@@ -2,36 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
+using System.Collections;
 
 public class basicBuilding : MonoBehaviour {
 
 	private GameObject[] buildingPrefabs;
 
+	private GameObject[] buildingButtons;
+
 	private GameObject resourceManager;
+	private GameObject buildingMenu;
 
 	void Start () {
-		// Get Resource Manager;
+		// Get Resource Manager.
 		resourceManager = GameObject.Find ("resourceManager");
+
+		// Get building menu object and build the menu.
+		buildingMenu = GameObject.Find ("buildingMenuUI");
+		buildBuildingMenu ();
 
 		// Get all building Prefabs in buildingPrefabs folder.
 		buildingPrefabs = Resources.LoadAll ("Prefabs/buildingPrefabs", typeof(GameObject)).Cast<GameObject> ().ToArray ();
 
 		// Log the names of all buildings.
-		foreach (var t in buildingPrefabs) {
-			Debug.Log ("Building Name: " + t.name);
+		foreach (var building in buildingPrefabs) {
+			Debug.Log ("Building Name: " + building.name);
 		}
+
 	}
 
 	public void recieveAction () {
 		displayMenu ();
 	}
 
-	private void displayMenu () {
-		// TODO: Display a Popup menu for the user to select the building they wish to build.
+	private void buildBuildingMenu () {
+		Button testHardCodedButton = GameObject.Find ("BuildButton").GetComponent<Button> ();
+		testHardCodedButton.onClick.AddListener (() => createBuilding (0));
 
-		// For testing atm.
-		createBuilding (0);
+
+		foreach (var buildings in buildingPrefabs) {
+			//		buildingMenu.AddComponent ();
+		}
+
 	}
+
+	private void displayMenu () {
+		// Enable Menu
+		buildingMenu.GetComponent<Canvas> ().enabled = true;
+	}
+
 
 	private void createBuilding (int buildingNumber) {
 		if (checkResources (buildingNumber)) {
@@ -41,9 +61,13 @@ public class basicBuilding : MonoBehaviour {
 			resourceManager.GetComponent<testingResources> ().useStone (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ());
 			resourceManager.GetComponent<testingResources> ().useGold (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ());
 
+			// These are a version of calling the function which I'm not sure which is better this or the above.
 			//		resourceManager.SendMessage ("useWood", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ());
 			//		resourceManager.SendMessage ("useStone", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ());
 			//		resourceManager.SendMessage ("useGold", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ());
+
+			// Disable Building Menu.
+			buildingMenu.GetComponent<Canvas> ().enabled = false;
 		} else {
 			Debug.Log ("Not Enough Resources to build Building: " + buildingNumber);
 		}
