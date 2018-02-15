@@ -4,88 +4,102 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class basicBuilding : MonoBehaviour {
 
-	private GameObject[] buildingPrefabs;
+    private GameObject[] buildingPrefabs;
 
-	private GameObject[] buildingButtons;
+    private GameObject[] buildingButtons;
 
-	private GameObject resourceManager;
-	private GameObject buildingMenu;
+    private GameObject resourceManager;
+    private GameObject buildingMenu;
 
-	void Start () {
-		// Get Resource Manager.
-		resourceManager = GameObject.Find ("resourceManager");
+    public GameObject Button_Template;
 
-		// Get building menu object and build the menu.
-		buildingMenu = GameObject.Find ("buildingMenuUI");
-		buildBuildingMenu ();
+    void Start () {
+        // Get Resource Manager.
+        resourceManager = GameObject.Find ("resourceManager");
 
-		// Get all building Prefabs in buildingPrefabs folder.
-		buildingPrefabs = Resources.LoadAll ("Prefabs/buildingPrefabs", typeof(GameObject)).Cast<GameObject> ().ToArray ();
+        // Get building menu object and build the menu.
+        buildingMenu = GameObject.Find ("buildingMenuUI");
+        buildBuildingMenu ();
 
-		// Log the names of all buildings.
-		foreach (var building in buildingPrefabs) {
-			Debug.Log ("Building Name: " + building.name);
-		}
+        // Get all building Prefabs in buildingPrefabs folder.
+        buildingPrefabs = Resources.LoadAll ("Prefabs/buildingPrefabs", typeof(GameObject)).Cast<GameObject> ().ToArray ();
 
-	}
+        // Log the names of all buildings.
+        foreach (var building in buildingPrefabs) {
+            Debug.Log ("Building Name: " + building.name);
+        }
+    }
 
-	public void recieveAction () {
-		displayMenu ();
-	}
+    public void recieveAction () {
+        displayMenu ();
+    }
 
-	private void buildBuildingMenu () {
-		Button testHardCodedButton = GameObject.Find ("BuildButton").GetComponent<Button> ();
-		testHardCodedButton.onClick.AddListener (() => createBuilding (0));
-
-
-		foreach (var buildings in buildingPrefabs) {
-			//		buildingMenu.AddComponent ();
-		}
-
-	}
-
-	private void displayMenu () {
-		// Enable Menu
-		buildingMenu.GetComponent<Canvas> ().enabled = true;
-	}
+    private void buildBuildingMenu () {
+        Button testHardCodedButton = GameObject.Find ("BuildButton").GetComponent<Button> ();
+        testHardCodedButton.onClick.AddListener (() => createBuilding (0));
 
 
-	private void createBuilding (int buildingNumber) {
-		if (checkResources (buildingNumber)) {
-			Instantiate (buildingPrefabs [buildingNumber], transform.position, Quaternion.identity);
+        // TODO: Finish below for creating buttons to build stuff.
+        int counter = 0;
+        foreach (var buildings in buildingPrefabs) {
+            GameObject aButton = Instantiate (Button_Template) as GameObject;
+            aButton.SetActive (true);
+            buttonScript aButtonScript = aButton.GetComponent<buttonScript> ();
+            aButtonScript.setName (buildings.name);
+            aButtonScript.setNumber (counter);
+            counter++;
+            aButton.transform.SetParent (Button_Template.transform.parent);
+        }
+    }
 
-			resourceManager.GetComponent<testingResources> ().useWood (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ());
-			resourceManager.GetComponent<testingResources> ().useStone (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ());
-			resourceManager.GetComponent<testingResources> ().useGold (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ());
+    private void displayMenu () {
+        // Enable Menu
+        buildingMenu.GetComponent<Canvas> ().enabled = true;
+    }
 
-			// These are a version of calling the function which I'm not sure which is better this or the above.
-			//		resourceManager.SendMessage ("useWood", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ());
-			//		resourceManager.SendMessage ("useStone", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ());
-			//		resourceManager.SendMessage ("useGold", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ());
 
-			// Disable Building Menu.
-			buildingMenu.GetComponent<Canvas> ().enabled = false;
-		} else {
-			Debug.Log ("Not Enough Resources to build Building: " + buildingNumber);
-		}
-	}
+    private void createBuilding (int buildingNumber) {
+        if (checkResources (buildingNumber)) {
+            Instantiate (buildingPrefabs [buildingNumber], transform.position, Quaternion.identity);
 
-	private bool checkResources (int buildingNumber) {
-		int currentWood = resourceManager.GetComponent<testingResources> ().getWood ();
-		int currentStone = resourceManager.GetComponent<testingResources> ().getStone ();
-		int currentGold = resourceManager.GetComponent<testingResources> ().getGold ();
+            resourceManager.GetComponent<testingResources> ().useWood (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ());
+            resourceManager.GetComponent<testingResources> ().useStone (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ());
+            resourceManager.GetComponent<testingResources> ().useGold (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ());
 
-		int woodCost = buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ();
-		int stoneCost = buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ();
-		int goldCost = buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ();
+            // These are a version of calling the function which I'm not sure which is better this or the above.
+            //		resourceManager.SendMessage ("useWood", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ());
+            //		resourceManager.SendMessage ("useStone", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ());
+            //		resourceManager.SendMessage ("useGold", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ());
 
-		if (woodCost > currentWood || stoneCost > currentStone || goldCost > currentGold) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+            // Disable Building Menu.
+            buildingMenu.GetComponent<Canvas> ().enabled = false;
+        } else {
+            Debug.Log ("Not Enough Resources to build Building: " + buildingNumber);
+        }
+    }
+
+    private bool checkResources (int buildingNumber) {
+        int currentWood = resourceManager.GetComponent<testingResources> ().getWood ();
+        int currentStone = resourceManager.GetComponent<testingResources> ().getStone ();
+        int currentGold = resourceManager.GetComponent<testingResources> ().getGold ();
+
+        int woodCost = buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ();
+        int stoneCost = buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ();
+        int goldCost = buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ();
+
+        if (woodCost > currentWood || stoneCost > currentStone || goldCost > currentGold) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void buttonClicked (int number) {
+        Debug.Log (number + " button clicked.");
+        createBuilding (number);
+    }
 }
