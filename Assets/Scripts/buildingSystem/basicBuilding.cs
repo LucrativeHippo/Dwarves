@@ -9,24 +9,32 @@ using System.Collections.Generic;
 public class basicBuilding : MonoBehaviour {
 
     private GameObject[] buildingPrefabs;
-
-    private GameObject[] buildingButtons;
+    private Object[] buildingPrefabsObjects;
 
     private GameObject resourceManager;
     private GameObject buildingMenu;
 
     public GameObject Button_Template;
 
+    private GameObject buildingMenuUIContent;
+
+
+
     void Start () {
         // Get Resource Manager.
         resourceManager = GameObject.Find ("resourceManager");
 
-        // Get building menu object and build the menu.
+        // Get building menu object.
         buildingMenu = GameObject.Find ("buildingMenuUI");
-        buildBuildingMenu ();
+
+        buildingMenuUIContent = GameObject.Find ("buildingUIContent");
 
         // Get all building Prefabs in buildingPrefabs folder.
         buildingPrefabs = Resources.LoadAll ("Prefabs/buildingPrefabs", typeof(GameObject)).Cast<GameObject> ().ToArray ();
+        buildingPrefabsObjects = buildingPrefabs;
+
+        // Build Menu.
+        buildBuildingMenu ();
 
         // Log the names of all buildings.
         foreach (var building in buildingPrefabs) {
@@ -44,36 +52,34 @@ public class basicBuilding : MonoBehaviour {
 
 
         // TODO: Finish below for creating buttons to build stuff.
+        GameObject tempGameObject;
         int counter = 0;
-        foreach (var buildings in buildingPrefabs) {
-            GameObject aButton = Instantiate (Button_Template) as GameObject;
-            aButton.SetActive (true);
-            buttonScript aButtonScript = aButton.GetComponent<buttonScript> ();
-            aButtonScript.setName (buildings.name);
+        foreach (var theBuildings in buildingPrefabs) {
+            tempGameObject = Instantiate (Button_Template) as GameObject;
+            tempGameObject.SetActive (true);
+            buttonScript aButtonScript = tempGameObject.GetComponent<buttonScript> ();
+            aButtonScript.setBuildingScript (this);
+            aButtonScript.setName (theBuildings.name);
             aButtonScript.setNumber (counter);
+            tempGameObject.transform.SetParent (Button_Template.transform.parent, false);
             counter++;
-            aButton.transform.SetParent (Button_Template.transform.parent);
         }
     }
 
     private void displayMenu () {
-        // Enable Menu
         buildingMenu.GetComponent<Canvas> ().enabled = true;
     }
 
 
     private void createBuilding (int buildingNumber) {
         if (checkResources (buildingNumber)) {
-            Instantiate (buildingPrefabs [buildingNumber], transform.position, Quaternion.identity);
+            // Create Building.
+            Instantiate (buildingPrefabsObjects [buildingNumber], transform.position, Quaternion.identity);
 
+            // Use Resources.
             resourceManager.GetComponent<testingResources> ().useWood (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ());
             resourceManager.GetComponent<testingResources> ().useStone (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ());
             resourceManager.GetComponent<testingResources> ().useGold (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ());
-
-            // These are a version of calling the function which I'm not sure which is better this or the above.
-            //		resourceManager.SendMessage ("useWood", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ());
-            //		resourceManager.SendMessage ("useStone", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ());
-            //		resourceManager.SendMessage ("useGold", buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ());
 
             // Disable Building Menu.
             buildingMenu.GetComponent<Canvas> ().enabled = false;
