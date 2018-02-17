@@ -17,19 +17,23 @@ public class enemyAI : MonoBehaviour {
 		setDestination ();
 //		gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-<<<<<<< HEAD:Assets/Scripts/enemyAI/enemyAI.cs
-		if (agentCtrl.remainingDistance <= 4) {
-=======
-		if (agentCtrl.remainingDistance <= threatRange) {
->>>>>>> PathFinding:Assets/enemyAI.cs
-			setDestination ();
-		} else {
-			backToSpawn ();
-		}
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        //Debug.Log(agentCtrl.remainingDistance);
+            if (agentCtrl.remainingDistance <= threatRange)
+            {
+
+                setDestination();
+            }
+            else
+            {
+                backToSpawn();
+            }
+        }
+
 
 
 	private void setDestination(){
