@@ -291,6 +291,9 @@ public class terrainGenerator : MonoBehaviour
         // Create chunk
         Chunk chunkMap = new Chunk();
 
+		GameObject chunkLoc = new GameObject ("Chunk: " + xPos + " " + yPos);
+		chunkLoc.transform.SetPositionAndRotation (new Vector3 (xPos * Chunk.SIZE, yPos * Chunk.SIZE), Quaternion.identity);
+
         for (int y = 0; y < Chunk.SIZE; y++)
         {
             for (int x = 0; x < Chunk.SIZE; x++)
@@ -320,14 +323,16 @@ public class terrainGenerator : MonoBehaviour
                 string key = worldPos.xCoord + " " + worldPos.yCoord;
                 tempTile = Instantiate(getObject(terrainMap[key]), new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
                 //Adds the terrain into the correct chunk into the first layer
+				tempTile.transform.SetParent(chunkLoc.transform);
                 chunkMap.addTileAt(tempTile, x, y, 0);
                 if(terrainMap[key] == terrain.CAMPSITE)
                 {
-                    Instantiate(Player ,new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+					Instantiate(Player ,new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity).transform.SetParent(chunkLoc.transform);;
                 }
                 if (resourceMap.ContainsKey(key))
                 {
                     tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
+					tempResource.transform.SetParent(chunkLoc.transform);
                     chunkMap.addTileAt(tempTile, x, y, 1);
                 }
                 
@@ -514,11 +519,11 @@ public class terrainGenerator : MonoBehaviour
 
             if (Random.Range(0, 100)< 3)
             {
-                resourceMap.Add(key, resource.NPC);
+                //resourceMap.Add(key, resource.NPC);
             }
             if (Random.Range(0, 100) < 3)
             {
-                resourceMap.Add(key, resource.ENEMY);
+                //resourceMap.Add(key, resource.ENEMY);
             }
         }
     }
