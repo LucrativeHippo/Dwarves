@@ -67,15 +67,15 @@ public class savemanager : MonoBehaviour {
             GameObject t = null;
             switch (value[0]) {
             
-                case"p1":
-                   t = Instantiate(Resources.Load("p1") as GameObject);
+                case"building":
+                   t = Instantiate(Resources.Load("building") as GameObject);
                     break;
 
-                case "p2":
-                     t = Instantiate(Resources.Load("p2") as GameObject);
+                case "player":
+                     t = Instantiate(Resources.Load("player") as GameObject);
                     break;
-                case "target":
-                     t = Instantiate(Resources.Load("target") as GameObject);
+                case "enemy":
+                     t = Instantiate(Resources.Load("enemy") as GameObject);
                     break;
 
             }

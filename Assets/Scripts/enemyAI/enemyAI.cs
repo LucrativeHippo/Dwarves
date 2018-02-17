@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class enemyAI : MonoBehaviour {	
-	Transform destination;
+	public Transform destination;
 	NavMeshAgent agentCtrl;
 	Vector3 spawnPoint;
 	public bool ok = false;
@@ -20,7 +20,7 @@ public class enemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (agentCtrl.remainingDistance <= 10) {
+		if (agentCtrl.remainingDistance <= 4) {
 			setDestination ();
 		} else {
 			backToSpawn ();

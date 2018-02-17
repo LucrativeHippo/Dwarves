@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-enum ObjectType{p1,p2,target}
+enum ObjectType{building,player,enemy}
 public abstract class saveableobject : MonoBehaviour {
     protected string save;
     [SerializeField]
@@ -10,9 +10,9 @@ public abstract class saveableobject : MonoBehaviour {
   
     private void Start () {
         savemanager.Instance.saveobjects.Add(this);
-        PlayerPrefs.SetInt("age", 30);
-        int aage = PlayerPrefs.GetInt("age");
-        Debug.Log(aage);
+        //PlayerPrefs.SetInt("age", 30);
+        //int aage = PlayerPrefs.GetInt("age");
+        //Debug.Log(aage);
        
        // savemanager.Instance.savef();	
 	}
