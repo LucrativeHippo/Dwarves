@@ -7,7 +7,7 @@ public class enemyAI : MonoBehaviour {
 	Transform destination;
 	NavMeshAgent agentCtrl;
 	Vector3 spawnPoint;
-	public bool ok = false;
+	public float threatRange =10f;
 
 
 	// Use this for initialization
@@ -20,7 +20,7 @@ public class enemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (agentCtrl.remainingDistance <= 10) {
+		if (agentCtrl.remainingDistance <= threatRange) {
 			setDestination ();
 		} else {
 			backToSpawn ();
