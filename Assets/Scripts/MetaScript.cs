@@ -5,9 +5,11 @@ using UnityEngine;
 public class MetaScript : MonoBehaviour {
 
 	int food;
+	int population;
 	// Use this for initialization
 	void Start () {
 		food = 0;
+		population = 0;
 	}
 	
 	// Update is called once per frame
@@ -18,6 +20,10 @@ public class MetaScript : MonoBehaviour {
 			print ("food");
 			food++;
 		}
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
+			print ("Population");
+			population++;
+		}
 	}
 
 	/// <summary>
@@ -26,5 +32,9 @@ public class MetaScript : MonoBehaviour {
 	/// <returns>The food.</returns>
 	public int getFood(){
 		return food;
+	}
+
+	public int getPop(){
+		return population;
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: remove MonoBehaviour
 public class QuestGoal : MonoBehaviour {
 	
 	Quests.Goal isCompleted;
@@ -9,10 +10,10 @@ public class QuestGoal : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		isCompleted = Quests.isFoodAbove;
-		int threshold = 4;
+		threshold = 4;
 	}
 	
-	// Update is called once per frame
+	// TODO: replace with interactable calls
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.P)) {
 			print(isGoalComplete());
