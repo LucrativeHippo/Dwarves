@@ -331,8 +331,8 @@ public class terrainGenerator : MonoBehaviour
                 }
                 if (resourceMap.ContainsKey(key))
                 {
-                    tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord, worldPos.yCoord, 0), Quaternion.identity);
-					tempResource.transform.SetParent(chunkLoc.transform);
+                    tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord, worldPos.yCoord, 0), getResourceObject(resourceMap[key]).transform.rotation);
+                    tempResource.transform.SetParent(chunkLoc.transform);
                     chunkMap.addTileAt(tempTile, x, y, 1);
                 }
                 

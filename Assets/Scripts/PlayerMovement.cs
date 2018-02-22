@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovements : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
 
 	public float speed;
-
-	void FixedUpdate() {
+    private GameObject cam;
+    private void Awake()
+    {
+        cam = GameObject.Find("MainCam");
+    }
+    void FixedUpdate() {
 		Vector2 mov = new Vector2 (0, 0);
 
 		mov += Input.GetKey (KeyCode.W) ? Vector2.up : Vector2.zero;
@@ -16,5 +20,6 @@ public class PlayerMovements : MonoBehaviour {
 		mov += Input.GetKey (KeyCode.D) ? Vector2.right : Vector2.zero;
 
 		transform.Translate (mov * speed);
-	}
+        cam.transform.Translate(mov * speed);
+    }
 }
