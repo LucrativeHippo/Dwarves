@@ -12,6 +12,9 @@ public class MetaScript : MonoBehaviour {
 		population = 0;
 	}
 	
+	public static MetaScript getMeta(){
+		return GameObject.Find("Meta").GetComponent<MetaScript>();
+	}
 	// Update is called once per frame
 	void Update () {
 		

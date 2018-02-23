@@ -3,16 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Quests : MonoBehaviour {
-//	public List<Goal> goalList;// = new List<Goal>(new IEnumerable<Goal>(isFoodAbove));
+	public class QuestType{
+		public Goal goal;public int difficulty; public string message;
+		public int divisor;
+		public QuestType(Goal g, int diff, string msg){
+			this.goal = g;
+			this.difficulty = diff;
+			this.divisor = 1;
+			this.message = msg;
+		}
+		public QuestType(Goal g, int diff, string msg, int div){
+			
+			this.goal = g;
+			this.difficulty = diff;
+			this.divisor = div;
+			this.message = msg;
+		}
+	};
+
 	// For use with generation
-	public static Goal [] goalArr = new Goal[]{isFoodAbove,isPopulationAbove,isTownCenterAbove,hasEmptyHouses};
-	public static int[] goalDifficulty = new int[]{0,2,30,50};
+	public static QuestType [] questList = new QuestType[]{
+		new QuestType(isFoodAbove, 0, "food"),
+		new QuestType(isPopulationAbove,2, "population", 5),
+		new QuestType(isTownCenterAbove,30, "town center level"),
+		new QuestType(hasEmptyHouses,50, "empty houses")
+	};
+	
 
 	// Use this for initialization
 	void Start () {
 
-//		goalList = new List<Goal> {isFoodAbove};
-//		goalArr = new Goal[]{isFoodAbove,isPopulationAbove,isTownCenterAbove,hasEmptyHouses};
 	}
 	
 	// Update is called once per frame
@@ -22,36 +42,26 @@ public class Quests : MonoBehaviour {
 
 
 	public static int getDifficulty(Goal g){
-		int index = -1;
-		for (int i = 0; i < goalArr.Length; i++) {
-			if (g == goalArr [i]) {
-				index = i;
-				break;
-			}
+		for (int i = 0; i < questList.Length; i++) {
+			if (g == questList [i].goal)
+				return questList[i].difficulty;
 		}
 
-		if(index == -1)
-			return 0;
-		else
-			return goalDifficulty [index];
+		return 0;
 	}
 
 
 	public delegate bool Goal (int a);
 
-	private static MetaScript getMeta(){
-		GameObject meta = GameObject.Find ("Meta");
-		return meta.GetComponent<MetaScript> ();
-	}
 
-	// TODO: add more functions, possibly move meta call to class variable
+	// TODO: add more functions
 	/// <summary>
 	/// Sees if the food is above a.
 	/// </summary>
 	/// <returns><c>true</c>, if food above was above a, <c>false</c> otherwise.</returns>
 	/// <param name="a">The alpha component.</param>
 	public static bool isFoodAbove(int a){
-		return getMeta().getFood () >= a;
+		return MetaScript.getMeta().getFood () >= a;
 	}
 
 	/// <summary>
@@ -60,7 +70,7 @@ public class Quests : MonoBehaviour {
 	/// <returns><c>true</c>, if population above was ised, <c>false</c> otherwise.</returns>
 	/// <param name="a">The alpha component.</param>
 	public static bool isPopulationAbove(int a){
-		return getMeta().getPop() >= a/5+1;
+		return MetaScript.getMeta().getPop() >= a;
 	}
 
 	public static bool isTownCenterAbove(int a){

@@ -29,8 +29,8 @@ public class Tuple<T>
         return y;
     }
 		
-	public string ToString(){
-		return x+" "+y;
+	public override string ToString(){
+		return "<Tuple: "+x+" "+y+">";
 	}
 
 }

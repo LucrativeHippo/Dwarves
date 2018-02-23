@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1249714188378788}
+  m_IsPrefabParent: 1
+--- !u!1 &1249714188378788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4029584718602348}
+  - component: {fileID: 212125519078582652}
+  - component: {fileID: 114651321640662150}
+  m_Layer: 0
+  m_Name: Terrain Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4029584718602348
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1249714188378788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114651321640662150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1249714188378788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56360064d72b4f746a5a966a59306937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPlayerPos: 12
+  yPlayerPos: 12
+  xPLayerChunkPos: 0
+  yPlayerChunkPos: 0
+  DEBUG: 0
+  xChunk: 0
+  yChunk: 0
+  waterAmount: 1
+  terrainAmount: 1
+  treeAmount: 1
+  Water: {fileID: 1880581670494450, guid: e12fbd108fd41994588650f838e7e965, type: 2}
+  Grass: {fileID: 1239622121905396, guid: 260670a91c7b3b2488f6a5e78b440c4f, type: 2}
+  Dirt: {fileID: 1932556385968796, guid: 8416b0d41f68c314ba5f04bf544c3e2d, type: 2}
+  Mountain: {fileID: 1080688609628742, guid: dad4903517e41f04382a0a9642b190b9, type: 2}
+  Snow: {fileID: 1552839559844636, guid: 6b65bf82210535041a8d52695778f5a3, type: 2}
+  Sand: {fileID: 1188605288019344, guid: da52c76678fdc2a45964951cfda9cacd, type: 2}
+  Desert: {fileID: 1993947185886442, guid: bdd27b05a33dc6a49b70f43bcece9c1c, type: 2}
+  Campsite: {fileID: 1449760790929312, guid: 279151a52f3fa754687374591f3eeb87, type: 2}
+  Plot: {fileID: 1932556385968796, guid: 8416b0d41f68c314ba5f04bf544c3e2d, type: 2}
+  Tree: {fileID: 1401740055908112, guid: 6db16e8df1cfcb34bb94f920a1e08ed3, type: 2}
+  Stone: {fileID: 1528277530889838, guid: 679624f1d7d07e84e832ce82938b310a, type: 2}
+  Iron: {fileID: 1509994566159360, guid: 71acbd840a08d7c4e9ba4c19aecd303c, type: 2}
+  Gold: {fileID: 1518998995545862, guid: 4dd0c1254d6d02a4abdc4c6efb227d77, type: 2}
+  Fish: {fileID: 1111354217460792, guid: e7b4be0db07f987409b35f998ce55fb9, type: 2}
+  Berries: {fileID: 1633713140390822, guid: a383142b7c6882040898fa3aff3396e8, type: 2}
+  Player: {fileID: 1294367326131454, guid: 77c6b79fc507c87468d8db05db63954e, type: 2}
+  Enemy: {fileID: 0}
+  NPC: {fileID: 0}
+  terrainSeed: 5
+  terrainSeed2: 6
+  waterSeed: 2
+  resourceSeed: 10
+  resourceSeed2: 16
+--- !u!212 &212125519078582652
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1249714188378788}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
