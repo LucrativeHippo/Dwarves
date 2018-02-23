@@ -14,13 +14,13 @@ public class MetaScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 		// Increase food
-		if (Input.GetKeyDown(KeyCode.F)) {
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
 			print ("food");
 			food++;
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha1)) {
+		if (Input.GetKeyDown(KeyCode.Alpha2)) {
 			print ("Population");
 			population++;
 		}
