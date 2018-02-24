@@ -22,9 +22,5 @@ void Update()
 
 
 
-    private void OnTriggerStay(Collider other)
-    {
-        waterHP -= 1;
-    }
 }
 

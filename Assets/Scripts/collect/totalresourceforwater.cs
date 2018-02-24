@@ -5,39 +5,50 @@ using UnityEngine;
 using UnityEngine.AI;
 public class totalresourceforwater : MonoBehaviour
 {
-    private NavMeshAgent agent;
-    public Transform destinations;
-    public static int totalwateramount = 0;
+    //public int buildingHP;
+   //public GameObject waterbuilding;
+    //public Transform destinations;
+    public  int totalwateramount ;
+   //private  collect people;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-
-        agent = GetComponent<NavMeshAgent>();
+       // waterbuilding = GetComponent<GameObject>();
+       // people =waterbuilding.GetComponent<collect>();
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //if (buildingHP < 1)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "collecter"&&totalwateramount<200)
-        {
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.tag == "collecter")
+    //    {
             
-            totalwateramount += 1;
-            Debug.Log("total amount in waterbuilding:" + totalwateramount);
-            if (totalwateramount == 200)
-            {
+    //        totalwateramount += 1;
+    //        Debug.Log("total amount in waterbuilding:" + totalwateramount);
+    //        Debug.Log (people.getwateramount());
+    //        if (totalwateramount ==people.getwateramount())
+    //        {
 
-                //agent.SetDestination((destinations.position));
-                Debug.Log("full" );
-                Debug.Log(totalwateramount);
-            }
-        }
-    }
-
+    //            people.setwateramount(0);
+    //            Debug.Log("full" );
+    //            Debug.Log(people.getwateramount());
+    //            people.gobackresourse();
+    //        }
+    //    }
+    //}
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    totalwateramount += 1;
+    //}
    
 
 }
