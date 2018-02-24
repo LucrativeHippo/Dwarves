@@ -14,7 +14,9 @@ public class Calendar : MonoBehaviour {
 
     public int daysToForecast;
     private Climate climate;
-    private QueueDirectAccess<float> forecast;
+    private Weather weather;
+    private QueueDirectAccess<float> forecastTemp;
+    private QueueDirectAccess<Weather.weatherTypes> forecastWeather;
 
 
     // ************************************
@@ -62,16 +64,34 @@ public class Calendar : MonoBehaviour {
         {
             Debug.LogError("Attempted to get forecast of a day less than zero. " +
                 "Attempting to recover by setting to current day.");
-            return forecast[0];
+            return forecastTemp[0];
         }
         if (day > daysToForecast - 1)
         {
             Debug.LogError("Attempted to get forecast of a day outside forecast. " +
                 "Attempting to recover by setting to last day in forecast.");
-            return forecast[daysToForecast - 1];
+            return forecastTemp[daysToForecast - 1];
         }
 
-        return forecast[day];
+        return forecastTemp[day];
+    }
+
+    public Weather.weatherTypes getForecastWeather(int day)
+    {
+        if (day < 0)
+        {
+            Debug.LogError("Attempted to get forecast of a day less than zero. " +
+                "Attempting to recover by setting to current day.");
+            return forecastWeather[0];
+        }
+        if (day > daysToForecast - 1)
+        {
+            Debug.LogError("Attempted to get forecast of a day outside forecast. " +
+                "Attempting to recover by setting to last day in forecast.");
+            return forecastWeather[daysToForecast - 1];
+        }
+
+        return forecastWeather[day];
     }
 
 
@@ -89,7 +109,22 @@ public class Calendar : MonoBehaviour {
         else
         {
             climate.generateNewClimate();
-            generateNewForecast();
+            generateNewTempForecast();
+        }
+
+        weather = gameObject.GetComponent<Weather>();
+        if (weather == null)
+        {
+            Debug.LogError("Error: No Weather script attached to Calendar object.");
+        }
+        else
+        {
+            generateNewWeatherForecast();
+        }
+
+        for (int i = 0; i < daysToForecast; i++)
+        {
+            Debug.Log(forecastTemp[i] + " : " + forecastWeather[i]);
         }
     }
 	
@@ -98,10 +133,32 @@ public class Calendar : MonoBehaviour {
 
 	}
 
-    public void generateNewForecast()
+    public void generateNewWeatherForecast()
     {
-        forecast = new QueueDirectAccess<float>();
-        forecast.resize(daysToForecast);
+        forecastWeather = new QueueDirectAccess<Weather.weatherTypes>();
+        forecastWeather.resize(daysToForecast);
+
+        if (forecastTemp == null)
+        {
+            Debug.LogError("Error: Can't generate a weather forecast before temperature.");
+            return;
+        }
+        else if (forecastTemp.getSize() != daysToForecast)
+        {
+            Debug.LogError("Error: Size mismatch. Generate new temperature forecast before weather.");
+            return;
+        }
+
+        for (int i = 0; i < daysToForecast; i++)
+        {
+            forecastWeather.enqueue(weather.getWeather(forecastTemp[i]));
+        }
+    }
+
+    public void generateNewTempForecast()
+    {
+        forecastTemp = new QueueDirectAccess<float>();
+        forecastTemp.resize(daysToForecast);
 
         int daysInSeasons = climate.getDaysPerSeason();
         int seasonsInClimate = climate.getSeasonsInClimate();
@@ -123,7 +180,7 @@ public class Calendar : MonoBehaviour {
             }
 
             float temperature = climate.getTempFromSeasonAndDay(seasonInForecast, dayInForecast);
-            forecast.enqueue(temperature);
+            forecastTemp.enqueue(temperature);
 
             dayInForecast++;
         }
@@ -156,8 +213,11 @@ public class Calendar : MonoBehaviour {
         float temp = climate.getTempFromSeasonAndDay(seasonToForecast, dayToForecast);
 
         // Dequeue before enqueue means we won't trigger a queue resize.
-        forecast.dequeue();
-        forecast.enqueue(temp);
+        forecastTemp.dequeue();
+        forecastTemp.enqueue(temp);
+
+        forecastWeather.dequeue();
+        forecastWeather.enqueue(weather.getWeather(temp));
     }
 
 
