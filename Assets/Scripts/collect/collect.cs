@@ -5,18 +5,24 @@ using UnityEngine.AI;
 public class collect : MonoBehaviour
 {
     private NavMeshAgent agent;
-    public Transform destinationforfull;
-    public Transform destinationforzero;
+    //public Transform destinationforfull;
+    //public Transform destinationforzero;
     public int wateramount;
-    public totalresourceforwater waterbuildings;
-    private GameObject currentwaterbuilding;
+    public int treeamount;
+    private totalresourceforwater waterbuildings;
+    private totalresourcefortree treebuildings;
+    private GameObject currentbuilding;
+    private GameObject currentresource;
     public destroyresourse hp;
-    public float threatRange = 2f;
-  
+    //public float threatRange = 2f;
+    public bool gogetwater = false;
+    public bool gogettree = false;
+    public  bool isfull = false;
     // Use this for initialization
     void Awake()
     {
-        currentwaterbuilding = GameObject.FindWithTag("water");
+     
+        //currentresource = GameObject.FindWithTag("water");
         agent = GetComponent<NavMeshAgent>();
        
       
@@ -24,23 +30,57 @@ public class collect : MonoBehaviour
     private void Start()
     {
         
-        hp = currentwaterbuilding.GetComponent<destroyresourse>();
-        agent.SetDestination(FindClosestresourse().transform.position); 
+        //hp = currentresource.GetComponent<destroyresourse>();
+        //agent.SetDestination(FindClosestresourse().transform.position); 
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (gogetwater == true && gogettree == false && isfull == false)
+        {
+            currentbuilding=GameObject.FindWithTag("waterbuilding");
+            currentresource = GameObject.FindWithTag("water");
+           
+            agent.SetDestination(FindClosestresourse("water").transform.position);
+
+        }
+        if (gogetwater == true && gogettree == false && isfull == true)
+        {
+            currentbuilding = GameObject.FindWithTag("waterbuilding");
+            currentresource = GameObject.FindWithTag("water");
+    
+            agent.SetDestination(FindClosestbuilding("waterbuilding").transform.position);
+
+
+        }
+
+
+
+         if (gogettree == true && gogetwater == false && isfull==false)
+        {
+            
+            currentbuilding = GameObject.FindWithTag("treebuilding");
+            currentresource = GameObject.FindWithTag("tree");
+           
+            agent.SetDestination(FindClosestresourse("tree").transform.position); 
+        } 
+
+        if (gogettree == true && gogetwater == false && isfull==true)
+        {
+            currentbuilding = GameObject.FindWithTag("treebuilding");
+            currentresource = GameObject.FindWithTag("tree");
+            agent.SetDestination(FindClosestbuilding("treebuilding").transform.position); 
+        } 
     }
 
 
 
 
-    GameObject FindClosestresourse()
+    GameObject FindClosestresourse(string resourcename)
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("water");
+        gos = GameObject.FindGameObjectsWithTag(resourcename);
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
@@ -61,10 +101,10 @@ public class collect : MonoBehaviour
 
 
 
-    GameObject FindClosestbuilding()
+    GameObject FindClosestbuilding(string buildingname)
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("waterbuilding");
+        gos = GameObject.FindGameObjectsWithTag(buildingname);
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
@@ -96,31 +136,70 @@ public class collect : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         
-        if (other.tag == "water" && wateramount < 200 )
+        if (other.tag == "water" && wateramount < 200 && gogetwater==true)
         {
 
             hp = other.GetComponent<destroyresourse>();
             wateramount += 1;
             Debug.Log("water:" + wateramount);
-            hp.waterHP -= 1;
+            hp.HP -= 1;
          
-            Debug.Log(hp.waterHP);
-            if (wateramount == 200 )
+            Debug.Log(hp.HP);
+        
+            if (wateramount == 200 && treeamount==0)
             {
-                agent.SetDestination((FindClosestbuilding().transform.position));
+                isfull = true;
+               // agent.SetDestination((FindClosestbuilding("waterbuilding").transform.position));
 
             }
 
         }
-        if (other.tag == "waterbuilding" && wateramount>0)
+        if (other.tag == "waterbuilding" && wateramount>0 && gogetwater==true)
         {
+            waterbuildings = other.GetComponent<totalresourceforwater>();
             wateramount -= 1;
             Debug.Log("water:" + wateramount);
             waterbuildings.totalwateramount += 1;
-            if (wateramount == 0)
+            if (wateramount == 0 && treeamount==0)
             {
+                isfull = false;
+                //agent.SetDestination((FindClosestresourse("water").transform.position));
 
-                agent.SetDestination((FindClosestresourse().transform.position));
+            }
+
+        }
+
+        if (other.tag == "tree" && treeamount < 200 && gogettree == true)
+        {
+
+            hp = other.GetComponent<destroyresourse>();
+            treeamount += 1;
+            Debug.Log("tree:" + treeamount);
+            hp.HP -= 1;
+
+            Debug.Log(hp.HP);
+            if (treeamount == 200 && wateramount==0)
+            {
+                isfull = true;
+                //agent.SetDestination((FindClosestbuilding("treebuilding").transform.position));
+
+            }
+
+        }
+
+
+
+
+        if (other.tag == "treebuilding" && treeamount > 0 && gogettree == true)
+        {
+            treebuildings = other.GetComponent<totalresourcefortree>();
+            treeamount -= 1;
+            Debug.Log("tree:" + treeamount);
+            treebuildings.totaltreeamount += 1;
+            if (treeamount == 0 && wateramount==0)
+            {
+                isfull = false;
+                //agent.SetDestination((FindClosestresourse("tree").transform.position));
 
             }
 
