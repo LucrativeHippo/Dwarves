@@ -9,12 +9,12 @@ public class terrainGenerator : MonoBehaviour
     private Dictionary<string, terrain> terrainMap;
     private Dictionary<string, resource> resourceMap;
     public Dictionary<string, Chunk> loadedChunks;
-
+    public int chunkSize = Chunk.SIZE;
 
     //Starting positions of the player
     public int xPlayerPos;
     public int yPlayerPos;
-    public int xPLayerChunkPos;
+    public int xPlayerChunkPos;
     public int yPlayerChunkPos;
 
     /// Number of chunks that make up the world
@@ -357,7 +357,7 @@ public class terrainGenerator : MonoBehaviour
         {
             // Instantiate saved game object from terrain
             tempTile = getObject(terrainMap[key]);
-        } else if (xChunkCoord == xPLayerChunkPos && yChunkCoord == yPlayerChunkPos && xCoord == xPlayerPos && yCoord == yPlayerPos)
+        } else if (xChunkCoord == xPlayerChunkPos && yChunkCoord == yPlayerChunkPos && xCoord == xPlayerPos && yCoord == yPlayerPos)
         {
             for (int i = xPlayerPos - 1; i <= xPlayerPos + 1; i++)
             {
