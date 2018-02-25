@@ -21,11 +21,15 @@ public class QuestGoal {
 			goalIndex = Random.Range(0,Quests.questList.Length-1);
 			Quests.QuestType q = Quests.questList[goalIndex];
 			isCompleted = q.goal;
-			threshold = (rank - q.difficulty)/q.divisor+1;
+			threshold = (rank - q.difficulty);
+			if(threshold>0){
+				threshold /= q.difficulty;
+				threshold++;
+			}
 		}while (threshold <= 0);
 	}
 	
-	public QuestGoal(int index, int rank){
+	public QuestGoal(int rank, int index){
 		setGoalByIndex(index);
 		setRank(rank);
 	}

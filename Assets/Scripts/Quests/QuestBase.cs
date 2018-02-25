@@ -16,6 +16,9 @@ public class QuestBase{
 			addGoal(new QuestGoal(rank));
 		}
 	}
+	public QuestBase(){
+		questPath = new Queue<QuestGoal>();
+	}
 
 	/// <summary>
 	/// Adds a goal at the end of the quest list.
