@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class destroyresourse : MonoBehaviour {
   
-    public int waterHP;
+    public int HP;
     // Use this for initialization
     void Start()
 {
@@ -14,7 +14,7 @@ public class destroyresourse : MonoBehaviour {
 // Update is called once per frame
 void Update()
 {
-    if (waterHP < 1)
+    if (HP < 1)
     {
         Destroy(gameObject);
     }
@@ -22,9 +22,5 @@ void Update()
 
 
 
-    private void OnTriggerStay(Collider other)
-    {
-        waterHP -= 1;
-    }
 }
 

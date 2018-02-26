@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
 		mov += Input.GetKey (KeyCode.A) ? Vector2.left : Vector2.zero;
 		mov += Input.GetKey (KeyCode.D) ? Vector2.right : Vector2.zero;
 
+		mov.Normalize ();
+
 		transform.Translate (mov * speed);
         //cam.transform.Translate(mov * speed);
     }

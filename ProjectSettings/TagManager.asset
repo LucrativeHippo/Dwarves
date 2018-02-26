@@ -8,6 +8,8 @@ TagManager:
   - water
   - waterbuilding
   - collecter
+  - tree
+  - treebuilding
   layers:
   - Default
   - TransparentFX
