@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class unityaifor2D : MonoBehaviour {
     public Transform target;
     public float zoff;
+    public float xoff;
 	// Use this for initialization
 	void Start () {
 		
@@ -20,6 +21,6 @@ public class unityaifor2D : MonoBehaviour {
 
     private void LateUpdate()
     {
-        transform.localPosition = new Vector3(target.localPosition.x, transform.localPosition.y, target.localPosition.z+zoff); 
+        transform.localPosition = new Vector3(target.localPosition.x+xoff, transform.localPosition.y, target.localPosition.z+zoff); 
     }
 }
