@@ -13,7 +13,7 @@ public class collect : MonoBehaviour
     private totalresourcefortree treebuildings;
     private GameObject currentbuilding;
     private GameObject currentresource;
-    public destroyresourse hp;
+    private destroyresourse hp;
     //public float threatRange = 2f;
     public bool gogetwater = false;
     public bool gogettree = false;
