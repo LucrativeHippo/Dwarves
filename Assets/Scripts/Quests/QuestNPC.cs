@@ -58,6 +58,11 @@ public class QuestNPC : MonoBehaviour, IActionable {
 	void Update () {
 		
 	}
+
+    public void setRank(int r){
+        if(r>0)
+            rank = r;
+    }
 	
 
     public Quests.QuestType GetQuestType(){
