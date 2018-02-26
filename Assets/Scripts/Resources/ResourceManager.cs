@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceManger : MonoBehaviour {
+public class ResourceManager : MonoBehaviour {
 
     private const int FOOD = 0;
     private const int WOOD = 1;
