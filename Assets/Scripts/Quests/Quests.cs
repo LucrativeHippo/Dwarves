@@ -23,10 +23,15 @@ public class Quests : MonoBehaviour {
 
 	// For use with generation
 	public static QuestType [] questList = new QuestType[]{
-		new QuestType(isFoodAbove, 0, "food"),
-		new QuestType(isPopulationAbove,2, "population", 5),
-		new QuestType(isTownCenterAbove,30, "town center level"),
-		new QuestType(hasEmptyHouses,50, "empty houses")
+		//new QuestType(isFoodAbove, 0, "food"),
+		//new QuestType(isPopulationAbove,2, "population", 5),
+		//new QuestType(isTownCenterAbove,30, "town center level"),
+		//new QuestType(hasEmptyHouses,50, "empty houses"),
+
+		//new QuestType(isSandAbove, 2, "sand"),
+		//new QuestType(isStoneAbove, 5, "stone"),
+		new QuestType(isWoodAbove, 0, "wood")
+
 	};
 	
 
@@ -61,7 +66,7 @@ public class Quests : MonoBehaviour {
 	/// <returns><c>true</c>, if food above was above a, <c>false</c> otherwise.</returns>
 	/// <param name="a">The alpha component.</param>
 	public static bool isFoodAbove(int a){
-		return MetaScript.getMeta().getFood () >= a;
+		return MetaScript.getRes().getResource(QuestResourceManager.ResourceTypes.FOOD) >= a;
 	}
 
 	/// <summary>
@@ -70,7 +75,7 @@ public class Quests : MonoBehaviour {
 	/// <returns><c>true</c>, if population above was ised, <c>false</c> otherwise.</returns>
 	/// <param name="a">The alpha component.</param>
 	public static bool isPopulationAbove(int a){
-		return MetaScript.getMeta().getPop() >= a;
+		return true;//return 0 >= a;
 	}
 
 	public static bool isTownCenterAbove(int a){
@@ -81,5 +86,16 @@ public class Quests : MonoBehaviour {
 		return true;
 	}
 
+	public static bool isStoneAbove(int a){
+		return MetaScript.getRes().getResource(QuestResourceManager.ResourceTypes.STONE) >= a;
+	}
+
+	public static bool isSandAbove(int a){
+		return MetaScript.getRes().getResource(QuestResourceManager.ResourceTypes.SAND) >= a;
+	}
+
+	public static bool isWoodAbove(int a){
+		return MetaScript.getRes().getResource(QuestResourceManager.ResourceTypes.WOOD) >= a;
+	}
 
 }

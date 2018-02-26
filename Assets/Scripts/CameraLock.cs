@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraLock : MonoBehaviour {
+	public string objName="";
 	private GameObject lockOn;
 	// Use this for initialization
 	private void getLockOn(){
-		lockOn = GameObject.Find("Player 1");
+		lockOn = GameObject.Find(objName);
 	}
 	void Start () {
 		getLockOn();

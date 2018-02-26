@@ -17,9 +17,14 @@ public class QuestNPC : MonoBehaviour, IActionable {
         if(!this.enabled)
             return;
         
+        tryQuest();
+    }
+
+    protected void tryQuest(){
         if(myQuests.checkQuest()){
             // TODO: Send message to NPC to be a vassal of PC
             Debug.Log("QUEST COMPLETED");
+            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
             this.enabled = false;
         }else{
 
@@ -27,6 +32,10 @@ public class QuestNPC : MonoBehaviour, IActionable {
             myQuests.GetQuestGoal().getThreshold()+" of "+
             GetQuestType().message
             );
+
+            gameObject.GetComponent<SpeechBubble>().setText("Need "+
+            myQuests.GetQuestGoal().getThreshold()+" "+
+            GetQuestType().message);
         }
     }
 

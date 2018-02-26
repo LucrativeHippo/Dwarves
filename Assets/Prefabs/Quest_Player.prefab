@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61355846112893878}
   - component: {fileID: 114655288034900124}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Quest_Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 1293310763526732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.93, y: -1.801, z: 0}
-  m_LocalScale: {x: 0.13080533, y: 0.13080533, z: 0.13080533}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.13080533}
   m_Children:
   - {fileID: 4946621921104902}
   m_Father: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4297953024477496}
-  radious: 1
+  radious: 0.8
 --- !u!114 &114247063835685272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionKey: 102
-  actionCooldownSec: 5
+  actionCooldownSec: 1
 --- !u!114 &114655288034900124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40dfa0ac6998142f084c21332acf61cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
+  speed: 0.1
 --- !u!212 &212744583717175530
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -217,7 +217,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a72f5e6f36d4beb4496d059cf14e5ce7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -261,7 +261,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a72f5e6f36d4beb4496d059cf14e5ce7, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
