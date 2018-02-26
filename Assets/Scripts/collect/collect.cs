@@ -11,6 +11,7 @@ public class collect : MonoBehaviour
     public int treeamount;
     private totalresourceforwater waterbuildings;
     private totalresourcefortree treebuildings;
+    private ResourceManager manager;
     private GameObject currentbuilding;
     private GameObject currentresource;
     private destroyresourse hp;
@@ -21,7 +22,7 @@ public class collect : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-     
+        //manager = gameObject.GetComponent<ResourceManager>();
         //currentresource = GameObject.FindWithTag("water");
         agent = GetComponent<NavMeshAgent>();
        
@@ -156,10 +157,18 @@ public class collect : MonoBehaviour
         }
         if (other.tag == "waterbuilding" && wateramount>0 && gogetwater==true)
         {
+            manager = other.GetComponent<ResourceManager>();
             waterbuildings = other.GetComponent<totalresourceforwater>();
+
             wateramount -= 1;
             Debug.Log("water:" + wateramount);
             waterbuildings.totalwateramount += 1;
+
+
+            manager.addResource(ResourceTypes.DIAMOND, waterbuildings.totalwateramount);
+         
+            // send message to add water
+
             if (wateramount == 0 && treeamount==0)
             {
                 isfull = false;
@@ -196,6 +205,7 @@ public class collect : MonoBehaviour
             treeamount -= 1;
             Debug.Log("tree:" + treeamount);
             treebuildings.totaltreeamount += 1;
+            manager.addResource(ResourceTypes.WOOD, waterbuildings.totalwateramount);
             if (treeamount == 0 && wateramount==0)
             {
                 isfull = false;
