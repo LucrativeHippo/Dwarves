@@ -5,8 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	public float speed;
-
-	void FixedUpdate() {
+    private GameObject cam;
+    private void Awake()
+    {
+        //cam = GameObject.Find("MainCam");
+    }
+    void FixedUpdate() {
 		Vector2 mov = new Vector2 (0, 0);
 
 		mov += Input.GetKey (KeyCode.W) ? Vector2.up : Vector2.zero;
@@ -18,5 +22,6 @@ public class PlayerMovement : MonoBehaviour {
 		mov.Normalize ();
 
 		transform.Translate (mov * speed);
-	}
+        //cam.transform.Translate(mov * speed);
+    }
 }

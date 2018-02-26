@@ -4,6 +4,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /Assets/AssetStoreTools*
+/GameProject_Data
 
 # Visual Studio cache directory
 /.vs/
@@ -27,3 +28,9 @@ ExportedObj/
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+
+# GameBuild things
+GameProject.exe
+GameProject.sln
+GameProject.csproj
+UnityPlayer.dll
