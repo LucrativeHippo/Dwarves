@@ -268,6 +268,22 @@ public class terrainGenerator : MonoBehaviour
             {
                 generateChunk(x, y - 1);
             }
+            if (!loadedChunks.ContainsKey(x + 1 + " " + y + 1))
+            {
+                generateChunk(x + 1, y + 1);
+            }
+            if (!loadedChunks.ContainsKey(x + 1 + " " + (y-1)))
+            {
+                generateChunk(x + 1, y - 1);
+            }
+            if (!loadedChunks.ContainsKey(x - 1 + " " + y + 1))
+            {
+                generateChunk(x - 1, y + 1);
+            }
+            if (!loadedChunks.ContainsKey(x - 1 + " " + (y-1)))
+            {
+                generateChunk(x - 1, y - 1);
+            }
         }
     }
 
