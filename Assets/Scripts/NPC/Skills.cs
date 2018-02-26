@@ -4,48 +4,53 @@ using UnityEngine;
 using System;
 
 
-public class Skills {
-	/// All job based skills available to the NPCs
-	/// Adapts regardless of size
-	public enum skillList{wood, stone, gold, food};
-	public static int skillNPCSize = Enum.GetNames(typeof(skillList)).Length;
+public class Skills : MonoBehaviour {
+    /// All job based skills available to the NPCs
+    /// Adapts regardless of size
+    public enum skillList {
+        wood,
+        stone,
+        gold,
+        food}
 
-	// npc skill level (translates to its cost)
-	// bool if it's recruited
-	// 
+    ;
 
-	/// Gathering multiplier [0.5,1.5]
-	float gatherSpeed = 1.0f;
+    public static int skillNPCSize = Enum.GetNames (typeof(skillList)).Length;
 
-	// TODO: Maybe better to have these in their own script
-	// it can then be attached to creatures without skills
-	float attackDMG = 1.0f;
-	float attackSPD = 1.0f;
+    // npc skill level (translates to its cost)
+    // bool if it's recruited
+    //
 
-	TraitDict<skillList,float> skillMultiplier;
+    /// Gathering multiplier [0.5,1.5]
+    public float gatherSpeed = 1.0f;
 
-	public Skills(bool random){
-		skillMultiplier = new TraitDict<skillList,float> (skillNPCSize,1.0f);
-		if(random){
-			randomizeSkills (UnityEngine.Random.Range(0,skillNPCSize));
-		}
-	}
+    // TODO: Maybe better to have these in their own script
+    // it can then be attached to creatures without skills
+    public float attackDMG = 1.0f;
+    public float attackSPD = 1.0f;
 
-	private void randomizeSkills(int numOfSkills){
-		for (int i = 0; i < numOfSkills; i++) {
-			float rand;
-			float randSkill;
+    TraitDict<skillList,float> skillMultiplier;
 
-			do {
-				randSkill = UnityEngine.Random.Range(0,skillNPCSize);
-				rand = UnityEngine.Random.value;
-			} while(skillMultiplier.ContainsKey ((skillList)randSkill));
-			//linear spread
-			skillMultiplier.setValue((skillList)randSkill, rand + 0.5f);
-		}
-	}
+    public void Start () {
+        skillMultiplier = new TraitDict<skillList,float> (skillNPCSize, 1.0f);
+        randomizeSkills (UnityEngine.Random.Range (0, skillNPCSize));
+    }
 
-	public float getValue(skillList s){
-		return skillMultiplier.getValue (s);
-	}
+    private void randomizeSkills (int numOfSkills) {
+        for (int i = 0; i < numOfSkills; i++) {
+            float rand;
+            float randSkill;
+
+            do {
+                randSkill = UnityEngine.Random.Range (0, skillNPCSize);
+                rand = UnityEngine.Random.value;
+            } while(skillMultiplier.ContainsKey ((skillList)randSkill));
+            //linear spread
+            skillMultiplier.setValue ((skillList)randSkill, rand + 0.5f);
+        }
+    }
+
+    public float getValue (skillList s) {
+        return skillMultiplier.getValue (s);
+    }
 }
