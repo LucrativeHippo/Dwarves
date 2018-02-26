@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class exampleAction : MonoBehaviour {
+public class exampleAction : MonoBehaviour, IActionable {
 
 	public void recieveAction(){ 
 		Debug.Log ("MessageRecieve");
