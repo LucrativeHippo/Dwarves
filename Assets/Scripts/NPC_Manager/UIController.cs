@@ -16,15 +16,21 @@ public class UIController : MonoBehaviour {
         this.gameObject.GetComponent<Button> ().onClick.AddListener (() => enableMenu ());
     }
 
+    private void generate () {
+        this.GetComponent<NPCManager> ().generateUI ();
+    }
+
     private void enableMenu () {
         mainUI.GetComponent<Canvas> ().enabled = menuEnabled;
         menuEnabled = !menuEnabled;
         npcManagerCanvas.GetComponent<Canvas> ().enabled = menuEnabled;
+        if (menuEnabled) {
+            generate ();
+        }
     }
 
     void FixedUpdate () {
         if (menuEnabled && Input.GetKey (exitKey)) {
-            Debug.Log ("Test");
             enableMenu ();
         }
     }

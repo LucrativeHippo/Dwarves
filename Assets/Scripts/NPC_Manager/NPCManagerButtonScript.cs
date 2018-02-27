@@ -9,15 +9,18 @@ public class NPCManagerButtonScript : MonoBehaviour {
     private int number;
 
     public Text buttonText;
-    public NPCManager npcManagerScript;
 
     private GameObject roleUI;
-
     private GameObject theNPC;
 
     public void setName (string aName) {
         name = aName;
         buttonText.text = name;
+    }
+
+    public void setNPC (GameObject aNPC) {
+        theNPC = aNPC;
+        setName (theNPC.name);
     }
 
     public void setListener () {
@@ -27,10 +30,6 @@ public class NPCManagerButtonScript : MonoBehaviour {
     public void setNumber (int aNumber) {
         number = aNumber;
         setListener ();
-    }
-
-    public void setNPCManagerScript (NPCManager aNPCManagerScript) {
-        npcManagerScript = aNPCManagerScript;
     }
 
     /// <summary>
@@ -46,6 +45,6 @@ public class NPCManagerButtonScript : MonoBehaviour {
     /// </summary>
     public void button_Click () {
         roleUI.GetComponent<GenerateRoleSelector> ().setCurrentNPC (theNPC);
-        npcManagerScript.buttonClicked (number);
+        roleUI.SetActive (true);
     }
 }

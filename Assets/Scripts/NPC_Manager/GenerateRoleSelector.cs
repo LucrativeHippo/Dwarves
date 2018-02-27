@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Security.AccessControl;
 
 public class GenerateRoleSelector : MonoBehaviour {
     private GameObject Button_Template;
-
     private GameObject RoleSelectorUI;
-
     private GameObject currentNPC;
 
     /// <summary>
@@ -15,6 +14,7 @@ public class GenerateRoleSelector : MonoBehaviour {
     /// </summary>
     void Start () {
         RoleSelectorUI = GameObject.Find ("NPCManagerSelectRole");
+        generateRolesMenu ();
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public class GenerateRoleSelector : MonoBehaviour {
             aButtonScript.setRoleButtonScript (this);
             aButtonScript.setName (theType.ToString ());
             aButtonScript.setID (counter);
-            tempGameObject.transform.SetParent (Button_Template.transform.parent, false);
+            tempGameObject.transform.SetParent (RoleSelectorUI.transform, false);
             counter++;
         }
 
@@ -39,8 +39,10 @@ public class GenerateRoleSelector : MonoBehaviour {
 
     public void changeRole (int collectID) {
         var types = Enum.GetValues (typeof(ResourceTypes));
-        types [collectID];
-
+        Debug.Log (types.GetValue (collectID));
+        currentNPC.GetComponent<collect> ().findingType = ResourceTypes.DIAMOND;
+        currentNPC.GetComponent<collect> ().getResource = true;
+        RoleSelectorUI.SetActive (false);
     }
 
     public void setCurrentNPC (GameObject aNPC) {

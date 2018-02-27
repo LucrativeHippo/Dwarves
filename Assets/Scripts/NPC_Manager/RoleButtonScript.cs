@@ -28,6 +28,7 @@ public class RoleButtonScript : MonoBehaviour {
 
     private void button_Click () {
         backScript.changeRole (collectID);
+
     }
 
 }
