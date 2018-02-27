@@ -66,7 +66,7 @@ public class Quests : MonoBehaviour {
 	/// <returns><c>true</c>, if food above was above a, <c>false</c> otherwise.</returns>
 	/// <param name="a">The alpha component.</param>
 	public static bool isFoodAbove(int a){
-		return MetaScript.getRes().getResource(QuestResourceManager.ResourceTypes.FOOD) >= a;
+		return MetaScript.getRes().getResource(ResourceTypes.FOOD) >= a;
 	}
 
 	/// <summary>
@@ -87,15 +87,15 @@ public class Quests : MonoBehaviour {
 	}
 
 	public static bool isStoneAbove(int a){
-		return MetaScript.getRes().getResource(QuestResourceManager.ResourceTypes.STONE) >= a;
+		return MetaScript.getRes().getResource(ResourceTypes.STONE) >= a;
 	}
 
 	public static bool isSandAbove(int a){
-		return MetaScript.getRes().getResource(QuestResourceManager.ResourceTypes.SAND) >= a;
+		return MetaScript.getRes().getResource(ResourceTypes.SAND) >= a;
 	}
 
 	public static bool isWoodAbove(int a){
-		return MetaScript.getRes().getResource(QuestResourceManager.ResourceTypes.WOOD) >= a;
+		return MetaScript.getRes().getResource(ResourceTypes.WOOD) >= a;
 	}
 
 }
