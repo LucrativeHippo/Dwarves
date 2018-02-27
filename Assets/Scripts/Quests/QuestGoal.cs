@@ -15,17 +15,29 @@ public class QuestGoal {
 	
 
 	public QuestGoal(int rank){
-		// randomly generate based on rank
+        // randomly generate based on rank
+        int numberOfTries = 0;
 		do{
+            if (numberOfTries > 10)
+            {
+                Debug.LogWarning("Tried creating quests far too many times");
+                threshold = rank;
+                goalIndex = 0;
+                Quests.QuestType qq = Quests.questList[goalIndex];
+                isCompleted = qq.goal;
+            }
 			// select index at random
 			goalIndex = Random.Range(0,Quests.questList.Length-1);
 			Quests.QuestType q = Quests.questList[goalIndex];
 			isCompleted = q.goal;
 			threshold = (rank - q.difficulty);
 			if(threshold>0){
-				threshold /= q.difficulty;
-				threshold++;
+                if (q.difficulty != 0) {
+                    threshold /= q.difficulty;
+                    threshold++;
+                }
 			}
+            numberOfTries++;
 		}while (threshold <= 0);
 	}
 	

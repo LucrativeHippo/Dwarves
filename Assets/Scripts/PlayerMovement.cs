@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
     private GameObject cam;
     private void Awake()
     {
-        //cam = GameObject.Find("MainCam");
+        cam = GameObject.Find("MainCam");
     }
     void FixedUpdate() {
 		Vector2 mov = new Vector2 (0, 0);
@@ -22,6 +22,6 @@ public class PlayerMovement : MonoBehaviour {
 		mov.Normalize ();
 
 		transform.Translate (mov * speed);
-        //cam.transform.Translate(mov * speed);
+        cam.transform.Translate(mov * speed);
     }
 }

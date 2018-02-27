@@ -252,38 +252,14 @@ public class terrainGenerator : MonoBehaviour
             int x = (int)player.transform.position.x / 25;
             int y = (int)player.transform.position.y / 25;
             
-            if (!loadedChunks.ContainsKey(x + 1 + " " + y))
+            for(int i = -1; i < 2; i++)
             {
-                generateChunk(x + 1, y);
+                for(int j = -1; j < 2; j++)
+                {
+                    generateChunk(x + i, y + j);
+                }
             }
-            if (!loadedChunks.ContainsKey(x - 1 + " " + y))
-            {
-                generateChunk(x - 1, y);
-            }
-            if (!loadedChunks.ContainsKey(x + " " + y + 1))
-            {
-                generateChunk(x, y + 1);
-            }
-            if (!loadedChunks.ContainsKey(x + " " + (y - 1)))
-            {
-                generateChunk(x, y - 1);
-            }
-            if (!loadedChunks.ContainsKey(x + 1 + " " + y + 1))
-            {
-                generateChunk(x + 1, y + 1);
-            }
-            if (!loadedChunks.ContainsKey(x + 1 + " " + (y-1)))
-            {
-                generateChunk(x + 1, y - 1);
-            }
-            if (!loadedChunks.ContainsKey(x - 1 + " " + y + 1))
-            {
-                generateChunk(x - 1, y + 1);
-            }
-            if (!loadedChunks.ContainsKey(x - 1 + " " + (y-1)))
-            {
-                generateChunk(x - 1, y - 1);
-            }
+            
         }
     }
 
@@ -349,6 +325,10 @@ public class terrainGenerator : MonoBehaviour
                 {
                     tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord, worldPos.yCoord, 0), getResourceObject(resourceMap[key]).transform.rotation);
                     tempResource.transform.SetParent(chunkLoc.transform);
+                    if (resourceMap[key] == resource.NPC)
+                    {
+                        tempResource.GetComponent<QuestNPC>().addGoal(Random.Range(1,10));
+                    }
                     chunkMap.addTileAt(tempTile, x, y, 1);
                 }
                 
@@ -533,14 +513,12 @@ public class terrainGenerator : MonoBehaviour
             if (tempResource == null)
         {
 
-            if (Random.Range(0, 100)< 3)
+            if (Random.Range(1, 600) == 1)
             {
-                //resourceMap.Add(key, resource.NPC);
+                resourceMap.Add(key, resource.NPC);
             }
-            if (Random.Range(0, 100) < 3)
-            {
-                //resourceMap.Add(key, resource.ENEMY);
-            }
+            
+
         }
     }
 
