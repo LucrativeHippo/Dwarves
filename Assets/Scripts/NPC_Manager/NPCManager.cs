@@ -38,7 +38,7 @@ public class NPCManager : MonoBehaviour {
         foreach (var theNPC in NPCs) {
             tempGameObject = Instantiate (Button_Template) as GameObject;
             tempGameObject.SetActive (true);
-            NPCManagerButton aButtonScript = tempGameObject.GetComponent<NPCManagerButton> ();
+            NPCManagerButtonScript aButtonScript = tempGameObject.GetComponent<NPCManagerButtonScript> ();
             aButtonScript.setNPCManagerScript (this);
             aButtonScript.setName (theNPC.name);
             aButtonScript.setNumber (counter);

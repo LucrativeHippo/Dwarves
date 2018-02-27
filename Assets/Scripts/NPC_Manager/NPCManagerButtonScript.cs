@@ -11,6 +11,8 @@ public class NPCManagerButtonScript : MonoBehaviour {
     public Text buttonText;
     public NPCManager npcManagerScript;
 
+    private GameObject roleUI;
+
     public void setName (string aName) {
         name = aName;
         buttonText.text = name;
@@ -30,11 +32,18 @@ public class NPCManagerButtonScript : MonoBehaviour {
     }
 
     /// <summary>
+    /// Sets the role U.
+    /// </summary>
+    /// <param name="aRoleUI">Role UI GameObject.</param>
+    public void setRoleUI (GameObject aRoleUI) {
+        roleUI = aRoleUI;
+    }
+
+    /// <summary>
     /// On Button Click Set Role.
     /// </summary>
     public void button_Click () {
-
-
+        roleUI.GetComponent<GenerateRoleSelector>().GenerateRoles()
         npcManagerScript.buttonClicked (number);
     }
 }
