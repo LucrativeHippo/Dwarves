@@ -13,6 +13,8 @@ public class NPCManagerButtonScript : MonoBehaviour {
 
     private GameObject roleUI;
 
+    private GameObject theNPC;
+
     public void setName (string aName) {
         name = aName;
         buttonText.text = name;
@@ -43,7 +45,7 @@ public class NPCManagerButtonScript : MonoBehaviour {
     /// On Button Click Set Role.
     /// </summary>
     public void button_Click () {
-        roleUI.GetComponent<GenerateRoleSelector>().GenerateRoles()
+        roleUI.GetComponent<GenerateRoleSelector> ().setCurrentNPC (theNPC);
         npcManagerScript.buttonClicked (number);
     }
 }

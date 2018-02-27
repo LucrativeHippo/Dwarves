@@ -8,7 +8,7 @@ public class GenerateRoleSelector : MonoBehaviour {
 
     private GameObject RoleSelectorUI;
 
-    private int currentNPC;
+    private GameObject currentNPC;
 
     /// <summary>
     /// Start this instance and gets the RoleSelectorUI.
@@ -43,7 +43,7 @@ public class GenerateRoleSelector : MonoBehaviour {
 
     }
 
-    public void setCurrentNPC (int number) {
-        currentNPC = number;
+    public void setCurrentNPC (GameObject aNPC) {
+        currentNPC = aNPC;
     }
 }

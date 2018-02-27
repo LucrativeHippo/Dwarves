@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: {fileID: 0}
   resAmount: 0
-  getResource: 1
+  getResource: 0
   dropResource: 0
   isfull: 0
   findingType: 7
