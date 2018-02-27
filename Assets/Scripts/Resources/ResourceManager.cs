@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour {
+	[SerializeField]
 	private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
 
 	private bool meat;
