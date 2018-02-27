@@ -13,6 +13,10 @@ public class NPCManagerButtonScript : MonoBehaviour {
     private GameObject roleUI;
     private GameObject theNPC;
 
+    void Start () {
+        roleUI = GameObject.Find ("NPCManagerSelectRole");
+    }
+
     public void setName (string aName) {
         name = aName;
         buttonText.text = name;
@@ -44,7 +48,7 @@ public class NPCManagerButtonScript : MonoBehaviour {
     /// On Button Click Set Role.
     /// </summary>
     public void button_Click () {
-        roleUI.GetComponent<GenerateRoleSelector> ().setCurrentNPC (theNPC);
-        roleUI.SetActive (true);
+        this.GetComponent<GenerateRoleSelector> ().setCurrentNPC (theNPC);
+        roleUI.GetComponent<Canvas> ().enabled = true;
     }
 }

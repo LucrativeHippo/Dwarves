@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Security.AccessControl;
 
 public class GenerateRoleSelector : MonoBehaviour {
-    private GameObject Button_Template;
+    public GameObject Button_Template;
     private GameObject RoleSelectorUI;
     private GameObject currentNPC;
+
+    private GameObject buttonParent;
 
     /// <summary>
     /// Start this instance and gets the RoleSelectorUI.
     /// </summary>
     void Start () {
         RoleSelectorUI = GameObject.Find ("NPCManagerSelectRole");
+        buttonParent = GameObject.Find ("NPCManagerSelectRoleContent");
         generateRolesMenu ();
     }
 
@@ -31,7 +33,8 @@ public class GenerateRoleSelector : MonoBehaviour {
             aButtonScript.setRoleButtonScript (this);
             aButtonScript.setName (theType.ToString ());
             aButtonScript.setID (counter);
-            tempGameObject.transform.SetParent (RoleSelectorUI.transform, false);
+            aButtonScript.setListener ();
+            tempGameObject.transform.SetParent (buttonParent.transform, false);
             counter++;
         }
 
@@ -39,10 +42,9 @@ public class GenerateRoleSelector : MonoBehaviour {
 
     public void changeRole (int collectID) {
         var types = Enum.GetValues (typeof(ResourceTypes));
-        Debug.Log (types.GetValue (collectID));
-        currentNPC.GetComponent<collect> ().findingType = ResourceTypes.DIAMOND;
-        currentNPC.GetComponent<collect> ().getResource = true;
-        RoleSelectorUI.SetActive (false);
+//        currentNPC.GetComponent<collect> ().findingType = ResourceTypes.DIAMOND;
+//        currentNPC.GetComponent<collect> ().getResource = true;
+        RoleSelectorUI.GetComponent<Canvas> ().enabled = false;
     }
 
     public void setCurrentNPC (GameObject aNPC) {

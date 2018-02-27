@@ -8,11 +8,14 @@ public class UIController : MonoBehaviour {
     private GameObject npcManagerCanvas;
     private bool menuEnabled;
 
+    private GameObject npcManagerContent;
+
     public KeyCode exitKey;
 
     void Start () {
         npcManagerCanvas = GameObject.Find ("NPCManagerCanvas");
         mainUI = GameObject.Find ("MainUICanvas");
+        npcManagerContent = GameObject.Find ("NPCManagerContent");
         this.gameObject.GetComponent<Button> ().onClick.AddListener (() => enableMenu ());
     }
 
@@ -32,6 +35,13 @@ public class UIController : MonoBehaviour {
     void FixedUpdate () {
         if (menuEnabled && Input.GetKey (exitKey)) {
             enableMenu ();
+            clearUI ();
+        }
+    }
+
+    void clearUI () {
+        foreach (Transform child in npcManagerContent.transform) {
+            Destroy (child.gameObject);
         }
     }
 }

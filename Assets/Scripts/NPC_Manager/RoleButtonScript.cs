@@ -10,6 +10,8 @@ public class RoleButtonScript : MonoBehaviour {
     private int collectID;
     private String name;
 
+    public Text buttonText;
+
     public void setRoleButtonScript (GenerateRoleSelector generateRoleSelector) {
         backScript = generateRoleSelector;
     }
@@ -20,6 +22,7 @@ public class RoleButtonScript : MonoBehaviour {
 
     public void setName (String aName) {
         name = aName;
+        buttonText.text = name;
     }
 
     public void setListener () {
@@ -28,7 +31,6 @@ public class RoleButtonScript : MonoBehaviour {
 
     private void button_Click () {
         backScript.changeRole (collectID);
-
     }
 
 }
