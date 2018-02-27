@@ -122,10 +122,10 @@ public class Calendar : MonoBehaviour {
             generateNewWeatherForecast();
         }
 
-        for (int i = 0; i < daysToForecast; i++)
+        /*for (int i = 0; i < daysToForecast; i++)
         {
             Debug.Log(forecastTemp[i] + " : " + forecastWeather[i]);
-        }
+        }*/
     }
 	
 	// Update is called once per frame
