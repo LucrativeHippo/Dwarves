@@ -6,11 +6,11 @@ public class HUD : MonoBehaviour {
 
 
 	public void updateHUD(){
-		QuestResourceManager res = MetaScript.getRes();
+		ResourceManager res = MetaScript.getRes();
 		UnityEngine.UI.Text resHUD = gameObject.GetComponentInChildren<UnityEngine.UI.Text>();
 
-		resHUD.text="Wood: " + res.getResource(QuestResourceManager.ResourceTypes.WOOD)
-		+ "\nFood: " + res.getResource(QuestResourceManager.ResourceTypes.FOOD);
+		resHUD.text="Wood: " + res.getResource(ResourceTypes.WOOD)
+		+ "\nFood: " + res.getResource(ResourceTypes.FOOD);
 
 	}
 	

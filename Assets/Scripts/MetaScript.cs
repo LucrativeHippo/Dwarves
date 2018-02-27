@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MetaScript : MonoBehaviour {
-	QuestResourceManager res;
+	//QuestResourceManager res;
 	// Use this for initialization
 	void Start () {
-		//gameObject.GetComponent<ResourceManager>().setFood(0);
-		//gameObject.GetComponent<ResourceManager>().setSand(0);
-		//gameObject.GetComponent<ResourceManager>().setWood(0);
-        res = MetaScript.getRes();
+		// gameObject.GetComponent<ResourceManager>().setFood(0);
+		// gameObject.GetComponent<ResourceManager>().setSand(0);
+		// gameObject.GetComponent<ResourceManager>().setWood(0);
+        //res = MetaScript.getRes();
 
 	}
 	
@@ -21,8 +21,8 @@ public class MetaScript : MonoBehaviour {
 		return getMetaObject().GetComponent<MetaScript>();
 	}
 
-	public static QuestResourceManager getRes(){
-		return getMetaObject().GetComponent<QuestResourceManager>();
+	public static ResourceManager getRes(){
+		return getMetaObject().GetComponent<ResourceManager>();
 	}
 
 	public static void updateHud(){

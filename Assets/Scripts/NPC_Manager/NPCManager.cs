@@ -9,6 +9,17 @@ public class NPCManager : MonoBehaviour {
 
     GameObject Button_Template;
 
+
+    /// <summary>
+    /// Start this instance and check if there are any OwnedNPCs in the World.
+    /// </summary>
+    void Start () {
+        GameObject[] temp = GameObject.FindGameObjectsWithTag ("OwnedNPC");
+        foreach (var theNPC in temp) {
+            addNPC (theNPC);
+        }
+    }
+
     /// <summary>
     /// Changes the role of a Specific NPC by ID number.
     /// </summary>
@@ -52,4 +63,7 @@ public class NPCManager : MonoBehaviour {
         NPCs.Remove (aNPC);
     }
 
+    public void buttonClicked (int number) {
+        
+    }
 }

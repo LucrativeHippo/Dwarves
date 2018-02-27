@@ -129,12 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wateramount: 0
-  treeamount: 0
-  hp: {fileID: 1372577653}
-  gogetwater: 0
-  gogettree: 0
+  hp: {fileID: 0}
+  resAmount: 0
+  getResource: 0
+  dropResource: 0
   isfull: 0
+  findingType: 1
 --- !u!54 &1266681
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -852,12 +852,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wateramount: 0
-  treeamount: 0
-  hp: {fileID: 1372577653}
-  gogetwater: 0
-  gogettree: 0
+  hp: {fileID: 0}
+  resAmount: 0
+  getResource: 1
+  dropResource: 0
   isfull: 0
+  findingType: 7
 --- !u!114 &326338190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,6 +885,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &326338201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 326338188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61903d34a1a4cd441a42880e45326db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
 --- !u!1 &372311885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,12 +1078,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wateramount: 0
-  treeamount: 0
-  hp: {fileID: 1372577653}
-  gogetwater: 0
-  gogettree: 0
+  hp: {fileID: 0}
+  resAmount: 0
+  getResource: 0
+  dropResource: 0
   isfull: 0
+  findingType: 1
 --- !u!54 &471637047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1422,12 +1434,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wateramount: 0
-  treeamount: 0
-  hp: {fileID: 1372577653}
-  gogetwater: 0
-  gogettree: 0
+  hp: {fileID: 0}
+  resAmount: 0
+  getResource: 0
+  dropResource: 0
   isfull: 0
+  findingType: 1
 --- !u!54 &788287110
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1951,12 +1963,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wateramount: 0
-  treeamount: 0
-  hp: {fileID: 1372577653}
-  gogetwater: 0
-  gogettree: 0
+  hp: {fileID: 0}
+  resAmount: 0
+  getResource: 0
+  dropResource: 0
   isfull: 0
+  findingType: 1
 --- !u!54 &1229494000
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2261,12 +2273,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wateramount: 0
-  treeamount: 0
-  hp: {fileID: 1372577653}
-  gogetwater: 0
-  gogettree: 0
+  hp: {fileID: 0}
+  resAmount: 0
+  getResource: 0
+  dropResource: 0
   isfull: 0
+  findingType: 1
 --- !u!54 &1345700443
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2980,12 +2992,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wateramount: 0
-  treeamount: 0
-  hp: {fileID: 1372577653}
-  gogetwater: 0
-  gogettree: 0
+  hp: {fileID: 0}
+  resAmount: 0
+  getResource: 0
+  dropResource: 0
   isfull: 0
+  findingType: 1
 --- !u!54 &1459197271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4019,6 +4031,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b94c94fe176a847d7aee0d62a5175300, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1836783305
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4873992661210382, guid: 94736651ba2dcd149b09fb80924d8bfb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.2626314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873992661210382, guid: 94736651ba2dcd149b09fb80924d8bfb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 68.831184
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873992661210382, guid: 94736651ba2dcd149b09fb80924d8bfb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.06978522
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873992661210382, guid: 94736651ba2dcd149b09fb80924d8bfb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873992661210382, guid: 94736651ba2dcd149b09fb80924d8bfb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873992661210382, guid: 94736651ba2dcd149b09fb80924d8bfb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873992661210382, guid: 94736651ba2dcd149b09fb80924d8bfb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873992661210382, guid: 94736651ba2dcd149b09fb80924d8bfb, type: 2}
+      propertyPath: m_RootOrder
+      value: 33
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 94736651ba2dcd149b09fb80924d8bfb, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1842692751
 Prefab:
