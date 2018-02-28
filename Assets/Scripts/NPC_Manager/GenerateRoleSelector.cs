@@ -42,8 +42,8 @@ public class GenerateRoleSelector : MonoBehaviour {
 
     public void changeRole (int collectID) {
         var types = Enum.GetValues (typeof(ResourceTypes));
-//        currentNPC.GetComponent<collect> ().findingType = ResourceTypes.DIAMOND;
-//        currentNPC.GetComponent<collect> ().getResource = true;
+        currentNPC.GetComponent<collect> ().findingType = ResourceTypes.DIAMOND;
+        currentNPC.GetComponent<collect> ().getResource = true;
         RoleSelectorUI.GetComponent<Canvas> ().enabled = false;
     }
 
