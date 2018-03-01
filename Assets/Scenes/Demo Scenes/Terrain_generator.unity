@@ -164,7 +164,7 @@ MonoBehaviour:
   yChunk: 0
   waterAmount: 1
   terrainAmount: 1
-  treeAmount: 1
+  resourceAmount: 0
   Water: {fileID: 1880581670494450, guid: e12fbd108fd41994588650f838e7e965, type: 2}
   Grass: {fileID: 1239622121905396, guid: 260670a91c7b3b2488f6a5e78b440c4f, type: 2}
   Dirt: {fileID: 1932556385968796, guid: 8416b0d41f68c314ba5f04bf544c3e2d, type: 2}
@@ -181,13 +181,12 @@ MonoBehaviour:
   Fish: {fileID: 1111354217460792, guid: e7b4be0db07f987409b35f998ce55fb9, type: 2}
   Berries: {fileID: 1633713140390822, guid: a383142b7c6882040898fa3aff3396e8, type: 2}
   Player: {fileID: 1294367326131454, guid: 77c6b79fc507c87468d8db05db63954e, type: 2}
-  Enemy: {fileID: 0}
   NPC: {fileID: 1269983798374464, guid: c79e6dac0bb2b6a44a47fbe27b807ee2, type: 2}
   terrainSeed: 5
-  terrainSeed2: 6
+  terrainSeed2: 18
   waterSeed: 2
   resourceSeed: 10
-  resourceSeed2: 16
+  resourceSeed2: 20
 --- !u!212 &835928472
 SpriteRenderer:
   m_ObjectHideFlags: 0

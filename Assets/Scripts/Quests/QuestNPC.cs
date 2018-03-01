@@ -35,9 +35,14 @@ public class QuestNPC : MonoBehaviour, IActionable {
             GetQuestType().message
             );
 
+            /*
             gameObject.GetComponent<SpeechBubble>().setText("Need "+
             myQuests.GetQuestGoal().getThreshold()+" "+
             GetQuestType().message);
+            */
+            Debug.Log(("Need " +
+            myQuests.GetQuestGoal().getThreshold() + " " +
+            GetQuestType().message));
         }
     }
 
