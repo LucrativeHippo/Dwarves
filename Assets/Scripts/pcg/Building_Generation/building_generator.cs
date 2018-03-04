@@ -78,9 +78,10 @@ public class building_generator {
             {
                 if(i ==0 || j == 0 || i == height-1 || j == width-1)
                 {
-                    if(j == height-1 && i == width/2 )
+                    if(j == width/2 && i == height -1 )
                     {
-                        GameObject temp = GameObject.Instantiate(door, new Vector3(xlocation + i, ylocation, zlocation + j), Quaternion.identity);
+                        
+                        GameObject temp = GameObject.Instantiate(door, new Vector3(xlocation + j, ylocation, zlocation + i), Quaternion.identity);
                         var rot = temp.transform.rotation;
                         rot.x = 1;
                         temp.transform.rotation = rot;
@@ -88,20 +89,20 @@ public class building_generator {
                     }
                     else
                     {
-                        GameObject temp = GameObject.Instantiate(wall, new Vector3(xlocation + i, ylocation, zlocation + j), Quaternion.identity);
+                        GameObject temp = GameObject.Instantiate(wall, new Vector3(xlocation + j, ylocation, zlocation + i), Quaternion.identity);
                         var rot = temp.transform.rotation;
                         rot.x = 1;
                         temp.transform.rotation = rot;
-                        doorPlaced = true;
+                       
                     }
                 }
                 else
                 {
-                    GameObject temp = GameObject.Instantiate(floor, new Vector3(xlocation + i, ylocation, zlocation + j), Quaternion.identity);
+                    GameObject temp = GameObject.Instantiate(floor, new Vector3(xlocation + j, ylocation, zlocation + i), Quaternion.identity);
                     var rot = temp.transform.rotation;
                     rot.x = 1;
                     temp.transform.rotation = rot;
-                    doorPlaced = true;
+                    
                 }
             }
         }

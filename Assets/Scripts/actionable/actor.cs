@@ -11,13 +11,13 @@ public class actor : MonoBehaviour {
 
 	public int actionCooldownSec = 5;
 
-	void OnTriggerEnter2D(Collider2D other) {
+	void OnTriggerEnter3D(Collider other) {
 		actionable = true;
 		collidedGameObject = other.gameObject;
 		Debug.Log ("actionable = true");
 	}
 
-	void OnTriggerExit2D(Collider2D other) {
+	void OnTriggerExit3D(Collider other) {
 		actionable = false;
 		Debug.Log ("actionable = false");
 	}
