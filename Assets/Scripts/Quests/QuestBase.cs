@@ -12,10 +12,28 @@ public class QuestBase{
 	/// <param name="rank"></param>
 	public QuestBase(int length, int rank){
 		questPath = new Queue<QuestGoal>();
+		/* Create with decreasing difficulty
+		int maxRank = rank - length;
 		for(int i=0;i<length;i++){
-			addGoal(new QuestGoal(rank));
+			maxRank++;
+			int tempRank = Random.Range(1,maxRank);
+			addGoal(new QuestGoal(tempRank));
+			maxRank -= tempRank;
 		}
+		*/
+		createRecursively(length,rank);
 	}
+
+	private void createRecursively(int length, int rank){
+		int tempRank = rank;
+		if(length>0){
+			tempRank = Random.Range(1,rank-length+1);
+			createRecursively(length-1, rank-tempRank);
+		}
+
+		addGoal(new QuestGoal(tempRank));
+	}
+
 	public QuestBase(){
 		questPath = new Queue<QuestGoal>();
 	}
