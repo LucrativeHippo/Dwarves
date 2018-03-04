@@ -49,6 +49,11 @@ public class QueueDirectAccess<T> {
         return size == 0;
     }
 
+    public int getSize()
+    {
+        return size;
+    }
+
     public void enqueue(T input)
     {
         if (isEmpty())
