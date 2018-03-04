@@ -23,13 +23,16 @@ public class Quests : MonoBehaviour {
 
 	// For use with generation
 	public static QuestType [] questList = new QuestType[]{
-		//new QuestType(isFoodAbove, 0, "food"),
+		new QuestType(isFoodAbove, 0, "food"),
 		//new QuestType(isPopulationAbove,2, "population", 5),
 		//new QuestType(isTownCenterAbove,30, "town center level"),
 		//new QuestType(hasEmptyHouses,50, "empty houses"),
 
-		//new QuestType(isSandAbove, 2, "sand"),
-		//new QuestType(isStoneAbove, 5, "stone"),
+		new QuestType(isSandAbove, 2, "sand"),
+		new QuestType(isStoneAbove, 5, "stone"),
+		new QuestType(isIronAbove,10,"iron"),
+		new QuestType(isCoalAbove,8,"coal"),
+		new QuestType(isDiamondAbove,20,"diamond"),
 		new QuestType(isWoodAbove, 0, "wood")
 
 	};
@@ -69,23 +72,6 @@ public class Quests : MonoBehaviour {
 		return MetaScript.getRes().getResource(ResourceTypes.FOOD) >= a;
 	}
 
-	/// <summary>
-	/// Is the population above a/5.
-	/// </summary>
-	/// <returns><c>true</c>, if population above was ised, <c>false</c> otherwise.</returns>
-	/// <param name="a">The alpha component.</param>
-	public static bool isPopulationAbove(int a){
-		return true;//return 0 >= a;
-	}
-
-	public static bool isTownCenterAbove(int a){
-		return true;
-	}
-
-	public static bool hasEmptyHouses(int a){
-		return true;
-	}
-
 	public static bool isStoneAbove(int a){
 		return MetaScript.getRes().getResource(ResourceTypes.STONE) >= a;
 	}
@@ -98,4 +84,44 @@ public class Quests : MonoBehaviour {
 		return MetaScript.getRes().getResource(ResourceTypes.WOOD) >= a;
 	}
 
+	public static bool isCoalAbove(int a){
+		return MetaScript.getRes().getResource(ResourceTypes.COAL) >= a;
+	}
+	
+	public static bool isIronAbove(int a){
+		return MetaScript.getRes().getResource(ResourceTypes.IRON) >= a;
+	}
+	public static bool isGoldAbove(int a){
+		return MetaScript.getRes().getResource(ResourceTypes.GOLD) >= a;
+	}
+	public static bool isDiamondAbove(int a){
+		return MetaScript.getRes().getResource(ResourceTypes.DIAMOND) >= a;
+	}
+
+	/// <summary>
+	/// TODO: Is the population above a/5.
+	/// </summary>
+	/// <returns><c>true</c>, if population above was ised, <c>false</c> otherwise.</returns>
+	/// <param name="a">The alpha component.</param>
+	public static bool isPopulationAbove(int a){
+		return true;//return 0 >= a;
+	}
+
+	/// <summary>
+	/// TODO: complete this
+	/// </summary>
+	/// <param name="a"></param>
+	/// <returns></returns>
+	public static bool isTownCenterAbove(int a){
+		return true;
+	}
+
+	/// <summary>
+	/// TODO: COMPLETE THIS
+	/// </summary>
+	/// <param name="a"></param>
+	/// <returns></returns>
+	public static bool hasEmptyHouses(int a){
+		return true;
+	}
 }
