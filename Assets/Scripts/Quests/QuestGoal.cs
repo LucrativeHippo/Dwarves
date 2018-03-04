@@ -22,7 +22,7 @@ public class QuestGoal {
 			Quests.QuestType q = Quests.questList[goalIndex];
 			isCompleted = q.goal;
 			threshold = (rank - q.difficulty);
-			if(threshold>0){
+			if(threshold>0 && q.difficulty>0){
 				threshold /= q.difficulty;
 				threshold++;
 			}
