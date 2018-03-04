@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour {
-<<<<<<< HEAD
+
 	private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
-=======
->>>>>>> PathFinding
+
 
 	private bool meat;
     private bool fruit;
