@@ -381,7 +381,7 @@ public class terrainGenerator : MonoBehaviour
         if (player != null)
         {
             int x = (int)player.transform.position.x / 25;
-            int y = (int)player.transform.position.y / 25;
+            int y = (int)player.transform.position.z / 25;
             
             for(int i = -1; i < 2; i++)
             {
@@ -446,15 +446,23 @@ public class terrainGenerator : MonoBehaviour
                 string key = worldPos.xCoord + " " + worldPos.yCoord;
                 tempTile = Instantiate(getObject(terrainMap[key]), new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                 //Adds the terrain into the correct chunk into the first layer
+                var rot = tempTile.transform.rotation;
+                rot.x = 1;
+                tempTile.transform.rotation = rot;
 				tempTile.transform.SetParent(chunkLoc.transform);
                 chunkMap.addTileAt(tempTile, x, y, 0);
                 if(terrainMap[key] == terrain.CAMPSITE)
                 {
-					Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
+
+					tempTile = Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
+                    rot = tempTile.transform.rotation;
+                    rot.x = 1;
+                    tempTile.transform.rotation = rot;
                 }
                 if (resourceMap.ContainsKey(key))
                 {
                     tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord, 0, worldPos.yCoord), getResourceObject(resourceMap[key]).transform.rotation);
+                    
                     tempResource.transform.SetParent(chunkLoc.transform);
                     if (resourceMap[key] == resource.NPC)
                     {

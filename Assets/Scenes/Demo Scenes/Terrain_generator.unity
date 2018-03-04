@@ -164,7 +164,7 @@ MonoBehaviour:
   yChunk: 0
   waterAmount: 1
   terrainAmount: 1
-  resourceAmount: 0
+  resourceAmount: 1
   Water: {fileID: 1880581670494450, guid: e12fbd108fd41994588650f838e7e965, type: 2}
   Grass: {fileID: 1239622121905396, guid: 260670a91c7b3b2488f6a5e78b440c4f, type: 2}
   Dirt: {fileID: 1932556385968796, guid: 8416b0d41f68c314ba5f04bf544c3e2d, type: 2}
@@ -255,13 +255,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1139788387}
-  m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 17, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1641666484}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!81 &1139788389
 AudioListener:
   m_ObjectHideFlags: 0
@@ -294,7 +294,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 3
+  field of view: 16
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -604,6 +604,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1641666484}
+  - component: {fileID: 1641666485}
   m_Layer: 0
   m_Name: MainCam
   m_TagString: Untagged
@@ -618,10 +619,22 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1641666483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: -70, z: -48}
+  m_LocalPosition: {x: 12, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1139788388}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1641666485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1641666483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2dcffc77ec013419fe6e0ecb5b32af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objName: Player
