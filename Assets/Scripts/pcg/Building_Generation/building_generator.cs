@@ -70,9 +70,11 @@ public class building_generator {
         doorxlocation = width/2;
         doorzlocation = height-1;
 
-        
+        GameObject Building = new GameObject("Building: " + xlocation + " " + ylocation);
+        Building.transform.SetPositionAndRotation(new Vector3(xlocation, 0, zlocation), Quaternion.identity);
 
-        for(int i= 0; i < height; i++)
+
+        for (int i= 0; i < height; i++)
         {
             for(int j = 0; j < width; j++)
             {
@@ -85,6 +87,7 @@ public class building_generator {
                         var rot = temp.transform.rotation;
                         rot.x = 1;
                         temp.transform.rotation = rot;
+                        temp.transform.SetParent(Building.transform);
                         doorPlaced = true;
                     }
                     else
@@ -93,7 +96,8 @@ public class building_generator {
                         var rot = temp.transform.rotation;
                         rot.x = 1;
                         temp.transform.rotation = rot;
-                       
+                        temp.transform.SetParent(Building.transform);
+
                     }
                 }
                 else
@@ -102,7 +106,8 @@ public class building_generator {
                     var rot = temp.transform.rotation;
                     rot.x = 1;
                     temp.transform.rotation = rot;
-                    
+                    temp.transform.SetParent(Building.transform);
+
                 }
             }
         }
