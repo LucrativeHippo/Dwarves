@@ -12,8 +12,8 @@ public class RoleButtonScript : MonoBehaviour {
 
     public Text buttonText;
 
-    public void setRoleButtonScript (GenerateRoleSelector generateRoleSelector) {
-        backScript = generateRoleSelector;
+    public void setBackScript (GenerateRoleSelector aBackScript) {
+        backScript = aBackScript;
     }
 
     public void setID (int aNumber) {
