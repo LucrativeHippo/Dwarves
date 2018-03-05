@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+	[System.Serializable]
+
 public class Quests : MonoBehaviour {
+	[System.Serializable]
 	public class QuestType{
 		public Goal goal;public int difficulty; public string message;
 		public int divisor;
