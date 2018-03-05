@@ -449,7 +449,7 @@ public class terrainGenerator : MonoBehaviour
                 //Adds the terrain into the correct chunk into the first layer
                 var rot = tempTile.transform.rotation;
                 rot.x = 1;
-                tempTile.transform.rotation = rot;
+                //tempTile.transform.rotation = rot;
 				tempTile.transform.SetParent(chunkLoc.transform);
                 chunkMap.addTileAt(tempTile, x, y, 0);
                 if(terrainMap[key] == terrain.CAMPSITE)
