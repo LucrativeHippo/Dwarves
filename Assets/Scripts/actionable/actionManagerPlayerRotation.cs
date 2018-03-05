@@ -13,7 +13,6 @@ public class actionManagerPlayerRotation : MonoBehaviour {
 
 	void FixedUpdate() {
 
-		//actionboxDirection.z = 0;
 	}
 
 	public void setRotation(Vector3 direction){
