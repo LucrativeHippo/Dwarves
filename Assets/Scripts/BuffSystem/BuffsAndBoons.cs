@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BuffsAndBoons {
-
-    private enum Buffs {
+    public enum Buffs {
         DoubleHealth,
         ExtraArmour,
         DoubleSpeed
     }
 
-    private enum Boons {
+    public enum Boons {
         Bleed,
         Slow,
         Poison,
@@ -18,3 +17,4 @@ public class BuffsAndBoons {
     }
 
 }
+
