@@ -25,18 +25,28 @@ public class building : MonoBehaviour, IActionable {
         if (!this.enabled)
             return;
 
-        player.transform.position = new Vector3(bg.getdoorxlocation(), bg.getylocation(), bg.getdoorzlocation());
+        player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
     }
 
     // Use this for initialization
     void Start () {
         bg = new building_generator((int)gameObject.transform.position.x, (int)gameObject.transform.position.y, (int)gameObject.transform.position.z, gameObject, wall, door, floor);
-        print(bg.getdoorxlocation());
+        if(bg == null)
+        {
+            Debug.Log("The building_generator object is null.");
+        }
         player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.Log("The player object is null.");
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
 	}
 }

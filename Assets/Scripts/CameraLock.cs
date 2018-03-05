@@ -21,7 +21,7 @@ public class CameraLock : MonoBehaviour {
 		Vector3 targetPos = lockOn.transform.position;
 
 
-		gameObject.transform.SetPositionAndRotation (new Vector3(targetPos.x, 0, targetPos.z),gameObject.transform.rotation);
+		gameObject.transform.SetPositionAndRotation (new Vector3(targetPos.x, targetPos.y, targetPos.z),gameObject.transform.rotation);
 		}
 	}
 }

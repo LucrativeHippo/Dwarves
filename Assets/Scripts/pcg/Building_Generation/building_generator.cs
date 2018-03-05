@@ -8,7 +8,7 @@ public class building_generator {
     private static int MAX_HEIGHT = 16;
     private static int MIN_WIDTH = 8;
     private static int MIN_HEIGHT = 8;
-    private static int DEPTH = -40;
+    private static int DEPTH = 100;
     private bool doorPlaced = false;
 
 
@@ -58,13 +58,13 @@ public class building_generator {
         return height;
     }
     //The basic building construcot function
-    public building_generator(int xpos, int zpos, int ypos, GameObject parentBuilding, GameObject wall, GameObject door, GameObject floor)
+    public building_generator(int xpos, int ypos, int zpos, GameObject parentBuilding, GameObject wall, GameObject door, GameObject floor)
     {
         width = Random.Range(MIN_WIDTH, MAX_WIDTH);
         height = Random.Range(MIN_HEIGHT, MAX_HEIGHT);
 
-        xlocation = xpos * MAX_WIDTH;
-        zlocation = zpos * MAX_HEIGHT;
+        xlocation = xpos * (MAX_WIDTH + 20);
+        zlocation = zpos * (MAX_HEIGHT + 20);
         ylocation = ypos + DEPTH;
 
         doorxlocation = width/2;
@@ -87,8 +87,12 @@ public class building_generator {
                         var rot = temp.transform.rotation;
                         rot.x = 1;
                         temp.transform.rotation = rot;
+                        //set parent
                         temp.transform.SetParent(Building.transform);
                         doorPlaced = true;
+
+                        
+                        temp.GetComponent<door>().setReturn(xpos, ypos, zpos);
                     }
                     else
                     {
