@@ -188,8 +188,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1589470589}
   m_HandleRect: {fileID: 1589470588}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.77666664
+  m_Value: 0
+  m_Size: 0.53648067
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -738,9 +738,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -300, y: 1039.1216}
+  m_AnchoredPosition: {x: 100, y: -265.8461}
   m_SizeDelta: {x: 0, y: 320}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &392972362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,9 +863,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: -0.000009452937}
+  m_AnchoredPosition: {x: -225, y: -827.3018}
   m_SizeDelta: {x: 0, y: 300}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &550997085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1653,7 +1653,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1291738097}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 238780426}
@@ -2084,8 +2084,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 489544415}
   m_HandleRect: {fileID: 489544414}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.45355192
+  m_Value: 0
+  m_Size: 0.5464481
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
