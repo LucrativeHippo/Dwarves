@@ -8,18 +8,15 @@ public class Quests : MonoBehaviour {
 	[System.Serializable]
 	public class QuestType{
 		public Goal goal;public int difficulty; public string message;
-		public int divisor;
 		public QuestType(Goal g, int diff, string msg){
 			this.goal = g;
 			this.difficulty = diff;
-			this.divisor = 1;
 			this.message = msg;
 		}
 		public QuestType(Goal g, int diff, string msg, int div){
 			
 			this.goal = g;
 			this.difficulty = diff;
-			this.divisor = div;
 			this.message = msg;
 		}
 	};
