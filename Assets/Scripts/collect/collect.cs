@@ -25,11 +25,11 @@ public class collect : MonoBehaviour
     public string getResourceName(ResourceTypes r){
         switch(r){
             case ResourceTypes.WOOD:
-                return "wood";
+                return "tree";
             case ResourceTypes.DIAMOND:
                 return "water";
             default:
-                return "wood";
+                return "tree";
         }
     }
     private string getResName(){
