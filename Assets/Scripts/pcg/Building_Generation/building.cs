@@ -21,6 +21,7 @@ public class building : MonoBehaviour, IActionable {
 
     public void recieveAction()
     {
+        print("hi");
         if (!this.enabled)
             return;
 

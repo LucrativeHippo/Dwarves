@@ -26,7 +26,7 @@ public class door : MonoBehaviour {
     {
         print("setting return");
         xpos = x;
-        ypos = y;
+        ypos = 0;
         zpos = z;
     }
 
@@ -38,6 +38,7 @@ public class door : MonoBehaviour {
         if(xpos != null && ypos != null && zpos != null)
         {
             player.transform.position = new Vector3(xpos, ypos, zpos);
+            print(xpos + zpos);
         }
         else
         {

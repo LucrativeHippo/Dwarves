@@ -369,11 +369,6 @@ public class terrainGenerator : MonoBehaviour
     public void Start()
     {
         RenderSettings.ambientLight = Color.black;
-        Light[] ligths = FindObjectsOfType(typeof(Light)) as Light[];
-        foreach (Light ligth in ligths)
-        {
-            ligth.enabled = false;
-        }
         loadedChunks = new Dictionary<string, Chunk>();
         terrainMap = new Dictionary<string, terrain>();
         resourceMap = new Dictionary<string, resource>();
@@ -384,7 +379,7 @@ public class terrainGenerator : MonoBehaviour
     public void FixedUpdate()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        if (player != null && player.transform.position.y == 0)
         {
             int x = (int)player.transform.position.x / 25;
             int y = (int)player.transform.position.z / 25;
