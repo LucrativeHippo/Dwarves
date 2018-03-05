@@ -368,6 +368,12 @@ public class terrainGenerator : MonoBehaviour
     // Use this for initialization
     public void Start()
     {
+        RenderSettings.ambientLight = Color.black;
+        Light[] ligths = FindObjectsOfType(typeof(Light)) as Light[];
+        foreach (Light ligth in ligths)
+        {
+            ligth.enabled = false;
+        }
         loadedChunks = new Dictionary<string, Chunk>();
         terrainMap = new Dictionary<string, terrain>();
         resourceMap = new Dictionary<string, resource>();
@@ -455,9 +461,9 @@ public class terrainGenerator : MonoBehaviour
                 {
 
 					tempTile = Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
-                    rot = tempTile.transform.rotation;
-                    rot.x = 1;
-                    tempTile.transform.rotation = rot;
+                    //rot = tempTile.transform.rotation;
+                    //rot.x = 1;
+                    //tempTile.transform.rotation = rot;
                 }
                 if (resourceMap.ContainsKey(key))
                 {

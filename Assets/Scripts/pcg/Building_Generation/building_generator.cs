@@ -8,7 +8,7 @@ public class building_generator {
     private static int MAX_HEIGHT = 16;
     private static int MIN_WIDTH = 8;
     private static int MIN_HEIGHT = 8;
-    private static int DEPTH = -40;
+    private static int DEPTH = 40;
     private bool doorPlaced = false;
 
 
@@ -87,8 +87,11 @@ public class building_generator {
                         var rot = temp.transform.rotation;
                         rot.x = 1;
                         temp.transform.rotation = rot;
+                        //set parent
                         temp.transform.SetParent(Building.transform);
                         doorPlaced = true;
+
+                        temp.GetComponent<door>().setReturn(xpos, ypos, zpos);
                     }
                     else
                     {
