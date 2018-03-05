@@ -7,6 +7,9 @@ public class mainmenu : MonoBehaviour {
     public GameObject newgamebt;
     public GameObject loadgamebt;
     public Animator objects;
+    public GameObject clicksound;
+    public GameObject particlesystem;
+    public GameObject positions;
 	// Use this for initialization
 	void Start () {
 		
@@ -28,6 +31,10 @@ public void playoption(){
         newgamebt.SetActive(false);
         loadgamebt.SetActive(false);
     }
+    public void openparticle(){
+
+        Instantiate(particlesystem, positions.transform.position, Quaternion.identity);
+    }
 
     public void position1()
     {
@@ -37,6 +44,17 @@ public void playoption(){
         closeplayoption();
         objects.SetFloat("animate",1);
 
+    }
+    public void quitgame(){
+        UnityEditor.EditorApplication.isPlaying = false;
+       // Application.Quit();
+
+
+
+    }
+    public void PlayClick()
+    {
+        clicksound.GetComponent< AudioSource > ().Play();
     }
 
 }
