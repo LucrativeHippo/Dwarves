@@ -455,7 +455,7 @@ public class terrainGenerator : MonoBehaviour
                 if(terrainMap[key] == terrain.CAMPSITE)
                 {
 
-					tempTile = Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
+					//tempTile = Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                     //rot = tempTile.transform.rotation;
                     //rot.x = 1;
                     //tempTile.transform.rotation = rot;

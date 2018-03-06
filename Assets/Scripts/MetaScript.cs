@@ -13,16 +13,28 @@ public class MetaScript : MonoBehaviour {
 
 	}
 	
+	/// <summary>
+	/// Static reference to location of this script
+	/// </summary>
+	/// <returns></returns>
 	private static GameObject getMetaObject(){
 		return GameObject.Find("Meta");
 	}
 
+	
 	public static MetaScript getMeta(){
 		return getMetaObject().GetComponent<MetaScript>();
 	}
 
+	/// <summary>
+	/// Static reference to Resource Manager
+	/// </summary>
+	/// <returns>Resource Manager</returns>
 	public static ResourceManager getRes(){
 		return getMetaObject().GetComponent<ResourceManager>();
+	}
+	public static NPCManager GetNPC(){
+		return GameObject.Find("npcManagerButton").GetComponent<NPCManager>();
 	}
 
 	public static void updateHud(){
