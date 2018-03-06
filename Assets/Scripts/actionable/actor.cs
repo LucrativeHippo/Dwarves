@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class actor : MonoBehaviour {
 
-	private bool actionable;
+	// private bool actionable;
 	public KeyCode actionKey;
 	private GameObject collidedGameObject;
 	private bool canSend = true;
 
 	public int actionCooldownSec = 5;
 
-	void OnTriggerEnter(Collider other) {
-		actionable = true;
-		collidedGameObject = other.gameObject;
-		Debug.Log ("actionable = true");
-	}
+	// void OnTriggerEnter(Collider other) {
+	// 	actionable = true;
+	// 	collidedGameObject = other.gameObject;
+	// 	Debug.Log ("actionable = true");
+	// }
 
-	void OnTriggerExit(Collider other) {
-		actionable = false;
-		Debug.Log ("actionable = false");
-	}
-
+	// void OnTriggerExit(Collider other) {
+	// 	actionable = false;
+	// 	Debug.Log ("actionable = false");
+	// }
+	
 	void FixedUpdate() {
-		if(Input.GetKey(actionKey) && actionable && canSend) {
+		if(Input.GetKey(actionKey) && canSend) {
 			Debug.Log ("action Logged.");
 			SendMessage ();
 			StartCoroutine( canSendTimer() );

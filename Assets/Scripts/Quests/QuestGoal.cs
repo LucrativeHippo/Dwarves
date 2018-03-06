@@ -29,8 +29,8 @@ public class QuestGoal {
                 Debug.LogWarning("Tried creating quests far too many times");
                 threshold = rank;
                 goalIndex = 0;
-                Quests.QuestType qq = Quests.questList[goalIndex];
-                isCompleted = qq.goal;
+                // Quests.QuestType qq = Quests.questList[goalIndex];
+                // isCompleted = qq.goal;
             }
 			// select index at random
 			goalIndex = Random.Range(0,Quests.questList.Length-1);

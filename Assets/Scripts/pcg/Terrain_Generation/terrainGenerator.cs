@@ -378,21 +378,7 @@ public class terrainGenerator : MonoBehaviour
 
     public void FixedUpdate()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null && player.transform.position.y == 0)
-        {
-            int x = (int)player.transform.position.x / 25;
-            int y = (int)player.transform.position.z / 25;
-            
-            for(int i = -1; i < 2; i++)
-            {
-                for(int j = -1; j < 2; j++)
-                {
-                    generateChunk(x + i, y + j);
-                }
-            }
-            
-        }
+        
     }
 
 
@@ -402,7 +388,7 @@ public class terrainGenerator : MonoBehaviour
     /// <returns>The chunk.</returns>
     /// <param name="xPos">X position.</param>
     /// <param name="yPos">Y position.</param>
-    void generateChunk(int xPos, int yPos)
+    public void generateChunk(int xPos, int yPos)
     {
 
         // If the chunk is alreaady loaded on screen return
@@ -454,8 +440,8 @@ public class terrainGenerator : MonoBehaviour
                 chunkMap.addTileAt(tempTile, x, y, 0);
                 if(terrainMap[key] == terrain.CAMPSITE)
                 {
-
-					tempTile = Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
+                    GameObject.Find("player").transform.SetPositionAndRotation(new Vector3(worldPos.xCoord,0,worldPos.yCoord),Quaternion.identity);
+					//tempTile = Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                     //rot = tempTile.transform.rotation;
                     //rot.x = 1;
                     //tempTile.transform.rotation = rot;
