@@ -6,15 +6,16 @@ using System;
 
 public class Skills : MonoBehaviour {
     /// All job based skills available to the NPCs
-    /// Adapts regardless of size
+    /// Add skills 
     public enum skillList {
         wood,
         stone,
         gold,
-        food
+        food,
+        diamond
     };
 
-    public static int skillNPCSize = Enum.GetNames (typeof(skillList)).Length;
+    public static int numOfSkills = Enum.GetNames (typeof(skillList)).Length;
 
     // npc skill level (translates to its cost)
     // bool if it's recruited
@@ -23,33 +24,67 @@ public class Skills : MonoBehaviour {
     /// Gathering multiplier [0.5,1.5]
     public float gatherSpeed = 1.0f;
 
-    // TODO: Maybe better to have these in their own script
-    // it can then be attached to creatures without skills
-    public float attackDMG = 1.0f;
-    public float attackSPD = 1.0f;
+    public float rank = 0f;
+    //private float maxSize = 10;
 
-    TraitDict<skillList,float> skillMultiplier;
+    [NamedArray(typeof(skillList))] public float[] skillLevel = new float[numOfSkills];
 
     public void Start () {
-        skillMultiplier = new TraitDict<skillList,float> (skillNPCSize, 1.0f);
-        randomizeSkills (UnityEngine.Random.Range (0, skillNPCSize));
+        randomizeSkills ();
+        setRank();
     }
 
-    private void randomizeSkills (int numOfSkills) {
+    private void randomizeSkills () {
+        // float skillPool = numOfSkills * maxSize;
+        
         for (int i = 0; i < numOfSkills; i++) {
-            float rand;
-            float randSkill;
-
-            do {
-                randSkill = UnityEngine.Random.Range (0, skillNPCSize);
-                rand = UnityEngine.Random.value;
-            } while(skillMultiplier.ContainsKey ((skillList)randSkill));
-            //linear spread
-            skillMultiplier.setValue ((skillList)randSkill, rand + 0.5f);
+            skillLevel[i] = rollSkill();
         }
     }
 
+    /// <summary>
+    /// Rolls 5 values from [0f,2f] adds up to value from [0f,10f]
+    /// </summary>
+    /// <returns></returns>
+    private float rollSkill(){
+        float rand = 0;
+        for(int i=0;i<5;i++){
+            rand += UnityEngine.Random.Range(0f,2f);
+        }
+        return rand;
+    }
+
+    private void setRank(){
+        rank = 0f;
+        for (int i=0;i<numOfSkills;i++) {
+            rank += Mathf.Pow(skillLevel[i],3);
+        }
+        rank /= numOfSkills*2;
+    }
+
+    /// <summary>
+    /// Rank of NPC, used for quests.
+    /// </summary>
+    /// <returns></returns>
+    public float getRank(){
+        setRank();
+        return rank;
+    }
+
+    /// <summary>
+    /// Get value of Skill
+    /// </summary>
+    /// <param name="s">Skill to be viewed</param>
+    /// <returns>0->10 value</returns>
     public float getValue (skillList s) {
-        return skillMultiplier.getValue (s);
+        return getValue((int)s);
+    }
+    /// <summary>
+    /// Get value of skill
+    /// </summary>
+    /// <param name="i">Index value of skill</param>
+    /// <returns>Value of skill at i</returns>
+    public float getValue(int i){
+        return skillLevel[i];
     }
 }
