@@ -14,12 +14,12 @@ public class actor : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		actionable = true;
 		collidedGameObject = other.gameObject;
-		Debug.Log ("actionable = true");
+		
 	}
 
 	void OnTriggerExit(Collider other) {
 		actionable = false;
-		Debug.Log ("actionable = false");
+		
 	}
 
 	void FixedUpdate() {
