@@ -12,6 +12,7 @@ public class Attributes : MonoBehaviour {
 		int skill;
 		//float level; // current level
 		//float exp_to_level;//exp needed to level up
+	public int level;
 		
 	int totalLevel1 = 15;
 	int totalLevel2 = 25;
@@ -166,7 +167,7 @@ public class Attributes : MonoBehaviour {
 	void Start(){
 		//statGenerator (1);
 		//statGenerator (2);
-		int[] a = statGenerator (1);
+		int[] a = statGenerator (level);
 		shuffle (a);
 		this.assignStats (a);
 		//print all stats of npc
