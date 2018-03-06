@@ -10,6 +10,7 @@ TagManager:
   - collecter
   - tree
   - treebuilding
+  - OwnedNPC
   layers:
   - Default
   - TransparentFX

@@ -7,72 +7,77 @@ public class collect : MonoBehaviour
     private NavMeshAgent agent;
     //public Transform destinationforfull;
     //public Transform destinationforzero;
-    public int wateramount;
-    public int treeamount;
-    private totalresourceforwater waterbuildings;
-    private totalresourcefortree treebuildings;
-    private ResourceManager manager;
     private GameObject currentbuilding;
     private GameObject currentresource;
-    private destroyresourse hp;
+    public Health hp;
     //public float threatRange = 2f;
-    public bool gogetwater = false;
-    public bool gogettree = false;
-    public  bool isfull = false;
+
+    public int resAmount = 0;
+    int maxRes = 10;
+
+    
+    public bool getResource = false;
+    public bool dropResource = false;
+    public bool isfull = false;
+
+    public ResourceTypes findingType = ResourceTypes.DIAMOND;
+
+    public string getResourceName(ResourceTypes r){
+        switch(r){
+            case ResourceTypes.WOOD:
+                return "tree";
+            case ResourceTypes.DIAMOND:
+                return "water";
+            default:
+                return "tree";
+        }
+    }
+    private string getResName(){
+        return getResourceName(findingType);
+    }
+    private string getResBuildName(){
+        return getResName()+"building";
+    }
+
+    private bool isSelectedResource(Collider o){
+        return o.CompareTag(getResName());
+    }
+    private bool isSelectedResBuilding(Collider o){
+        return o.CompareTag(getResBuildName());
+    }
+
     // Use this for initialization
     void Awake()
     {
-        //manager = gameObject.GetComponent<ResourceManager>();
-        //currentresource = GameObject.FindWithTag("water");
         agent = GetComponent<NavMeshAgent>();
-       
-      
     }
-    private void Start()
+    void Start()
     {
-        
-        //hp = currentresource.GetComponent<destroyresourse>();
-        //agent.SetDestination(FindClosestresourse().transform.position); 
+        hp = gameObject.GetComponent<Health>();
     }
 
+    private void updateLocations(){
+        currentbuilding = GameObject.FindWithTag(getResBuildName());
+        currentresource = GameObject.FindWithTag(getResName());
+    }
+    private void moveToNearest(string name){
+            agent.SetDestination(FindClosestresourse(name).transform.position);
+    }
     // Update is called once per frame
     void Update()
     {
-        if (gogetwater == true && gogettree == false && isfull == false)
+        if (getResource && !isfull)
         {
-            currentbuilding=GameObject.FindWithTag("waterbuilding");
-            currentresource = GameObject.FindWithTag("water");
-           
-            agent.SetDestination(FindClosestresourse("water").transform.position);
-
-        }
-        if (gogetwater == true && gogettree == false && isfull == true)
-        {
-            currentbuilding = GameObject.FindWithTag("waterbuilding");
-            currentresource = GameObject.FindWithTag("water");
-    
-            agent.SetDestination(FindClosestbuilding("waterbuilding").transform.position);
-
-
+            updateLocations();
+            moveToNearest(getResName());
         }
 
 
-
-         if (gogettree == true && gogetwater == false && isfull==false)
+        if (dropResource && isfull)
         {
-            
-            currentbuilding = GameObject.FindWithTag("treebuilding");
-            currentresource = GameObject.FindWithTag("tree");
-           
-            agent.SetDestination(FindClosestresourse("tree").transform.position); 
-        } 
-
-        if (gogettree == true && gogetwater == false && isfull==true)
-        {
-            currentbuilding = GameObject.FindWithTag("treebuilding");
-            currentresource = GameObject.FindWithTag("tree");
-            agent.SetDestination(FindClosestbuilding("treebuilding").transform.position); 
-        } 
+            updateLocations();
+            moveToNearest(getResBuildName());
+        }
     }
 
 
@@ -125,99 +130,38 @@ public class collect : MonoBehaviour
 
 
 
-    public int getwateramount()
-    {
-        return wateramount;
-
-    }
-    public void setwateramount(int value)
-    {
-        wateramount = value;
-    }
     private void OnTriggerStay(Collider other)
     {
-        
-        if (other.tag == "water" && wateramount < 200 && gogetwater==true)
-        {
+        if(this.isSelectedResource(other) && resAmount<maxRes && getResource){
+            //hp = other.GetComponent<Health>();
+            //other.SendMessage("damage");
+            resAmount++;
+            Debug.Log(getResName()+":"+resAmount);
+            //hp.damage(1);
 
-            hp = other.GetComponent<destroyresourse>();
-            wateramount += 1;
-            Debug.Log("water:" + wateramount);
-            hp.HP -= 1;
-         
-            Debug.Log(hp.HP);
-        
-            if (wateramount == 200 && treeamount==0)
-            {
+            //Debug.Log(hp.health);
+
+            if(resAmount == maxRes){
+                Debug.Log("MADE IT");
                 isfull = true;
-               // agent.SetDestination((FindClosestbuilding("waterbuilding").transform.position));
-
+                getResource = false;
+                dropResource = true;
             }
-
         }
-        if (other.tag == "waterbuilding" && wateramount>0 && gogetwater==true)
-        {
-            manager = other.GetComponent<ResourceManager>();
-            waterbuildings = other.GetComponent<totalresourceforwater>();
 
-            wateramount -= 1;
-            Debug.Log("water:" + wateramount);
-            waterbuildings.totalwateramount += 1;
+        if(this.isSelectedResBuilding(other) && resAmount>0 && dropResource){
+            resAmount--;
+            Debug.Log(this.getResName()+":"+resAmount);
+            MetaScript.getRes().addResource(this.findingType,1);
 
-
-            manager.addResource(ResourceTypes.DIAMOND, waterbuildings.totalwateramount);
-         
-            // send message to add water
-
-            if (wateramount == 0 && treeamount==0)
-            {
+            if(resAmount == 0){
+                print("RES: "+resAmount);
                 isfull = false;
-                //agent.SetDestination((FindClosestresourse("water").transform.position));
-
+                getResource = true;
+                dropResource = false;
             }
-
         }
-
-        if (other.tag == "tree" && treeamount < 200 && gogettree == true)
-        {
-
-            hp = other.GetComponent<destroyresourse>();
-            treeamount += 1;
-            Debug.Log("tree:" + treeamount);
-            hp.HP -= 1;
-
-            Debug.Log(hp.HP);
-            if (treeamount == 200 && wateramount==0)
-            {
-                isfull = true;
-                //agent.SetDestination((FindClosestbuilding("treebuilding").transform.position));
-
-            }
-
-        }
-
-
-
-
-        if (other.tag == "treebuilding" && treeamount > 0 && gogettree == true)
-        {
-            treebuildings = other.GetComponent<totalresourcefortree>();
-            treeamount -= 1;
-            Debug.Log("tree:" + treeamount);
-            treebuildings.totaltreeamount += 1;
-            manager.addResource(ResourceTypes.WOOD, waterbuildings.totalwateramount);
-            if (treeamount == 0 && wateramount==0)
-            {
-                isfull = false;
-                //agent.SetDestination((FindClosestresourse("tree").transform.position));
-
-            }
-
-        }
-
-
     }
-  
 }
  
 

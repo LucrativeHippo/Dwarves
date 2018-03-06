@@ -7,7 +7,22 @@ public class NPCManager : MonoBehaviour {
 
     private List<GameObject> NPCs;
 
-    GameObject Button_Template;
+    public GameObject buttonParent;
+    public GameObject Button_Template;
+
+
+    /// <summary>
+    /// Start this instance and check if there are any OwnedNPCs in the World.
+    /// </summary>
+    void Start () {
+        NPCs = new List<GameObject> ();
+        GameObject[] temp = GameObject.FindGameObjectsWithTag ("OwnedNPC");
+        buttonParent = GameObject.Find ("NPCManagerContent");
+
+        foreach (var theNPC in temp) {
+            NPCs.Add (theNPC);
+        }
+    }
 
     /// <summary>
     /// Changes the role of a Specific NPC by ID number.
@@ -27,11 +42,10 @@ public class NPCManager : MonoBehaviour {
         foreach (var theNPC in NPCs) {
             tempGameObject = Instantiate (Button_Template) as GameObject;
             tempGameObject.SetActive (true);
-            NPCManagerButton aButtonScript = tempGameObject.GetComponent<NPCManagerButton> ();
-            aButtonScript.setNPCManagerScript (this);
-            aButtonScript.setName (theNPC.name);
+            NPCManagerButtonScript aButtonScript = tempGameObject.GetComponent<NPCManagerButtonScript> ();
+            aButtonScript.setNPC (theNPC);
             aButtonScript.setNumber (counter);
-            tempGameObject.transform.SetParent (Button_Template.transform.parent, false);
+            tempGameObject.transform.SetParent (buttonParent.transform, false);
             counter++;
         }
     }
@@ -51,5 +65,4 @@ public class NPCManager : MonoBehaviour {
     public void removeNPC (GameObject aNPC) {
         NPCs.Remove (aNPC);
     }
-
 }

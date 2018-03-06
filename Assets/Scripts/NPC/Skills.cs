@@ -11,9 +11,8 @@ public class Skills : MonoBehaviour {
         wood,
         stone,
         gold,
-        food}
-
-    ;
+        food
+    };
 
     public static int skillNPCSize = Enum.GetNames (typeof(skillList)).Length;
 

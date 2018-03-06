@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestTempResource : MonoBehaviour, IActionable {
-    public QuestResourceManager.ResourceTypes myType;
+    public ResourceTypes myType;
     public void recieveAction()
     {
         MetaScript.getRes().addResource(myType,1);
