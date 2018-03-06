@@ -9,7 +9,7 @@ public class MetaScript : MonoBehaviour {
 		//gameObject.GetComponent<ResourceManager>().setFood(0);
 		//gameObject.GetComponent<ResourceManager>().setSand(0);
 		//gameObject.GetComponent<ResourceManager>().setWood(0);
-        res = MetaScript.getRes();
+        //res = MetaScript.getRes();
 
 	}
 	
