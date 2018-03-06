@@ -20,10 +20,21 @@ public class QuestGoal {
 			rank = 1;
 			Debug.LogWarning("Tried to insert non positive rank. Defaulting to 1");
 		}
-		// randomly generate based on rank
+        // randomly generate based on rank
+        int numberOfTries = 0;
+        
 		do{
+            if (numberOfTries > 10)
+            {
+                Debug.LogWarning("Tried creating quests far too many times");
+                threshold = rank;
+                goalIndex = 0;
+                Quests.QuestType qq = Quests.questList[goalIndex];
+                isCompleted = qq.goal;
+            }
 			// select index at random
 			goalIndex = Random.Range(0,Quests.questList.Length-1);
+			
 			int difficulty = Quests.questList[goalIndex].difficulty;
 
 			threshold = (rank - difficulty);
@@ -31,6 +42,7 @@ public class QuestGoal {
 				threshold /= difficulty;
 				threshold++;
 			}
+            numberOfTries++;
 		}while (threshold <= 0);
 	}
 	

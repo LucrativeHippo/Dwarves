@@ -8,20 +8,22 @@ public class PlayerMovement : MonoBehaviour {
     private GameObject cam;
     private void Awake()
     {
-        //cam = GameObject.Find("MainCam");
+        cam = GameObject.Find("MainCam");
     }
     void FixedUpdate() {
-		Vector2 mov = new Vector2 (0, 0);
+		Vector3 mov = new Vector3 (0, 0);
 
-		mov += Input.GetKey (KeyCode.W) ? Vector2.up : Vector2.zero;
-		mov += Input.GetKey (KeyCode.S) ? Vector2.down : Vector2.zero;
+		mov += Input.GetKey (KeyCode.W) ? Vector3.forward : Vector3.zero;
+		mov += Input.GetKey (KeyCode.S) ? Vector3.back : Vector3.zero;
 
-		mov += Input.GetKey (KeyCode.A) ? Vector2.left : Vector2.zero;
-		mov += Input.GetKey (KeyCode.D) ? Vector2.right : Vector2.zero;
+		mov += Input.GetKey (KeyCode.A) ? Vector3.left : Vector3.zero;
+		mov += Input.GetKey (KeyCode.D) ? Vector3.right : Vector3.zero;
 
 		mov.Normalize ();
 
 		transform.Translate (mov * speed);
-        //cam.transform.Translate(mov * speed);
+        cam.transform.Translate(mov * speed);
+
+        GetComponentInChildren<actionManagerPlayerRotation>().setRotation(mov);
     }
 }

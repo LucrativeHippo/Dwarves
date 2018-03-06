@@ -24,6 +24,8 @@ public class QuestNPC : MonoBehaviour, IActionable {
             // TODO: Send message to NPC to be a vassal of PC
             Debug.Log("QUEST COMPLETED");
             gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            gameObject.GetComponent<collect>().findingType = ResourceTypes.WOOD;
+            gameObject.GetComponent<collect>().getResource = true;
             this.enabled = false;
         }else{
 
@@ -32,16 +34,21 @@ public class QuestNPC : MonoBehaviour, IActionable {
             GetQuestType().message
             );
 
+            /*
             gameObject.GetComponent<SpeechBubble>().setText("Need "+
             myQuests.GetQuestGoal().getThreshold()+" "+
             GetQuestType().message);
+            */
+            Debug.Log(("Need " +
+            myQuests.GetQuestGoal().getThreshold() + " " +
+            GetQuestType().message));
         }
     }
 
     // Use this for initialization
     void Start () {
         // TODO: change this to be dependent on creation
-        myQuests.addGoal(new QuestGoal(rank));
+        // myQuests.addGoal(new QuestGoal(rank));
 
         
 	}

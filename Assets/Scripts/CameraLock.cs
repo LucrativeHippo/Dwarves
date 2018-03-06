@@ -7,7 +7,7 @@ public class CameraLock : MonoBehaviour {
 	private GameObject lockOn;
 	// Use this for initialization
 	private void getLockOn(){
-		lockOn = GameObject.Find(objName);
+		lockOn = GameObject.FindGameObjectWithTag(objName);
 	}
 	void Start () {
 		getLockOn();
@@ -21,7 +21,7 @@ public class CameraLock : MonoBehaviour {
 		Vector3 targetPos = lockOn.transform.position;
 
 
-		gameObject.transform.SetPositionAndRotation (new Vector3(targetPos.x, targetPos.y, camPos.z),gameObject.transform.rotation);
+		gameObject.transform.SetPositionAndRotation (new Vector3(targetPos.x, targetPos.y, targetPos.z),gameObject.transform.rotation);
 		}
 	}
 }
