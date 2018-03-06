@@ -9,7 +9,9 @@ public class mainmenu : MonoBehaviour {
     public Animator objects;
     public GameObject clicksound;
     public GameObject particlesystem;
-    public GameObject positions;
+    public GameObject positionsforplay;
+    public GameObject positionsforsetting;
+    public GameObject positionsforreturn;
 	// Use this for initialization
 	void Start () {
 		
@@ -32,8 +34,18 @@ public void playoption(){
         loadgamebt.SetActive(false);
     }
     public void openparticle(){
+        
+        Instantiate(particlesystem, positionsforplay.transform.position, Quaternion.identity);
+    }
+    public void openparticlesetting()
+    {
 
-        Instantiate(particlesystem, positions.transform.position, Quaternion.identity);
+        Instantiate(particlesystem, positionsforsetting.transform.position, Quaternion.identity);
+    }
+    public void openparticleforreturn()
+    {
+
+        Instantiate(particlesystem, positionsforreturn.transform.position, Quaternion.identity);
     }
 
     public void position1()
@@ -56,5 +68,10 @@ public void playoption(){
     {
         clicksound.GetComponent< AudioSource > ().Play();
     }
+    //public void fixslider(){
+    //    sliderVal = GUI.HorizontalSlider(slider, sliderVal, 0.0, levelPoints);
+
+
+    //}
 
 }

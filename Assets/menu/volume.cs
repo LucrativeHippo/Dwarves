@@ -6,11 +6,15 @@ public class volume : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        this.GetComponent<AudioSource>().volume=PlayerPrefs.GetFloat("musicvolume");	
+        this.GetComponent<AudioSource>().volume=PlayerPrefs.GetFloat("musicvolume");
+
+        Debug.Log(this.GetComponent<AudioSource>().volume);
 	}
 	
 	// Update is called once per frame
-	public void  Updatev () {
+	 void  Update () {
+        
         this.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("musicvolume");
+        //Debug.Log(this.GetComponent<AudioSource>().volume );
 	}
 }
