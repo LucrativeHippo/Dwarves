@@ -449,7 +449,7 @@ public class terrainGenerator : MonoBehaviour
                 //var rot = tempTile.transform.rotation;
                 //rot.x = 1;
                 //tempTile.transform.rotation = rot;
-				//tempTile.transform.SetParent(chunkLoc.transform);
+				tempTile.transform.SetParent(chunkLoc.transform);
                 chunkMap.addTileAt(tempTile, x, y, 0);
                 if(terrainMap[key] == terrain.CAMPSITE)
                 {
