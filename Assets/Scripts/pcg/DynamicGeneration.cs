@@ -10,7 +10,7 @@ public class DynamicGeneration : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		Vector3 pos = gameObject.transform.position / Chunk.SIZE;
 		
 		for(int i = -1; i < 2; i++)

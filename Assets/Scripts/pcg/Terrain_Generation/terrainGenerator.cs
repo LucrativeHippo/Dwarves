@@ -693,24 +693,21 @@ public class terrainGenerator : MonoBehaviour
         }
     }
 
-
+    private Position debugPos = new Position(0,0);
         // Update is called once per frame
         void Update()
     {
         if (DEBUG)
         {
-            Position changePos = new Position(0, 0);
-            changePos.xCoord += Input.GetKeyDown(KeyCode.J) ? -1 : 0;
-            changePos.xCoord += Input.GetKeyDown(KeyCode.L) ? 1 : 0;
+            debugPos.xCoord += Input.GetKeyDown(KeyCode.J) ? -1 : 0;
+            debugPos.xCoord += Input.GetKeyDown(KeyCode.L) ? 1 : 0;
 
-            changePos.yCoord += Input.GetKeyDown(KeyCode.K) ? -1 : 0;
-            changePos.yCoord += Input.GetKeyDown(KeyCode.I) ? 1 : 0;
+            debugPos.yCoord += Input.GetKeyDown(KeyCode.K) ? -1 : 0;
+            debugPos.yCoord += Input.GetKeyDown(KeyCode.I) ? 1 : 0;
 
-            if (changePos.xCoord != 0 || changePos.yCoord != 0)
+            if (debugPos.xCoord != 0 || debugPos.yCoord != 0)
             {
-                xChunk += changePos.xCoord;
-                yChunk += changePos.yCoord;
-                generateChunk(xChunk, yChunk);
+                generateChunk(debugPos.xCoord, debugPos.yCoord);
             }
         }
     }

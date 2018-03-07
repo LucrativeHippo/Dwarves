@@ -9,7 +9,6 @@ public class collect : MonoBehaviour
     //public Transform destinationforzero;
     private GameObject currentbuilding;
     private GameObject currentresource;
-    public Health hp;
     //public float threatRange = 2f;
 
     public int resAmount = 0;
@@ -72,7 +71,7 @@ public class collect : MonoBehaviour
     }
     void Start()
     {
-        hp = gameObject.GetComponent<Health>();
+        
     }
 
     private void updateLocations(){
