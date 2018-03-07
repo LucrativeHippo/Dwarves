@@ -23,9 +23,14 @@ public class QuestNPC : MonoBehaviour, IActionable {
         if(myQuests.checkQuest()){
             // TODO: Send message to NPC to be a vassal of PC
             Debug.Log("QUEST COMPLETED");
+<<<<<<< HEAD
             gameObject.GetComponent<collect>().findingType = ResourceTypes.WOOD;
             MetaScript.GetNPC().addNPC(gameObject);
             //gameObject.GetComponent<collect>().getResource = true;
+=======
+            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
+>>>>>>> origin/feature/Bug_fixes
             this.enabled = false;
         }else{
 

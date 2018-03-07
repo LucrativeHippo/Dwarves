@@ -15,12 +15,31 @@ public class collect : MonoBehaviour
     public int resAmount = 0;
     int maxRes = 10;
 
-    
-    public bool getResource = false;
-    public bool dropResource = false;
-    public bool isfull = false;
+    private enum npcState{
+        asleep,
+        getResource,
+        dropResource
+    }
+    [SerializeField]
+    private npcState state = npcState.asleep;
+    public ResourceTypes findingType = ResourceTypes.WOOD;
 
-    public ResourceTypes findingType = ResourceTypes.DIAMOND;
+    public void startCollecting(ResourceTypes t){
+        // TODO: checks to make sure we have found this resource
+
+        // TODO: Uncomment this once we have all buildings implemented
+        // Checks also needed for building destruction
+        // if(resAmount != 0 && findingType != t){
+        //     state = npcState.dropResource;
+        //     while(resAmount!=0){
+        //         // do nothing until the drop off current resource
+        //     }
+        // }
+
+        // after dropping resource 
+        findingType = t;
+        state = npcState.getResource;
+    }
 
     public string getResourceName(ResourceTypes r){
         switch(r){
@@ -66,17 +85,25 @@ public class collect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (getResource && !isfull)
-        {
-            updateLocations();
-            moveToNearest(getResName());
-        }
+        switch(state){
+            case npcState.dropResource:
+                //updateLocations();
+                if(resAmount==0)
+                    state = npcState.getResource;
+                moveToNearest(getResBuildName());
+                break;
 
+            case npcState.getResource:
+                //updateLocations();
+                if(resAmount == maxRes)
+                    state = npcState.dropResource;
+                moveToNearest(getResName());
+                break;
 
-        if (dropResource && isfull)
-        {
-            updateLocations();
-            moveToNearest(getResBuildName());
+            case npcState.asleep:
+                break;
+            default: break;
+
         }
     }
 
@@ -132,7 +159,7 @@ public class collect : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(this.isSelectedResource(other) && resAmount<maxRes && getResource){
+        if(this.isSelectedResource(other) && resAmount<maxRes && state == npcState.dropResource){
             //hp = other.GetComponent<Health>();
             //other.SendMessage("damage");
             resAmount++;
@@ -142,23 +169,20 @@ public class collect : MonoBehaviour
             //Debug.Log(hp.health);
 
             if(resAmount == maxRes){
-                Debug.Log("MADE IT");
-                isfull = true;
-                getResource = false;
-                dropResource = true;
+                updateLocations();
+                state = npcState.getResource;
             }
         }
 
-        if(this.isSelectedResBuilding(other) && resAmount>0 && dropResource){
+        if(this.isSelectedResBuilding(other) && resAmount>0 && state == npcState.dropResource){
             resAmount--;
             Debug.Log(this.getResName()+":"+resAmount);
             MetaScript.getRes().addResource(this.findingType,1);
 
             if(resAmount == 0){
                 print("RES: "+resAmount);
-                isfull = false;
-                getResource = true;
-                dropResource = false;
+                updateLocations();
+                state = npcState.getResource;
             }
         }
     }

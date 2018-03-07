@@ -9,7 +9,6 @@ public class terrainGenerator : MonoBehaviour
     private Dictionary<string, terrain> terrainMap;
     private Dictionary<string, resource> resourceMap;
     public Dictionary<string, Chunk> loadedChunks;
-    public int chunkSize = Chunk.SIZE;
 
     //Starting positions of the player
     [SerializeField]
@@ -388,6 +387,7 @@ public class terrainGenerator : MonoBehaviour
     public void FixedUpdate()
     {
         
+<<<<<<< HEAD
         
         
         if (player != null && player.transform.position.y == 0)
@@ -404,6 +404,8 @@ public class terrainGenerator : MonoBehaviour
             }
             
         }
+=======
+>>>>>>> origin/feature/Bug_fixes
     }
 
 
@@ -413,7 +415,7 @@ public class terrainGenerator : MonoBehaviour
     /// <returns>The chunk.</returns>
     /// <param name="xPos">X position.</param>
     /// <param name="yPos">Y position.</param>
-    void generateChunk(int xPos, int yPos)
+    public void generateChunk(int xPos, int yPos)
     {
 
         // If the chunk is alreaady loaded on screen return
@@ -468,7 +470,18 @@ public class terrainGenerator : MonoBehaviour
                 tempTile.transform.rotation = rot;
 				tempTile.transform.SetParent(chunkLoc.transform);
                 chunkMap.addTileAt(tempTile, x, y, 0);
+<<<<<<< HEAD
 
+=======
+                if(terrainMap[key] == terrain.CAMPSITE)
+                {
+                    GameObject.Find("player").transform.SetPositionAndRotation(new Vector3(worldPos.xCoord,0,worldPos.yCoord),Quaternion.identity);
+					//tempTile = Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
+                    //rot = tempTile.transform.rotation;
+                    //rot.x = 1;
+                    //tempTile.transform.rotation = rot;
+                }
+>>>>>>> origin/feature/Bug_fixes
                 if (resourceMap.ContainsKey(key))
                 {
                     if (resourceMap[key] == resource.TREE)
