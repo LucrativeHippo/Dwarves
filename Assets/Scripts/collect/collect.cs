@@ -22,7 +22,7 @@ public class collect : MonoBehaviour
     [SerializeField]
     private npcState state = npcState.asleep;
     public ResourceTypes findingType = ResourceTypes.WOOD;
-
+    
     public void startCollecting(ResourceTypes t){
         // TODO: checks to make sure we have found this resource
 

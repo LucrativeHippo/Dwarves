@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour {
 	[SerializeField]
-	private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
+	[NamedArray(typeof(ResourceTypes))]private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
 
 	private bool meat;
     private bool fruit;

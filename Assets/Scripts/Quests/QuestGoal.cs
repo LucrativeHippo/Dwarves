@@ -24,7 +24,7 @@ public class QuestGoal {
 		}
 		// randomly generate based on rank
 		do{
-            if (numberOfTries > 10)
+            if (numberOfTries > 100)
             {
                 Debug.LogWarning("Tried creating quests far too many times");
                 threshold = rank;
