@@ -24,9 +24,9 @@ public class BuffSystem : MonoBehaviour {
     /// Applies a buff or boon to all NPCs.
     /// </summary>
     /// <param name="aBuffOrBoon">A buff or boon name.</param>
-    public void applyNPCs (BuffsAndBoons aBuffOrBoon) {
+    public void applyNPCs (BuffsAndBoons.Effects aBuffOrBoon, float length) {
         foreach (var aNPC in theNPCs) {
-            applyTarget (aNPC, aBuffOrBoon);
+            applyTarget (aNPC, aBuffOrBoon, length);
         }
     }
 
@@ -34,9 +34,9 @@ public class BuffSystem : MonoBehaviour {
     /// Applies a buff or boon to all Enemies.
     /// </summary>
     /// <param name="aBuffOrBoon">A buff or boon name.</param>
-    public void applyEnemies (BuffsAndBoons aBuffOrBoon) {
+    public void applyEnemies (BuffsAndBoons.Effects aBuffOrBoon, float length) {
         foreach (var aEnemy in theEnemies) {
-            applyTarget (aEnemy, aBuffOrBoon);
+            applyTarget (aEnemy, aBuffOrBoon, length);
         }
     }
 
@@ -44,8 +44,8 @@ public class BuffSystem : MonoBehaviour {
     /// Applies a buff or boon to the player.
     /// </summary>
     /// <param name="aBuffOrBoon">A buff or boon.</param>
-    public void applyPlayer (BuffsAndBoons aBuffOrBoon) {
-        applyTarget (player, aBuffOrBoon);
+    public void applyPlayer (BuffsAndBoons.Effects aBuffOrBoon, float length) {
+        applyTarget (player, aBuffOrBoon, length);
     }
 
     /// <summary>
@@ -53,24 +53,27 @@ public class BuffSystem : MonoBehaviour {
     /// </summary>
     /// <param name="target">The Target GameObject to recieve the Buff or Boon.</param>
     /// <param name="aBuffOrBoon">A buff or boon name.</param>
-    public void applyTarget (GameObject target, BuffsAndBoons aBuffOrBoon) {
+    public void applyTarget (GameObject target, BuffsAndBoons.Effects aBuffOrBoon, float length) {
         switch (aBuffOrBoon) {
-        case BuffsAndBoons.Boons.Burn:
+        case BuffsAndBoons.Effects.Burn:
             Debug.Log ("Burn applied to: " + target.name);
-            burn (target, 5, 5);
+            burn (target, length, 2);
             break;
-        case BuffsAndBoons.Boons.Bleed:
-            bleed (target, 5, 5);
+        case BuffsAndBoons.Effects.Bleed:
+            Debug.Log ("Bleed applied to: " + target.name);
+            bleed (target, length, 3);
             break;
-        case BuffsAndBoons.Boons.Poison:
+        case BuffsAndBoons.Effects.Poison:
+            Debug.Log("Poison applied to: " + target.name);
+            poison(target, length, 4);
             break;
-        case BuffsAndBoons.Boons.Slow:
+        case BuffsAndBoons.Effects.Slow:
             break;
-        case BuffsAndBoons.Buffs.DoubleHealth:
+        case BuffsAndBoons.Effects.DoubleHealth:
             break;
-        case BuffsAndBoons.Buffs.DoubleSpeed:
+        case BuffsAndBoons.Effects.DoubleSpeed:
             break;
-        case BuffsAndBoons.Buffs.ExtraArmour:
+        case BuffsAndBoons.Effects.ExtraArmour:
             break;
         default:
             Debug.Log ("No Buff or Boon Specified for: " + target.name);
@@ -85,48 +88,58 @@ public class BuffSystem : MonoBehaviour {
     /// <param name="TargetJoint2D">target GameObject.</param>
     /// <param name="lengthTime">length time.</param>
     /// <param name="tickTime">tick time.</param>
-    public void burn (GameObject target, int lengthTime, int tickTime) {
-        dmgApplyingSystem (target, lengthTime, tickTime, 5);
+    public void burn (GameObject target, float lengthTime, float tickTime) {
+        dmgApplyingSystem (target, lengthTime, tickTime, 3, BuffsAndBoons.Effects.Burn);
 
     }
 
-    private void dmgApplyingSystem (GameObject target, int tickTime, int lengthTime, int dmgPerTick) {
-        bool tickBool = true;
-        bool lengthBool;
+    /// <summary>
+    /// Apply a Damage Over Time effect to the target
+    /// </summary>
+    /// <param name="target">target GameObject.</param>
+    /// <param name="lengthTime">length time.</param>
+    /// <param name="tickTime">tick time.</param>
+    /// <param name="dmgPerTick">damage per tick.</param>
+    /// <param name="cause">source of the damage (burn, bleed, etc).</param>
+    private void dmgApplyingSystem(GameObject target, float lengthTime, float tickTime, int dmgPerTick, BuffsAndBoons.Effects cause) {
 
-        StartCoroutine (applyTimer ((float)lengthTime, lengthBool));
-        while (lengthBool) {
-            Debug.Log ("Applying.");
-            if (tickBool) {
-                Debug.Log ("Ticked.");
-                dealDMG (target, dmgPerTick);
-                StartCoroutine (tickTimer ((float)tickTime, tickBool));
+        DamageOverTime dot = null;
+
+        DamageOverTime[] allDoTs;
+        allDoTs = GetComponents<DamageOverTime>();
+
+        foreach (DamageOverTime check in allDoTs)
+        {
+            if (check.getCause() == cause)
+            {
+                dot = check;
             }
         }
+
+        if (dot == null)
+        {
+            dot = target.AddComponent<DamageOverTime>();
+            dot.setCause(cause);
+        }
+        else
+        {
+            dot.stopDoT();
+        }
+
+        dot.setDuration(lengthTime + 0.1f);
+        dot.setTickCooldown(tickTime);
+        dot.setDamagePerTick(dmgPerTick);
+
+        dot.startDoT();
     }
 
-    private void timerApplyingSystem () {
-        
+    private void bleed (GameObject target, float lengthTime, float tickTime) {
+        dmgApplyingSystem(target, lengthTime, tickTime, 5, BuffsAndBoons.Effects.Bleed);
+    } 
+
+    private void poison(GameObject target, float lengthTime, float tickTime)
+    {
+        dmgApplyingSystem(target, lengthTime, tickTime, 1, BuffsAndBoons.Effects.Poison);
     }
 
-    private void bleed (GameObject target, int i, int i2) {
-        throw new System.NotImplementedException ();
-    }
-
-    IEnumerator tickTimer (float time, bool tickBool) {
-        tickBool = false;
-        yield return new WaitForSeconds (time);
-        tickBool = true;
-    }
-
-    IEnumerator applyTimer (float time, bool applyBool) {
-        applyBool = true;
-        yield return new WaitForSeconds (time);
-        applyBool = false;
-    }
-
-    private void dealDMG (GameObject target, int dmg) {
-        // TODO: Connect to DMG/Health System.
-        Debug.Log ("Dealt DMG.");
-    }
 }

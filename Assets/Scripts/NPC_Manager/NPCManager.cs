@@ -66,4 +66,9 @@ public class NPCManager : MonoBehaviour {
     public void buttonClicked (int number) {
         
     }
+
+    public List<GameObject> getAllNPCs()
+    {
+        return NPCs;
+    }
 }
