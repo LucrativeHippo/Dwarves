@@ -24,8 +24,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
             // TODO: Send message to NPC to be a vassal of PC
             Debug.Log("QUEST COMPLETED");
             gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-            gameObject.GetComponent<collect>().findingType = ResourceTypes.WOOD;
-            gameObject.GetComponent<collect>().getResource = true;
+            gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
             this.enabled = false;
         }else{
 

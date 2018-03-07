@@ -9,7 +9,6 @@ public class terrainGenerator : MonoBehaviour
     private Dictionary<string, terrain> terrainMap;
     private Dictionary<string, resource> resourceMap;
     public Dictionary<string, Chunk> loadedChunks;
-    public int chunkSize = Chunk.SIZE;
 
     //Starting positions of the player
     [SerializeField]

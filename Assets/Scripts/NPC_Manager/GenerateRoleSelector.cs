@@ -42,8 +42,7 @@ public class GenerateRoleSelector : MonoBehaviour {
     }
 
     public void changeRole (int collectID) {
-        currentNPC.GetComponent<collect> ().findingType = (ResourceTypes)collectID;
-        currentNPC.GetComponent<collect> ().getResource = true;
+        currentNPC.GetComponent<collect> ().startCollecting((ResourceTypes)collectID);
         RoleSelectorUI.GetComponent<Canvas> ().enabled = false;
     }
 
