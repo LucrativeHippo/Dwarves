@@ -387,25 +387,6 @@ public class terrainGenerator : MonoBehaviour
     public void FixedUpdate()
     {
         
-<<<<<<< HEAD
-        
-        
-        if (player != null && player.transform.position.y == 0)
-        {
-            int x = (int)player.transform.position.x / 25;
-            int y = (int)player.transform.position.z / 25;
-            
-            for(int i = -1; i < 2; i++)
-            {
-                for(int j = -1; j < 2; j++)
-                {
-                    generateChunk(x + i, y + j);
-                }
-            }
-            
-        }
-=======
->>>>>>> origin/feature/Bug_fixes
     }
 
 
@@ -470,18 +451,14 @@ public class terrainGenerator : MonoBehaviour
                 tempTile.transform.rotation = rot;
 				tempTile.transform.SetParent(chunkLoc.transform);
                 chunkMap.addTileAt(tempTile, x, y, 0);
-<<<<<<< HEAD
-
-=======
                 if(terrainMap[key] == terrain.CAMPSITE)
                 {
-                    GameObject.Find("player").transform.SetPositionAndRotation(new Vector3(worldPos.xCoord,0,worldPos.yCoord),Quaternion.identity);
+                    //GameObject.Find("player").transform.SetPositionAndRotation(new Vector3(worldPos.xCoord,0,worldPos.yCoord),Quaternion.identity);
 					//tempTile = Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                     //rot = tempTile.transform.rotation;
                     //rot.x = 1;
                     //tempTile.transform.rotation = rot;
                 }
->>>>>>> origin/feature/Bug_fixes
                 if (resourceMap.ContainsKey(key))
                 {
                     if (resourceMap[key] == resource.TREE)
