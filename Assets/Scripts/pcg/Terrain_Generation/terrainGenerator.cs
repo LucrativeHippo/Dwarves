@@ -375,8 +375,8 @@ public class terrainGenerator : MonoBehaviour
     // Use this for initialization
     public void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = new Vector3(xPlayerChunkPos + xPlayerPos, 0, yPlayerChunkPos + yPlayerPos);
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //player.transform.position = new Vector3(xPlayerChunkPos + xPlayerPos, 0, yPlayerChunkPos + yPlayerPos);
         RenderSettings.ambientLight = Color.black;
         loadedChunks = new Dictionary<string, Chunk>();
         terrainMap = new Dictionary<string, terrain>();
