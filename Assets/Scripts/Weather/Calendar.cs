@@ -38,6 +38,11 @@ public class Calendar : MonoBehaviour {
         currentDay = day;
     }
 
+    public  int getCurrentDay()
+    {
+        return currentDay;
+    }
+
     public int getCurrentYear()
     {
         return currentYear;
@@ -48,10 +53,7 @@ public class Calendar : MonoBehaviour {
         return currentSeason;
     }
 
-    public int getCurrentDay()
-    {
-        return currentDay;
-    }
+   
 
     public int getDaysToForecast()
     {
