@@ -47,7 +47,7 @@ public class collect : MonoBehaviour
             case ResourceTypes.WOOD:
                 return "tree";
             case ResourceTypes.DIAMOND:
-                return "water";
+                return "diamond";
             default:
                 return "tree";
         }
