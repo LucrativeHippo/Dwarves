@@ -171,7 +171,7 @@ public class Attributes : MonoBehaviour {
 		shuffle (a);
 		this.assignStats (a);
 		//print all stats of npc
-		Debug.Log ("braveness: " + a [0]  + " strength: " + a [1]  + " charisma: " + a [2]
+		Debug.Log ("level: "+level+" braveness: " + a [0]  + " strength: " + a [1]  + " charisma: " + a [2]
 			+ " motivation: " + a [3]   + " skill: " + a [4]); 
 			
 	}
