@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyMovement : MonoBehaviour {
+public class enemyMovement : MonoBehaviour
+{
     [SerializeField]
     private GameObject townCentre;
     [SerializeField]
@@ -10,32 +11,48 @@ public class enemyMovement : MonoBehaviour {
     [SerializeField]
     private int speed = 3;
 
+    private bool npcTargeted = false;
+
     private Vector3 travelDirection;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         townCentre = GameObject.FindGameObjectWithTag("TownCentre");
-        if(townCentre != null)
+        if (townCentre != null)
         {
-            print("hi2");
+
             travelDirection = (townCentre.transform.position - transform.position).normalized;
         }
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if (townCentre == null)
         {
             townCentre = GameObject.FindGameObjectWithTag("TownCentre");
             if (townCentre != null)
             {
-                print("hi");
+
                 travelDirection = (townCentre.transform.position - transform.position).normalized;
             }
         }
-        else {
+        else if(!npcTargeted){
             transform.position += travelDirection * speed * Time.deltaTime;
         }
+    }
+
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("OwnedNPC"))
+        {
+            npcTargeted = true;
+            travelDirection = (other.transform.position - transform.position).normalized;
+            transform.position += travelDirection * speed * Time.deltaTime;
+        }
+
     }
 }
