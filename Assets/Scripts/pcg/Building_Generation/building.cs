@@ -21,11 +21,12 @@ public class building : MonoBehaviour, IActionable {
 
     public void recieveAction()
     {
-        print("hi");
+        
         if (!this.enabled)
             return;
-
+        player.SetActive(false);
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
+        player.SetActive(true);
     }
 
     // Use this for initialization

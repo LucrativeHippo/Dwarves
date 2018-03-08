@@ -96,7 +96,7 @@ public class GenerateMonster : MonoBehaviour {
             while (currentEnemies < numEnemies)
             {
             
-                Instantiate(monster, new Vector2(terrainMap.getxPlayerChunkPos() + xdirection * Chunk.SIZE + currentEnemies, terrainMap.getyPlayerChunkPos() + ydirection * Chunk.SIZE + currentEnemies), Quaternion.identity);
+                Instantiate(monster, new Vector3(terrainMap.getxPlayerChunkPos() + xdirection * Chunk.SIZE + currentEnemies,0, terrainMap.getyPlayerChunkPos() + ydirection * Chunk.SIZE + currentEnemies), Quaternion.identity);
             currentEnemies++;
             }
     }

@@ -6,32 +6,32 @@ public class actor : MonoBehaviour {
 
 	private bool actionable;
 	public KeyCode actionKey;
-	private GameObject collidedGameObject;
 	private bool canSend = true;
 
 	public int actionCooldownSec = 5;
 
-	void OnTriggerEnter(Collider other) {
-		actionable = true;
-		collidedGameObject = other.gameObject;
+	void OnTriggerStay(Collider other) {
+        if (Input.GetKey(actionKey) && canSend)
+        {
+            canSend = false;
+            other.gameObject.SendMessage("recieveAction");
+            StartCoroutine(canSendTimer());
+        }
 		
 	}
 
 	void OnTriggerExit(Collider other) {
-		actionable = false;
-		
 	}
 
-	void FixedUpdate() {
+	/*void FixedUpdate() {
 		if(Input.GetKey(actionKey) && actionable && canSend) {
 			Debug.Log ("action Logged.");
 			SendMessage ();
 			StartCoroutine( canSendTimer() );
 		}
-	}
+	}*/
 
 	void SendMessage() {
-		collidedGameObject.SendMessage ("recieveAction");
 		canSend = true;
 	}
 

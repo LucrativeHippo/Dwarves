@@ -8,7 +8,7 @@ public class building_generator {
     private static int MAX_HEIGHT = 16;
     private static int MIN_WIDTH = 8;
     private static int MIN_HEIGHT = 8;
-    private static int DEPTH = 100;
+    private static int DEPTH = -100;
     private bool doorPlaced = false;
 
 
@@ -84,22 +84,23 @@ public class building_generator {
                     {
                         
                         GameObject temp = GameObject.Instantiate(door, new Vector3(xlocation + j, ylocation, zlocation + i), Quaternion.identity);
-                        var rot = temp.transform.rotation;
-                        rot.x = 1;
-                        temp.transform.rotation = rot;
+                        //var rot = temp.transform.rotation;
+                        //rot.x = 1;
+                        //temp.transform.rotation = rot;
                         //set parent
+                        
                         temp.transform.SetParent(Building.transform);
                         doorPlaced = true;
 
                         
-                        temp.GetComponent<door>().setReturn(xpos, ypos, zpos);
+                        temp.GetComponentInChildren<door>().setReturn(xpos, ypos, zpos);
                     }
                     else
                     {
                         GameObject temp = GameObject.Instantiate(wall, new Vector3(xlocation + j, ylocation, zlocation + i), Quaternion.identity);
-                        var rot = temp.transform.rotation;
-                        rot.x = 1;
-                        temp.transform.rotation = rot;
+                        //var rot = temp.transform.rotation;
+                        //rot.x = 1;
+                        //temp.transform.rotation = rot;
                         temp.transform.SetParent(Building.transform);
 
                     }
@@ -107,9 +108,9 @@ public class building_generator {
                 else
                 {
                     GameObject temp = GameObject.Instantiate(floor, new Vector3(xlocation + j, ylocation, zlocation + i), Quaternion.identity);
-                    var rot = temp.transform.rotation;
-                    rot.x = 1;
-                    temp.transform.rotation = rot;
+                    //var rot = temp.transform.rotation;
+                    //rot.x = 1;
+                    //temp.transform.rotation = rot;
                     temp.transform.SetParent(Building.transform);
 
                 }

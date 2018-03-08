@@ -24,7 +24,8 @@ public class door : MonoBehaviour {
 
     public void setReturn(int x, int y, int z)
     {
-        print("setting return");
+        
+        
         xpos = x;
         ypos = 0;
         zpos = z;
@@ -33,12 +34,13 @@ public class door : MonoBehaviour {
     public void recieveAction()
     {
         
-        if (!this.enabled)
-            return;
         if(xpos != null && ypos != null && zpos != null)
         {
+            print(xpos + "" + ypos + "" + zpos);
+            player.SetActive(false);
             player.transform.position = new Vector3(xpos, ypos, zpos);
-            print(xpos + zpos);
+            player.SetActive(true);
+            //print(xpos + zpos);
         }
         else
         {
