@@ -11,6 +11,8 @@ TagManager:
   - tree
   - treebuilding
   - OwnedNPC
+  - Fire
+  - resBuilding
   layers:
   - Default
   - TransparentFX

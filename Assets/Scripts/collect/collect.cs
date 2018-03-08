@@ -16,8 +16,10 @@ public class collect : MonoBehaviour
 
     private enum npcState{
         asleep,
-        getResource,
-        dropResource
+        gotoResource,
+        gotoBuilding,
+        gatherRes,
+        dropRes
     }
     [SerializeField]
     private npcState state = npcState.asleep;
@@ -37,7 +39,7 @@ public class collect : MonoBehaviour
 
         // after dropping resource 
         findingType = t;
-        state = npcState.getResource;
+        state = npcState.gotoResource;
     }
 
     public string getResourceName(ResourceTypes r){
@@ -54,7 +56,7 @@ public class collect : MonoBehaviour
         return getResourceName(findingType);
     }
     private string getResBuildName(){
-        return getResName()+"building";
+        return "resBuilding";//return getResName()+"building";
     }
 
     private bool isSelectedResource(Collider o){
@@ -63,6 +65,8 @@ public class collect : MonoBehaviour
     private bool isSelectedResBuilding(Collider o){
         return o.CompareTag(getResBuildName());
     }
+    private bool isFull(){return resAmount == maxRes;}
+    private bool isEmpty(){return resAmount == 0;}
 
     // Use this for initialization
     void Awake()
@@ -79,25 +83,34 @@ public class collect : MonoBehaviour
         currentresource = GameObject.FindWithTag(getResName());
     }
     private void moveToNearest(string name){
-            agent.SetDestination(FindClosestresourse(name).transform.position);
+            agent.SetDestination(findClosestTag(name).transform.position);
     }
     // Update is called once per frame
     void Update()
     {
         switch(state){
-            case npcState.dropResource:
+            case npcState.gotoBuilding:
                 //updateLocations();
-                if(resAmount==0)
-                    state = npcState.getResource;
                 moveToNearest(getResBuildName());
                 break;
 
-            case npcState.getResource:
+            case npcState.gotoResource:
                 //updateLocations();
-                if(resAmount == maxRes)
-                    state = npcState.dropResource;
                 moveToNearest(getResName());
                 break;
+            
+            case npcState.dropRes:
+                if(isEmpty()){
+                    state = npcState.gotoResource;
+                }
+                break;
+            
+            case npcState.gatherRes:
+                if(isFull()){
+                    state = npcState.gotoBuilding;
+                }
+                break;
+
 
             case npcState.asleep:
                 break;
@@ -109,10 +122,10 @@ public class collect : MonoBehaviour
 
 
 
-    GameObject FindClosestresourse(string resourcename)
+    GameObject findClosestTag(string name)
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag(resourcename);
+        gos = GameObject.FindGameObjectsWithTag(name);
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
@@ -131,57 +144,38 @@ public class collect : MonoBehaviour
 
 
 
-
-
-    GameObject FindClosestbuilding(string buildingname)
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag(buildingname);
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in gos)
-        {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                closest = go;
-                distance = curDistance;
-            }
-        }
-        return closest;
-    }
 
 
 
 
     private void OnTriggerStay(Collider other)
     {
-        if(this.isSelectedResource(other) && resAmount<maxRes && state == npcState.dropResource){
-            //hp = other.GetComponent<Health>();
-            //other.SendMessage("damage");
-            resAmount++;
-            Debug.Log(getResName()+":"+resAmount);
-            //hp.damage(1);
-
-            //Debug.Log(hp.health);
-
-            if(resAmount == maxRes){
-                updateLocations();
-                state = npcState.getResource;
+        if(this.isSelectedResource(other)){
+            // Change state from going to res to gathering
+            if(state == npcState.gotoResource){
+                state = npcState.gatherRes;
+            }else if(state == npcState.gatherRes){
+                if(isFull()){
+                    updateLocations();
+                    state = npcState.gotoBuilding;
+                }else{
+                // Keep gathering
+                    resAmount++;
+                }
             }
         }
 
-        if(this.isSelectedResBuilding(other) && resAmount>0 && state == npcState.dropResource){
-            resAmount--;
-            Debug.Log(this.getResName()+":"+resAmount);
-            MetaScript.getRes().addResource(this.findingType,1);
-
-            if(resAmount == 0){
-                print("RES: "+resAmount);
-                updateLocations();
-                state = npcState.getResource;
+        if(this.isSelectedResBuilding(other)){
+            if(state == npcState.gotoBuilding){
+                state = npcState.dropRes;
+            }else if(state == npcState.dropRes){
+                if(isEmpty()){
+                    updateLocations();
+                    state = npcState.gotoResource;
+                }else{
+                    resAmount--;
+                    MetaScript.getRes().addResource(this.findingType,1);
+                }
             }
         }
     }
