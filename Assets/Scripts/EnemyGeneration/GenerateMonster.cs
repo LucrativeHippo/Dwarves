@@ -96,8 +96,14 @@ public class GenerateMonster : MonoBehaviour {
             while (currentEnemies < numEnemies)
             {
             
-                Instantiate(monster, new Vector2(terrainMap.xPlayerChunkPos + xdirection * terrainMap.chunkSize + currentEnemies, terrainMap.yPlayerChunkPos + ydirection * terrainMap.chunkSize + currentEnemies), Quaternion.identity);
-            currentEnemies++;
+                GameObject newMonster = Instantiate(monster, new Vector2(terrainMap.xPlayerChunkPos + xdirection * terrainMap.chunkSize + currentEnemies, terrainMap.yPlayerChunkPos + ydirection * terrainMap.chunkSize + currentEnemies), Quaternion.identity);
+                enemyList.AddLast(newMonster.GetComponent<Enemy>());
+                currentEnemies++;
             }
+    }
+
+    public LinkedList<Enemy> getAllEnemies()
+    {
+        return enemyList;
     }
 }

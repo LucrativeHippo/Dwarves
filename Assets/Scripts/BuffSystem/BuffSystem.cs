@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class BuffSystem : MonoBehaviour {
 
-    private GameObject npcManagerGameObject;
-    private List<GameObject> theNPCs;
-    private List<GameObject> theEnemies;
-
+    private NPCManager npcManager;
+    private GenerateMonster monsterGenerator;
     private GameObject player;
 
     void Start () {
-        // TODO: Connect NPC Manager to this.
-        //        theNPCs = npcManagerGameObject.GetComponent<NPCManager> ().getNPCsList ();
-
-        // TODO: Get all the enemies on the map.
-        //        theEnemies = 
-
+        npcManager = GameObject.FindObjectOfType<NPCManager>();
+        monsterGenerator = GameObject.FindObjectOfType<GenerateMonster>();
         player = GameObject.FindGameObjectWithTag ("Player");
     }
 
@@ -25,6 +19,8 @@ public class BuffSystem : MonoBehaviour {
     /// </summary>
     /// <param name="aBuffOrBoon">A buff or boon name.</param>
     public void applyNPCs (BuffsAndBoons.Effects aBuffOrBoon, float length) {
+        List<GameObject> theNPCs = npcManager.getAllNPCs();
+
         foreach (var aNPC in theNPCs) {
             applyTarget (aNPC, aBuffOrBoon, length);
         }
@@ -35,8 +31,11 @@ public class BuffSystem : MonoBehaviour {
     /// </summary>
     /// <param name="aBuffOrBoon">A buff or boon name.</param>
     public void applyEnemies (BuffsAndBoons.Effects aBuffOrBoon, float length) {
+        LinkedList<Enemy> theEnemies = monsterGenerator.getAllEnemies();
+
         foreach (var aEnemy in theEnemies) {
-            applyTarget (aEnemy, aBuffOrBoon, length);
+            GameObject monster = aEnemy.gameObject;
+            applyTarget (monster, aBuffOrBoon, length);
         }
     }
 
@@ -85,12 +84,34 @@ public class BuffSystem : MonoBehaviour {
     /// <summary>
     /// Burn the specified target for the lengthTime with a tick rate of tickTime.
     /// </summary>
-    /// <param name="TargetJoint2D">target GameObject.</param>
+    /// <param name="target">target GameObject.</param>
     /// <param name="lengthTime">length time.</param>
     /// <param name="tickTime">tick time.</param>
     public void burn (GameObject target, float lengthTime, float tickTime) {
         dmgApplyingSystem (target, lengthTime, tickTime, 3, BuffsAndBoons.Effects.Burn);
 
+    }
+
+    /// <summary>
+    /// Make the specified target bleed for the lengthTime with a tick rate of tickTime.
+    /// </summary>
+    /// <param name="target">target GameObject.</param>
+    /// <param name="lengthTime">length time.</param>
+    /// <param name="tickTime">tick time.</param>
+    private void bleed(GameObject target, float lengthTime, float tickTime)
+    {
+        dmgApplyingSystem(target, lengthTime, tickTime, 5, BuffsAndBoons.Effects.Bleed);
+    }
+
+    /// <summary>
+    /// Poison the specified target for the lengthTime with a tick rate of tickTime.
+    /// </summary>
+    /// <param name="target">target GameObject.</param>
+    /// <param name="lengthTime">length time.</param>
+    /// <param name="tickTime">tick time.</param>
+    private void poison(GameObject target, float lengthTime, float tickTime)
+    {
+        dmgApplyingSystem(target, lengthTime, tickTime, 1, BuffsAndBoons.Effects.Poison);
     }
 
     /// <summary>
@@ -108,11 +129,11 @@ public class BuffSystem : MonoBehaviour {
         DamageOverTime[] allDoTs;
         allDoTs = GetComponents<DamageOverTime>();
 
-        foreach (DamageOverTime check in allDoTs)
+        foreach (DamageOverTime existingDoT in allDoTs)
         {
-            if (check.getCause() == cause)
+            if (existingDoT.getCause() == cause)
             {
-                dot = check;
+                dot = existingDoT;
             }
         }
 
@@ -126,20 +147,14 @@ public class BuffSystem : MonoBehaviour {
             dot.stopDoT();
         }
 
+        // A tenth of a second is added to the duration to ensure the last bit of a damage tick
+        // can go off. If the last tick goes off as the DoT destroys itself, it doesn't seem
+        // to apply.
         dot.setDuration(lengthTime + 0.1f);
         dot.setTickCooldown(tickTime);
         dot.setDamagePerTick(dmgPerTick);
 
         dot.startDoT();
-    }
-
-    private void bleed (GameObject target, float lengthTime, float tickTime) {
-        dmgApplyingSystem(target, lengthTime, tickTime, 5, BuffsAndBoons.Effects.Bleed);
-    } 
-
-    private void poison(GameObject target, float lengthTime, float tickTime)
-    {
-        dmgApplyingSystem(target, lengthTime, tickTime, 1, BuffsAndBoons.Effects.Poison);
     }
 
 }
