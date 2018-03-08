@@ -8,10 +8,20 @@ public class enemyAI : MonoBehaviour {
 	NavMeshAgent agentCtrl;
 	Vector3 spawnPoint;
 	public float threatRange =10f;
+	[SerializeField]
+	public int damage=5;
+	[SerializeField]
+	public float max_health =30f;
+	[SerializeField]
+	public float cur_health = 30f;
+	[SerializeField]
+	public float atkSpeed = 1.0f;
+
 
 
 	// Use this for initialization
 	void Start () {
+		cur_health = max_health;
 		agentCtrl = this.GetComponent<NavMeshAgent>();
 		spawnPoint = this.gameObject.transform.position;
 		setDestination ();
@@ -29,9 +39,13 @@ public class enemyAI : MonoBehaviour {
                 setDestination();
             }
             else
-            {
+            {	//target too far away, retreat
                 backToSpawn();
             }
+
+		if (cur_health <= 0) {
+			die ();
+		}
         }
 
 
@@ -47,5 +61,9 @@ public class enemyAI : MonoBehaviour {
 		
 		Debug.Log (spawnPoint);
 		agentCtrl.SetDestination (spawnPoint);
+	}
+
+	private void die(){
+		Destroy (gameObject);
 	}
 }
