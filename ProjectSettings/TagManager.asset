@@ -7,6 +7,7 @@ TagManager:
   - ground
   - water
   - tree
+  - TownCentre
   - OwnedNPC
   - Fire
   - resBuilding

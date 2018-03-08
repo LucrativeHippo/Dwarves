@@ -79,6 +79,8 @@ public class basicBuilding : MonoBehaviour {
 
             // Disable Building Menu.
             buildingMenu.GetComponent<Canvas> ().enabled = false;
+
+            Destroy(gameObject);
         } else {
             Debug.Log ("Not Enough Resources to build Building: " + buildingNumber);
         }
