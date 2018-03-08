@@ -23,9 +23,9 @@ public class Attributes : MonoBehaviour {
 	[SerializeField]
 	public float cur_health;
 	[SerializeField]
-	public int damage;
+	public float damage;
 	[SerializeField]
-	private float atkSpeed;
+	public float atkSpeed;
 
 
 
@@ -182,7 +182,7 @@ public class Attributes : MonoBehaviour {
 		int[] a = statGenerator (level);
 		shuffle (a);
 		this.assignStats (a);
-		damage = level;
+		damage = strength;
 		//print all stats of npc
 		Debug.Log ("level: "+level+" braveness: " + a [0]  + " strength: " + a [1]  + " charisma: " + a [2]
 			+ " motivation: " + a [3]   + " skill: " + a [4]); 

@@ -9,9 +9,11 @@ public class char_combat : MonoBehaviour {
 	bool isEnemy = false;
 	bool isNPC = false;
 	bool isPlayer = false;
+	bool timeControl = true;
 	public bool inCombat = false;
 	public GameObject opponent;
-	public int opponentDamage;
+	public float opponentDamage;
+	public float opponentCoolDown = 1.0f;
 	private float timestamp = 0.0f;
 
 	// Use this for initialization
@@ -29,21 +31,44 @@ public class char_combat : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (inCombat && isEnemy ) {
-			combat ();
-			enemyStats.cur_health -= opponentDamage * Time.deltaTime;
-			timestamp = Time.time + 1.0f;
-		}
-		if (inCombat && isNPC ) {
-			combat ();
-			npcStats.cur_health -= opponentDamage* Time.deltaTime;
-			timestamp = Time.time + 1.0f;
-		}
-	}
-	void getOpponent(){
+		if (inCombat && timeControl)
+			StartCoroutine(combatManager());
+			
 	}
 
+	//Manage the combat damage
+	IEnumerator combatManager() {
+		timeControl = false;
+		if (inCombat && isEnemy ) {
+			combat ();
+			enemyStats.cur_health -= opponentDamage;
+			Debug.Log ("npc" + opponentCoolDown);
+			yield return new WaitForSeconds (opponentCoolDown);
+			timeControl = true;
+			//UNCOMMENT this one if you want hp to drop smoothly
+//			enemyStats.cur_health -= opponentDamage * Time.deltaTime;
+//			timestamp = Time.time + 1.0f;
+		}
+		else if (inCombat && isNPC ) {
+			combat ();
+			npcStats.cur_health -= opponentDamage;
+			yield return new WaitForSeconds (opponentCoolDown);
+			timeControl = true;
+			////UNCOMMENT this one if you want hp to drop smoothly
+//			npcStats.cur_health -= opponentDamage* Time.deltaTime;
+//			timestamp = Time.time + 1.0f;
+		}
+//		if (isEnemy) {
+//			yield return new WaitForSeconds (opponentCoolDown);
+//		}
+//		if (isNPC) {
+//			yield return new WaitForSeconds (opponentCoolDown);
+//		}
+//		 
+
+	}
 	void OnTriggerEnter(Collider other) {
+		timeControl = true;
 		Debug.Log ("y");
 		if ((gameObject.tag == "OwnedNPC" && other.tag == "Enemy") ||
 		    (gameObject.tag == "Enemy" && other.tag == "OwnedNPC") ||
@@ -51,20 +76,28 @@ public class char_combat : MonoBehaviour {
 		    (gameObject.tag == "Enemy" && other.tag == "Player")) {
 			inCombat = true;
 			opponent = other.gameObject;
-		} else {
-			inCombat = false;
-		}
+		} 
+
 		}
 		
+	void OnTriggerExit(Collider other) {
+			inCombat = false;
+		opponentCoolDown = 0.0f;
+	}
+
+
 	void combat(){
 		if (isNPC == true) {
 			enemyStats=opponent.GetComponent<enemyAI> ();
 			Debug.Log (enemyStats);
 			opponentDamage = enemyStats.damage;
+			opponentCoolDown = 2.0f/enemyStats.atkSpeed;
+
 		}
 		if (isEnemy == true && opponent.tag == "OwnedNPC") {
 			npcStats=opponent.GetComponent<Attributes> ();
 			opponentDamage = npcStats.damage;
+			opponentCoolDown = 2.0f/npcStats.atkSpeed;
 		}
 		if (isEnemy == true && opponent.tag == "Player") {
 			//TODO:

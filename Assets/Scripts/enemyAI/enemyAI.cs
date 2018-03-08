@@ -9,11 +9,11 @@ public class enemyAI : MonoBehaviour {
 	Vector3 spawnPoint;
 	public float threatRange =10f;
 	[SerializeField]
-	public int damage=5;
+	public float damage=5f;
 	[SerializeField]
 	public float max_health =30f;
 	[SerializeField]
-	public float cur_health = 30f;
+	public float cur_health;
 	[SerializeField]
 	public float atkSpeed = 1.0f;
 
@@ -31,7 +31,8 @@ public class enemyAI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+		if (cur_health <= 0)
+			die ();
         //Debug.Log(agentCtrl.remainingDistance);
             if (agentCtrl.remainingDistance <= threatRange)
             {
@@ -43,12 +44,12 @@ public class enemyAI : MonoBehaviour {
                 backToSpawn();
             }
 
-		if (cur_health <= 0) {
-			die ();
-		}
-        }
+
+       }
 
 
+	void fixedUpdate(){
+	}
 
 	private void setDestination(){
 			if (destination != null) {
@@ -63,7 +64,7 @@ public class enemyAI : MonoBehaviour {
 		agentCtrl.SetDestination (spawnPoint);
 	}
 
-	private void die(){
+	void die(){
 		Destroy (gameObject);
 	}
 }
