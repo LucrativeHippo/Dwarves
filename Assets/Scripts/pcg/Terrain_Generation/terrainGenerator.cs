@@ -446,19 +446,13 @@ public class terrainGenerator : MonoBehaviour
                 {
                     resourceMap[key] = resource.BUILDSIGN;
                 }
-                //Adds the terrain into the correct chunk into the first layer
-                //var rot = tempTile.transform.rotation;
-                //rot.x = 1;
-                //tempTile.transform.rotation = rot;
+                
 				tempTile.transform.SetParent(chunkLoc.transform);
                 chunkMap.addTileAt(tempTile, x, y, 0);
                 if(terrainMap[key] == terrain.CAMPSITE)
                 {
-                    //GameObject.Find("player").transform.SetPositionAndRotation(new Vector3(worldPos.xCoord,0,worldPos.yCoord),Quaternion.identity);
-					//tempTile = Instantiate(Player ,new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
-                    //rot = tempTile.transform.rotation;
-                    //rot.x = 1;
-                    //tempTile.transform.rotation = rot;
+                    Instantiate(getObject(terrain.PLOT), new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
+                    
                 }
                 if (resourceMap.ContainsKey(key))
                 {
