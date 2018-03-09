@@ -107,4 +107,8 @@ public class Skills : Character {
     public float getValue(int i){
         return skillLevel[i];
     }
+
+    void OnValidate() {
+        setRank();
+    }
 }

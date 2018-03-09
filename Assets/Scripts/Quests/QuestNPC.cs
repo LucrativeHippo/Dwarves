@@ -70,6 +70,12 @@ public class QuestNPC : MonoBehaviour, IActionable {
         }
     }
 	
+    void OnValidate() {
+        rank = 0;
+        foreach (QuestGoal g in myQuests.questPath){
+            rank = g.getThreshold();
+        }
+    }
 
     public Quests.QuestType GetQuestType(){
         int index = myQuests.GetQuestGoal().getGoalIndex();
