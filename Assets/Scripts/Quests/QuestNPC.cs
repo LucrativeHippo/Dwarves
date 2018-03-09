@@ -7,9 +7,8 @@ using UnityEngine;
 /// Disable if quest are complete
 /// </summary>
 public class QuestNPC : MonoBehaviour, IActionable {
-    [SerializeField]
-    //private int questSize = 1;
-    private int rank = 10;//Random.Range(1,50);
+    [ReadOnly]
+    public int rank = 0;//Random.Range(1,50);
     [SerializeField]
     private QuestBase myQuests = new QuestBase();
     public void recieveAction()
@@ -24,9 +23,9 @@ public class QuestNPC : MonoBehaviour, IActionable {
         if(myQuests.checkQuest()){
             // TODO: Send message to NPC to be a vassal of PC
             Debug.Log("QUEST COMPLETED");
-            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-            gameObject.GetComponent<collect>().findingType = ResourceTypes.WOOD;
-            gameObject.GetComponent<collect>().getResource = true;
+            GetComponent<SpeechBubble>().setText("Quest Completed");
+            MetaScript.GetNPC().addNPC(gameObject);
+            gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
             this.enabled = false;
         }else{
 
@@ -35,14 +34,11 @@ public class QuestNPC : MonoBehaviour, IActionable {
             GetQuestType().message
             );
 
-            /*
+            
             gameObject.GetComponent<SpeechBubble>().setText("Need "+
             myQuests.GetQuestGoal().getThreshold()+" "+
             GetQuestType().message);
-            */
-            Debug.Log(("Need " +
-            myQuests.GetQuestGoal().getThreshold() + " " +
-            GetQuestType().message));
+            
         }
     }
 
@@ -56,9 +52,11 @@ public class QuestNPC : MonoBehaviour, IActionable {
 
     public void addGoal(int difficulty){
         myQuests.addGoal(new QuestGoal(difficulty));
+        rank += difficulty;
     }
     public void addGoal(int difficulty, int index){
         myQuests.addGoal(new QuestGoal(difficulty,index));
+        rank += difficulty;
     }
 	
 	// Update is called once per frame
@@ -67,8 +65,9 @@ public class QuestNPC : MonoBehaviour, IActionable {
 	}
 
     public void setRank(int r){
-        if(r>0)
-            rank = r;
+        if(r>0){
+            myQuests = new QuestBase();
+        }
     }
 	
 

@@ -16,8 +16,9 @@ public class basicBuilding : MonoBehaviour {
 
     public GameObject Button_Template;
 
-    private GameObject buildingMenuUIContent;
+    [SerializeField] private GameObject locationObject;
 
+    [SerializeField] private GameObject buildingMenuUIContent;
 
 
     void Start () {
@@ -34,12 +35,7 @@ public class basicBuilding : MonoBehaviour {
         buildingPrefabsObjects = buildingPrefabs;
 
         // Build Menu.
-        buildBuildingMenu ();
-
-        // Log the names of all buildings.
-        foreach (var building in buildingPrefabs) {
-            Debug.Log ("Building Name: " + building.name);
-        }
+//        buildBuildingMenu ();
     }
 
     public void recieveAction () {
@@ -47,11 +43,6 @@ public class basicBuilding : MonoBehaviour {
     }
 
     private void buildBuildingMenu () {
-        Button testHardCodedButton = GameObject.Find ("BuildButton").GetComponent<Button> ();
-        testHardCodedButton.onClick.AddListener (() => createBuilding (0));
-
-
-        // TODO: Finish below for creating buttons to build stuff.
         GameObject tempGameObject;
         int counter = 0;
         foreach (var theBuildings in buildingPrefabs) {
@@ -61,13 +52,18 @@ public class basicBuilding : MonoBehaviour {
             aButtonScript.setBuildingScript (this);
             aButtonScript.setName (theBuildings.name);
             aButtonScript.setNumber (counter);
-            tempGameObject.transform.SetParent (Button_Template.transform.parent, false);
+            tempGameObject.transform.SetParent (buildingMenuUIContent.transform, false);
             counter++;
         }
     }
 
     private void displayMenu () {
+        foreach (Transform child in buildingMenuUIContent.transform) {
+            Destroy (child.gameObject);
+        }
+        buildBuildingMenu ();
         buildingMenu.GetComponent<Canvas> ().enabled = true;
+        locationObject = this.gameObject;
     }
 
 
@@ -76,32 +72,19 @@ public class basicBuilding : MonoBehaviour {
             // Create Building.
             Instantiate (buildingPrefabsObjects [buildingNumber], transform.position, Quaternion.identity);
 
-            // Use Resources.
-            resourceManager.GetComponent<testingResources> ().useWood (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ());
-            resourceManager.GetComponent<testingResources> ().useStone (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ());
-            resourceManager.GetComponent<testingResources> ().useGold (buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ());
-
+            buildingPrefabs[buildingNumber].GetComponent<resourceCost>().purchase();
             // Disable Building Menu.
             buildingMenu.GetComponent<Canvas> ().enabled = false;
+
+            Destroy(gameObject);
         } else {
             Debug.Log ("Not Enough Resources to build Building: " + buildingNumber);
         }
     }
 
     private bool checkResources (int buildingNumber) {
-        int currentWood = resourceManager.GetComponent<testingResources> ().getWood ();
-        int currentStone = resourceManager.GetComponent<testingResources> ().getStone ();
-        int currentGold = resourceManager.GetComponent<testingResources> ().getGold ();
 
-        int woodCost = buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getWoodCost ();
-        int stoneCost = buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getStoneCost ();
-        int goldCost = buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().getGoldCost ();
-
-        if (woodCost > currentWood || stoneCost > currentStone || goldCost > currentGold) {
-            return false;
-        } else {
-            return true;
-        }
+        return buildingPrefabs[buildingNumber].GetComponent<resourceCost>().canAfford();
     }
 
     public void buttonClicked (int number) {

@@ -5,11 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	public float speed;
-    private GameObject cam;
-    private void Awake()
-    {
-        cam = GameObject.Find("MainCam");
-    }
     void FixedUpdate() {
 		Vector3 mov = new Vector3 (0, 0);
 
@@ -22,7 +17,6 @@ public class PlayerMovement : MonoBehaviour {
 		mov.Normalize ();
 
 		transform.Translate (mov * speed);
-        cam.transform.Translate(mov * speed);
 
         GetComponentInChildren<actionManagerPlayerRotation>().setRotation(mov);
     }

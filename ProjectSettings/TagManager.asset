@@ -6,11 +6,12 @@ TagManager:
   tags:
   - ground
   - water
-  - waterbuilding
-  - collecter
   - tree
-  - treebuilding
+  - TownCentre
   - OwnedNPC
+  - Fire
+  - resBuilding
+  - Diamond
   - Enemy
   layers:
   - Default

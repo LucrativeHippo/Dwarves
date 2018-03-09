@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class QuestGoal {
+	[SerializeField]
 	private int goalIndex;
-	Quests.Goal isCompleted;
-	int threshold;
+	[SerializeField] int threshold;
 	
 	// void Start () {
 	// 	isCompleted = Quests.isPopulationAbove;
@@ -17,25 +18,26 @@ public class QuestGoal {
 	public QuestGoal(int rank){
         // randomly generate based on rank
         int numberOfTries = 0;
+		if(rank<=0){
+			rank = 1;
+			Debug.LogWarning("Tried to insert non positive rank. Defaulting to 1");
+		}
+		// randomly generate based on rank
 		do{
-            if (numberOfTries > 10)
+            if (numberOfTries > 100)
             {
                 Debug.LogWarning("Tried creating quests far too many times");
                 threshold = rank;
                 goalIndex = 0;
-                Quests.QuestType qq = Quests.questList[goalIndex];
-                isCompleted = qq.goal;
             }
 			// select index at random
 			goalIndex = Random.Range(0,Quests.questList.Length-1);
-			Quests.QuestType q = Quests.questList[goalIndex];
-			isCompleted = q.goal;
-			threshold = (rank - q.difficulty);
-			if(threshold>0){
-                if (q.difficulty != 0) {
-                    threshold /= q.difficulty;
-                    threshold++;
-                }
+			int difficulty = Quests.questList[goalIndex].difficulty;
+
+			threshold = (rank - difficulty);
+			if(threshold>0 && difficulty>0){
+				threshold /= difficulty;
+				threshold++;
 			}
             numberOfTries++;
 		}while (threshold <= 0);
@@ -51,8 +53,6 @@ public class QuestGoal {
 			Debug.LogError("Tried to create invalid quest type, changing to default.");
 			goalIndex = 0;
 		}
-		Quests.QuestType q = Quests.questList[goalIndex];
-		isCompleted = q.goal;
 	}
 
 	/// <summary>
@@ -76,7 +76,7 @@ public class QuestGoal {
 	/// </summary>
 	/// <returns><c>true</c>, if goal completed, <c>false</c> otherwise.</returns>
 	public bool isGoalComplete(){
-		return isCompleted (threshold);
+		return Quests.questList[goalIndex].goal (threshold);
 	}
 
 	public int getGoalIndex(){
