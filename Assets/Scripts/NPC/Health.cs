@@ -23,7 +23,7 @@ public class Health : MonoBehaviour {
     public bool damage (int dmg) {
         if (dmg < 0)
             throw new UnityException ("You can't heal from damage!");
-		
+            
         health -= dmg;
         if (health <= 0) {
             return true;

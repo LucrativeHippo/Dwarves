@@ -11,17 +11,12 @@ public class enemyAI : MonoBehaviour {
 	[SerializeField]
 	public float damage=5f;
 	[SerializeField]
-	public float max_health =30f;
-	[SerializeField]
-	public float cur_health;
-	[SerializeField]
 	public float atkSpeed = 1.0f;
 
 
 
 	// Use this for initialization
 	void Start () {
-		cur_health = max_health;
 		agentCtrl = this.GetComponent<NavMeshAgent>();
 		spawnPoint = this.gameObject.transform.position;
 		setDestination ();
@@ -31,8 +26,6 @@ public class enemyAI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-		if (cur_health <= 0)
-			die ();
         //Debug.Log(agentCtrl.remainingDistance);
             if (agentCtrl.remainingDistance <= threatRange)
             {
@@ -43,8 +36,6 @@ public class enemyAI : MonoBehaviour {
             {	//target too far away, retreat
                 backToSpawn();
             }
-
-
        }
 
 
@@ -52,7 +43,7 @@ public class enemyAI : MonoBehaviour {
 	}
 
 	private void setDestination(){
-			if (destination != null) {
+		if (destination != null) {
 			Vector3 targetVector = destination.transform.position;
 			agentCtrl.SetDestination (targetVector);
 		}
@@ -64,7 +55,4 @@ public class enemyAI : MonoBehaviour {
 		agentCtrl.SetDestination (spawnPoint);
 	}
 
-	void die(){
-		Destroy (gameObject);
-	}
 }

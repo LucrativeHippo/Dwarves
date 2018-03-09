@@ -4,15 +4,15 @@ using UnityEngine;
 using System;
 
 
-public class Skills : MonoBehaviour {
+public class Skills : Character {
     /// All job based skills available to the NPCs
     /// Add skills 
     public enum skillList {
-        wood,
-        stone,
-        gold,
-        food,
-        diamond
+        braveness,
+        strength,
+        charisma,
+        motivation,
+        skill
     };
 
     public static int numOfSkills = Enum.GetNames (typeof(skillList)).Length;
@@ -24,14 +24,30 @@ public class Skills : MonoBehaviour {
     /// Gathering multiplier [0.5,1.5]
     public float gatherSpeed = 1.0f;
 
-    public float rank = 0f;
+    [ReadOnly] public float rank = 0f;
     //private float maxSize = 10;
 
     [NamedArray(typeof(skillList))] public float[] skillLevel = new float[numOfSkills];
 
-    public void Start () {
+    public void Awake () {
         randomizeSkills ();
         setRank();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="poolSize">Value from 0</param>
+    private void setSkillsByPool(int poolSize){
+        for(int i=0;i<numOfSkills;i++){
+            skillLevel[i] = 0;
+        }
+        
+        for(int i=0;i<poolSize&&i<numOfSkills*10;i++){
+            int rand = UnityEngine.Random.Range(0,numOfSkills);
+            if(skillLevel[rand] != 10)
+                skillLevel[rand]++;
+        }
     }
 
     private void randomizeSkills () {
@@ -69,6 +85,10 @@ public class Skills : MonoBehaviour {
     public float getRank(){
         setRank();
         return rank;
+    }
+    public int getIntRank(){
+        setRank();
+        return Mathf.RoundToInt(rank);
     }
 
     /// <summary>

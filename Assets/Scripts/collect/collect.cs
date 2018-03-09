@@ -14,13 +14,6 @@ public class collect : MonoBehaviour
     public int resAmount = 0;
     int maxRes = 10;
 
-    private enum npcState{
-        asleep,
-        gotoResource,
-        gotoBuilding,
-        gatherRes,
-        dropRes
-    }
     [SerializeField]
     private npcState state = npcState.asleep;
     public ResourceTypes findingType = ResourceTypes.WOOD;
