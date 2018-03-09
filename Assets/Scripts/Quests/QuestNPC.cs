@@ -43,7 +43,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
     }
 
     // Use this for initialization
-    void Awake () {
+    void Start () {
         // TODO: change this to be dependent on creation
         // myQuests.addGoal(new QuestGoal(rank));
 
