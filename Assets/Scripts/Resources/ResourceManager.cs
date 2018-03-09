@@ -25,9 +25,9 @@ public class ResourceManager : MonoBehaviour {
 		return resourceList[i];
 	}
 
-    public void increaseCapacity(ResourceTypes i, int increase)
+    public void increaseCapacity(int i, int increase)
     {
-        maxResourceList[(int)i] += increase;
+        maxResourceList[i] += increase;
     }
 
 
