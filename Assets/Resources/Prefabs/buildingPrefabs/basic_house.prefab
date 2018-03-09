@@ -77,7 +77,6 @@ GameObject:
   - component: {fileID: 65165105327378780}
   - component: {fileID: 54818777579541320}
   - component: {fileID: 114610817422052380}
-  - component: {fileID: 114732423924736926}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -386,22 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeCostList: 000000000000000000000000000000000000000000000000000000000000000000000000
-  upgrade: {fileID: 1407318134520498, guid: 199401001c98f7d47b494e74753f05f6, type: 2}
---- !u!114 &114732423924736926
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1566304868529988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6462e904738377448835c8ab60bcd59c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button_Template: {fileID: 1143470490360402, guid: 5a2731adfc749e043a43adeda42e3195,
-    type: 2}
-  locationObject: {fileID: 0}
-  buildingMenuUIContent: {fileID: 0}
+  upgrade: {fileID: 1924212335498946, guid: 8c6a11272317a4c4b9e7def6adba75e3, type: 2}
 --- !u!114 &114859548203880064
 MonoBehaviour:
   m_ObjectHideFlags: 1
