@@ -19,10 +19,10 @@ public class enemyMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        townCentre = GameObject.FindGameObjectWithTag("TownCentre");
+        townCentre = GameObject.FindGameObjectWithTag("TownCenter");
         if (townCentre != null)
         {
-
+            
             travelDirection = (townCentre.transform.position - transform.position).normalized;
         }
     }
@@ -32,7 +32,7 @@ public class enemyMovement : MonoBehaviour
     {
         if (townCentre == null)
         {
-            townCentre = GameObject.FindGameObjectWithTag("TownCentre");
+            townCentre = GameObject.FindGameObjectWithTag("TownCenter");
             if (townCentre != null)
             {
 
@@ -45,7 +45,7 @@ public class enemyMovement : MonoBehaviour
     }
 
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("OwnedNPC"))
         {

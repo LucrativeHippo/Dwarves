@@ -7,11 +7,11 @@ TagManager:
   - ground
   - water
   - tree
-  - TownCentre
   - OwnedNPC
   - Fire
   - resBuilding
   - Diamond
+  - TownCenter
   layers:
   - Default
   - TransparentFX
