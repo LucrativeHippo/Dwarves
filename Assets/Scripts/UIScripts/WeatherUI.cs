@@ -8,7 +8,7 @@ public class WeatherUI : MonoBehaviour {
 
     [SerializeField] private Text temperatureText;
     [SerializeField] private Text weatherNameText;
-
+   
     public void updateTemp (float temp) {
         double aTemp = System.Math.Round (temp, 0);
         temperatureText.text = "" + aTemp;
@@ -16,5 +16,6 @@ public class WeatherUI : MonoBehaviour {
 
     public void updateWeatherName (Weather.weatherTypes type) {
         weatherNameText.text = type.ToString ();
+      
     }
 }
