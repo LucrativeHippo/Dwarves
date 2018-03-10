@@ -5,8 +5,11 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour {
 	[SerializeField]
 	[NamedArray(typeof(ResourceTypes))]private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
+    [SerializeField]
+    [NamedArray(typeof(ResourceTypes))]private int [] maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
 
-	private bool meat;
+
+    private bool meat;
     private bool fruit;
     private bool veg;
 
@@ -22,8 +25,22 @@ public class ResourceManager : MonoBehaviour {
 		return resourceList[i];
 	}
 
+    public void increaseCapacity(int i, int increase)
+    {
+        maxResourceList[i] += increase;
+    }
+
+
 	public void addResource(ResourceTypes i, int add){
-		addResource((int)i,add);
+        if ((resourceList[(int)i] + add) < maxResourceList[(int)i])
+        {
+            addResource((int)i, add);
+        }
+        else
+        {
+            resourceList[(int)i] = maxResourceList[(int)i];
+        }
+		
 	}
 	public void addResource(int i, int add){
 		resourceList[i] += add;

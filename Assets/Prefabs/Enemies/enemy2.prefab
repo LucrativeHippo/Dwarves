@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212466425255247294}
   - component: {fileID: 114341752038399446}
   - component: {fileID: 54183136051464962}
-  - component: {fileID: 135156515645077314}
+  - component: {fileID: 65930281536179022}
   m_Layer: 0
   m_Name: enemy2
   m_TagString: Untagged
@@ -58,6 +58,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &65930281536179022
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1697624545938354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 0.1, z: 5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &114341752038399446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,19 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   townCentre: {fileID: 0}
   NPC: {fileID: 0}
-  speed: 3
---- !u!135 &135156515645077314
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1697624545938354}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
+  speed: 1
 --- !u!212 &212466425255247294
 SpriteRenderer:
   m_ObjectHideFlags: 1
