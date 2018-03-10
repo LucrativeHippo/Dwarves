@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1455636286279670}
+  m_IsPrefabParent: 1
+--- !u!1 &1455636286279670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4314051508890932}
+  - component: {fileID: 114622711548311490}
+  m_Layer: 0
+  m_Name: Terrain Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4314051508890932
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455636286279670}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114622711548311490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455636286279670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56360064d72b4f746a5a966a59306937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPlayerPos: 0
+  yPlayerPos: 0
+  xPlayerChunkPos: 0
+  yPlayerChunkPos: 0
+  DEBUG: 0
+  xChunk: 0
+  yChunk: 0
+  waterAmount: 1
+  terrainAmount: 1
+  resourceAmount: 1
+  Water: {fileID: 1457501400338522, guid: 7f31c510d0fc1eb4ea02e2eecf0acca8, type: 2}
+  Grass: {fileID: 1155792334224412, guid: ae543521f7a941547970514ee10ef834, type: 2}
+  Dirt: {fileID: 1932556385968796, guid: 8416b0d41f68c314ba5f04bf544c3e2d, type: 2}
+  Mountain: {fileID: 1952071874189052, guid: d8386096ad5b5cd4cb2bffc4001346d3, type: 2}
+  Snow: {fileID: 1552839559844636, guid: 6b65bf82210535041a8d52695778f5a3, type: 2}
+  Sand: {fileID: 1597942670030282, guid: 328ab089c65986b45adf12d054807589, type: 2}
+  Desert: {fileID: 1358302962861568, guid: 90e860546bd3dc346a2b5e6f4ebab351, type: 2}
+  Campsite: {fileID: 1449760790929312, guid: 279151a52f3fa754687374591f3eeb87, type: 2}
+  Plot: {fileID: 1543509037345762, guid: e210b0ce47a906e4d8dd09e21f5e9889, type: 2}
+  BuildSign: {fileID: 1459092173822502, guid: 619935eed59e82640a8856b76adceedc, type: 2}
+  Tree: {fileID: 1401740055908112, guid: 6db16e8df1cfcb34bb94f920a1e08ed3, type: 2}
+  Stone: {fileID: 1528277530889838, guid: 679624f1d7d07e84e832ce82938b310a, type: 2}
+  Iron: {fileID: 1509994566159360, guid: 71acbd840a08d7c4e9ba4c19aecd303c, type: 2}
+  Gold: {fileID: 1518998995545862, guid: 4dd0c1254d6d02a4abdc4c6efb227d77, type: 2}
+  Fish: {fileID: 1111354217460792, guid: e7b4be0db07f987409b35f998ce55fb9, type: 2}
+  Berries: {fileID: 1633713140390822, guid: a383142b7c6882040898fa3aff3396e8, type: 2}
+  Player: {fileID: 1294367326131454, guid: 77c6b79fc507c87468d8db05db63954e, type: 2}
+  NPC: {fileID: 1083856894513898, guid: ee9fe0916f63b0a4790c944a4e85a350, type: 2}
+  terrainSeed: 5
+  terrainSeed2: 18
+  waterSeed: 2
+  resourceSeed: 10
+  resourceSeed2: 20

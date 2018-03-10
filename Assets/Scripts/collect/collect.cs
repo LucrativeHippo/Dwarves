@@ -9,25 +9,45 @@ public class collect : MonoBehaviour
     //public Transform destinationforzero;
     private GameObject currentbuilding;
     private GameObject currentresource;
-    public Health hp;
     //public float threatRange = 2f;
 
     public int resAmount = 0;
     int maxRes = 10;
 
+    private enum npcState{
+        asleep,
+        gotoResource,
+        gotoBuilding,
+        gatherRes,
+        dropRes
+    }
+    [SerializeField]
+    private npcState state = npcState.asleep;
+    public ResourceTypes findingType = ResourceTypes.WOOD;
     
-    public bool getResource = false;
-    public bool dropResource = false;
-    public bool isfull = false;
+    public void startCollecting(ResourceTypes t){
+        // TODO: checks to make sure we have found this resource
 
-    public ResourceTypes findingType = ResourceTypes.DIAMOND;
+        // TODO: Uncomment this once we have all buildings implemented
+        // Checks also needed for building destruction
+        // if(resAmount != 0 && findingType != t){
+        //     state = npcState.dropResource;
+        //     while(resAmount!=0){
+        //         // do nothing until the drop off current resource
+        //     }
+        // }
+
+        // after dropping resource 
+        findingType = t;
+        state = npcState.gotoResource;
+    }
 
     public string getResourceName(ResourceTypes r){
         switch(r){
             case ResourceTypes.WOOD:
                 return "tree";
             case ResourceTypes.DIAMOND:
-                return "water";
+                return "diamond";
             default:
                 return "tree";
         }
@@ -36,7 +56,7 @@ public class collect : MonoBehaviour
         return getResourceName(findingType);
     }
     private string getResBuildName(){
-        return getResName()+"building";
+        return "resBuilding";//return getResName()+"building";
     }
 
     private bool isSelectedResource(Collider o){
@@ -45,6 +65,8 @@ public class collect : MonoBehaviour
     private bool isSelectedResBuilding(Collider o){
         return o.CompareTag(getResBuildName());
     }
+    private bool isFull(){return resAmount == maxRes;}
+    private bool isEmpty(){return resAmount == 0;}
 
     // Use this for initialization
     void Awake()
@@ -53,7 +75,7 @@ public class collect : MonoBehaviour
     }
     void Start()
     {
-        hp = gameObject.GetComponent<Health>();
+        
     }
 
     private void updateLocations(){
@@ -61,32 +83,49 @@ public class collect : MonoBehaviour
         currentresource = GameObject.FindWithTag(getResName());
     }
     private void moveToNearest(string name){
-            agent.SetDestination(FindClosestresourse(name).transform.position);
+            agent.SetDestination(findClosestTag(name).transform.position);
     }
     // Update is called once per frame
     void Update()
     {
-        if (getResource && !isfull)
-        {
-            updateLocations();
-            moveToNearest(getResName());
-        }
+        switch(state){
+            case npcState.gotoBuilding:
+                //updateLocations();
+                moveToNearest(getResBuildName());
+                break;
+
+            case npcState.gotoResource:
+                //updateLocations();
+                moveToNearest(getResName());
+                break;
+            
+            case npcState.dropRes:
+                if(isEmpty()){
+                    state = npcState.gotoResource;
+                }
+                break;
+            
+            case npcState.gatherRes:
+                if(isFull()){
+                    state = npcState.gotoBuilding;
+                }
+                break;
 
 
-        if (dropResource && isfull)
-        {
-            updateLocations();
-            moveToNearest(getResBuildName());
+            case npcState.asleep:
+                break;
+            default: break;
+
         }
     }
 
 
 
 
-    GameObject FindClosestresourse(string resourcename)
+    GameObject findClosestTag(string name)
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag(resourcename);
+        gos = GameObject.FindGameObjectsWithTag(name);
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
@@ -105,60 +144,38 @@ public class collect : MonoBehaviour
 
 
 
-
-
-    GameObject FindClosestbuilding(string buildingname)
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag(buildingname);
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in gos)
-        {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                closest = go;
-                distance = curDistance;
-            }
-        }
-        return closest;
-    }
 
 
 
 
     private void OnTriggerStay(Collider other)
     {
-        if(this.isSelectedResource(other) && resAmount<maxRes && getResource){
-            //hp = other.GetComponent<Health>();
-            //other.SendMessage("damage");
-            resAmount++;
-            Debug.Log(getResName()+":"+resAmount);
-            //hp.damage(1);
-
-            //Debug.Log(hp.health);
-
-            if(resAmount == maxRes){
-                Debug.Log("MADE IT");
-                isfull = true;
-                getResource = false;
-                dropResource = true;
+        if(this.isSelectedResource(other)){
+            // Change state from going to res to gathering
+            if(state == npcState.gotoResource){
+                state = npcState.gatherRes;
+            }else if(state == npcState.gatherRes){
+                if(isFull()){
+                    updateLocations();
+                    state = npcState.gotoBuilding;
+                }else{
+                // Keep gathering
+                    resAmount++;
+                }
             }
         }
 
-        if(this.isSelectedResBuilding(other) && resAmount>0 && dropResource){
-            resAmount--;
-            Debug.Log(this.getResName()+":"+resAmount);
-            MetaScript.getRes().addResource(this.findingType,1);
-
-            if(resAmount == 0){
-                print("RES: "+resAmount);
-                isfull = false;
-                getResource = true;
-                dropResource = false;
+        if(this.isSelectedResBuilding(other)){
+            if(state == npcState.gotoBuilding){
+                state = npcState.dropRes;
+            }else if(state == npcState.dropRes){
+                if(isEmpty()){
+                    updateLocations();
+                    state = npcState.gotoResource;
+                }else{
+                    resAmount--;
+                    MetaScript.getRes().addResource(this.findingType,1);
+                }
             }
         }
     }
