@@ -7,6 +7,9 @@
 		_Displace("Displace", Range(0, 1)) = 0 // Boolean. 1 = True.
 		_DisMagnitude("DisMagnitude", Range(0, 0.1)) = 0.0
 		_DisplaceTex("Displacement Texture", 2D) = "white" {}
+		_Halo("Halo", Range(0, 1)) = 0 // Boolean. 1 = True.
+		_HaloMagnitude("HaloMagnitude", Range(0, 1)) = 0
+
 	}
 	SubShader
 	{
@@ -69,6 +72,8 @@
 			float _SatMagnitude;
 			float _DisMagnitude;
 			float _Displace;
+			float _Halo;
+			float _HaloMagnitude;
 
 			// Fragment Shader
 			fixed4 frag (v2f i) : SV_Target
@@ -88,6 +93,18 @@
 				// Change saturation
 				float3 hsv = rgb2hsv(col.rgb);
 				hsv.y *= _SatMagnitude;
+
+				// Halo Effect on outside of screen.
+				if (_Halo == 1) {
+					float distX = abs(0.5 - i.uv.x);
+					float distY = abs(0.5 - i.uv.y);
+
+					float dist = sqrt((distX * distX) + (distY * distY)) * _HaloMagnitude;
+					float darkenAmount = (1 - dist);
+
+					hsv.z *= darkenAmount;
+				}
+				
 				float3 rgb = hsv2rgb(hsv);
 				col.rgb = float3(rgb.r, rgb.g, rgb.b);
 
