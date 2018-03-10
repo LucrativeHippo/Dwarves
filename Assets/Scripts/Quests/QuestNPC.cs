@@ -23,7 +23,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
         if(myQuests.checkQuest()){
             // TODO: Send message to NPC to be a vassal of PC
             Debug.Log("QUEST COMPLETED");
-            GetComponent<SpeechBubble>().setText("Quest Completed");
+            GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
             MetaScript.GetNPC().addNPC(gameObject);
             gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
             this.enabled = false;
@@ -35,7 +35,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
             );
 
             
-            gameObject.GetComponent<SpeechBubble>().setText("Need "+
+            gameObject.GetComponentInChildren<SpeechBubble>().setText("Need "+
             myQuests.GetQuestGoal().getThreshold()+" "+
             GetQuestType().Name);
             
@@ -73,12 +73,12 @@ public class QuestNPC : MonoBehaviour, IActionable {
     void OnValidate() {
         rank = 0;
         foreach (QuestGoal g in myQuests.questPath){
-            rank += g.getThreshold()*Quests.list()[g.getGoalIndex()].difficulty;
+            rank += g.getThreshold()*Quests.list[g.getGoalIndex()].difficulty;
         }
     }
 
     public Quests.QuestType GetQuestType(){
         int index = myQuests.GetQuestGoal().getGoalIndex();
-        return Quests.list()[index];
+        return Quests.list[index];
     }
 }   

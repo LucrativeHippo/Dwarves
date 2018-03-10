@@ -7,9 +7,8 @@ using UnityEngine;
 public class Quests : MonoBehaviour {
 	[System.Serializable]
 	public class QuestType{
-		public Goal goal;
-		[ReadOnly] public int difficulty; 
-		[ReadOnly] public string Name;
+		public Goal goal;public int difficulty; 
+		public string Name;
 		public Sprite img;
 		public QuestType(Goal g, int diff, string msg){
 			this.goal = g;
@@ -19,12 +18,8 @@ public class Quests : MonoBehaviour {
 		}
 	};
 
-	public static QuestType[] list(){
-		return MetaScript.getMeta().GetComponent<Quests>().questList;
-	}
-
 	// For use with generation
-	public QuestType [] questList = new QuestType[]{
+	public static QuestType [] list = new QuestType[]{
 		// Quests to give resources
 		new QuestType(giveWood, 2, "wood"),
 		new QuestType(giveFood, 5, "food"),
@@ -46,8 +41,7 @@ public class Quests : MonoBehaviour {
 		new QuestType(isIronAbove,10,"iron"),
 		new QuestType(isCoalAbove,8,"coal"),
 		new QuestType(isDiamondAbove,20,"diamond"),
-		new QuestType(isWoodAbove, 0, "wood"),
-		new QuestType(isWoodAbove, 1000, "LOLZ")
+		new QuestType(isWoodAbove, 0, "wood")
 
 	};
 	
@@ -64,9 +58,9 @@ public class Quests : MonoBehaviour {
 
 
 	public int getDifficulty(Goal g){
-		for (int i = 0; i < questList.Length; i++) {
-			if (g == questList [i].goal)
-				return questList[i].difficulty;
+		for (int i = 0; i < list.Length; i++) {
+			if (g == list [i].goal)
+				return list[i].difficulty;
 		}
 
 		return 0;
