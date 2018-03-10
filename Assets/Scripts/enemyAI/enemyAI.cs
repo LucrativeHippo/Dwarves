@@ -8,6 +8,11 @@ public class enemyAI : MonoBehaviour {
 	NavMeshAgent agentCtrl;
 	Vector3 spawnPoint;
 	public float threatRange =10f;
+	[SerializeField]
+	public float damage=5f;
+	[SerializeField]
+	public float atkSpeed = 1.0f;
+
 
 
 	// Use this for initialization
@@ -21,7 +26,6 @@ public class enemyAI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
         //Debug.Log(agentCtrl.remainingDistance);
             if (agentCtrl.remainingDistance <= threatRange)
             {
@@ -29,15 +33,17 @@ public class enemyAI : MonoBehaviour {
                 setDestination();
             }
             else
-            {
+            {	//target too far away, retreat
                 backToSpawn();
             }
-        }
+       }
 
 
+	void fixedUpdate(){
+	}
 
 	private void setDestination(){
-			if (destination != null) {
+		if (destination != null) {
 			Vector3 targetVector = destination.transform.position;
 			agentCtrl.SetDestination (targetVector);
 		}
@@ -48,4 +54,5 @@ public class enemyAI : MonoBehaviour {
 		Debug.Log (spawnPoint);
 		agentCtrl.SetDestination (spawnPoint);
 	}
+
 }

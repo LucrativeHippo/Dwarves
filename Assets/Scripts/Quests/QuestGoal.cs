@@ -31,8 +31,8 @@ public class QuestGoal {
                 goalIndex = 0;
             }
 			// select index at random
-			goalIndex = Random.Range(0,Quests.questList.Length-1);
-			int difficulty = Quests.questList[goalIndex].difficulty;
+			goalIndex = Random.Range(0,Quests.list.Length-1);
+			int difficulty = Quests.list[goalIndex].difficulty;
 
 			threshold = (rank - difficulty);
 			if(threshold>0 && difficulty>0){
@@ -49,7 +49,7 @@ public class QuestGoal {
 	}
 	private void setGoalByIndex(int index){
 		goalIndex = index;
-		if(index>= Quests.questList.Length || index<0){
+		if(index>= Quests.list.Length || index<0){
 			Debug.LogError("Tried to create invalid quest type, changing to default.");
 			goalIndex = 0;
 		}
@@ -60,10 +60,10 @@ public class QuestGoal {
 	/// </summary>
 	/// <param name="rank">Linear difficulty</param>
 	private void setRank(int rank){
-		if(goalIndex <0 || goalIndex>=Quests.questList.Length){
+		if(goalIndex <0 || goalIndex>=Quests.list.Length){
 			throw new UnityException("Attempted edit rank on uninstantiated variable");
 		}
-		threshold = rank - Quests.questList[goalIndex].difficulty;
+		threshold = rank - Quests.list[goalIndex].difficulty;
 		if(threshold<0){
 			Debug.LogWarning("Attempted to create quest rank lower than 1, setting to default 1");
 			threshold = 1;
@@ -76,7 +76,7 @@ public class QuestGoal {
 	/// </summary>
 	/// <returns><c>true</c>, if goal completed, <c>false</c> otherwise.</returns>
 	public bool isGoalComplete(){
-		return Quests.questList[goalIndex].goal (threshold);
+		return Quests.list[goalIndex].goal (threshold);
 	}
 
 	public int getGoalIndex(){
