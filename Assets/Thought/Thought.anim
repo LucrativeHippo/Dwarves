@@ -21,7 +21,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -34,7 +34,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: startDisplay
+    attribute: showDisplay
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 663c16426a329d74f9141d78caba7b22, type: 3}
@@ -59,7 +59,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 4035984172
+      attribute: 3040379687
       script: {fileID: 11500000, guid: 663c16426a329d74f9141d78caba7b22, type: 3}
       typeID: 114
       customType: 0
@@ -101,7 +101,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -114,7 +114,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: startDisplay
+    attribute: showDisplay
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 663c16426a329d74f9141d78caba7b22, type: 3}

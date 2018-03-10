@@ -936,7 +936,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840250929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1079,9 +1079,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resAmount: 0
+  curRes: 0
+  maxRes: 10
   state: 0
   findingType: 1
+  pickupTime: 2
 --- !u!195 &1020698246
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1560,6 +1562,23 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1350531462 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1521718052322762, guid: 94736651ba2dcd149b09fb80924d8bfb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1597887037}
+--- !u!114 &1350531466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1350531462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5bd6adab8aec0b468de285d85c93bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arr: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!224 &1360478858 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224357078292141538, guid: 07cdc5d57074178489568dbe6f5e8e46,
@@ -2024,17 +2043,17 @@ Prefab:
     - target: {fileID: 224160738493868170, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.5464481
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -38000
+      value: -53600
       objectReference: {fileID: 0}
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -270697.16
+      value: -318512.9
       objectReference: {fileID: 0}
     - target: {fileID: 224481899934109696, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
@@ -2133,8 +2152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1999154458}
-  startDisplay: 0
-  endDisplay: 0
+  showDisplay: 0
+  showText: 0
 --- !u!114 &1680863731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2265,9 +2284,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resAmount: 0
+  curRes: 0
+  maxRes: 10
   state: 0
   findingType: 1
+  pickupTime: 2
 --- !u!114 &1680863739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2434,17 +2455,17 @@ Prefab:
     - target: {fileID: 224079030702106376, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.53648067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -85725
+      value: -120825
       objectReference: {fileID: 0}
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -352570.44
+      value: -414788.72
       objectReference: {fileID: 0}
     - target: {fileID: 224859488526481262, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
@@ -2687,8 +2708,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300004, guid: 16b2d65f630bccd4da31905937ea6bda, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2730,8 +2751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 141990062}
-  startDisplay: 0
-  endDisplay: 0
+  showDisplay: 0
+  showText: 0
 --- !u!1 &1999154458
 GameObject:
   m_ObjectHideFlags: 0

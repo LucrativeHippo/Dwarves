@@ -62,12 +62,12 @@ public class Skills : Character {
     /// Rolls 5 values from [0f,2f] adds up to value from [0f,10f]
     /// </summary>
     /// <returns></returns>
-    private float rollSkill(){
+    public static float rollSkill(){
         float rand = 0;
         for(int i=0;i<5;i++){
             rand += UnityEngine.Random.Range(0f,2f);
         }
-        return rand;
+        return Mathf.Round(rand);
     }
 
     private void setRank(){
