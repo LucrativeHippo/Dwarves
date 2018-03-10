@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ResourceTypes {
-		FOOD,WOOD,STONE,SAND,COAL,IRON,GOLD,DIAMOND,
+		FOOD,WOOD,STONE,SAND,COAL,IRON,GOLD,DIAMOND,POPULATION,
 		NumberOfTypes
 }

@@ -86,7 +86,8 @@ public class QuestBase{
 	/// </summary>
 	/// <returns><c>true</c>, if all quests are completed <c>false</c> otherwise.</returns>
 	public bool checkQuest(){
-		checkGoal();
+		if(questPath.Count != 0)
+			checkGoal();
 		return completed();
 	}
 

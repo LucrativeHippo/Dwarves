@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1648131211305920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.923, y: 0.421, z: 0}
-  m_LocalScale: {x: 0.07438613, y: 0.07438613, z: 0.07438613}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,7 +79,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button_Template: {fileID: 0}
-  testHardCodedButton: {fileID: 0}
 --- !u!212 &212757728795891084
 SpriteRenderer:
   m_ObjectHideFlags: 1
