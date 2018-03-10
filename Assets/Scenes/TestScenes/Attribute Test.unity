@@ -729,6 +729,65 @@ Transform:
   m_Father: {fileID: 453283864}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &809693873 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1521718052322762, guid: 94736651ba2dcd149b09fb80924d8bfb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1597887037}
+--- !u!114 &809693874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809693873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778a97b7f3bd32848950cf876cb76bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questList:
+  - difficulty: 2
+    Name: wood
+    img: {fileID: 0}
+  - difficulty: 5
+    Name: food
+    img: {fileID: 0}
+  - difficulty: 15
+    Name: coal
+    img: {fileID: 0}
+  - difficulty: 4
+    Name: sand
+    img: {fileID: 0}
+  - difficulty: 10
+    Name: stone
+    img: {fileID: 0}
+  - difficulty: 20
+    Name: iron
+    img: {fileID: 0}
+  - difficulty: 40
+    Name: diamond
+    img: {fileID: 0}
+  - difficulty: 0
+    Name: food
+    img: {fileID: 0}
+  - difficulty: 2
+    Name: sand
+    img: {fileID: 0}
+  - difficulty: 5
+    Name: stone
+    img: {fileID: 0}
+  - difficulty: 10
+    Name: iron
+    img: {fileID: 0}
+  - difficulty: 8
+    Name: coal
+    img: {fileID: 0}
+  - difficulty: 20
+    Name: diamond
+    img: {fileID: 0}
+  - difficulty: 0
+    Name: wood
+    img: {fileID: 0}
 --- !u!1 &835928469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,7 +1763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c05059eb4f8f4b14840c670884d7a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
+  destination: {fileID: 1680863741}
   threatRange: 10
   damage: 5
   atkSpeed: 1
@@ -1981,17 +2040,17 @@ Prefab:
     - target: {fileID: 224160738493868170, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.5464481
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -25900
+      value: -28600
       objectReference: {fileID: 0}
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -139126.69
+      value: -150421.94
       objectReference: {fileID: 0}
     - target: {fileID: 224481899934109696, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
@@ -2389,17 +2448,17 @@ Prefab:
     - target: {fileID: 224079030702106376, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.53648067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -58500
+      value: -64575
       objectReference: {fileID: 0}
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -181370.31
+      value: -196067.81
       objectReference: {fileID: 0}
     - target: {fileID: 224859488526481262, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}

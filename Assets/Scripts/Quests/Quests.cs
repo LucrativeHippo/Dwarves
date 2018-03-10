@@ -7,22 +7,24 @@ using UnityEngine;
 public class Quests : MonoBehaviour {
 	[System.Serializable]
 	public class QuestType{
-		public Goal goal;public int difficulty; public string message;
+		public Goal goal;
+		[ReadOnly] public int difficulty; 
+		[ReadOnly] public string Name;
+		public Sprite img;
 		public QuestType(Goal g, int diff, string msg){
 			this.goal = g;
 			this.difficulty = diff;
-			this.message = msg;
-		}
-		public QuestType(Goal g, int diff, string msg, int div){
-			
-			this.goal = g;
-			this.difficulty = diff;
-			this.message = msg;
+			this.Name = msg;
+			this.img = null;
 		}
 	};
 
+	public static QuestType[] list(){
+		return MetaScript.getMeta().GetComponent<Quests>().questList;
+	}
+
 	// For use with generation
-	public static QuestType [] questList = new QuestType[]{
+	public QuestType [] questList = new QuestType[]{
 		// Quests to give resources
 		new QuestType(giveWood, 2, "wood"),
 		new QuestType(giveFood, 5, "food"),
@@ -44,7 +46,8 @@ public class Quests : MonoBehaviour {
 		new QuestType(isIronAbove,10,"iron"),
 		new QuestType(isCoalAbove,8,"coal"),
 		new QuestType(isDiamondAbove,20,"diamond"),
-		new QuestType(isWoodAbove, 0, "wood")
+		new QuestType(isWoodAbove, 0, "wood"),
+		new QuestType(isWoodAbove, 1000, "LOLZ")
 
 	};
 	
@@ -60,7 +63,7 @@ public class Quests : MonoBehaviour {
 	}
 
 
-	public static int getDifficulty(Goal g){
+	public int getDifficulty(Goal g){
 		for (int i = 0; i < questList.Length; i++) {
 			if (g == questList [i].goal)
 				return questList[i].difficulty;

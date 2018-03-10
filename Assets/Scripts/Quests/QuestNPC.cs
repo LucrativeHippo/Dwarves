@@ -31,13 +31,13 @@ public class QuestNPC : MonoBehaviour, IActionable {
 
             Debug.Log("Attempted quest but failed. Need "+
             myQuests.GetQuestGoal().getThreshold()+" of "+
-            GetQuestType().message
+            GetQuestType().Name
             );
 
             
             gameObject.GetComponent<SpeechBubble>().setText("Need "+
             myQuests.GetQuestGoal().getThreshold()+" "+
-            GetQuestType().message);
+            GetQuestType().Name);
             
         }
     }
@@ -73,12 +73,12 @@ public class QuestNPC : MonoBehaviour, IActionable {
     void OnValidate() {
         rank = 0;
         foreach (QuestGoal g in myQuests.questPath){
-            rank = g.getThreshold();
+            rank += g.getThreshold()*Quests.list()[g.getGoalIndex()].difficulty;
         }
     }
 
     public Quests.QuestType GetQuestType(){
         int index = myQuests.GetQuestGoal().getGoalIndex();
-        return Quests.questList[index];
+        return Quests.list()[index];
     }
 }   
