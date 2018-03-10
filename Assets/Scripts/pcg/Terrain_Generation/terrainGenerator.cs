@@ -7,8 +7,8 @@ public class terrainGenerator : MonoBehaviour
 {
 
     //The map that shows the terrain value at each existing coordinate
-    private Dictionary<string, terrain> terrainMap;
-    private Dictionary<string, resource> resourceMap;
+    public Dictionary<string, terrain> terrainMap;
+    public Dictionary<string, resource> resourceMap;
     public Dictionary<string, Chunk> loadedChunks;
 
     //Starting positions of the player
@@ -123,7 +123,7 @@ public class terrainGenerator : MonoBehaviour
     private GameObject player;
 
     // Enumerate terrain
-    private enum terrain
+    public enum terrain
     {
         WATER,
         DIRT,
@@ -136,7 +136,7 @@ public class terrainGenerator : MonoBehaviour
         PLOT
     }
 
-    private enum resource
+    public enum resource
     {
         TREE,
         IRON,
