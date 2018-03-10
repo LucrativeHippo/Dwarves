@@ -5,18 +5,17 @@ using System;
 using System.Security.AccessControl;
 
 public class GenerateRoleSelector : MonoBehaviour {
-    public GameObject Button_Template;
-    private GameObject RoleSelectorUI;
+
     private GameObject currentNPC;
 
-    private GameObject buttonParent;
+    [SerializeField] private GameObject Button_Template;
+
+    [SerializeField] private GameObject buttonParent;
 
     /// <summary>
     /// Start this instance and gets the RoleSelectorUI.
     /// </summary>
     void Start () {
-        RoleSelectorUI = GameObject.Find ("NPCManagerSelectRole");
-        buttonParent = GameObject.Find ("NPCManagerSelectRoleContent");
         generateRolesMenu ();
     }
 
@@ -30,20 +29,11 @@ public class GenerateRoleSelector : MonoBehaviour {
         foreach (var theType in types) {
             tempGameObject = Instantiate (Button_Template) as GameObject;
             tempGameObject.SetActive (true);
-            RoleButtonScript aButtonScript = tempGameObject.GetComponent<RoleButtonScript> ();
-            aButtonScript.setBackScript (this.GetComponent<GenerateRoleSelector> ());
-            aButtonScript.setName (theType.ToString ());
-            aButtonScript.setID (counter);
-            aButtonScript.setListener ();
+            tempGameObject.GetComponent<RoleButtonScript> ().setButton (currentNPC, (ResourceTypes)counter);
             tempGameObject.transform.SetParent (buttonParent.transform, false);
             counter++;
         }
 
-    }
-
-    public void changeRole (int collectID) {
-        currentNPC.GetComponent<collect> ().startCollecting((ResourceTypes)collectID);
-        RoleSelectorUI.GetComponent<Canvas> ().enabled = false;
     }
 
     public void setCurrentNPC (GameObject aNPC) {
