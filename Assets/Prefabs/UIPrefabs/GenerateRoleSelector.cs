@@ -10,12 +10,14 @@ public class GenerateRoleSelector : MonoBehaviour {
 
     [SerializeField] private GameObject Button_Template;
 
-    [SerializeField] private GameObject buttonParent;
+    private GameObject buttonParent;
 
     /// <summary>
     /// Start this instance and gets the RoleSelectorUI.
     /// </summary>
     void Start () {
+        buttonParent = this.transform.GetChild (0).GetChild (0).gameObject;
+
         generateRolesMenu ();
     }
 

@@ -28,7 +28,7 @@ public class RoleButtonScript : MonoBehaviour {
 
     private void button_Click () {
         currentNPC.GetComponent<collect> ().findingType = type;
-        currentNPC.GetComponent<collect> ().getResource = true;
+//        currentNPC.GetComponent<collect> ().getResource = true;
     }
 
 }

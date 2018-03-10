@@ -8,22 +8,27 @@ public class NPCManager : MonoBehaviour {
 
     private List<GameObject> NPCs;
 
-    [SerializeField] private GameObject buttonParent;
     [SerializeField] private GameObject Button_Template;
 
-    [SerializeField] private GameObject mainUIGameObject;
-    [SerializeField] private GameObject NPCManagerGameObject;
-    [SerializeField] private GameObject mainDisplayGameObject;
-    [SerializeField] private GameObject mainDisplayContent;
+    private GameObject AllUIObjects;
+    private GameObject NPCManagerGameObject;
+    private GameObject mainUIGameObject;
+    private GameObject mainDisplayGameObject;
+    private GameObject mainDisplayContent;
 
     [SerializeField] private KeyCode exitKey;
 
     private bool NPCManagerMenuEnabled;
 
-    /// <summary>
-    /// Start this instance and check if there are any OwnedNPCs in the World.
-    /// </summary>
     void Start () {
+
+        AllUIObjects = GameObject.Find ("AllUIObjects");
+        mainUIGameObject = AllUIObjects.transform.GetChild (0).gameObject;
+        NPCManagerGameObject = AllUIObjects.transform.GetChild (1).gameObject;
+
+        mainDisplayGameObject = NPCManagerGameObject.transform.GetChild (0).gameObject;
+        mainDisplayContent = mainDisplayGameObject.transform.GetChild (0).GetChild (0).gameObject;
+
         NPCs = new List<GameObject> ();
         GameObject[] temp = GameObject.FindGameObjectsWithTag ("OwnedNPC");
 
@@ -73,7 +78,7 @@ public class NPCManager : MonoBehaviour {
             tempGameObject.SetActive (true);
             mainDisplay aButtonScript = tempGameObject.GetComponent<mainDisplay> ();
             aButtonScript.setNPC (theNPC);
-            tempGameObject.transform.SetParent (buttonParent.transform, false);
+            tempGameObject.transform.SetParent (mainDisplayContent.transform, false);
         }
     }
 

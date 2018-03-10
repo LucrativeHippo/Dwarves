@@ -15,12 +15,20 @@ public class moreDetailsUIController : MonoBehaviour {
     [SerializeField] private Text happynessText;
 
     [SerializeField] private Button selectRoleButton;
-    [SerializeField] private GameObject roleSelectMenu;
 
     [SerializeField] private Text stat1;
     [SerializeField] private Text stat2;
     [SerializeField] private Text stat3;
     [SerializeField] private Text stat4;
+
+    void Start () {
+        moreDetailsGameObject = this.gameObject;
+        selectRoleGameObject = moreDetailsGameObject.transform.parent.GetChild (2).gameObject;
+        nameText = moreDetailsGameObject.transform.GetChild (0).GetChild (1).GetChild (0).gameObject.GetComponent<Text> ();
+        currentJobText = moreDetailsGameObject.transform.GetChild (0).GetChild (2).GetChild (1).gameObject.GetComponent<Text> ();
+        happynessText = moreDetailsGameObject.transform.GetChild (0).GetChild (3).GetChild (1).gameObject.GetComponent<Text> ();
+        selectRoleButton = moreDetailsGameObject.transform.GetChild (0).GetChild (4).gameObject.GetComponent<Button> ();
+    }
 
     public void setNPC (GameObject newNPC) {
         currentNPC = newNPC;
