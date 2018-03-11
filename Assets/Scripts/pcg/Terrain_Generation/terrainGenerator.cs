@@ -500,7 +500,7 @@ public class terrainGenerator : MonoBehaviour
     bool addTerrain(int xCoord, int yCoord, int xChunkCoord, int yChunkCoord, Chunk chunk, Dictionary<string, terrain> terrainMap)
     {
         
-        GameObject tempTile = null;
+        //GameObject tempTile = null;
         Position worldPos = new Position(xChunkCoord * Chunk.SIZE + xCoord, yChunkCoord * Chunk.SIZE + yCoord);
         string key = worldPos.xCoord + " " + worldPos.yCoord;
         float xNoiseValue = posNoise(xCoord, xChunkCoord);
@@ -512,7 +512,7 @@ public class terrainGenerator : MonoBehaviour
         if (terrainMap.ContainsKey(key))
         {
             // Instantiate saved game object from terrain
-            tempTile = getObject(terrainMap[key]);
+            //tempTile = getObject(terrainMap[key]);
         } else if (xChunkCoord == xPlayerChunkPos && yChunkCoord == yPlayerChunkPos && xCoord == xPlayerPos && yCoord == yPlayerPos)
         {
             for (int i = xPlayerPos - 1; i <= xPlayerPos + 1; i++)
@@ -566,7 +566,7 @@ public class terrainGenerator : MonoBehaviour
             if (!terrainMap.ContainsKey(key))
             {
                 terrainMap.Add(key, terrain.SAND);
-                tempTile = Sand;
+                // tempTile = Sand;
             }
         }
 
@@ -577,7 +577,7 @@ public class terrainGenerator : MonoBehaviour
                 if (!terrainMap.ContainsKey(key))
                 {
                     terrainMap.Add(key, terrain.DESERT);
-                    tempTile = Desert;
+                    // tempTile = Desert;
                 }
             }
             else if (getThreshold(terrain.DESERT) < terrainVal && terrainVal <= getThreshold(terrain.MOUNTAIN)&& getThreshold(terrain.DESERT) < terrainVal2 && terrainVal2 <= getThreshold(terrain.MOUNTAIN))
@@ -585,7 +585,7 @@ public class terrainGenerator : MonoBehaviour
                 if (!terrainMap.ContainsKey(key))
                 {
                     terrainMap.Add(key, terrain.MOUNTAIN);
-                    tempTile = Mountain;
+                    // tempTile = Mountain;
                 }
             }
             else 
@@ -593,7 +593,7 @@ public class terrainGenerator : MonoBehaviour
                 if (!terrainMap.ContainsKey(key))
                 {
                     terrainMap.Add(key, terrain.GRASS);
-                    tempTile = Grass;
+                    // tempTile = Grass;
                 }
             }           
         }

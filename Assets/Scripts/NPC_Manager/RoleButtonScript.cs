@@ -8,7 +8,7 @@ public class RoleButtonScript : MonoBehaviour {
 
     private GenerateRoleSelector backScript;
     private int collectID;
-    private String name;
+    private new String name;
 
     public Text buttonText;
 

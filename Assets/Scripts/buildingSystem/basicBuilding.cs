@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 
 public class basicBuilding : MonoBehaviour {
 
     private GameObject[] buildingPrefabs;
     private Object[] buildingPrefabsObjects;
 
-    private GameObject resourceManager;
     private GameObject buildingMenu;
 
     public GameObject Button_Template;
 
-    [SerializeField] private GameObject locationObject;
+    //[SerializeField] private GameObject locationObject;
 
     [SerializeField] private GameObject buildingMenuUIContent;
 
 
     void Start () {
         // Get Resource Manager.
-        resourceManager = GameObject.Find ("resourceManager");
 
         // Get building menu object.
         buildingMenu = GameObject.Find ("buildingMenuUI");
@@ -63,7 +59,7 @@ public class basicBuilding : MonoBehaviour {
         }
         buildBuildingMenu ();
         buildingMenu.GetComponent<Canvas> ().enabled = true;
-        locationObject = this.gameObject;
+        //locationObject = this.gameObject;
     }
 
 
