@@ -1,0 +1,609 @@
+fileFormatVersion: 2
+guid: 36ce8c4f5dbd94ae39bf6f0e153b7048
+timeCreated: 1520544068
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: fixedSpriteSheet_0
+    21300002: fixedSpriteSheet_1
+    21300004: fixedSpriteSheet_2
+    21300006: fixedSpriteSheet_3
+    21300008: fixedSpriteSheet_4
+    21300010: fixedSpriteSheet_5
+    21300012: fixedSpriteSheet_6
+    21300014: fixedSpriteSheet_7
+    21300016: fixedSpriteSheet_8
+    21300018: fixedSpriteSheet_9
+    21300020: fixedSpriteSheet_10
+    21300022: fixedSpriteSheet_11
+    21300024: fixedSpriteSheet_12
+    21300026: fixedSpriteSheet_13
+    21300028: fixedSpriteSheet_14
+    21300030: fixedSpriteSheet_15
+    21300032: fixedSpriteSheet_16
+    21300034: fixedSpriteSheet_17
+    21300036: fixedSpriteSheet_18
+    21300038: fixedSpriteSheet_19
+    21300040: fixedSpriteSheet_20
+    21300042: fixedSpriteSheet_21
+    21300044: fixedSpriteSheet_22
+    21300046: fixedSpriteSheet_23
+    21300048: fixedSpriteSheet_24
+    21300050: fixedSpriteSheet_25
+    21300052: fixedSpriteSheet_26
+    21300054: fixedSpriteSheet_27
+    21300056: fixedSpriteSheet_28
+    21300058: fixedSpriteSheet_29
+    21300060: fixedSpriteSheet_30
+    21300062: fixedSpriteSheet_31
+    21300064: fixedSpriteSheet_32
+    21300066: fixedSpriteSheet_33
+    21300068: fixedSpriteSheet_34
+    21300070: fixedSpriteSheet_35
+    21300072: fixedSpriteSheet_36
+    21300074: fixedSpriteSheet_37
+    21300076: fixedSpriteSheet_38
+    21300078: fixedSpriteSheet_39
+    21300080: fixedSpriteSheet_40
+    21300082: fixedSpriteSheet_41
+    21300084: fixedSpriteSheet_42
+    21300086: fixedSpriteSheet_43
+    21300088: fixedSpriteSheet_44
+    21300090: fixedSpriteSheet_45
+    21300092: fixedSpriteSheet_46
+    21300094: fixedSpriteSheet_47
+    21300096: fixedSpriteSheet_48
+    21300098: fixedSpriteSheet_49
+    21300100: fixedSpriteSheet_50
+    21300102: fixedSpriteSheet_51
+    21300104: fixedSpriteSheet_52
+    21300106: fixedSpriteSheet_53
+    21300108: fixedSpriteSheet_54
+    21300110: fixedSpriteSheet_55
+    21300112: fixedSpriteSheet_56
+    21300114: fixedSpriteSheet_57
+    21300116: fixedSpriteSheet_58
+    21300118: fixedSpriteSheet_59
+    21300120: fixedSpriteSheet_60
+    21300122: fixedSpriteSheet_61
+    21300124: fixedSpriteSheet_62
+    21300126: fixedSpriteSheet_63
+    21300128: fixedSpriteSheet_64
+    21300130: fixedSpriteSheet_65
+    21300132: fixedSpriteSheet_66
+    21300134: fixedSpriteSheet_67
+    21300136: fixedSpriteSheet_68
+    21300138: fixedSpriteSheet_69
+    21300140: fixedSpriteSheet_70
+    21300142: fixedSpriteSheet_71
+    21300144: fixedSpriteSheet_72
+    21300146: fixedSpriteSheet_73
+    21300148: fixedSpriteSheet_74
+    21300150: fixedSpriteSheet_75
+    21300152: fixedSpriteSheet_76
+    21300154: fixedSpriteSheet_77
+    21300156: fixedSpriteSheet_78
+    21300158: fixedSpriteSheet_79
+    21300160: fixedSpriteSheet_80
+    21300162: fixedSpriteSheet_81
+    21300164: fixedSpriteSheet_82
+    21300166: fixedSpriteSheet_83
+    21300168: fixedSpriteSheet_84
+    21300170: fixedSpriteSheet_85
+    21300172: fixedSpriteSheet_86
+    21300174: fixedSpriteSheet_87
+    21300176: fixedSpriteSheet_88
+    21300178: fixedSpriteSheet_89
+    21300180: fixedSpriteSheet_90
+    21300182: fixedSpriteSheet_91
+    21300184: fixedSpriteSheet_92
+    21300186: fixedSpriteSheet_93
+    21300188: fixedSpriteSheet_94
+    21300190: fixedSpriteSheet_95
+    21300192: fixedSpriteSheet_96
+    21300194: fixedSpriteSheet_97
+    21300196: fixedSpriteSheet_98
+    21300198: fixedSpriteSheet_99
+    21300200: fixedSpriteSheet_100
+    21300202: fixedSpriteSheet_101
+    21300204: fixedSpriteSheet_102
+    21300206: fixedSpriteSheet_103
+    21300208: fixedSpriteSheet_104
+    21300210: fixedSpriteSheet_105
+    21300212: fixedSpriteSheet_106
+    21300214: fixedSpriteSheet_107
+    21300216: fixedSpriteSheet_108
+    21300218: fixedSpriteSheet_109
+    21300220: fixedSpriteSheet_110
+    21300222: fixedSpriteSheet_111
+    21300224: fixedSpriteSheet_112
+    21300226: fixedSpriteSheet_113
+    21300228: fixedSpriteSheet_114
+    21300230: fixedSpriteSheet_115
+    21300232: fixedSpriteSheet_116
+    21300234: fixedSpriteSheet_117
+    21300236: fixedSpriteSheet_118
+    21300238: fixedSpriteSheet_119
+    21300240: fixedSpriteSheet_120
+    21300242: fixedSpriteSheet_121
+    21300244: fixedSpriteSheet_122
+    21300246: fixedSpriteSheet_123
+    21300248: fixedSpriteSheet_124
+    21300250: fixedSpriteSheet_125
+    21300252: fixedSpriteSheet_126
+    21300254: fixedSpriteSheet_127
+    21300256: fixedSpriteSheet_128
+    21300258: fixedSpriteSheet_129
+    21300260: fixedSpriteSheet_130
+    21300262: fixedSpriteSheet_131
+    21300264: fixedSpriteSheet_132
+    21300266: fixedSpriteSheet_133
+    21300268: fixedSpriteSheet_134
+    21300270: fixedSpriteSheet_135
+    21300272: fixedSpriteSheet_136
+    21300274: fixedSpriteSheet_137
+    21300276: fixedSpriteSheet_138
+    21300278: fixedSpriteSheet_139
+    21300280: fixedSpriteSheet_140
+    21300282: fixedSpriteSheet_141
+    21300284: fixedSpriteSheet_142
+    21300286: fixedSpriteSheet_143
+    21300288: fixedSpriteSheet_144
+    21300290: fixedSpriteSheet_145
+    21300292: fixedSpriteSheet_146
+    21300294: fixedSpriteSheet_147
+    21300296: fixedSpriteSheet_148
+    21300298: fixedSpriteSheet_149
+    21300300: fixedSpriteSheet_150
+    21300302: fixedSpriteSheet_151
+    21300304: fixedSpriteSheet_152
+    21300306: fixedSpriteSheet_153
+    21300308: fixedSpriteSheet_154
+    21300310: fixedSpriteSheet_155
+    21300312: fixedSpriteSheet_156
+    21300314: fixedSpriteSheet_157
+    21300316: fixedSpriteSheet_158
+    21300318: fixedSpriteSheet_159
+    21300320: fixedSpriteSheet_160
+    21300322: fixedSpriteSheet_161
+    21300324: fixedSpriteSheet_162
+    21300326: fixedSpriteSheet_163
+    21300328: fixedSpriteSheet_164
+    21300330: fixedSpriteSheet_165
+    21300332: fixedSpriteSheet_166
+    21300334: fixedSpriteSheet_167
+    21300336: fixedSpriteSheet_168
+    21300338: fixedSpriteSheet_169
+    21300340: fixedSpriteSheet_170
+    21300342: fixedSpriteSheet_171
+    21300344: fixedSpriteSheet_172
+    21300346: fixedSpriteSheet_173
+    21300348: fixedSpriteSheet_174
+    21300350: fixedSpriteSheet_175
+    21300352: fixedSpriteSheet_176
+    21300354: fixedSpriteSheet_177
+    21300356: fixedSpriteSheet_178
+    21300358: fixedSpriteSheet_179
+    21300360: fixedSpriteSheet_180
+    21300362: fixedSpriteSheet_181
+    21300364: fixedSpriteSheet_182
+    21300366: fixedSpriteSheet_183
+    21300368: fixedSpriteSheet_184
+    21300370: fixedSpriteSheet_185
+    21300372: fixedSpriteSheet_186
+    21300374: fixedSpriteSheet_187
+    21300376: fixedSpriteSheet_188
+    21300378: fixedSpriteSheet_189
+    21300380: fixedSpriteSheet_190
+    21300382: fixedSpriteSheet_191
+    21300384: fixedSpriteSheet_192
+    21300386: fixedSpriteSheet_193
+    21300388: fixedSpriteSheet_194
+    21300390: fixedSpriteSheet_195
+    21300392: fixedSpriteSheet_196
+    21300394: fixedSpriteSheet_197
+    21300396: fixedSpriteSheet_198
+    21300398: fixedSpriteSheet_199
+    21300400: fixedSpriteSheet_200
+    21300402: fixedSpriteSheet_201
+    21300404: fixedSpriteSheet_202
+    21300406: fixedSpriteSheet_203
+    21300408: fixedSpriteSheet_204
+    21300410: fixedSpriteSheet_205
+    21300412: fixedSpriteSheet_206
+    21300414: fixedSpriteSheet_207
+    21300416: fixedSpriteSheet_208
+    21300418: fixedSpriteSheet_209
+    21300420: fixedSpriteSheet_210
+    21300422: fixedSpriteSheet_211
+    21300424: fixedSpriteSheet_212
+    21300426: fixedSpriteSheet_213
+    21300428: fixedSpriteSheet_214
+    21300430: fixedSpriteSheet_215
+    21300432: fixedSpriteSheet_216
+    21300434: fixedSpriteSheet_217
+    21300436: fixedSpriteSheet_218
+    21300438: fixedSpriteSheet_219
+    21300440: fixedSpriteSheet_220
+    21300442: fixedSpriteSheet_221
+    21300444: fixedSpriteSheet_222
+    21300446: fixedSpriteSheet_223
+    21300448: fixedSpriteSheet_224
+    21300450: fixedSpriteSheet_225
+    21300452: fixedSpriteSheet_226
+    21300454: fixedSpriteSheet_227
+    21300456: fixedSpriteSheet_228
+    21300458: fixedSpriteSheet_229
+    21300460: fixedSpriteSheet_230
+    21300462: fixedSpriteSheet_231
+    21300464: fixedSpriteSheet_232
+    21300466: fixedSpriteSheet_233
+    21300468: fixedSpriteSheet_234
+    21300470: fixedSpriteSheet_235
+    21300472: fixedSpriteSheet_236
+    21300474: fixedSpriteSheet_237
+    21300476: fixedSpriteSheet_238
+    21300478: fixedSpriteSheet_239
+    21300480: fixedSpriteSheet_240
+    21300482: fixedSpriteSheet_241
+    21300484: fixedSpriteSheet_242
+    21300486: fixedSpriteSheet_243
+    21300488: fixedSpriteSheet_244
+    21300490: fixedSpriteSheet_245
+    21300492: fixedSpriteSheet_246
+    21300494: fixedSpriteSheet_247
+    21300496: fixedSpriteSheet_248
+    21300498: fixedSpriteSheet_249
+    21300500: fixedSpriteSheet_250
+    21300502: fixedSpriteSheet_251
+    21300504: fixedSpriteSheet_252
+    21300506: fixedSpriteSheet_253
+    21300508: fixedSpriteSheet_254
+    21300510: fixedSpriteSheet_255
+    21300512: fixedSpriteSheet_256
+    21300514: fixedSpriteSheet_257
+    21300516: fixedSpriteSheet_258
+    21300518: fixedSpriteSheet_259
+    21300520: fixedSpriteSheet_260
+    21300522: fixedSpriteSheet_261
+    21300524: fixedSpriteSheet_262
+    21300526: fixedSpriteSheet_263
+    21300528: fixedSpriteSheet_264
+    21300530: fixedSpriteSheet_265
+    21300532: fixedSpriteSheet_266
+    21300534: fixedSpriteSheet_267
+    21300536: fixedSpriteSheet_268
+    21300538: fixedSpriteSheet_269
+    21300540: fixedSpriteSheet_270
+    21300542: fixedSpriteSheet_271
+    21300544: fixedSpriteSheet_272
+    21300546: fixedSpriteSheet_273
+    21300548: fixedSpriteSheet_274
+    21300550: fixedSpriteSheet_275
+    21300552: fixedSpriteSheet_276
+    21300554: fixedSpriteSheet_277
+    21300556: fixedSpriteSheet_278
+    21300558: fixedSpriteSheet_279
+    21300560: fixedSpriteSheet_280
+    21300562: fixedSpriteSheet_281
+    21300564: fixedSpriteSheet_282
+    21300566: fixedSpriteSheet_283
+    21300568: fixedSpriteSheet_284
+    21300570: fixedSpriteSheet_285
+    21300572: fixedSpriteSheet_286
+    21300574: fixedSpriteSheet_287
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fixedSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2312.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2312.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2312.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2312.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1734.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1734.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1734.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1156.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1156.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1156.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 578.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 578.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 578.8
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.7999878
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0.7999878
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fixedSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0.7999878
+        width: 1024
+        height: 578.2
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
