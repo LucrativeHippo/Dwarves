@@ -15,6 +15,9 @@ public class enemyMovement : MonoBehaviour
 
     private Vector3 travelDirection;
 
+    [SerializeField]
+    private float meshSize = 80.0f;
+
 
     // Use this for initialization
     void Start()
@@ -39,9 +42,28 @@ public class enemyMovement : MonoBehaviour
                 travelDirection = (townCentre.transform.position - transform.position).normalized;
             }
         }
-        else if(!npcTargeted){
-            transform.position += travelDirection * speed * Time.deltaTime;
+        if (onNavMesh())
+        {
+            gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+            gameObject.GetComponent<enemyAI>().enabled = true;
+            enabled = false;
+
         }
+    }
+
+
+    public bool onNavMesh()
+    {
+        float enemyx = transform.position.x;
+        float enemyz = transform.position.z;
+        float tcx = townCentre.transform.position.x;
+        float tcz = townCentre.transform.position.z;
+        if(enemyx > tcx - meshSize && enemyx < tcx + meshSize && enemyz > tcz - meshSize && enemyz < tcz + meshSize)
+        {
+            return true;
+        }
+        return false;
+
     }
 
 
