@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour {
+	[SerializeField]
+	[NamedArray(typeof(ResourceTypes))]private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
+    [SerializeField]
+    [NamedArray(typeof(ResourceTypes))]private int [] maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
 
 
-	private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
-
-
-	//private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
-
-
-	private bool meat;
+    private bool meat;
     private bool fruit;
     private bool veg;
 
@@ -21,15 +19,38 @@ public class ResourceManager : MonoBehaviour {
 	/// <param name="i"></param>
 	/// <returns>Current value of i</returns>
 	public int getResource(ResourceTypes i){
-		return resourceList[(int)i];
+		return getResource((int)i);
+	}
+	public int getResource(int i){
+		return resourceList[i];
 	}
 
+    public void increaseCapacity(int i, int increase)
+    {
+        maxResourceList[i] += increase;
+    }
+
+
 	public void addResource(ResourceTypes i, int add){
-		resourceList[(int)i] += add;
+        if ((resourceList[(int)i] + add) < maxResourceList[(int)i])
+        {
+            addResource((int)i, add);
+        }
+        else
+        {
+            resourceList[(int)i] = maxResourceList[(int)i];
+        }
+		
+	}
+	public void addResource(int i, int add){
+		resourceList[i] += add;
 	}
 
 	void setResource(ResourceTypes i, int set){
-		resourceList[(int)i] = set;
+		setResource((int)i,set);
+	}
+	void setResource(int i, int set){
+		resourceList[i] = set;
 	}
 
 	/// <summary>
@@ -39,7 +60,10 @@ public class ResourceManager : MonoBehaviour {
 	/// <param name="amount"></param>
 	/// <returns><c>true</c> If has enough of resource to pay amount, <c>false</c> otherwise.</returns>
 	public bool hasResource(ResourceTypes i, int amount){
-		return resourceList[(int)i] >= amount;
+		return hasResource((int)i,amount);
+	}
+	public bool hasResource(int i, int amount){
+		return resourceList[i] >= amount;
 	}
 
 	/// <summary>

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - ground
   - water
-  - waterbuilding
-  - collecter
   - tree
-  - treebuilding
   - OwnedNPC
+  - Fire
+  - resBuilding
+  - Diamond
+  - TownCenter
   layers:
   - Default
   - TransparentFX

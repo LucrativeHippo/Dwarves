@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 65053581801427036}
   m_Layer: 0
   m_Name: First_NPC
-  m_TagString: Untagged
+  m_TagString: OwnedNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rank: 10
+  myQuests:
+    questPath: []
 --- !u!114 &114854579742185528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,11 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: {fileID: 0}
   resAmount: 0
-  getResource: 0
-  dropResource: 0
-  isfull: 0
+  state: 0
   findingType: 1
 --- !u!195 &195073011527392544
 NavMeshAgent:

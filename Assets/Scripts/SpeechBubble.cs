@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeechBubble : MonoBehaviour {
+	public GameObject canvas;
 	UnityEngine.UI.Text speech;
 	UnityEngine.UI.Image bubble;
 	// Use this for initialization
 	void Start () {
-		speech = gameObject.GetComponentInChildren<UnityEngine.UI.Text>();
-		bubble = gameObject.GetComponentInChildren<UnityEngine.UI.Image>();
+		speech = canvas.GetComponentInChildren<UnityEngine.UI.Text>();
+		bubble = canvas.GetComponentInChildren<UnityEngine.UI.Image>();
 
 		clearText();
 	}

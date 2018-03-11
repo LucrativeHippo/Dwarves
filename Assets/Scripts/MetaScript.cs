@@ -33,6 +33,9 @@ public class MetaScript : MonoBehaviour {
 	public static ResourceManager getRes(){
 		return getMetaObject().GetComponent<ResourceManager>();
 	}
+	public static NPCManager GetNPC(){
+		return GameObject.Find("npcManagerButton").GetComponent<NPCManager>();
+	}
 
 	public static void updateHud(){
 		GameObject.Find("Main Camera").GetComponent<HUD>().updateHUD();
