@@ -103,10 +103,7 @@ public class collect : MonoBehaviour
     private void moveTo(GameObject g){
         agent.isStopped = false;
         if(!agent.SetDestination(g.transform.position)){
-            Vector3 temp = g.transform.position - transform.position;
-            if(!agent.SetDestination(temp.normalized * 5 + gameObject.transform.position)){
-                Debug.LogError("Failed to take a step");
-            }
+                Debug.LogError("Failed to go to resource. May be out of NavMesh bounds");
         }
     }
     IEnumerator move(){
