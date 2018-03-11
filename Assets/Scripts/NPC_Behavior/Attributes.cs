@@ -19,8 +19,6 @@ public class Attributes : MonoBehaviour {
 	private int totalLevel3 = 35;
 
 	[SerializeField]
-	private float max_health;
-	[SerializeField]
 	public float cur_health;
 	[SerializeField]
 	public float damage;
@@ -188,17 +186,14 @@ public class Attributes : MonoBehaviour {
 			+ " motivation: " + a [3]   + " skill: " + a [4]); 
 		switch (level) {
 		case 1:
-			max_health = 30f;
 			cur_health = 30f;
 			atkSpeed = 1f;;
 			break;
 		case 2:
-			max_health = 50f;
 			cur_health = 50f;
 			atkSpeed = 1.5f;
 			break;
 		case 3:
-			max_health = 100f;
 			cur_health = 100f;
 			atkSpeed = 2.0f;
 			break;

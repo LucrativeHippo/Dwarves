@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class buttonScript : MonoBehaviour {
 
-    private string name;
+    private new string name;
     private int number;
 
     public Text buttonText;
