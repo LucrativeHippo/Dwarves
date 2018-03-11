@@ -65,6 +65,14 @@ public class GameTime : MonoBehaviour {
         }
     }
 
+    private void setWeatherBasedParticles()
+    {
+        Weather.weatherTypes weather = calendar.getForecastWeather(0);
+        WeatherVisuals visuals = gameObject.GetComponent<WeatherVisuals>();
+
+        visuals.updateWeatherParticles(weather);
+    }
+
     private IEnumerator Timer (float time) {
         while (true) {
             yield return new WaitForSeconds (time);
@@ -82,6 +90,7 @@ public class GameTime : MonoBehaviour {
             Debug.Log(calendar.getCurrentDay());
 
             setWeatherBasedPostProcessing();
+            setWeatherBasedParticles();
         }
     }
 
