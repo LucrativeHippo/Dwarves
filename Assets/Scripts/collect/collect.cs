@@ -109,7 +109,6 @@ public class collect : MonoBehaviour
             }
         }
     }
-    public Vector3 curDest;
     IEnumerator move(){
         idle = false;
         
@@ -127,7 +126,6 @@ public class collect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        curDest = agent.destination;
         if(emptyBuilding() || emptyResource()){
             updateLocations();
         }

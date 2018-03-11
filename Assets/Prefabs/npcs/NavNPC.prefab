@@ -116,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1124489161256058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 3.79}
+  m_LocalPosition: {x: 4, y: 0.6, z: 3.79}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 224785508109479208}
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1124489161256058}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 115dfe7b0938447cbbf9507076f54049, type: 3}
   m_Name: 
@@ -349,11 +349,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentbuilding: {fileID: 0}
+  currentresource: {fileID: 0}
   curRes: 0
   maxRes: 10
+  pickupTime: 2
   state: 0
   findingType: 1
-  pickupTime: 2
 --- !u!114 &114777820433859144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -442,7 +444,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1124489161256058}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 0.5
