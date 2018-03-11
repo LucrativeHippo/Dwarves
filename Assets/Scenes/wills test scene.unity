@@ -1120,9 +1120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resAmount: 0
+  curRes: 0
+  maxRes: 10
   state: 0
   findingType: 1
+  pickupTime: 2
 --- !u!195 &1020698246
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1157,7 +1159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e972f439a26a543b3e04a104b15580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rank: 10
+  rank: 0
   myQuests:
     questPath: []
 --- !u!4 &1020698248
@@ -1187,9 +1189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resAmount: 0
+  curRes: 0
+  maxRes: 10
   state: 0
   findingType: 1
+  pickupTime: 2
 --- !u!114 &1020698250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,6 +1234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 141990062}
+  showDisplay: 0
+  showText: 0
 --- !u!1 &1095545123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,12 +2143,12 @@ Prefab:
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -29100
+      value: -36000
       objectReference: {fileID: 0}
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -231939.52
+      value: -264945.03
       objectReference: {fileID: 0}
     - target: {fileID: 224481899934109696, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
@@ -2307,12 +2313,12 @@ Prefab:
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -65700
+      value: -81225
       objectReference: {fileID: 0}
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -302139.75
+      value: -345086.56
       objectReference: {fileID: 0}
     - target: {fileID: 224859488526481262, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
