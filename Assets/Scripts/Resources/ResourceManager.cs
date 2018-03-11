@@ -8,6 +8,10 @@ public class ResourceManager : MonoBehaviour {
     [SerializeField]
     [NamedArray(typeof(ResourceTypes))]private int [] maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
 
+	void Awake(){
+		resourceList = new int[(int)ResourceTypes.NumberOfTypes];
+		maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
+	}
 
     private bool meat;
     private bool fruit;
