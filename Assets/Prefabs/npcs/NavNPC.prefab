@@ -28,7 +28,6 @@ GameObject:
   - component: {fileID: 33794285468015786}
   - component: {fileID: 23249867035453984}
   - component: {fileID: 54933235236497286}
-  - component: {fileID: 114719447188761986}
   - component: {fileID: 114122585006287134}
   m_Layer: 0
   m_Name: NavNPC
@@ -116,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1124489161256058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0.6, z: 3.79}
+  m_LocalPosition: {x: 4, y: 0, z: 3.79}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 224785508109479208}
@@ -325,19 +324,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114719447188761986
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1124489161256058}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115dfe7b0938447cbbf9507076f54049, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Tracked: {fileID: 0}
-  m_Size: {x: 10, y: 1, z: 10}
 --- !u!114 &114752613892289702
 MonoBehaviour:
   m_ObjectHideFlags: 1

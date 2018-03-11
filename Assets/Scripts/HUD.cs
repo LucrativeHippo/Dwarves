@@ -9,8 +9,11 @@ public class HUD : MonoBehaviour {
 		ResourceManager res = MetaScript.getRes();
 		UnityEngine.UI.Text resHUD = gameObject.GetComponentInChildren<UnityEngine.UI.Text>();
 
-		resHUD.text="Wood: " + res.getResource(ResourceTypes.WOOD)
-		+ "\nFood: " + res.getResource(ResourceTypes.FOOD);
+		for(int i=0;i<(int)ResourceTypes.NumberOfTypes;i++){
+			resHUD.text = ((ResourceTypes)i).ToString() +":"+ res.getResource(i)+"\n";
+		}
+		// resHUD.text="Wood: " + res.getResource(ResourceTypes.WOOD)
+		// + "\nFood: " + res.getResource(ResourceTypes.FOOD);
 
 	}
 	
