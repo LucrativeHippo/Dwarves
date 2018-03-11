@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class enemyMovement : MonoBehaviour
 {
@@ -15,32 +16,25 @@ public class enemyMovement : MonoBehaviour
 
     private Vector3 travelDirection;
 
-    [SerializeField]
-    private float meshSize = 80.0f;
-
-
-    // Use this for initialization
-    void Start()
-    {
+    public void getDirection(){
         townCentre = GameObject.FindGameObjectWithTag("TownCenter");
-        if (townCentre != null)
-        {
-            
+        if (townCentre != null){
             travelDirection = (townCentre.transform.position - transform.position).normalized;
         }
     }
 
+    // Use this for initialization
+    void Start()
+    {
+        getDirection();
+    }
+
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (townCentre == null)
         {
-            townCentre = GameObject.FindGameObjectWithTag("TownCenter");
-            if (townCentre != null)
-            {
-
-                travelDirection = (townCentre.transform.position - transform.position).normalized;
-            }
+            getDirection();
         }
         if (onNavMesh())
         {
@@ -49,32 +43,25 @@ public class enemyMovement : MonoBehaviour
             enabled = false;
 
         }
+        transform.position+= travelDirection * speed * Time.deltaTime;
     }
 
 
     public bool onNavMesh()
     {
-        float enemyx = transform.position.x;
-        float enemyz = transform.position.z;
-        float tcx = townCentre.transform.position.x;
-        float tcz = townCentre.transform.position.z;
-        if(enemyx > tcx - meshSize && enemyx < tcx + meshSize && enemyz > tcz - meshSize && enemyz < tcz + meshSize)
-        {
-            return true;
-        }
-        return false;
-
+        NavMeshHit hit;
+        return NavMesh.SamplePosition(transform.position,out hit, 0.3f, NavMesh.AllAreas);
     }
 
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("OwnedNPC"))
-        {
-            npcTargeted = true;
-            travelDirection = (other.transform.position - transform.position).normalized;
-            transform.position += travelDirection * speed * Time.deltaTime;
-        }
+        // if (other.gameObject.CompareTag("OwnedNPC"))
+        // {
+        //     npcTargeted = true;
+        //     travelDirection = (other.transform.position - transform.position).normalized;
+        //     transform.position += travelDirection * speed * Time.deltaTime;
+        // }
 
     }
 }

@@ -166,7 +166,7 @@ public class collect : MonoBehaviour
 
 
     
-    GameObject findClosestTag(string name, GameObject from)
+    public static GameObject findClosestTag(string name, GameObject from)
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag(name);
