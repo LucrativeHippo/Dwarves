@@ -684,7 +684,7 @@ public class terrainGenerator : MonoBehaviour
             
         }else if (terrainMap[key] == terrain.PLOT)
         {
-            print(key);
+            
             resourceMap.Add(key, resource.BUILDSIGN);
         }
         else if (waterVal < getThreshold(terrain.WATER))
