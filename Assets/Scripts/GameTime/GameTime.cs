@@ -38,10 +38,10 @@ public class GameTime : MonoBehaviour {
             UIObject.GetComponent<WeatherUI> ().updateTemp (calendar.getForecastTemp (0));
            UIObject.GetComponent<WeatherUI> ().updateWeatherName (calendar.getForecastWeather (0));
 
-            print (calendar.getCurrentDay ());
-            daychangetext.text=calendar.getCurrentDay().ToString();
-            seasonchange.text = calendar.getCurrentSeason().ToString();
-            daychange.value = calendar.getCurrentDay();
+            //print (calendar.getCurrentDay ());
+            //daychangetext.text=calendar.getCurrentDay().ToString();
+            //seasonchange.text = calendar.getCurrentSeason().ToString();
+            //daychange.value = calendar.getCurrentDay();
 
             Debug.Log(calendar.getCurrentDay());
         }
