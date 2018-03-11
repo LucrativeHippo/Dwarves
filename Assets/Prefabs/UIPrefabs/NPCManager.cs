@@ -22,7 +22,7 @@ public class NPCManager : MonoBehaviour {
 
     void Start () {
 
-        AllUIObjects = GameObject.Find ("AllUIObjects");
+        AllUIObjects = GameObject.Find ("AllUIObjectsCanvas");
         mainUIGameObject = AllUIObjects.transform.GetChild (0).gameObject;
         NPCManagerGameObject = AllUIObjects.transform.GetChild (1).gameObject;
 

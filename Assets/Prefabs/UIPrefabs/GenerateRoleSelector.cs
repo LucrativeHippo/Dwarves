@@ -16,7 +16,7 @@ public class GenerateRoleSelector : MonoBehaviour {
     /// Start this instance and gets the RoleSelectorUI.
     /// </summary>
     void Start () {
-        buttonParent = this.transform.GetChild (0).GetChild (0).gameObject;
+        buttonParent = this.transform.GetChild (0).gameObject;
 
         generateRolesMenu ();
     }
@@ -31,7 +31,7 @@ public class GenerateRoleSelector : MonoBehaviour {
         foreach (var theType in types) {
             tempGameObject = Instantiate (Button_Template) as GameObject;
             tempGameObject.SetActive (true);
-            tempGameObject.GetComponent<RoleButtonScript> ().setButton (currentNPC, (ResourceTypes)counter);
+//            tempGameObject.GetComponent<RoleButtonScript> ().setButton (currentNPC, (ResourceTypes)counter);
             tempGameObject.transform.SetParent (buttonParent.transform, false);
             counter++;
         }
