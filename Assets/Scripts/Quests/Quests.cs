@@ -24,7 +24,6 @@ public class Quests : MonoBehaviour {
 		new QuestType(giveWood, 2, "wood"),
 		new QuestType(giveFood, 5, "food"),
 		new QuestType(giveCoal, 15, "coal"),
-		new QuestType(giveSand, 4, "sand"),
 		new QuestType(giveStone, 10, "stone"),
 		new QuestType(giveIron, 20, "iron"),
 		new QuestType(giveDiamond, 40, "diamond"),
@@ -36,7 +35,6 @@ public class Quests : MonoBehaviour {
 
 		// Quests for food above amount
 		new QuestType(isFoodAbove, 0, "food"),
-		new QuestType(isSandAbove, 2, "sand"),
 		new QuestType(isStoneAbove, 5, "stone"),
 		new QuestType(isIronAbove,10,"iron"),
 		new QuestType(isCoalAbove,8,"coal"),
@@ -94,9 +92,6 @@ public class Quests : MonoBehaviour {
 		return hasRes(ResourceTypes.STONE, a);
 	}
 
-	public static bool isSandAbove(int a){
-		return hasRes(ResourceTypes.SAND, a);
-	}
 
 	public static bool isWoodAbove(int a){
 		return hasRes(ResourceTypes.WOOD, a);
@@ -124,9 +119,6 @@ public class Quests : MonoBehaviour {
 	}
 	public static bool giveStone(int a){
 		return takeRes(ResourceTypes.STONE, a);
-	}
-	public static bool giveSand(int a){
-		return takeRes(ResourceTypes.SAND, a);
 	}
 	public static bool giveCoal(int a){
 		return takeRes(ResourceTypes.COAL, a);

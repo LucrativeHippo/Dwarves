@@ -7,12 +7,13 @@ public class collect : MonoBehaviour
     private NavMeshAgent agent;
     //public Transform destinationforfull;
     //public Transform destinationforzero;
-    private GameObject currentbuilding;
-    private GameObject currentresource;
+    public GameObject currentbuilding;
+    public GameObject currentresource;
     //public float threatRange = 2f;
 
     public int curRes = 0;
-    public int maxRes = 10;
+    public int maxRes;
+    public float pickupTime;
 
     [SerializeField]
     private npcState state = npcState.asleep;
@@ -32,6 +33,11 @@ public class collect : MonoBehaviour
 
         // after dropping resource 
         findingType = t;
+
+        // TODO: check this npc stats change multipliers
+        pickupTime = 2f;
+        maxRes = 10;
+
         updateLocations();
         agent.enabled = true;
         agent.isStopped = false;
@@ -68,6 +74,7 @@ public class collect : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        
     }
     void Start()
     {
@@ -75,51 +82,76 @@ public class collect : MonoBehaviour
     }
 
     private void updateLocations(){
-        currentbuilding = findClosestTag(getResBuildName());
-        currentresource = findClosestTag(getResName());
+        findBuilding();
+        findResource();
     }
-    private void moveToNearest(GameObject g){
+    private bool emptyResource(){
+        return currentresource == null;
+    }
+    private bool emptyBuilding(){
+        return currentbuilding == null;
+    }
+
+    private void findBuilding(){
+        currentbuilding = findClosestTag(getResBuildName(),gameObject);
+    }
+    private void findResource(){
+        findResource(currentbuilding);
+    }
+    private void findResource(GameObject g){
+        currentresource = findClosestTag(getResName(), g);
+    }
+    private void moveTo(GameObject g){
         agent.isStopped = false;
         if(!agent.SetDestination(g.transform.position)){
-            agent.SetDestination(g.transform.position.normalized * 5+ gameObject.transform.position);
+                Debug.LogError("Failed to go to resource. May be out of NavMesh bounds");
         }
     }
     IEnumerator move(){
         idle = false;
         
-        yield return new WaitForSeconds (3);
+        yield return new WaitForSeconds (4);
         idle = true;
     }
     private bool idle = true;
+
+    private void moveSteps(GameObject g){
+        if(idle){
+            moveTo(g);
+            StartCoroutine(move());
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        if(emptyBuilding() || emptyResource()){
+            updateLocations();
+        }
         switch(state){
             case npcState.gotoBuilding:
-            if(idle){
-                moveToNearest(currentbuilding);
-                StartCoroutine(move());
-            }
+            moveSteps(currentbuilding);
                 break;
 
             case npcState.gotoResource:
-            if(idle){
-                moveToNearest(currentresource);
-                StartCoroutine(move());
-            }
+            moveSteps(currentresource);
                 break;
             
             case npcState.dropRes:
+
                 if(isEmpty()){
-                    updateLocations();
                     state = npcState.gotoResource;
+                }else if(emptyBuilding()){
+                    findBuilding();
+                    state = npcState.gotoBuilding;
                 }
                 break;
             
             case npcState.gatherRes:
                 if(isFull()){
-                    updateLocations();
                     state = npcState.gotoBuilding;
+                }else if(currentresource == null){
+                    findResource(gameObject);
+                    updateLocations();
                 }
                 break;
 
@@ -135,13 +167,13 @@ public class collect : MonoBehaviour
 
 
     
-    GameObject findClosestTag(string name)
+    public static GameObject findClosestTag(string name, GameObject from)
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag(name);
         GameObject closest = null;
         float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
+        Vector3 position = from.transform.position;
         foreach (GameObject go in gos)
         {
             Vector3 diff = go.transform.position - position;
@@ -162,18 +194,19 @@ public class collect : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if(ready){
         if(this.isSelectedResource(other)){
             // Change state from going to res to gathering
             if(state == npcState.gotoResource){
                 state = npcState.gatherRes;
             }else if(state == npcState.gatherRes){
                 if(isFull()){
-                    updateLocations();
                     state = npcState.gotoBuilding;
                 }else{
                 // Keep gathering
-                if(ready)
-                    StartCoroutine(doJob());
+                    if(ready){
+                        StartCoroutine(doJob());
+                    }
                 }
             }
         }
@@ -183,7 +216,6 @@ public class collect : MonoBehaviour
                 state = npcState.dropRes;
             }else if(state == npcState.dropRes){
                 if(isEmpty()){
-                    updateLocations();
                     state = npcState.gotoResource;
                 }else{
                     if(ready){
@@ -192,18 +224,26 @@ public class collect : MonoBehaviour
                 }
             }
         }
+        }
     }
     private bool ready = true;
-    public float pickupTime = 2f;
 
     IEnumerator doJob(){
         ready = false;
-        
-        yield return new WaitForSeconds (pickupTime);
+        if(currentresource==null){
+            state = npcState.gotoResource;
+            yield return null;
+        }else{
+            gather();
+            yield return new WaitForSeconds (pickupTime);
+        }
         ready = true;
-        gather();
     }
     private void gather(){
+        Health t = currentresource.GetComponent<Health>();
+        if(t!=null){
+            t.damage(1);
+        }
         curRes++;
     }
 

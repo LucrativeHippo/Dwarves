@@ -12,7 +12,6 @@ public class char_combat : MonoBehaviour {
 	public GameObject opponent;
 	//public float opponentDamage;
 	public float coolDown = 1.0f;
-	private float timestamp = 0.0f;
 
 	// Use this for initialization
 	void Start () {

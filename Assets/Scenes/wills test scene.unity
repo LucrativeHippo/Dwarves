@@ -1120,7 +1120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resAmount: 0
+  currentbuilding: {fileID: 0}
+  currentresource: {fileID: 0}
+  curRes: 0
+  maxRes: 10
+  pickupTime: 2
   state: 0
   findingType: 1
 --- !u!195 &1020698246
@@ -1157,7 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e972f439a26a543b3e04a104b15580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rank: 10
+  rank: 0
   myQuests:
     questPath: []
 --- !u!4 &1020698248
@@ -1187,7 +1191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30edaf8f4eaf420c8dbabbfdb558337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resAmount: 0
+  currentbuilding: {fileID: 0}
+  currentresource: {fileID: 0}
+  curRes: 0
+  maxRes: 10
+  pickupTime: 2
   state: 0
   findingType: 1
 --- !u!114 &1020698250
@@ -1230,6 +1238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 141990062}
+  showDisplay: 0
+  showText: 0
 --- !u!1 &1095545123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,17 +2142,17 @@ Prefab:
     - target: {fileID: 224160738493868170, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.5464481
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -29100
+      value: -44000
       objectReference: {fileID: 0}
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -231939.52
+      value: -306804.12
       objectReference: {fileID: 0}
     - target: {fileID: 224481899934109696, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
@@ -2302,17 +2312,17 @@ Prefab:
     - target: {fileID: 224079030702106376, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.53648067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -65700
+      value: -99225
       objectReference: {fileID: 0}
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -302139.75
+      value: -399554.25
       objectReference: {fileID: 0}
     - target: {fileID: 224859488526481262, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
@@ -2468,6 +2478,58 @@ Prefab:
       propertyPath: m_Name
       value: Terrain Generator
       objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: xPlayerPos
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: yPlayerPos
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: chunksLoaded
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: terrainSeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: terrainSeed2
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: waterSeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: resourceSeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: resourceSeed2
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: Diamond
+      value: 
+      objectReference: {fileID: 1292923283124684, guid: 97132c7446293ac4287e022af3e9aa2c,
+        type: 2}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: Coal
+      value: 
+      objectReference: {fileID: 1833930755066644, guid: a4e768a2af2fef042a87f2bea483023a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f4b52197e853c7042a369c9dfec13683, type: 2}
   m_IsPrefabParent: 0
