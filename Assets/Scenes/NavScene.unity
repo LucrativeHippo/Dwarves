@@ -806,6 +806,16 @@ Prefab:
       propertyPath: generator
       value: 
       objectReference: {fileID: 568340058}
+    - target: {fileID: 114634880919010082, guid: a52a3ed753a66f6408285b2e71240be6,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634880919010082, guid: a52a3ed753a66f6408285b2e71240be6,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114001330932921944, guid: a52a3ed753a66f6408285b2e71240be6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a52a3ed753a66f6408285b2e71240be6, type: 2}

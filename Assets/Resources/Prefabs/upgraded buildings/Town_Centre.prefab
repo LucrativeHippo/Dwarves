@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4149787861625810}
+  - component: {fileID: 114366357091473764}
   m_Layer: 0
   m_Name: Anchor
   m_TagString: TownCenter
@@ -375,6 +376,19 @@ MonoBehaviour:
   plot: {fileID: 1543509037345762, guid: e210b0ce47a906e4d8dd09e21f5e9889, type: 2}
   buildingSign: {fileID: 1459092173822502, guid: 619935eed59e82640a8856b76adceedc,
     type: 2}
+--- !u!114 &114366357091473764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185070901192878}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65e7b59e9b56dc4998dd44229cb2432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Tracked: {fileID: 0}
+  m_Size: {x: 40, y: 4, z: 40}
 --- !u!114 &114392031800063090
 MonoBehaviour:
   m_ObjectHideFlags: 1

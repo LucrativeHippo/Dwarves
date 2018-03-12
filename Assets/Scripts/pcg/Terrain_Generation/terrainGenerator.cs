@@ -786,7 +786,7 @@ public class terrainGenerator : MonoBehaviour
             resourceMap.Add(key, resource.GOLD);
         }
 
-            if (tempResource == null)
+            if (!resourceMap.ContainsKey(key))
         {
 
             if (Random.Range(1, 600) == 1)

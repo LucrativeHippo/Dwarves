@@ -15,7 +15,7 @@ public class upgradeBuilding : MonoBehaviour, IActionable
 
     public void recieveAction()
     {
-        for(int i=0; i < upgradeCostList.Length; i++)
+        for(int i=0; i < (int)ResourceTypes.NumberOfTypes; i++)
         {
             if (!MetaScript.getRes().hasResource(i,upgradeCostList[i]))
             {

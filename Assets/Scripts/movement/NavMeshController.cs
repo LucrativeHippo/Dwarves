@@ -27,6 +27,10 @@ public class NavMeshController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(tc == null)
+        {
+            tc = GameObject.FindGameObjectWithTag("TownCenter");
+        }
         if (closeToTC())
         {
             setNav(false);
