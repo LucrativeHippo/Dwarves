@@ -12,6 +12,9 @@ public class QuestNPC : MonoBehaviour, IActionable {
     public int rank = 0;//Random.Range(1,50);
     [SerializeField]
     private QuestBase myQuests = new QuestBase();
+
+    [SerializeField]
+    public bool finishQuest = false;
     public void recieveAction()
     {
         if(!this.enabled)
@@ -70,8 +73,9 @@ public class QuestNPC : MonoBehaviour, IActionable {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
+
 
     public void setRank(int r){
         if(r>0){
@@ -83,6 +87,10 @@ public class QuestNPC : MonoBehaviour, IActionable {
         rank = 0;
         foreach (QuestGoal g in myQuests.questPath){
             rank += g.getThreshold()*Quests.list[g.getGoalIndex()].difficulty;
+        }
+        if(finishQuest){
+            myQuests = new QuestBase();
+            recieveAction();
         }
     }
 
