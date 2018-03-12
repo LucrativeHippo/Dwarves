@@ -6,6 +6,7 @@ public class Health : MonoBehaviour {
     /// The health.
     public int health;
     int maxHealth;
+    public bool isImmortal = false;
 
 
     public void Start () {
@@ -20,15 +21,14 @@ public class Health : MonoBehaviour {
     /// <param name="dmg">Damage to deal.</param>
     /// <returns>True if health less than 0, false otherwise.</returns>
     /// <exception cref="UnityException">Throws if dmg is less than 0.</exception>
-    public bool damage (int dmg) {
+    public void damage (int dmg) {
         if (dmg < 0)
             throw new UnityException ("You can't heal from damage!");
             
         health -= dmg;
-        if (health <= 0) {
-            return true;
+        if (health <= 0 && !isImmortal) {
+            death();
         }
-        return false;
     }
 
     /// <summary>
@@ -45,5 +45,12 @@ public class Health : MonoBehaviour {
         } else {
             health += heal;
         }
+    }
+
+    public void death(){
+        if(CompareTag("OwnedNPC")){
+            MetaScript.GetNPC().removeNPC(gameObject);
+        }
+        Destroy(gameObject);
     }
 }

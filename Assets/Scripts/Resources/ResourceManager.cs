@@ -38,6 +38,13 @@ public class ResourceManager : MonoBehaviour {
 		return resourceList[i];
 	}
 
+	public int getCapacityOf(ResourceTypes i){
+		return getCapacityOf((int)i);
+	}
+	public int getCapacityOf(int i){
+		return maxResourceList[i];
+	}
+
     public void increaseCapacity(int i, int increase)
     {
         maxResourceList[i] += increase;
