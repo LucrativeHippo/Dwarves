@@ -56,6 +56,10 @@ public class terrainGenerator : MonoBehaviour
     [SerializeField]
     private float resourceAmount;
 
+    //The rate that determines rare resource spawn rates
+    [SerializeField]
+    private int rareResourceRate = 10;
+
     private float[] thresholds = new float[(int)terrain.GRASS];
 
 
@@ -107,6 +111,12 @@ public class terrainGenerator : MonoBehaviour
     [SerializeField]
     private GameObject NPC;
 
+    [SerializeField]
+    private GameObject Diamond;
+
+    [SerializeField]
+    private GameObject Coal;
+
 
     //Affects the types of terrain that are generated
     [SerializeField]
@@ -152,6 +162,8 @@ public class terrainGenerator : MonoBehaviour
         NPC,
         ENEMY,
         BUILDSIGN,
+        DIAMOND,
+        COAL,
         NONE
     }
 
@@ -177,6 +189,10 @@ public class terrainGenerator : MonoBehaviour
                 return NPC;
             case resource.BUILDSIGN:
                 return BuildSign;
+            case resource.DIAMOND:
+                return Diamond;
+            case resource.COAL:
+                return Coal;
             default:
                 return Tree;
         }
@@ -220,7 +236,11 @@ public class terrainGenerator : MonoBehaviour
             case resource.IRON:
                 return 0.46f;
             case resource.GOLD:
-                return 0.30f;
+                return 0.44f;
+            case resource.DIAMOND:
+                return 0.35f;
+            case resource.COAL:
+                return 0.46f;
             case resource.FISH:
                 return 0.10f;
             default:
@@ -496,8 +516,19 @@ public class terrainGenerator : MonoBehaviour
                         {
                             int xtemp = Random.Range(-5, 5);
                             int ytemp = Random.Range(-5, 5);
-                            tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
+                            if (Random.Range(0, 1000) < rareResourceRate)
+                            {
+                                tempResource = Instantiate(getResourceObject(resource.DIAMOND), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
+                            }
+                            else if(Random.Range(0, 100) < rareResourceRate)
+                            {
+                                tempResource = Instantiate(getResourceObject(resource.COAL), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
+                            }
+                            else
+                            {
 
+                                tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
+                            }
                             tempResource.transform.SetParent(chunkLoc.transform);
                         }
                     }
@@ -735,6 +766,9 @@ public class terrainGenerator : MonoBehaviour
         else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.GOLD) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.GOLD))
         {
             tempResource = Gold;
+            resourceMap.Add(key, resource.GOLD);
+        }else if (Random.Range(0,1500) < rareResourceRate)
+        {
             resourceMap.Add(key, resource.GOLD);
         }
 
