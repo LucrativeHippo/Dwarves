@@ -37,7 +37,7 @@ public class moreDetailsUIController : MonoBehaviour {
     private void setMoreDetails () {
         // TODO: get stats of NPC to set stats text.
         nameText.text = currentNPC.name;
-        currentJobText.text = currentNPC.GetComponent<collect> ().findingType.ToString ();
+        currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType();
     }
 
     private void setSelectRoleButton () {
@@ -50,6 +50,6 @@ public class moreDetailsUIController : MonoBehaviour {
     }
 
     public void setRole () {
-        currentJobText.text = currentNPC.GetComponent<collect> ().findingType.ToString ();
+        currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
     }
 }

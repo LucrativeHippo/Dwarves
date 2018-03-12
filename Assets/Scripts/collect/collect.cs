@@ -17,7 +17,12 @@ public class collect : MonoBehaviour
 
     [SerializeField]
     private npcState state = npcState.asleep;
-    public ResourceTypes findingType = ResourceTypes.WOOD;
+    [SerializeField]
+    ResourceTypes findingType = ResourceTypes.WOOD;
+
+    public string getFindingType(){
+        return findingType.ToString();
+    }
     
     public void startCollecting(ResourceTypes t){
         // TODO: checks to make sure we have found this resource

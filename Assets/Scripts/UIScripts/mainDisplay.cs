@@ -53,7 +53,7 @@ public class mainDisplay : MonoBehaviour {
     /// Sets the current job text.
     /// </summary>
     private void setCurrentJob () {
-        currentJobText.text = aNPC.GetComponent<collect> ().findingType.ToString ();
+        currentJobText.text = aNPC.GetComponent<collect> ().getFindingType ();
     }
 
     /// <summary>

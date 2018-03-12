@@ -34,7 +34,7 @@ public class RoleButtonScript : MonoBehaviour {
 
     private void button_Click () {
         currentNPC.GetComponent<collect>().enabled = true;
-        currentNPC.GetComponent<collect> ().findingType = type;
+        currentNPC.GetComponent<collect> ().startCollecting(type);
         this.transform.parent.parent.gameObject.SetActive (false);
         moreDetails.GetComponent<moreDetailsUIController> ().setRole ();
     }
