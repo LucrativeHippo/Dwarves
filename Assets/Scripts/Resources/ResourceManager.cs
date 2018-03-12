@@ -7,11 +7,20 @@ public class ResourceManager : MonoBehaviour {
 	[NamedArray(typeof(ResourceTypes))]private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
     [SerializeField]
     [NamedArray(typeof(ResourceTypes))]private int [] maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
+    
 
-	void Awake(){
+    void Awake(){
 		resourceList = new int[(int)ResourceTypes.NumberOfTypes];
 		maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
-	}
+        maxResourceList[(int)ResourceTypes.WOOD] = 200;
+        maxResourceList[(int)ResourceTypes.FOOD] = 100;
+        maxResourceList[(int)ResourceTypes.STONE] = 50;
+        maxResourceList[(int)ResourceTypes.COAL] = 10;
+        maxResourceList[(int)ResourceTypes.DIAMOND] = 5;
+        maxResourceList[(int)ResourceTypes.GOLD] = 5;
+        maxResourceList[(int)ResourceTypes.IRON] = 10;
+        maxResourceList[(int)ResourceTypes.POPULATION] = 5;
+    }
 
     private bool meat;
     private bool fruit;
