@@ -74,6 +74,7 @@ public class collect : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        
     }
     void Start()
     {
