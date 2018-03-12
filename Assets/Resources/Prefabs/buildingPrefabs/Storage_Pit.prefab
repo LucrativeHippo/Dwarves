@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 33422975946972734}
   - component: {fileID: 114635324049006734}
   m_Layer: 0
-  m_Name: stone_storage
+  m_Name: Storage_Pit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

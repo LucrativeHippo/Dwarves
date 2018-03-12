@@ -16,6 +16,10 @@ public class enemyAI : MonoBehaviour {
 		agentCtrl = this.GetComponent<NavMeshAgent>();
 		getDest();
 		setDestination();
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("OwnedNPC"))
+        {
+            g.GetComponent<Guard>().enemyInRange = true;
+        }
 	}
 	private void getDest(){
 		opponent = collect.findClosestTag("OwnedNPC",gameObject);

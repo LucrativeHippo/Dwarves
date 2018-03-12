@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 33305270588835278}
   - component: {fileID: 114863452662375958}
   m_Layer: 0
-  m_Name: wood_storage
+  m_Name: Lumber Camp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
