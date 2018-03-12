@@ -5,11 +5,11 @@ using UnityEngine;
 public class UseCustomImageEffect : MonoBehaviour
 {
     public Material EffectMaterial;
-    private float saturation = 1.0f;
-    private float doDisplace = 0.0f; // Booleans can't be passed to shaders.
-    private float displacement = 0.005f;
-    private float doHalo = 0.0f; // Booleans can't be passed to shaders.
-    private float haloAmount = 0.0f;
+    [SerializeField] private float saturation = 1.0f;
+    [SerializeField] private float doDisplace = 0.0f; // Booleans can't be passed to shaders.
+    [SerializeField] private float displacement = 0.005f;
+    [SerializeField] private float doHalo = 0.0f; // Booleans can't be passed to shaders.
+    [SerializeField] private float haloAmount = 0.0f;
 
     void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
@@ -57,6 +57,7 @@ public class UseCustomImageEffect : MonoBehaviour
         displacement = amount;
     }
 
+
     public bool isDoingDisplacement()
     {
         return (doDisplace == 1.0f);
@@ -72,6 +73,16 @@ public class UseCustomImageEffect : MonoBehaviour
         {
             doDisplace = 0.0f;
         }
+    }
+
+    public float getHaloAmount()
+    {
+        return haloAmount;
+    }
+
+    public void setHaloAmount(float amount)
+    {
+        haloAmount = amount;
     }
 
     public bool isDoingHalo()
