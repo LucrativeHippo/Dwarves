@@ -22,7 +22,7 @@ public class follow : MonoBehaviour {
         
         target = GameObject.FindWithTag("Player");
         navComponent = this.transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        target.GetComponent<LocalNavMeshBuilder>().enabled = true;
+        
 
 
     }
@@ -36,22 +36,27 @@ public class follow : MonoBehaviour {
         
         if (target != null)
         {
-            gameObject.transform.position = target.transform.position + new Vector3(0,1.0f,0);
+            Vector3 tPos = target.transform.position;
+            Vector3 pPos = transform.position;
             navComponent.enabled = true;
-            navComponent.SetDestination(target.transform.position);
-            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+            //navComponent.SetDestination(target.transform.position);
+            float distanceToTarget = Vector3.SqrMagnitude(tPos- pPos);
             
-            if (distanceToTarget <= followDistance)
+            if (distanceToTarget <= Mathf.Pow(followDistance,2))
             {
                 
                 navComponent.isStopped = true;
-                navComponent.SetDestination(target.transform.position);
                 
-            }
-            else {
+            }else if(distanceToTarget >= Mathf.Pow(maxDist,2)){
+                navComponent.enabled = false;
+                transform.position = (pPos - tPos).normalized*maxDist+tPos;
+                navComponent.enabled = true;
+            }else {
                 navComponent.isStopped = false;
+                navComponent.SetDestination(tPos);
                 
             }
         }
     }
+    public float maxDist = 5f;
 }
