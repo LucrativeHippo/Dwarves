@@ -11,6 +11,12 @@ public class RoleButtonScript : MonoBehaviour {
     [SerializeField] private Text buttonText;
     private ResourceTypes type;
 
+    private GameObject moreDetails;
+
+    void Start () {
+        moreDetails = GameObject.Find ("npcManagerMoreDetailsScrollView");
+    }
+
     public void setButton (GameObject aNPC, ResourceTypes theType) {
         currentNPC = aNPC;
         type = theType;
@@ -28,7 +34,8 @@ public class RoleButtonScript : MonoBehaviour {
 
     private void button_Click () {
         currentNPC.GetComponent<collect> ().findingType = type;
-//        currentNPC.GetComponent<collect> ().getResource = true;
+        this.transform.parent.parent.gameObject.SetActive (false);
+        moreDetails.GetComponent<moreDetailsUIController> ().setRole ();
     }
 
 }

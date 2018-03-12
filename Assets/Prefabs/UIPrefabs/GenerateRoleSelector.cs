@@ -27,15 +27,17 @@ public class GenerateRoleSelector : MonoBehaviour {
     private void generateRolesMenu () {
         var types = Enum.GetValues (typeof(ResourceTypes));
         GameObject tempGameObject;
+        int endpoint = types.Length - 2;
         int counter = 0;
         foreach (var theType in types) {
-            tempGameObject = Instantiate (Button_Template) as GameObject;
-            tempGameObject.SetActive (true);
-//            tempGameObject.GetComponent<RoleButtonScript> ().setButton (currentNPC, (ResourceTypes)counter);
-            tempGameObject.transform.SetParent (buttonParent.transform, false);
-            counter++;
+            if (counter < endpoint) {
+                tempGameObject = Instantiate (Button_Template) as GameObject;
+                tempGameObject.SetActive (true);
+                tempGameObject.GetComponent<RoleButtonScript> ().setButton (currentNPC, (ResourceTypes)counter);
+                tempGameObject.transform.SetParent (buttonParent.transform, false);
+                counter++;
+            }
         }
-
     }
 
     public void setCurrentNPC (GameObject aNPC) {

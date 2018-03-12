@@ -16,12 +16,7 @@ public class NPCManager : MonoBehaviour {
     private GameObject mainDisplayGameObject;
     private GameObject mainDisplayContent;
 
-    [SerializeField] private KeyCode exitKey;
-
-    private bool NPCManagerMenuEnabled;
-
     void Start () {
-
         AllUIObjects = GameObject.Find ("AllUIObjectsCanvas");
         mainUIGameObject = AllUIObjects.transform.GetChild (0).gameObject;
         NPCManagerGameObject = AllUIObjects.transform.GetChild (1).gameObject;
@@ -36,30 +31,21 @@ public class NPCManager : MonoBehaviour {
             NPCs.Add (theNPC);
         }
 
-        NPCManagerMenuEnabled = false;
         this.gameObject.GetComponent<Button> ().onClick.AddListener (() => enableMenu ());
     }
 
-    private void enableMenu () {
-        NPCManagerMenuEnabled = true;
+    public void enableMenu () {
+        clearUI ();
         generateUI ();
         mainUIGameObject.SetActive (false);
         NPCManagerGameObject.SetActive (true);
         mainDisplayGameObject.SetActive (true);
     }
 
-    private void disableMenu () {
-        NPCManagerMenuEnabled = false;
+    public void disableMenu () {
         mainUIGameObject.SetActive (true);
         mainDisplayGameObject.SetActive (false);
         NPCManagerGameObject.SetActive (false);
-        clearUI ();
-    }
-
-    void FixedUpdate () {
-        if (NPCManagerMenuEnabled && Input.GetKey (exitKey)) {
-            disableMenu ();
-        }
     }
 
     private void clearUI () {

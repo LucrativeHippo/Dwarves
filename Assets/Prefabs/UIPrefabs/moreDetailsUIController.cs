@@ -48,4 +48,8 @@ public class moreDetailsUIController : MonoBehaviour {
         selectRoleGameObject.SetActive (true);
         selectRoleGameObject.GetComponent<GenerateRoleSelector> ().setCurrentNPC (currentNPC);
     }
+
+    public void setRole () {
+        currentJobText.text = currentNPC.GetComponent<collect> ().findingType.ToString ();
+    }
 }

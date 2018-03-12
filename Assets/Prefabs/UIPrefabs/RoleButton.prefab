@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222002779410064860}
   - component: {fileID: 114485120884891038}
   - component: {fileID: 114723401565310474}
+  - component: {fileID: 114394395172992994}
   m_Layer: 5
   m_Name: RoleButton
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Button
+--- !u!114 &114394395172992994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1373642651093352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe675c2d7451f4948b186bcfd4a165e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 114356400605906882}
 --- !u!114 &114485120884891038
 MonoBehaviour:
   m_ObjectHideFlags: 1
