@@ -52,4 +52,7 @@ public class moreDetailsUIController : MonoBehaviour {
     public void setRole () {
         currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
     }
+    public void setRole(string role){
+        currentJobText.text = role;
+    }
 }

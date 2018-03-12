@@ -33,6 +33,9 @@ public class RoleButtonScript : MonoBehaviour {
     }
 
     private void button_Click () {
+        StateSwitch.setFollow(false, currentNPC);
+        StateSwitch.setGuard(false, currentNPC);
+
         currentNPC.GetComponent<collect>().enabled = true;
         currentNPC.GetComponent<collect> ().startCollecting(type);
         this.transform.parent.parent.gameObject.SetActive (false);
