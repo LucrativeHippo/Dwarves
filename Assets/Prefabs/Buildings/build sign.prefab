@@ -181,6 +181,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6462e904738377448835c8ab60bcd59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Button_Template: {fileID: 1143470490360402, guid: 5a2731adfc749e043a43adeda42e3195,
+  Button_Template: {fileID: 1164425452580266, guid: 6a4bd188aeed03441ac583d595c475ce,
     type: 2}
-  buildingMenuUIContent: {fileID: 0}

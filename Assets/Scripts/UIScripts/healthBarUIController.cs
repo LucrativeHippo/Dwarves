@@ -35,7 +35,8 @@ public class healthBarUIController : MonoBehaviour {
     private IEnumerator WaitAndUpdate (float waitTime) {
         while (true) {
             yield return new WaitForSeconds (waitTime);
-            updateHealth ();
+            //TODO: make sure the player has health.
+//            updateHealth ();
         }
     }
 }
