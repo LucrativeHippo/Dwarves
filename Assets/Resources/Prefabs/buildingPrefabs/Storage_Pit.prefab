@@ -120,7 +120,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0b6a796b448f504489aab54134005a94, type: 2}
+  - {fileID: 2100000, guid: 66c367e1cad354142bdcff870ee4fd41, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d77e473bff2ca4eb0c8fa109ec487c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmount: 000000000000000064000000000000000000000000000000000000000000000000000000
+  maxAmount: 00000000c8000000640000000a0000000a00000000000000000000000000000000000000
 --- !u!212 &212651758755361694
 SpriteRenderer:
   m_ObjectHideFlags: 1
