@@ -10,8 +10,8 @@ public class collect : MonoBehaviour
     public GameObject currentbuilding;
     public GameObject currentresource;
     //public float threatRange = 2f;
-
-    public int curRes = 0;
+    [SerializeField]
+    private int curRes = 0;
     public int maxRes = 10;
     public float pickupTime = 2.0f;
 
@@ -22,6 +22,53 @@ public class collect : MonoBehaviour
 
     public string getFindingType(){
         return findingType.ToString();
+    }
+
+    public float getRateStat(string a){ 
+        switch (a){
+            case "COAL":
+                return gameObject.GetComponent<Skills>().getValue(1);
+            case "GOLD":
+                return gameObject.GetComponent<Skills>().getValue(1);
+            case "IRON":
+                return gameObject.GetComponent<Skills>().getValue(1);
+            case "Diamond":
+                return gameObject.GetComponent<Skills>().getValue(1);
+            case "STONE":
+                return gameObject.GetComponent<Skills>().getValue(1);
+            case "FOOD":
+                return gameObject.GetComponent<Skills>().getValue(3);
+            case "WOOD":
+                return gameObject.GetComponent<Skills>().getValue(4);
+        }
+
+
+        return 11.0f; }
+
+    public float getCapStat(string b){
+        switch (b)
+        {
+            case "COAL":
+                return gameObject.GetComponent<Skills>().getValue(3);
+            case "GOLD":
+                return gameObject.GetComponent<Skills>().getValue(3);
+            case "IRON":
+                return gameObject.GetComponent<Skills>().getValue(3);
+            case "DIAMOND":
+                return gameObject.GetComponent<Skills>().getValue(3);
+            case "STONE":
+                return gameObject.GetComponent<Skills>().getValue(3);
+            case "FOOD":
+                return gameObject.GetComponent<Skills>().getValue(0);
+            case "WOOD":
+                return gameObject.GetComponent<Skills>().getValue(1);
+        }
+        return 11.0f;
+    }
+
+    public void setSkills(float resSkill, float timeSkill){
+        maxRes = 10 + (int)resSkill - 5;
+        pickupTime = 2f - (timeSkill - 5f) / 5f;
     }
     
     public void startCollecting(ResourceTypes t){
@@ -43,19 +90,25 @@ public class collect : MonoBehaviour
 
         curRes = 0;
 
-
+        Debug.Log("startCollecting");
+        string s = getFindingType();
+        Debug.Log(s);
+        Debug.Log(getRateStat(s));
+        Debug.Log(getCapStat(s));
         updateLocations();
+        setSkills(getRateStat(s), getCapStat(s));
         agent.enabled = true;
         agent.isStopped = false;
         state = npcState.gotoResource;
     }
+
 
     public string getResourceName(ResourceTypes r){
         switch(r){
             case ResourceTypes.WOOD:
                 return "tree";
             case ResourceTypes.DIAMOND:
-                return "diamond";
+                return "Diamond";
             case ResourceTypes.COAL:
                 return "coal";
             case ResourceTypes.FOOD:
@@ -94,7 +147,7 @@ public class collect : MonoBehaviour
     }
     void Start()
     {
-        
+        //this.getRateStat("gold");
     }
 
     private void updateLocations(){
@@ -267,6 +320,11 @@ public class collect : MonoBehaviour
         MetaScript.getRes().addResource(this.findingType,curRes);
         curRes = 0;
     }
+
+	private void OnValidate()
+	{
+        startCollecting(findingType);
+	}
 }
  
 
