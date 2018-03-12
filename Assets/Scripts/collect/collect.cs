@@ -12,12 +12,17 @@ public class collect : MonoBehaviour
     //public float threatRange = 2f;
 
     public int curRes = 0;
-    public int maxRes;
-    public float pickupTime;
+    public int maxRes = 10;
+    public float pickupTime = 2.0f;
 
     [SerializeField]
     private npcState state = npcState.asleep;
-    public ResourceTypes findingType = ResourceTypes.WOOD;
+    [SerializeField]
+    ResourceTypes findingType = ResourceTypes.WOOD;
+
+    public string getFindingType(){
+        return findingType.ToString();
+    }
     
     public void startCollecting(ResourceTypes t){
         // TODO: checks to make sure we have found this resource
@@ -35,8 +40,9 @@ public class collect : MonoBehaviour
         findingType = t;
 
         // TODO: check this npc stats change multipliers
-        pickupTime = 2f;
-        maxRes = 10;
+
+        curRes = 0;
+
 
         updateLocations();
         agent.enabled = true;
@@ -50,6 +56,16 @@ public class collect : MonoBehaviour
                 return "tree";
             case ResourceTypes.DIAMOND:
                 return "diamond";
+            case ResourceTypes.COAL:
+                return "coal";
+            case ResourceTypes.FOOD:
+                return "food";
+            case ResourceTypes.GOLD:
+                return "gold";
+            case ResourceTypes.IRON:
+                return "iron";
+            case ResourceTypes.STONE:
+                return "stone";
             default:
                 return "tree";
         }

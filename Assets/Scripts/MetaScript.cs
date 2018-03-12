@@ -37,8 +37,14 @@ public class MetaScript : MonoBehaviour {
 		return GameObject.Find("npcManagerButton").GetComponent<NPCManager>();
 	}
 
-	public static void updateHud(){
-		GameObject.Find("Main Camera").GetComponent<HUD>().updateHUD();
+	public currentResourcesUIController resourceUI;
+	public static void updateResourcesUI(){
+		currentResourcesUIController temp = GameObject.Find("CurrentResources").GetComponent<currentResourcesUIController>();
+		if(temp!=null){
+			temp.updateResourcesUI();
+		}else{
+			Debug.LogError("Couldn't find resourceUI");
+		}
 	}
 	// Update is called once per frame
 	void Update () {

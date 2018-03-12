@@ -16,10 +16,12 @@ public class PlayerMovement : MonoBehaviour {
 
     void FixedUpdate() {
 		Vector3 mov = new Vector3 (0, 0);
-        animator.SetBool("moveUp", false);
-        animator.SetBool("moveDown", false);
-        animator.SetBool("moveLeft", false);
-        animator.SetBool("moveRight", false);
+        if(animator!=null){
+            animator.SetBool("moveUp", false);
+            animator.SetBool("moveDown", false);
+            animator.SetBool("moveLeft", false);
+            animator.SetBool("moveRight", false);
+        }
 
         if (Input.GetKey(KeyCode.W)) 
         {

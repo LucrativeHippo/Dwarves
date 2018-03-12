@@ -398,7 +398,7 @@ public class terrainGenerator : MonoBehaviour
         return (float)(val + chunk * Chunk.SIZE) / 20f + SEED;
     }
     // Use this for initialization
-    public void Start()
+    public void Awake()
     {
         //GameObject player = GameObject.FindGameObjectWithTag("Player");
         //player.transform.position = new Vector3(xPlayerChunkPos + xPlayerPos, 0, yPlayerChunkPos + yPlayerPos);
@@ -433,10 +433,24 @@ public class terrainGenerator : MonoBehaviour
             for (int j = yChunk - chunksLoaded; j < yChunk + chunksLoaded + 1; j++)
             {
                 generateChunk(i,j);
+                //if(i == xChunk+chunksLoaded && j == yChunk + chunksLoaded)
+                //{
+
+                  //  GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
+                //}
             }
         }
+        if (GameObject.FindGameObjectWithTag("TownCenter")!=null)
+        {
+            GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
+        }
+        
         
 
+    }
+    void Start()
+    {
+        //GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
     }
 
     /// <summary>
@@ -574,7 +588,7 @@ public class terrainGenerator : MonoBehaviour
                         tempResource.transform.SetParent(chunkLoc.transform);
                         if (resourceMap[key] == resource.NPC)
                         {
-                            tempResource.GetComponent<QuestNPC>().addGoal(Random.Range(1, 10));
+                           
                         }
                         chunkMap.addTileAt(tempTile, x, y, 1);
                     }
@@ -733,7 +747,7 @@ public class terrainGenerator : MonoBehaviour
 
             if (terrainMap[key] == terrain.GRASS && !resourceMap.ContainsKey(key))
             {
-                if (Random.Range(0, 30) < 2)
+                if (Random.Range(0, 150) < rareResourceRate)
                 {
                     tempResource = Berries;
                     resourceMap.Add(key, resource.BERRIES);
@@ -772,7 +786,7 @@ public class terrainGenerator : MonoBehaviour
             resourceMap.Add(key, resource.GOLD);
         }
 
-            if (tempResource == null)
+            if (!resourceMap.ContainsKey(key))
         {
 
             if (Random.Range(1, 600) == 1)
