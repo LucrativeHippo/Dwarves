@@ -8,26 +8,24 @@ public class currentResourcesUIController : MonoBehaviour {
 
     private GameObject resourceManager;
 
-
-
+    private Text[] textsValuesText;
 
     private IEnumerator coroutine;
 
     void Start () {
-        updateResourcesUI();
+        textsValuesText = new Text[(int)ResourceTypes.NumberOfTypes - 1];
+        for (int i = 0; i < (int)ResourceTypes.NumberOfTypes - 1; i++) {
+            textsValuesText [i] = this.transform.GetChild (i).GetChild (0).gameObject.GetComponent<Text> ();
+        }
+        updateResourcesUI ();
     }
 
     /// <summary>
     /// Updates the resources UI.
     /// </summary>
     public void updateResourcesUI () {
-        for(int i=0;i<(int)ResourceTypes.NumberOfTypes;i++){
-            GameObject g = GameObject.Find(((ResourceTypes)i).ToString().ToLower()+"Text");
-            if(g != null){
-                g.GetComponent<Text>().text = MetaScript.getRes().getResource(i).ToString();
-            }else{
-                Debug.Log("HEY!! This doesn't exist: "+((ResourceTypes)i).ToString().ToLower());
-            }
+        for (int i = 0; i < (int)ResourceTypes.NumberOfTypes - 1; i++) {
+            textsValuesText [i].text = MetaScript.getRes ().getResource (i).ToString ();
         }
     }
 }
