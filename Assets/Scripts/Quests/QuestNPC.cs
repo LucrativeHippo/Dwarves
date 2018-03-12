@@ -33,6 +33,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
             
             teleportToTown();
 
+            gameObject.GetComponent<collect>().enabled = true;
             gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
             this.enabled = false;
         }else{
