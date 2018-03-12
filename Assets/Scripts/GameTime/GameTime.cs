@@ -18,7 +18,7 @@ public class GameTime : MonoBehaviour
 
 
 
-    float foo=10;
+    float timevalue=30;
     float valueToIncreaseEverySec = 1;
 
 
@@ -38,13 +38,13 @@ public class GameTime : MonoBehaviour
     //10 second per day
     {
         if(daychange.value==8){
-            foo = 10;
+            timevalue = 30;
 
         }
        
-            foo += valueToIncreaseEverySec * Time.deltaTime;
+            timevalue += valueToIncreaseEverySec * Time.deltaTime;
 
-            daychange.value = foo / 10;
+            daychange.value = timevalue / 30;
 
 
 
