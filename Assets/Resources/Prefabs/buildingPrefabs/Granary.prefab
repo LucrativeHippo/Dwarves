@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 33537928036072016}
   - component: {fileID: 114426585356862198}
   m_Layer: 0
-  m_Name: food_storage
+  m_Name: Granary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
