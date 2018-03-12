@@ -12,7 +12,6 @@ public class enemyMovement : MonoBehaviour
     [SerializeField]
     private int speed = 3;
 
-    private bool npcTargeted = false;
 
     private Vector3 travelDirection;
 
