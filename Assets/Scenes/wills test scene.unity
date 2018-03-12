@@ -1127,7 +1127,6 @@ MonoBehaviour:
   pickupTime: 2
   state: 0
   findingType: 1
-  curDest: {x: 0, y: 0, z: 0}
 --- !u!195 &1020698246
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1199,7 +1198,6 @@ MonoBehaviour:
   pickupTime: 2
   state: 0
   findingType: 1
-  curDest: {x: 0, y: 0, z: 0}
 --- !u!114 &1020698250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,17 +2142,17 @@ Prefab:
     - target: {fileID: 224160738493868170, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.5464481
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -43600
+      value: -44000
       objectReference: {fileID: 0}
     - target: {fileID: 224746640843607648, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -306072.94
+      value: -306804.12
       objectReference: {fileID: 0}
     - target: {fileID: 224481899934109696, guid: f6ceac7530f5be042b4b7d5545e2bed9,
         type: 2}
@@ -2314,17 +2312,17 @@ Prefab:
     - target: {fileID: 224079030702106376, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.53648067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -98325
+      value: -99225
       objectReference: {fileID: 0}
     - target: {fileID: 224825426014426192, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -398602.84
+      value: -399554.25
       objectReference: {fileID: 0}
     - target: {fileID: 224859488526481262, guid: 4a1f4dbf876ff77499f1ea07c1937014,
         type: 2}
