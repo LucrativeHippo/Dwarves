@@ -103,13 +103,9 @@ public class collect : MonoBehaviour
     private void moveTo(GameObject g){
         agent.isStopped = false;
         if(!agent.SetDestination(g.transform.position)){
-            Vector3 temp = g.transform.position - transform.position;
-            if(!agent.SetDestination(temp.normalized * 5 + gameObject.transform.position)){
-                Debug.LogError("Failed to take a step");
-            }
+                Debug.LogError("Failed to go to resource. May be out of NavMesh bounds");
         }
     }
-    public Vector3 curDest;
     IEnumerator move(){
         idle = false;
         
@@ -127,7 +123,6 @@ public class collect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        curDest = agent.destination;
         if(emptyBuilding() || emptyResource()){
             updateLocations();
         }
@@ -171,7 +166,7 @@ public class collect : MonoBehaviour
 
 
     
-    GameObject findClosestTag(string name, GameObject from)
+    public static GameObject findClosestTag(string name, GameObject from)
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag(name);

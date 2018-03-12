@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// Builds quest for NPC, needs creation outside of start.
@@ -19,12 +20,19 @@ public class QuestNPC : MonoBehaviour, IActionable {
         tryQuest();
     }
 
+    private void teleportToTown(){
+            transform.position = GameObject.FindGameObjectWithTag("TownCenter").transform.position+new Vector3(0.5f,0,0);
+            GetComponent<NavMeshAgent>().enabled = true;
+    }
     protected void tryQuest(){
         if(myQuests.checkQuest()){
             // TODO: Send message to NPC to be a vassal of PC
             Debug.Log("QUEST COMPLETED");
             GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
             MetaScript.GetNPC().addNPC(gameObject);
+            
+            teleportToTown();
+
             gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
             this.enabled = false;
         }else{
