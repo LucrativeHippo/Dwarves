@@ -398,7 +398,7 @@ public class terrainGenerator : MonoBehaviour
         return (float)(val + chunk * Chunk.SIZE) / 20f + SEED;
     }
     // Use this for initialization
-    public void Start()
+    public void Awake()
     {
         //GameObject player = GameObject.FindGameObjectWithTag("Player");
         //player.transform.position = new Vector3(xPlayerChunkPos + xPlayerPos, 0, yPlayerChunkPos + yPlayerPos);
@@ -433,6 +433,11 @@ public class terrainGenerator : MonoBehaviour
             for (int j = yChunk - chunksLoaded; j < yChunk + chunksLoaded + 1; j++)
             {
                 generateChunk(i,j);
+                //if(i == xChunk+chunksLoaded && j == yChunk + chunksLoaded)
+                //{
+
+                  //  GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
+                //}
             }
         }
         if (GameObject.FindGameObjectWithTag("TownCenter")!=null)
@@ -442,6 +447,10 @@ public class terrainGenerator : MonoBehaviour
         
         
 
+    }
+    void Start()
+    {
+        //GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
     }
 
     /// <summary>

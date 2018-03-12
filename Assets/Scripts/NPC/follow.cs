@@ -36,7 +36,7 @@ public class follow : MonoBehaviour {
         
         if (target != null)
         {
-            
+            gameObject.transform.position = target.transform.position + new Vector3(0,1.0f,0);
             navComponent.enabled = true;
             navComponent.SetDestination(target.transform.position);
             float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
