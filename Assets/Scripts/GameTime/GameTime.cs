@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class GameTime : MonoBehaviour {
+using UnityEngine.AI;
+public class GameTime : MonoBehaviour
+{
 
     public float dayTime = 300.0f;
     private Calendar calendar;
@@ -11,17 +13,21 @@ public class GameTime : MonoBehaviour {
     public Slider daychange;
     public Text daychangetext;
     public Text seasonchange;
-  //  private GenerateMonster generateMonster;
+    //  private GenerateMonster generateMonster;
     private GameObject UIObject;
     private UseCustomImageEffect postProcessing;
 
-    void Start () {
-        UIObject = GameObject.Find ("UIController");
 
-        GameObject temp = GameObject.Find ("monster_generator");
-        weatherScript = gameObject.GetComponent<Weather> ();
-        calendar = gameObject.GetComponent<Calendar> ();
+
+    void Start()
+    {
+        UIObject = GameObject.Find("UIController");
+
+        GameObject temp = GameObject.Find("monster_generator");
+        weatherScript = gameObject.GetComponent<Weather>();
+        calendar = gameObject.GetComponent<Calendar>();
         //generateMonster = temp.GetComponent<GenerateMonster> ();
+
         postProcessing = GameObject.FindObjectOfType<UseCustomImageEffect>();
         StartCoroutine (Timer (dayTime));
 
@@ -30,13 +36,9 @@ public class GameTime : MonoBehaviour {
             postProcessing.setDoHalo(true);
             StartCoroutine(DayCycle(dayTime));
         }
-        
-      
-    }
-    private void Update()
-    {
        
     }
+
 
     private void setWeatherBasedPostProcessing()
     {
@@ -91,7 +93,9 @@ public class GameTime : MonoBehaviour {
 
             setWeatherBasedPostProcessing();
             setWeatherBasedParticles();
+
         }
+
     }
 
     private IEnumerator DayCycle(float time)
@@ -119,3 +123,9 @@ public class GameTime : MonoBehaviour {
         }
     }
 }
+    
+
+  
+
+
+

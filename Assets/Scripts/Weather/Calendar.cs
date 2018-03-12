@@ -40,9 +40,9 @@ public class Calendar : MonoBehaviour {
 
     public  int getCurrentDay()
     {
-        return currentDay;
+        return currentDay+1;
     }
-
+   
     public int getCurrentYear()
     {
         return currentYear;
