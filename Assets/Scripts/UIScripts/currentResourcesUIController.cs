@@ -35,7 +35,9 @@ public class currentResourcesUIController : MonoBehaviour {
     }
 
     void Update () {
-        if(idle)
-            StartCoroutine(wait());
+        // if(idle)
+        //     StartCoroutine(wait());
+        // TODO: change to MVC
+        updateHUD();
     }
 }
