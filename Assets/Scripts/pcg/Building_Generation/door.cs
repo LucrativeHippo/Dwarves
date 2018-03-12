@@ -29,18 +29,18 @@ public class door : MonoBehaviour {
     public void recieveAction()
     {
         
-        if(pos != null)
-        {
+        // if(pos != null)
+        // {
             print(pos.x + "" + pos.y + "" + pos.z);
             player.SetActive(false);
             player.transform.position = pos;
             player.SetActive(true);
             //print(xpos + zpos);
-        }
-        else
-        {
+        // }
+        // else
+        // {
             
-            Debug.Log("The return building has not been set yet");
-        }
+        //     Debug.Log("The return building has not been set yet");
+        // }
     }
 }
