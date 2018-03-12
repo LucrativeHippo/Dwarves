@@ -37,8 +37,20 @@ public class GenerateRoleSelector : MonoBehaviour {
                 counter++;
             }
         }
-    }
 
+        GameObject guardButton = Instantiate(Button_Template) as GameObject;
+        guardButton.SetActive(true);
+        guardButton.GetComponent<StateSwitch>().setGuardButton(currentNPC);
+        guardButton.transform.SetParent (buttonParent.transform, false);
+        
+        GameObject followButton = Instantiate(Button_Template) as GameObject;
+        followButton.SetActive(true);
+        followButton.GetComponent<StateSwitch>().setFollowButton(currentNPC);
+        followButton.transform.SetParent (buttonParent.transform, false);
+
+
+    }
+    
     public void setCurrentNPC (GameObject aNPC) {
         currentNPC = aNPC;
     }
