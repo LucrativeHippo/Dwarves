@@ -435,6 +435,11 @@ public class terrainGenerator : MonoBehaviour
                 generateChunk(i,j);
             }
         }
+        if (GameObject.FindGameObjectWithTag("TownCenter")!=null)
+        {
+            GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
+        }
+        
         
 
     }
@@ -574,7 +579,7 @@ public class terrainGenerator : MonoBehaviour
                         tempResource.transform.SetParent(chunkLoc.transform);
                         if (resourceMap[key] == resource.NPC)
                         {
-                            tempResource.GetComponent<QuestNPC>().addGoal(Random.Range(1, 10));
+                           
                         }
                         chunkMap.addTileAt(tempTile, x, y, 1);
                     }
@@ -733,7 +738,7 @@ public class terrainGenerator : MonoBehaviour
 
             if (terrainMap[key] == terrain.GRASS && !resourceMap.ContainsKey(key))
             {
-                if (Random.Range(0, 30) < 2)
+                if (Random.Range(0, 150) < rareResourceRate)
                 {
                     tempResource = Berries;
                     resourceMap.Add(key, resource.BERRIES);

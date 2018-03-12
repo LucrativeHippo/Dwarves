@@ -22,7 +22,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
 
     private void teleportToTown(){
             transform.position = GameObject.FindGameObjectWithTag("TownCenter").transform.position+new Vector3(0.5f,0,0);
-            GetComponent<NavMeshAgent>().enabled = true;
+            //GetComponent<NavMeshAgent>().enabled = true;
     }
     protected void tryQuest(){
         if(myQuests.checkQuest()){

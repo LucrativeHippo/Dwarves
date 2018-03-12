@@ -22,7 +22,7 @@ public class follow : MonoBehaviour {
         
         target = GameObject.FindWithTag("Player");
         navComponent = this.transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        
+        target.GetComponent<LocalNavMeshBuilder>().enabled = true;
 
 
     }
