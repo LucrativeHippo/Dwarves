@@ -187,6 +187,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 7500879}
+--- !u!1 &29475426 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1419942855236744, guid: a52a3ed753a66f6408285b2e71240be6,
+    type: 2}
+  m_PrefabInternal: {fileID: 564596448}
+--- !u!114 &29475434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 29475426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf30c037ce34624aa5973ae319d0a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.02
 --- !u!1 &146142122
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +806,8 @@ Prefab:
       propertyPath: generator
       value: 
       objectReference: {fileID: 568340058}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114001330932921944, guid: a52a3ed753a66f6408285b2e71240be6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a52a3ed753a66f6408285b2e71240be6, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &568340058 stripped
@@ -1990,6 +2008,18 @@ Prefab:
       propertyPath: xPlayerPos
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: Diamond
+      value: 
+      objectReference: {fileID: 1292923283124684, guid: 97132c7446293ac4287e022af3e9aa2c,
+        type: 2}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: Coal
+      value: 
+      objectReference: {fileID: 1833930755066644, guid: a4e768a2af2fef042a87f2bea483023a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f4b52197e853c7042a369c9dfec13683, type: 2}
   m_IsPrefabParent: 0

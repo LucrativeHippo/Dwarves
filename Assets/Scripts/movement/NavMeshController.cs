@@ -30,7 +30,7 @@ public class NavMeshController : MonoBehaviour {
         if (closeToTC())
         {
             setNav(false);
-            print("hello");
+           
         }
         else
         {
