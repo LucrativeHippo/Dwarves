@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 114227732489459378}
   - component: {fileID: 114039547803142350}
   - component: {fileID: 114295349895056652}
+  - component: {fileID: 114596335933979840}
   m_Layer: 5
   m_Name: aBuildingButton
   m_TagString: Untagged
@@ -2398,6 +2399,17 @@ MonoBehaviour:
   m_Text: '100%
 
 '
+--- !u!114 &114596335933979840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1248601779117232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95167f9d968d88e40b79c7b71d3b5842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114597976799224198
 MonoBehaviour:
   m_ObjectHideFlags: 1

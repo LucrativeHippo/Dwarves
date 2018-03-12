@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 222679978736270238}
   - component: {fileID: 114179690734428472}
   - component: {fileID: 114591848205295326}
-  - component: {fileID: 114838974772868754}
+  - component: {fileID: 114563978563292478}
   m_Layer: 5
   m_Name: aBuildingButton
   m_TagString: Untagged
@@ -152,6 +152,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114563978563292478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1164425452580266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95167f9d968d88e40b79c7b71d3b5842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114591848205295326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,17 +299,6 @@ MonoBehaviour:
   m_Text: 'Wood 100
 
     Stone 200'
---- !u!114 &114838974772868754
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164425452580266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91506457dfcb18e4d951c571e21f8eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &222159522724384234
 CanvasRenderer:
   m_ObjectHideFlags: 1
