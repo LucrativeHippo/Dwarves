@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4374668773457190}
   - component: {fileID: 114469130336903406}
+  - component: {fileID: 114943072319886614}
   m_Layer: 0
   m_Name: Anchor
   m_TagString: Untagged
@@ -372,3 +373,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeCostList: 000000000000000000000000000000000000000000000000000000000000000000000000
   upgrade: {fileID: 1692466681413014, guid: a2dc17abdf421ee408065ddf744d857f, type: 2}
+--- !u!114 &114943072319886614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1646703827488844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -2.5}
+  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
