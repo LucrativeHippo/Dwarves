@@ -41,22 +41,24 @@ public class ResourceManager : MonoBehaviour {
     public void increaseCapacity(int i, int increase)
     {
         maxResourceList[i] += increase;
+		MetaScript.updateResourcesUI();
     }
 
 
 	public void addResource(ResourceTypes i, int add){
-        if ((resourceList[(int)i] + add) < maxResourceList[(int)i])
-        {
-            addResource((int)i, add);
-        }
-        else
-        {
-            resourceList[(int)i] = maxResourceList[(int)i];
-        }
-		
+		addResource((int)i, add);
 	}
+	
 	public void addResource(int i, int add){
-		resourceList[i] += add;
+        if ((resourceList[i] + add) < maxResourceList[i])
+        {
+			resourceList[i] += add;
+		}
+		else
+        {
+			setResource(i,maxResourceList[i]);
+        }
+		MetaScript.updateResourcesUI();
 	}
 
 	void setResource(ResourceTypes i, int set){
@@ -64,6 +66,7 @@ public class ResourceManager : MonoBehaviour {
 	}
 	void setResource(int i, int set){
 		resourceList[i] = set;
+		MetaScript.updateResourcesUI();
 	}
 
 	/// <summary>

@@ -6,32 +6,25 @@ using UnityEngine.UI;
 
 public class basicBuilding : MonoBehaviour {
 
+    public GameObject Button_Template;
+
     private GameObject[] buildingPrefabs;
     private Object[] buildingPrefabsObjects;
 
     private GameObject buildingMenu;
-
-    public GameObject Button_Template;
-
-    //[SerializeField] private GameObject locationObject;
-
-    [SerializeField] private GameObject buildingMenuUIContent;
-
+    private GameObject buildingMenuUIContent;
+    private GameObject AllUIObjects;
 
     void Start () {
-        // Get Resource Manager.
 
-        // Get building menu object.
-        buildingMenu = GameObject.Find ("buildingMenuUI");
+        AllUIObjects = GameObject.Find ("AllUIObjectsCanvas");
+        buildingMenu = AllUIObjects.transform.GetChild (2).gameObject;
 
-        buildingMenuUIContent = GameObject.Find ("buildingUIContent");
+        buildingMenuUIContent = buildingMenu.transform.GetChild (0).GetChild (0).GetChild (0).gameObject;
 
         // Get all building Prefabs in buildingPrefabs folder.
         buildingPrefabs = Resources.LoadAll ("Prefabs/buildingPrefabs", typeof(GameObject)).Cast<GameObject> ().ToArray ();
         buildingPrefabsObjects = buildingPrefabs;
-
-        // Build Menu.
-//        buildBuildingMenu ();
     }
 
     public void recieveAction () {
@@ -44,47 +37,45 @@ public class basicBuilding : MonoBehaviour {
         foreach (var theBuildings in buildingPrefabs) {
             tempGameObject = Instantiate (Button_Template) as GameObject;
             tempGameObject.SetActive (true);
-            buttonScript aButtonScript = tempGameObject.GetComponent<buttonScript> ();
-            aButtonScript.setBuildingScript (this);
-            aButtonScript.setName (theBuildings.name);
-            aButtonScript.setNumber (counter);
+            tempGameObject.GetComponent<buildingButtonScript> ().setButton (counter, this, buildingPrefabs [counter]);
             tempGameObject.transform.SetParent (buildingMenuUIContent.transform, false);
             counter++;
         }
     }
 
     private void displayMenu () {
+        buildingMenu.SetActive (true);
+        clearUI ();
+        buildBuildingMenu ();
+
+    }
+
+    private void clearUI () {
         foreach (Transform child in buildingMenuUIContent.transform) {
             Destroy (child.gameObject);
         }
-        buildBuildingMenu ();
-        buildingMenu.GetComponent<Canvas> ().enabled = true;
-        //locationObject = this.gameObject;
     }
-
 
     private void createBuilding (int buildingNumber) {
         if (checkResources (buildingNumber)) {
             // Create Building.
-            Instantiate (buildingPrefabsObjects [buildingNumber], transform.position, Quaternion.identity);
+            Instantiate (buildingPrefabsObjects [buildingNumber], this.transform.position, Quaternion.identity);
 
-            buildingPrefabs[buildingNumber].GetComponent<resourceCost>().purchase();
+            buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().purchase ();
             // Disable Building Menu.
             buildingMenu.GetComponent<Canvas> ().enabled = false;
 
-            Destroy(gameObject);
+            Destroy (gameObject);
         } else {
             Debug.Log ("Not Enough Resources to build Building: " + buildingNumber);
         }
     }
 
     private bool checkResources (int buildingNumber) {
-
-        return buildingPrefabs[buildingNumber].GetComponent<resourceCost>().canAfford();
+        return buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().canAfford ();
     }
 
     public void buttonClicked (int number) {
-        Debug.Log (number + " button clicked.");
         createBuilding (number);
     }
 }
