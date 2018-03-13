@@ -7,27 +7,23 @@ using UnityEngine;
 public class Quests : MonoBehaviour {
 	[System.Serializable]
 	public class QuestType{
-		public Goal goal;public int difficulty; public string message;
+		public Goal goal;public int difficulty; 
+		public string Name;
+		public Sprite img;
 		public QuestType(Goal g, int diff, string msg){
 			this.goal = g;
 			this.difficulty = diff;
-			this.message = msg;
-		}
-		public QuestType(Goal g, int diff, string msg, int div){
-			
-			this.goal = g;
-			this.difficulty = diff;
-			this.message = msg;
+			this.Name = msg;
+			this.img = null;
 		}
 	};
 
 	// For use with generation
-	public static QuestType [] questList = new QuestType[]{
+	public static QuestType [] list = new QuestType[]{
 		// Quests to give resources
 		new QuestType(giveWood, 2, "wood"),
 		new QuestType(giveFood, 5, "food"),
 		new QuestType(giveCoal, 15, "coal"),
-		new QuestType(giveSand, 4, "sand"),
 		new QuestType(giveStone, 10, "stone"),
 		new QuestType(giveIron, 20, "iron"),
 		new QuestType(giveDiamond, 40, "diamond"),
@@ -39,7 +35,6 @@ public class Quests : MonoBehaviour {
 
 		// Quests for food above amount
 		new QuestType(isFoodAbove, 0, "food"),
-		new QuestType(isSandAbove, 2, "sand"),
 		new QuestType(isStoneAbove, 5, "stone"),
 		new QuestType(isIronAbove,10,"iron"),
 		new QuestType(isCoalAbove,8,"coal"),
@@ -60,10 +55,10 @@ public class Quests : MonoBehaviour {
 	}
 
 
-	public static int getDifficulty(Goal g){
-		for (int i = 0; i < questList.Length; i++) {
-			if (g == questList [i].goal)
-				return questList[i].difficulty;
+	public int getDifficulty(Goal g){
+		for (int i = 0; i < list.Length; i++) {
+			if (g == list [i].goal)
+				return list[i].difficulty;
 		}
 
 		return 0;
@@ -97,9 +92,6 @@ public class Quests : MonoBehaviour {
 		return hasRes(ResourceTypes.STONE, a);
 	}
 
-	public static bool isSandAbove(int a){
-		return hasRes(ResourceTypes.SAND, a);
-	}
 
 	public static bool isWoodAbove(int a){
 		return hasRes(ResourceTypes.WOOD, a);
@@ -127,9 +119,6 @@ public class Quests : MonoBehaviour {
 	}
 	public static bool giveStone(int a){
 		return takeRes(ResourceTypes.STONE, a);
-	}
-	public static bool giveSand(int a){
-		return takeRes(ResourceTypes.SAND, a);
 	}
 	public static bool giveCoal(int a){
 		return takeRes(ResourceTypes.COAL, a);

@@ -22,6 +22,10 @@ public class terrainGenerator : MonoBehaviour
     private int yPlayerChunkPos;
 
 
+
+    [SerializeField]
+    private int chunksLoaded = 3;
+
     /// World starting point
     [SerializeField]
     private static int SEED = 0;
@@ -51,6 +55,10 @@ public class terrainGenerator : MonoBehaviour
     //A divisor that determines amount of trees 
     [SerializeField]
     private float resourceAmount;
+
+    //The rate that determines rare resource spawn rates
+    [SerializeField]
+    private int rareResourceRate = 10;
 
     private float[] thresholds = new float[(int)terrain.GRASS];
 
@@ -103,6 +111,12 @@ public class terrainGenerator : MonoBehaviour
     [SerializeField]
     private GameObject NPC;
 
+    [SerializeField]
+    private GameObject Diamond;
+
+    [SerializeField]
+    private GameObject Coal;
+
 
     //Affects the types of terrain that are generated
     [SerializeField]
@@ -147,7 +161,10 @@ public class terrainGenerator : MonoBehaviour
         BERRIES,
         NPC,
         ENEMY,
-        BUILDSIGN
+        BUILDSIGN,
+        DIAMOND,
+        COAL,
+        NONE
     }
 
     private GameObject getResourceObject(resource r)
@@ -172,6 +189,10 @@ public class terrainGenerator : MonoBehaviour
                 return NPC;
             case resource.BUILDSIGN:
                 return BuildSign;
+            case resource.DIAMOND:
+                return Diamond;
+            case resource.COAL:
+                return Coal;
             default:
                 return Tree;
         }
@@ -215,7 +236,11 @@ public class terrainGenerator : MonoBehaviour
             case resource.IRON:
                 return 0.46f;
             case resource.GOLD:
-                return 0.10f;
+                return 0.44f;
+            case resource.DIAMOND:
+                return 0.35f;
+            case resource.COAL:
+                return 0.46f;
             case resource.FISH:
                 return 0.10f;
             default:
@@ -373,7 +398,7 @@ public class terrainGenerator : MonoBehaviour
         return (float)(val + chunk * Chunk.SIZE) / 20f + SEED;
     }
     // Use this for initialization
-    public void Start()
+    public void Awake()
     {
         //GameObject player = GameObject.FindGameObjectWithTag("Player");
         //player.transform.position = new Vector3(xPlayerChunkPos + xPlayerPos, 0, yPlayerChunkPos + yPlayerPos);
@@ -381,15 +406,52 @@ public class terrainGenerator : MonoBehaviour
         loadedChunks = new Dictionary<string, Chunk>();
         terrainMap = new Dictionary<string, terrain>();
         resourceMap = new Dictionary<string, resource>();
-        generateChunk(xChunk, yChunk);
+        int tempx = getxPlayerChunkPos() * Chunk.SIZE + getxPlayerPos();
+        int tempy = getyPlayerChunkPos() * Chunk.SIZE + getyPlayerPos();
         
-    }
+        for (int i = (tempx - 3); i < (tempx + 4); i++)
+        {
+            for (int j = (tempy - 3); j < (tempy + 4); j++)
+            {
+                string key = (tempx + i) + " " + (tempy + j);
+                if (resourceMap.ContainsKey(key))
+                {
+                    resourceMap[key] = resource.NONE;
+                    
+                    
+                }
+                else
+                {
+                    resourceMap.Add(key, resource.NONE);
+                   
+                }
+                
+            }
+        }
+        for (int i=xChunk - chunksLoaded; i < xChunk + chunksLoaded + 1; i++ )
+        {
+            for (int j = yChunk - chunksLoaded; j < yChunk + chunksLoaded + 1; j++)
+            {
+                generateChunk(i,j);
+                //if(i == xChunk+chunksLoaded && j == yChunk + chunksLoaded)
+                //{
 
-    public void FixedUpdate()
+                  //  GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
+                //}
+            }
+        }
+        if (GameObject.FindGameObjectWithTag("TownCenter")!=null)
+        {
+            GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
+        }
+        
+        
+
+    }
+    void Start()
     {
-        
+        //GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
     }
-
 
     /// <summary>
     /// Generates the chunk at xy chunk position.
@@ -412,7 +474,7 @@ public class terrainGenerator : MonoBehaviour
 
 		GameObject chunkLoc = new GameObject ("Chunk: " + xPos + " " + yPos);
 		chunkLoc.transform.SetPositionAndRotation (new Vector3 (xPos * Chunk.SIZE, 0, yPos * Chunk.SIZE), Quaternion.identity);
-
+        
         for (int y = 0; y < Chunk.SIZE; y++)
         {
             for (int x = 0; x < Chunk.SIZE; x++)
@@ -434,6 +496,7 @@ public class terrainGenerator : MonoBehaviour
         loadedChunks[xPos + " " + yPos] = chunkMap;
         GameObject tempTile;
         GameObject tempResource;
+        int count = 0;
         for (int y = 0; y < Chunk.SIZE; y++)
         {
             for (int x = 0; x < Chunk.SIZE; x++)
@@ -456,7 +519,46 @@ public class terrainGenerator : MonoBehaviour
                 }
                 if (resourceMap.ContainsKey(key))
                 {
-                    if (resourceMap[key] == resource.TREE)
+                    if(resourceMap[key] == resource.NONE)
+                    {
+                        
+                    }
+                    else if (resourceMap[key] == resource.STONE)
+                    {
+                        int temp = Random.Range(1, 5);
+                        for (int i = 0; i < temp; i++)
+                        {
+                            int xtemp = Random.Range(-5, 5);
+                            int ytemp = Random.Range(-5, 5);
+                            if (Random.Range(0, 1000) < rareResourceRate)
+                            {
+                                tempResource = Instantiate(getResourceObject(resource.DIAMOND), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
+                            }
+                            else if(Random.Range(0, 100) < rareResourceRate)
+                            {
+                                tempResource = Instantiate(getResourceObject(resource.COAL), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
+                            }
+                            else
+                            {
+
+                                tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
+                            }
+                            tempResource.transform.SetParent(chunkLoc.transform);
+                        }
+                    }
+                    else if (resourceMap[key] == resource.IRON)
+                    {
+                        int temp = Random.Range(1, 3);
+                        for (int i = 0; i < temp; i++)
+                        {
+                            int xtemp = Random.Range(-5, 5);
+                            int ytemp = Random.Range(-5, 5);
+                            tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
+
+                            tempResource.transform.SetParent(chunkLoc.transform);
+                        }
+                    }
+                    else if (resourceMap[key] == resource.TREE)
                     {
                         int temp = Random.Range(1, 5);
                         for (int i = 0; i < temp; i++)
@@ -468,7 +570,7 @@ public class terrainGenerator : MonoBehaviour
                             tempResource.transform.SetParent(chunkLoc.transform);
                         }
                     }
-                    if (resourceMap[key] == resource.BERRIES)
+                    else if (resourceMap[key] == resource.BERRIES)
                     {
                         int temp = Random.Range(1, 5);
                         for (int i = 0; i < temp; i++)
@@ -486,7 +588,7 @@ public class terrainGenerator : MonoBehaviour
                         tempResource.transform.SetParent(chunkLoc.transform);
                         if (resourceMap[key] == resource.NPC)
                         {
-                            tempResource.GetComponent<QuestNPC>().addGoal(Random.Range(1, 10));
+                           
                         }
                         chunkMap.addTileAt(tempTile, x, y, 1);
                     }
@@ -500,7 +602,7 @@ public class terrainGenerator : MonoBehaviour
     bool addTerrain(int xCoord, int yCoord, int xChunkCoord, int yChunkCoord, Chunk chunk, Dictionary<string, terrain> terrainMap)
     {
         
-        GameObject tempTile = null;
+        //GameObject tempTile = null;
         Position worldPos = new Position(xChunkCoord * Chunk.SIZE + xCoord, yChunkCoord * Chunk.SIZE + yCoord);
         string key = worldPos.xCoord + " " + worldPos.yCoord;
         float xNoiseValue = posNoise(xCoord, xChunkCoord);
@@ -512,7 +614,7 @@ public class terrainGenerator : MonoBehaviour
         if (terrainMap.ContainsKey(key))
         {
             // Instantiate saved game object from terrain
-            tempTile = getObject(terrainMap[key]);
+            //tempTile = getObject(terrainMap[key]);
         } else if (xChunkCoord == xPlayerChunkPos && yChunkCoord == yPlayerChunkPos && xCoord == xPlayerPos && yCoord == yPlayerPos)
         {
             for (int i = xPlayerPos - 1; i <= xPlayerPos + 1; i++)
@@ -566,7 +668,7 @@ public class terrainGenerator : MonoBehaviour
             if (!terrainMap.ContainsKey(key))
             {
                 terrainMap.Add(key, terrain.SAND);
-                tempTile = Sand;
+                // tempTile = Sand;
             }
         }
 
@@ -577,7 +679,7 @@ public class terrainGenerator : MonoBehaviour
                 if (!terrainMap.ContainsKey(key))
                 {
                     terrainMap.Add(key, terrain.DESERT);
-                    tempTile = Desert;
+                    // tempTile = Desert;
                 }
             }
             else if (getThreshold(terrain.DESERT) < terrainVal && terrainVal <= getThreshold(terrain.MOUNTAIN)&& getThreshold(terrain.DESERT) < terrainVal2 && terrainVal2 <= getThreshold(terrain.MOUNTAIN))
@@ -585,7 +687,7 @@ public class terrainGenerator : MonoBehaviour
                 if (!terrainMap.ContainsKey(key))
                 {
                     terrainMap.Add(key, terrain.MOUNTAIN);
-                    tempTile = Mountain;
+                    // tempTile = Mountain;
                 }
             }
             else 
@@ -593,7 +695,7 @@ public class terrainGenerator : MonoBehaviour
                 if (!terrainMap.ContainsKey(key))
                 {
                     terrainMap.Add(key, terrain.GRASS);
-                    tempTile = Grass;
+                    // tempTile = Grass;
                 }
             }           
         }
@@ -619,10 +721,15 @@ public class terrainGenerator : MonoBehaviour
         float resourceVal2 = Mathf.PerlinNoise(xNoiseValue + getresourceSeed2() + chunkIntervalSeed * xChunk, yNoiseValue + getresourceSeed2() + chunkIntervalSeed * yChunk) / getresourceAmount();
         if (resourceMap.ContainsKey(key))
         {
-            tempResource = getResourceObject(resourceMap[key]);
+            if(!(resourceMap[key] == resource.NONE))
+            {
+                tempResource = getResourceObject(resourceMap[key]);
+            }
+            
+            
         }else if (terrainMap[key] == terrain.PLOT)
         {
-            print(key);
+            
             resourceMap.Add(key, resource.BUILDSIGN);
         }
         else if (waterVal < getThreshold(terrain.WATER))
@@ -640,7 +747,7 @@ public class terrainGenerator : MonoBehaviour
 
             if (terrainMap[key] == terrain.GRASS && !resourceMap.ContainsKey(key))
             {
-                if (Random.Range(0, 30) < 2)
+                if (Random.Range(0, 150) < rareResourceRate)
                 {
                     tempResource = Berries;
                     resourceMap.Add(key, resource.BERRIES);
@@ -674,9 +781,12 @@ public class terrainGenerator : MonoBehaviour
         {
             tempResource = Gold;
             resourceMap.Add(key, resource.GOLD);
+        }else if (Random.Range(0,1500) < rareResourceRate)
+        {
+            resourceMap.Add(key, resource.GOLD);
         }
 
-            if (tempResource == null)
+            if (!resourceMap.ContainsKey(key))
         {
 
             if (Random.Range(1, 600) == 1)

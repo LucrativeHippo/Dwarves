@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class building_generator {
 
-    private static int MAX_WIDTH = 16;
-    private static int MAX_HEIGHT = 16;
-    private static int MIN_WIDTH = 8;
-    private static int MIN_HEIGHT = 8;
+    private static int MAX_WIDTH = 8;
+    private static int MAX_HEIGHT = 8;
+    private static int MIN_WIDTH = 4;
+    private static int MIN_HEIGHT = 4;
     private static int DEPTH = -100;
     private bool doorPlaced = false;
 

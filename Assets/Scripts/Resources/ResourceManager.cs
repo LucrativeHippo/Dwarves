@@ -7,7 +7,20 @@ public class ResourceManager : MonoBehaviour {
 	[NamedArray(typeof(ResourceTypes))]private int [] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
     [SerializeField]
     [NamedArray(typeof(ResourceTypes))]private int [] maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
+    
 
+    void Awake(){
+		resourceList = new int[(int)ResourceTypes.NumberOfTypes];
+		maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
+        maxResourceList[(int)ResourceTypes.WOOD] = 200;
+        maxResourceList[(int)ResourceTypes.FOOD] = 100;
+        maxResourceList[(int)ResourceTypes.STONE] = 50;
+        maxResourceList[(int)ResourceTypes.COAL] = 10;
+        maxResourceList[(int)ResourceTypes.DIAMOND] = 5;
+        maxResourceList[(int)ResourceTypes.GOLD] = 5;
+        maxResourceList[(int)ResourceTypes.IRON] = 10;
+        maxResourceList[(int)ResourceTypes.POPULATION] = 5;
+    }
 
     private bool meat;
     private bool fruit;
@@ -28,22 +41,31 @@ public class ResourceManager : MonoBehaviour {
     public void increaseCapacity(int i, int increase)
     {
         maxResourceList[i] += increase;
+		MetaScript.updateResourcesUI();
     }
 
+    public int getMaxResource (ResourceTypes aType) {
+        return getMaxResource ((int)aType);
+    }
+
+    public int getMaxResource (int theIndex) {
+        return maxResourceList [theIndex];
+    }
 
 	public void addResource(ResourceTypes i, int add){
-        if ((resourceList[(int)i] + add) < maxResourceList[(int)i])
-        {
-            addResource((int)i, add);
-        }
-        else
-        {
-            resourceList[(int)i] = maxResourceList[(int)i];
-        }
-		
+		addResource((int)i, add);
 	}
+	
 	public void addResource(int i, int add){
-		resourceList[i] += add;
+        if ((resourceList[i] + add) < maxResourceList[i])
+        {
+			resourceList[i] += add;
+		}
+		else
+        {
+			setResource(i,maxResourceList[i]);
+        }
+		MetaScript.updateResourcesUI();
 	}
 
 	void setResource(ResourceTypes i, int set){
@@ -51,6 +73,7 @@ public class ResourceManager : MonoBehaviour {
 	}
 	void setResource(int i, int set){
 		resourceList[i] = set;
+		MetaScript.updateResourcesUI();
 	}
 
 	/// <summary>

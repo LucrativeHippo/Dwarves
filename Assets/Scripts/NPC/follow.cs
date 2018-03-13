@@ -1,0 +1,62 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class follow : MonoBehaviour {
+
+    private GameObject target;
+    private UnityEngine.AI.NavMeshAgent navComponent;
+    // the distance in which to follow the player
+    [SerializeField]
+    private float followDistance;
+
+    private GameObject tc;
+
+    void Awake()
+    {
+        navComponent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        
+    }
+    // Use this for initialization
+    void Start () {
+        
+        target = GameObject.FindWithTag("Player");
+        navComponent = this.transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        
+
+
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        if(target == null)
+        {
+            target = GameObject.FindWithTag("Player");
+        }
+        
+        if (target != null)
+        {
+            Vector3 tPos = target.transform.position;
+            Vector3 pPos = transform.position;
+            navComponent.enabled = true;
+            //navComponent.SetDestination(target.transform.position);
+            float distanceToTarget = Vector3.SqrMagnitude(tPos- pPos);
+            
+            if (distanceToTarget <= Mathf.Pow(followDistance,2))
+            {
+                
+                navComponent.isStopped = true;
+                
+            }else if(distanceToTarget >= Mathf.Pow(maxDist,2)){
+                navComponent.enabled = false;
+                transform.position = (pPos - tPos).normalized*maxDist+tPos;
+                navComponent.enabled = true;
+            }else {
+                navComponent.isStopped = false;
+                navComponent.SetDestination(tPos);
+                
+            }
+        }
+    }
+    public float maxDist = 5f;
+}

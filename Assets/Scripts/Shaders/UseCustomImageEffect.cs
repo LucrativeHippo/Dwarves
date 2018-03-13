@@ -5,9 +5,11 @@ using UnityEngine;
 public class UseCustomImageEffect : MonoBehaviour
 {
     public Material EffectMaterial;
-    private float saturation = 1.0f;
-    private float doDisplace = 0.0f; // Booleans can't be passed to shaders.
-    private float displacement = 0.0015f;
+    [SerializeField] private float saturation = 1.0f;
+    [SerializeField] private float doDisplace = 0.0f; // Booleans can't be passed to shaders.
+    [SerializeField] private float displacement = 0.005f;
+    [SerializeField] private float doHalo = 0.0f; // Booleans can't be passed to shaders.
+    [SerializeField] private float haloAmount = 0.0f;
 
     void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
@@ -16,6 +18,9 @@ public class UseCustomImageEffect : MonoBehaviour
             EffectMaterial.SetFloat("_SatMagnitude", saturation);
             EffectMaterial.SetFloat("_Displace", doDisplace);
             EffectMaterial.SetFloat("_DisMagnitude", displacement);
+            EffectMaterial.SetFloat("_Halo", doHalo);
+            EffectMaterial.SetFloat("_HaloMagnitude", haloAmount);
+            
             Graphics.Blit(src, dst, EffectMaterial);
         }  
     }
@@ -23,6 +28,12 @@ public class UseCustomImageEffect : MonoBehaviour
     public void lerpSaturationValue(float time, float newValue)
     {
         IEnumerator co = doLerpSat(time, newValue);
+        StartCoroutine(co);
+    }
+
+    public void lerpHaloValue(float time, float newValue)
+    {
+        IEnumerator co = doLerpHalo(time, newValue);
         StartCoroutine(co);
     }
 
@@ -46,6 +57,7 @@ public class UseCustomImageEffect : MonoBehaviour
         displacement = amount;
     }
 
+
     public bool isDoingDisplacement()
     {
         return (doDisplace == 1.0f);
@@ -60,6 +72,33 @@ public class UseCustomImageEffect : MonoBehaviour
         else
         {
             doDisplace = 0.0f;
+        }
+    }
+
+    public float getHaloAmount()
+    {
+        return haloAmount;
+    }
+
+    public void setHaloAmount(float amount)
+    {
+        haloAmount = amount;
+    }
+
+    public bool isDoingHalo()
+    {
+        return (doHalo == 1.0f);
+    }
+
+    public void setDoHalo(bool halo)
+    {
+        if (halo)
+        {
+            doHalo = 1.0f;
+        }
+        else
+        {
+            doHalo = 0.0f;
         }
     }
 
@@ -83,6 +122,29 @@ public class UseCustomImageEffect : MonoBehaviour
 
             float t = passedTime / time;
             saturation = Mathf.Lerp(oldSat, newSat, t);
+        }
+    }
+
+    private IEnumerator doLerpHalo(float time, float newValue)
+    {
+        IEnumerator co = lerpHalo(time, newValue);
+        StartCoroutine(co);
+        yield return new WaitForSeconds(time);
+        StopCoroutine(co);
+    }
+
+    private IEnumerator lerpHalo(float time, float newHalo)
+    {
+        float oldHalo = haloAmount;
+        float passedTime = 0.0f;
+
+        while (true)
+        {
+            yield return null;
+            passedTime += Time.deltaTime;
+
+            float t = passedTime / time;
+            haloAmount = Mathf.Lerp(oldHalo, newHalo, t);
         }
     }
 }
