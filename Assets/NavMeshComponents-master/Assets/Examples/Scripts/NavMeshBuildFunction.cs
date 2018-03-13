@@ -20,7 +20,7 @@ public class NavMeshBuildFunction : MonoBehaviour
     List<NavMeshBuildSource> m_Sources = new List<NavMeshBuildSource>();
 
     public void build(){
-        UpdateNavMesh();
+        UpdateNavMesh(true);
     }
 
     void OnEnable()
