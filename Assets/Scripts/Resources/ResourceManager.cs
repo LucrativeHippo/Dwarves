@@ -44,6 +44,13 @@ public class ResourceManager : MonoBehaviour {
 		MetaScript.updateResourcesUI();
     }
 
+    public int getMaxResource (ResourceTypes aType) {
+        return getMaxResource ((int)aType);
+    }
+
+    public int getMaxResource (int theIndex) {
+        return maxResourceList [theIndex];
+    }
 
 	public void addResource(ResourceTypes i, int add){
 		addResource((int)i, add);
