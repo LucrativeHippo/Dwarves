@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/menu/menu.unity
     guid: 6a34a682ccb35417fa1a54c926b67781
   - enabled: 1
-    path: Assets/Scenes/Demo Scenes/Terrain_generator.unity
-    guid: c3f952e23106ce94180c4c57ab288a8b
+    path: Assets/Scenes/WorkingScene.unity
+    guid: a9bb1e90c760c724984351ac68a3f6ab

@@ -5,7 +5,7 @@ using UnityEngine;
 [DefaultExecutionOrder(-300)]
 public class terrainGenerator : MonoBehaviour
 {
-
+    public GameObject[] lol;
     //The map that shows the terrain value at each existing coordinate
     public Dictionary<string, terrain> terrainMap;
     public Dictionary<string, resource> resourceMap;
@@ -440,6 +440,8 @@ public class terrainGenerator : MonoBehaviour
                 //}
             }
         }
+        lol = GameObject.FindGameObjectsWithTag("TownCenter");
+
         if (GameObject.FindGameObjectWithTag("TownCenter")!=null)
         {
             GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
@@ -447,10 +449,6 @@ public class terrainGenerator : MonoBehaviour
         
         
 
-    }
-    void Start()
-    {
-        //GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
     }
 
     /// <summary>
