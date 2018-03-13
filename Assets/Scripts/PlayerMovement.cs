@@ -5,21 +5,56 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	public float speed;
+    private Animator animator;
 
     //private GameObject cam;
     private void Awake()
     {
-       // cam = GameObject.Find("MainCam");
+        animator = gameObject.GetComponentInChildren<Animator>();
+        // cam = GameObject.Find("MainCam");
     }
 
     void FixedUpdate() {
 		Vector3 mov = new Vector3 (0, 0);
+        if(animator!=null){
+            animator.SetBool("moveUp", false);
+            animator.SetBool("moveDown", false);
+            animator.SetBool("moveLeft", false);
+            animator.SetBool("moveRight", false);
+        }
 
-		mov += Input.GetKey (KeyCode.W) ? Vector3.forward : Vector3.zero;
-		mov += Input.GetKey (KeyCode.S) ? Vector3.back : Vector3.zero;
-
-		mov += Input.GetKey (KeyCode.A) ? Vector3.left : Vector3.zero;
-		mov += Input.GetKey (KeyCode.D) ? Vector3.right : Vector3.zero;
+        if (Input.GetKey(KeyCode.W)) 
+        {
+            mov += Vector3.forward;
+            if (animator != null)
+            {
+                animator.SetBool("moveUp", true);
+            }
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            mov += Vector3.back;
+            if (animator != null)
+            {
+                animator.SetBool("moveDown", true);
+            }
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            mov += Vector3.left;
+            if (animator != null)
+            {
+                animator.SetBool("moveLeft", true);
+            }
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            mov += Vector3.right;
+            if (animator != null)
+            {
+                animator.SetBool("moveRight", true);
+            }
+        }
 
 		mov.Normalize ();
 

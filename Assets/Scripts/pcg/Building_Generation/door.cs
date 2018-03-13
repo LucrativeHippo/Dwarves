@@ -5,9 +5,7 @@ using UnityEngine;
 public class door : MonoBehaviour {
 
     GameObject player;
-    private int xpos;
-    private int ypos;
-    private int zpos;
+    Vector3Int pos;
 
     private Vector3 returnPoint;
 
@@ -25,27 +23,24 @@ public class door : MonoBehaviour {
     public void setReturn(int x, int y, int z)
     {
         
-        
-        xpos = x;
-        ypos = 0;
-        zpos = z;
+        pos = new Vector3Int(x,0,z);
     }
 
     public void recieveAction()
     {
         
-        if(xpos != null && ypos != null && zpos != null)
-        {
-            print(xpos + "" + ypos + "" + zpos);
+        // if(pos != null)
+        // {
+            print(pos.x + "" + pos.y + "" + pos.z);
             player.SetActive(false);
-            player.transform.position = new Vector3(xpos, ypos, zpos);
+            player.transform.position = pos;
             player.SetActive(true);
             //print(xpos + zpos);
-        }
-        else
-        {
+        // }
+        // else
+        // {
             
-            Debug.Log("The return building has not been set yet");
-        }
+        //     Debug.Log("The return building has not been set yet");
+        // }
     }
 }

@@ -5,18 +5,26 @@ using System;
 
 public class Attributes : MonoBehaviour {
 		//player basic stats
-		int braveness;
-		int strength;
-		int charisma;
-		int motivation;
-		int skill;
+		public int braveness;
+		public int strength;
+		public int charisma;
+		public int motivation;
+		public int skill;
 		//float level; // current level
 		//float exp_to_level;//exp needed to level up
 	public int level;
 		
-	int totalLevel1 = 15;
-	int totalLevel2 = 25;
-	int totalLevel3 = 35;
+	private int totalLevel1 = 15;
+	private int totalLevel2 = 25;
+	private int totalLevel3 = 35;
+
+	[SerializeField]
+	public float cur_health;
+	[SerializeField]
+	public float damage;
+	[SerializeField]
+	public float atkSpeed;
+
 
 
 		
@@ -164,16 +172,33 @@ public class Attributes : MonoBehaviour {
 		return a;
 	}
 
-	void Start(){
+
+
+	void Awake(){
 		//statGenerator (1);
 		//statGenerator (2);
 		int[] a = statGenerator (level);
 		shuffle (a);
 		this.assignStats (a);
+		damage = strength;
 		//print all stats of npc
-		Debug.Log ("braveness: " + a [0]  + " strength: " + a [1]  + " charisma: " + a [2]
+		Debug.Log ("level: "+level+" braveness: " + a [0]  + " strength: " + a [1]  + " charisma: " + a [2]
 			+ " motivation: " + a [3]   + " skill: " + a [4]); 
-			
+		switch (level) {
+		case 1:
+			cur_health = 30f;
+			atkSpeed = 1f;;
+			break;
+		case 2:
+			cur_health = 50f;
+			atkSpeed = 1.5f;
+			break;
+		case 3:
+			cur_health = 100f;
+			atkSpeed = 2.0f;
+			break;
+		}
+		
 	}
 	
 	void assignStats(int[] a){
@@ -199,6 +224,14 @@ public class Attributes : MonoBehaviour {
 		}
 	}
 
+	void Update(){
+		if (cur_health <= 0)
+			die ();
+	}
+
+	void die(){
+		Destroy (gameObject);
+	}
 
 		
 

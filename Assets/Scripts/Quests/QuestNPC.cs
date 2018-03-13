@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// Builds quest for NPC, needs creation outside of start.
@@ -11,6 +12,9 @@ public class QuestNPC : MonoBehaviour, IActionable {
     public int rank = 0;//Random.Range(1,50);
     [SerializeField]
     private QuestBase myQuests = new QuestBase();
+
+    [SerializeField]
+    public bool finishQuest = false;
     public void recieveAction()
     {
         if(!this.enabled)
@@ -19,25 +23,33 @@ public class QuestNPC : MonoBehaviour, IActionable {
         tryQuest();
     }
 
+    private void teleportToTown(){
+            transform.position = GameObject.FindGameObjectWithTag("TownCenter").transform.position+new Vector3(0.5f,0,0);
+            //GetComponent<NavMeshAgent>().enabled = true;
+    }
     protected void tryQuest(){
         if(myQuests.checkQuest()){
             // TODO: Send message to NPC to be a vassal of PC
             Debug.Log("QUEST COMPLETED");
-            GetComponent<SpeechBubble>().setText("Quest Completed");
+            GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
             MetaScript.GetNPC().addNPC(gameObject);
+            
+            teleportToTown();
+
+            gameObject.GetComponent<collect>().enabled = true;
             gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
             this.enabled = false;
         }else{
 
             Debug.Log("Attempted quest but failed. Need "+
             myQuests.GetQuestGoal().getThreshold()+" of "+
-            GetQuestType().message
+            GetQuestType().Name
             );
 
             
-            gameObject.GetComponent<SpeechBubble>().setText("Need "+
+            gameObject.GetComponentInChildren<SpeechBubble>().setText("Need "+
             myQuests.GetQuestGoal().getThreshold()+" "+
-            GetQuestType().message);
+            GetQuestType().Name);
             
         }
     }
@@ -47,7 +59,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
         // TODO: change this to be dependent on creation
         // myQuests.addGoal(new QuestGoal(rank));
 
-        
+        addGoal(GetComponent<Skills>().getIntRank());
 	}
 
     public void addGoal(int difficulty){
@@ -61,8 +73,9 @@ public class QuestNPC : MonoBehaviour, IActionable {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
+
 
     public void setRank(int r){
         if(r>0){
@@ -70,9 +83,19 @@ public class QuestNPC : MonoBehaviour, IActionable {
         }
     }
 	
+    void OnValidate() {
+        rank = 0;
+        foreach (QuestGoal g in myQuests.questPath){
+            rank += g.getThreshold()*Quests.list[g.getGoalIndex()].difficulty;
+        }
+        if(finishQuest){
+            myQuests = new QuestBase();
+            recieveAction();
+        }
+    }
 
     public Quests.QuestType GetQuestType(){
         int index = myQuests.GetQuestGoal().getGoalIndex();
-        return Quests.questList[index];
+        return Quests.list[index];
     }
 }   

@@ -10,7 +10,7 @@ public class increaseCapacityBuilding : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        for (int i = 0; i < maxAmount.Length; i++)
+        for (int i = 0; i < (int)ResourceTypes.NumberOfTypes; i++)
         {
             MetaScript.getRes().increaseCapacity(i, maxAmount[i]);
         }

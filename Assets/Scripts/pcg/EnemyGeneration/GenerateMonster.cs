@@ -64,7 +64,6 @@ public class GenerateMonster : MonoBehaviour {
 
     public void SpawnMonsters(Weather.weatherTypes currentWeather)
     {
-        GameObject temp = null;
         if(currentWeather == Weather.weatherTypes.SUPER_HOT)
         {
             putMonsterOnMap(heatMonster);
