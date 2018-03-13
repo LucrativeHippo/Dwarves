@@ -32,24 +32,31 @@ public class GameTime : MonoBehaviour
         calendar = gameObject.GetComponent<Calendar>();
         //generateMonster = temp.GetComponent<GenerateMonster> ();
 
-    //10 second per day
-    if(daychange.value==8){
-            timevalue = 30;
         postProcessing = GameObject.FindObjectOfType<UseCustomImageEffect>();
-        StartCoroutine (Timer (dayTime));
+        StartCoroutine(Timer(dayTime));
 
         if (postProcessing != null)
         {
             postProcessing.setDoHalo(true);
             StartCoroutine(DayCycle(dayTime));
         }
-       
-       
+    }
+
+    private void Update()
+    {
+        //10 second per day
+        if (daychange.value == 8)
+        {
+            timevalue = 30;
+
             timevalue += valueToIncreaseEverySec * Time.deltaTime;
 
             daychange.value = timevalue / 30;
 
+        }
     }
+
+   
 
 
     private void setWeatherBasedPostProcessing()
