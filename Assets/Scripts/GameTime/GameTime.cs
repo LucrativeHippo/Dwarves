@@ -42,6 +42,7 @@ public class GameTime : MonoBehaviour
 
         }
        
+       
             timevalue += valueToIncreaseEverySec * Time.deltaTime;
 
             daychange.value = timevalue / 30;
