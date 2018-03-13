@@ -583,10 +583,11 @@ public class terrainGenerator : MonoBehaviour
                     else {
                         tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord, 0, worldPos.yCoord), getResourceObject(resourceMap[key]).transform.rotation);
 
-                        tempResource.transform.SetParent(chunkLoc.transform);
                         if (resourceMap[key] == resource.NPC)
                         {
-                           
+                            tempResource.GetComponent<QuestNPC>().addGoal(GetComponent<Skills>().getIntRank());
+                        }else{
+                            tempResource.transform.SetParent(chunkLoc.transform);
                         }
                         chunkMap.addTileAt(tempTile, x, y, 1);
                     }
