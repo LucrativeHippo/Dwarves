@@ -24,51 +24,52 @@ public class collect : MonoBehaviour
         return findingType.ToString();
     }
 
-    public float getRateStat(string a){ 
-        switch (a){
-            case "COAL":
-                return gameObject.GetComponent<Skills>().getValue(1);
-            case "GOLD":
-                return gameObject.GetComponent<Skills>().getValue(1);
-            case "IRON":
-                return gameObject.GetComponent<Skills>().getValue(1);
-            case "Diamond":
-                return gameObject.GetComponent<Skills>().getValue(1);
-            case "STONE":
-                return gameObject.GetComponent<Skills>().getValue(1);
-            case "FOOD":
-                return gameObject.GetComponent<Skills>().getValue(3);
-            case "WOOD":
-                return gameObject.GetComponent<Skills>().getValue(4);
+    private float getRateStat(){ 
+        switch (findingType){
+            case ResourceTypes.COAL:
+                return GetComponent<Skills>().getValue(1);
+            case ResourceTypes.GOLD:
+                return GetComponent<Skills>().getValue(1);
+            case ResourceTypes.IRON:
+                return GetComponent<Skills>().getValue(1);
+            case ResourceTypes.DIAMOND:
+                return GetComponent<Skills>().getValue(1);
+            case ResourceTypes.STONE:
+                return GetComponent<Skills>().getValue(1);
+            case ResourceTypes.FOOD:
+                return GetComponent<Skills>().getValue(3);
+            case ResourceTypes.WOOD:
+                return GetComponent<Skills>().getValue(4);
+            default:
+                return 2f;
         }
-
-
-        return 11.0f; }
-
-    public float getCapStat(string b){
-        switch (b)
-        {
-            case "COAL":
-                return gameObject.GetComponent<Skills>().getValue(3);
-            case "GOLD":
-                return gameObject.GetComponent<Skills>().getValue(3);
-            case "IRON":
-                return gameObject.GetComponent<Skills>().getValue(3);
-            case "DIAMOND":
-                return gameObject.GetComponent<Skills>().getValue(3);
-            case "STONE":
-                return gameObject.GetComponent<Skills>().getValue(3);
-            case "FOOD":
-                return gameObject.GetComponent<Skills>().getValue(0);
-            case "WOOD":
-                return gameObject.GetComponent<Skills>().getValue(1);
-        }
-        return 11.0f;
     }
 
-    public void setSkills(float resSkill, float timeSkill){
-        maxRes = 10 + (int)resSkill - 5;
-        pickupTime = 2f - (timeSkill - 5f) / 5f;
+    private float getCapStat(){
+        switch (findingType)
+        {
+            case ResourceTypes.COAL:
+                return GetComponent<Skills>().getValue(3);
+            case ResourceTypes.GOLD:
+                return GetComponent<Skills>().getValue(3);
+            case ResourceTypes.IRON:
+                return GetComponent<Skills>().getValue(3);
+            case ResourceTypes.DIAMOND:
+                return GetComponent<Skills>().getValue(3);
+            case ResourceTypes.STONE:
+                return GetComponent<Skills>().getValue(3);
+            case ResourceTypes.FOOD:
+                return GetComponent<Skills>().getValue(0);
+            case ResourceTypes.WOOD:
+                return GetComponent<Skills>().getValue(1);
+            default:
+                return 11f;
+        }
+    }
+
+    private void setSkills(){
+        maxRes = 10 + (int)getCapStat() - 5;
+        pickupTime = 2f - (getRateStat() - 5f) / 5f;
     }
     
     public void startCollecting(ResourceTypes t){
@@ -93,10 +94,8 @@ public class collect : MonoBehaviour
         Debug.Log("startCollecting");
         string s = getFindingType();
         Debug.Log(s);
-        Debug.Log(getRateStat(s));
-        Debug.Log(getCapStat(s));
         updateLocations();
-        setSkills(getRateStat(s), getCapStat(s));
+        setSkills();
         agent.enabled = true;
         agent.isStopped = false;
         state = npcState.gotoResource;
