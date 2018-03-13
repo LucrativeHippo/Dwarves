@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSkills : MonoBehaviour {
+    [SerializeField]
+    private GameObject campfire;
+    private GameObject player;
+    [SerializeField]
+    private float timer = 2.0f;
 
-    public GameObject campfire;
-    public GameObject player;
+    private float timer2;
 
     private void Start()
     {
+        timer2 = timer;
         player = GameObject.Find("player").gameObject.GetComponentInChildren<actor>().gameObject;
     }
 
@@ -18,8 +23,8 @@ public class PlayerSkills : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.V))
             {
-                Debug.Log("Pressed skill");
-                if (campfire != null)
+                
+                if ((campfire != null) && CoolDown())
                 {
                     Instantiate(campfire, player.transform.position, Quaternion.identity);
                 }
@@ -27,5 +32,19 @@ public class PlayerSkills : MonoBehaviour {
             }
         }
         
+        
+    }
+
+    public bool CoolDown()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= timer2)
+        {
+            timer = 0;
+            return true;
+            
+        }
+        return false;
     }
 }
