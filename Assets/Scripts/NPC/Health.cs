@@ -7,6 +7,7 @@ public class Health : MonoBehaviour {
     public int health;
     int maxHealth;
     bool isImmortal = false;
+    public bool dealDamage = false;
 
 
     public void Start () {
@@ -59,6 +60,13 @@ public class Health : MonoBehaviour {
         FightFlight ff = GetComponent<FightFlight>();
         if(ff!=null){
             ff.gotHit();
+        }
+    }
+
+    void OnValidate() {
+        if(dealDamage){
+            dealDamage = false;
+            damage(1);
         }
     }
 }
