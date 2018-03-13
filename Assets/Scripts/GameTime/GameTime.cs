@@ -19,6 +19,10 @@ public class GameTime : MonoBehaviour
 
 
 
+    float timevalue=30;
+    float valueToIncreaseEverySec = 1;
+
+
     void Start()
     {
         UIObject = GameObject.Find("UIController");
@@ -28,6 +32,9 @@ public class GameTime : MonoBehaviour
         calendar = gameObject.GetComponent<Calendar>();
         //generateMonster = temp.GetComponent<GenerateMonster> ();
 
+    //10 second per day
+    if(daychange.value==8){
+            timevalue = 30;
         postProcessing = GameObject.FindObjectOfType<UseCustomImageEffect>();
         StartCoroutine (Timer (dayTime));
 
@@ -37,6 +44,11 @@ public class GameTime : MonoBehaviour
             StartCoroutine(DayCycle(dayTime));
         }
        
+       
+            timevalue += valueToIncreaseEverySec * Time.deltaTime;
+
+            daychange.value = timevalue / 30;
+
     }
 
 
