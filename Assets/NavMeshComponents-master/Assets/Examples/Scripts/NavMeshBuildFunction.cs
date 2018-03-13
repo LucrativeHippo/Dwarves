@@ -20,7 +20,17 @@ public class NavMeshBuildFunction : MonoBehaviour
     List<NavMeshBuildSource> m_Sources = new List<NavMeshBuildSource>();
 
     public void build(){
+        StartCoroutine(tempCall());
         UpdateNavMesh(true);
+    }
+    private bool temp = true;
+    IEnumerator tempCall(){
+        if(temp){
+            temp = false;
+            yield return new WaitForSeconds(5);
+            UpdateNavMesh(true);
+            temp = true;
+        }
     }
 
     void OnEnable()
@@ -82,5 +92,9 @@ public class NavMeshBuildFunction : MonoBehaviour
         Gizmos.color = Color.green;
         var center = m_Tracked ? m_Tracked.position : transform.position;
         Gizmos.DrawWireCube(center, m_Size);
+    }
+
+    void Update(){
+        
     }
 }
