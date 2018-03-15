@@ -37,7 +37,7 @@ public class MetaScript : MonoBehaviour {
 		return GameObject.Find("npcManagerButton").GetComponent<NPCManager>();
 	}
 
-	public currentResourcesUIController resourceUI;
+	//  public currentResourcesUIController resourceUI;
 	public static void updateResourcesUI(){
 		currentResourcesUIController temp = GameObject.Find("CurrentResources").GetComponent<currentResourcesUIController>();
 		if(temp!=null){
