@@ -15,6 +15,6 @@ public class Compass : MonoBehaviour {
 		tc = GameObject.FindWithTag("TownCenter");
 		Vector3 targetPosLocal = tc.transform.InverseTransformPoint(player.transform.position);
 		var targetAngle = -Mathf.Atan2(targetPosLocal.x, targetPosLocal.z) * Mathf.Rad2Deg + 180;
-		transform.eulerAngles = new Vector3(0, 0, targetAngle);
+		transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, targetAngle);
 	}
 }
