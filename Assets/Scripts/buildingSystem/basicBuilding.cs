@@ -63,7 +63,7 @@ public class basicBuilding : MonoBehaviour {
 
             buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().purchase ();
             // Disable Building Menu.
-            buildingMenu.GetComponent<Canvas> ().enabled = false;
+            buildingMenu.SetActive(false);
 
             Destroy (gameObject);
         } else {
