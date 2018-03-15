@@ -585,7 +585,7 @@ public class terrainGenerator : MonoBehaviour
 
                         if (resourceMap[key] == resource.NPC)
                         {
-                            tempResource.GetComponent<QuestNPC>().addGoal(GetComponent<Skills>().getIntRank());
+                            tempResource.GetComponent<QuestNPC>().addGoal(tempResource.GetComponent<Skills>().getIntRank());
                         }else{
                             tempResource.transform.SetParent(chunkLoc.transform);
                         }

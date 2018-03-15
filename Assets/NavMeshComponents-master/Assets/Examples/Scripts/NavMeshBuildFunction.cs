@@ -20,7 +20,7 @@ public class NavMeshBuildFunction : MonoBehaviour
     List<NavMeshBuildSource> m_Sources = new List<NavMeshBuildSource>();
 
     public void build(){
-        StartCoroutine(tempCall());
+        //StartCoroutine(tempCall());
         UpdateNavMesh(true);
     }
     private bool temp = true;
