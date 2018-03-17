@@ -14,23 +14,15 @@ public class NavMeshBuildFunction : MonoBehaviour
     // The size of the build bounds
     public Vector3 m_Size = new Vector3(80.0f, 20.0f, 80.0f);
 
+    public static Vector3 outpost_size = new Vector3(8f,4f,8f);
+
     NavMeshData m_NavMesh;
     AsyncOperation m_Operation;
     NavMeshDataInstance m_Instance;
     List<NavMeshBuildSource> m_Sources = new List<NavMeshBuildSource>();
 
     public void build(){
-        StartCoroutine(tempCall());
         UpdateNavMesh(true);
-    }
-    private bool temp = true;
-    IEnumerator tempCall(){
-        if(temp){
-            temp = false;
-            yield return new WaitForSeconds(5);
-            UpdateNavMesh(true);
-            temp = true;
-        }
     }
 
     void OnEnable()
@@ -40,6 +32,7 @@ public class NavMeshBuildFunction : MonoBehaviour
         m_Instance = NavMesh.AddNavMeshData(m_NavMesh);
         if (m_Tracked == null)
             m_Tracked = transform;
+            
         UpdateNavMesh(false);
     }
 
@@ -54,12 +47,12 @@ public class NavMeshBuildFunction : MonoBehaviour
         Debug.Log("Updating nav");
         NavMeshSourceTag.Collect(ref m_Sources);
         var defaultBuildSettings = NavMesh.GetSettingsByID(0);
-        var bounds = QuantizedBounds();
+        buildBounds = QuantizedBounds();
 
         if (asyncUpdate)
-            m_Operation = NavMeshBuilder.UpdateNavMeshDataAsync(m_NavMesh, defaultBuildSettings, m_Sources, bounds);
+            m_Operation = NavMeshBuilder.UpdateNavMeshDataAsync(m_NavMesh, defaultBuildSettings, m_Sources, buildBounds);
         else
-            NavMeshBuilder.UpdateNavMeshData(m_NavMesh, defaultBuildSettings, m_Sources, bounds);
+            NavMeshBuilder.UpdateNavMeshData(m_NavMesh, defaultBuildSettings, m_Sources, buildBounds);
     }
 
     static Vector3 Quantize(Vector3 v, Vector3 quant)
@@ -74,7 +67,20 @@ public class NavMeshBuildFunction : MonoBehaviour
     {
         // Quantize the bounds to update only when theres a 10% change in size
         var center = m_Tracked ? m_Tracked.position : transform.position;
-        return new Bounds(Quantize(center, 0.1f * m_Size), m_Size);
+        return new Bounds(Quantize(center, new Vector3(1,1,1)), m_Size);
+    }
+    private Bounds buildBounds;
+
+    public Bounds GetBounds(){
+        return buildBounds;
+    }
+
+    public bool willOutpostIntersect(Vector3 pos){
+        pos = Quantize(pos, new Vector3(1, 1, 1));
+        Bounds b = new Bounds(pos,outpost_size);
+
+
+        return buildBounds.Intersects(b);
     }
 
     void OnDrawGizmosSelected()
@@ -88,10 +94,6 @@ public class NavMeshBuildFunction : MonoBehaviour
         Gizmos.color = Color.yellow;
         var bounds = QuantizedBounds();
         Gizmos.DrawWireCube(bounds.center, bounds.size);
-
-        Gizmos.color = Color.green;
-        var center = m_Tracked ? m_Tracked.position : transform.position;
-        Gizmos.DrawWireCube(center, m_Size);
     }
 
     void Update(){

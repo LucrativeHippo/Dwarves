@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class Health : MonoBehaviour {
     /// The health.
-    public int health;
+    [SerializeField]
+    int health = 10;
+    [SerializeField]
     int maxHealth;
+    [SerializeField]
+    bool isImmortal = false;
+    public bool dealDamage = false;
+
+    LinkedList<IHealthListener> subscribers;
+
+    public void addSubscriber(IHealthListener listener){
+        subscribers.AddLast(listener);
+    }
+
+    public void publish(){
+        foreach(IHealthListener l in subscribers){
+            l.publish();
+        }
+    }
 
 
     public void Start () {
         maxHealth = health;
-
+        subscribers = new LinkedList<IHealthListener>();
     }
 
+
+    public int getHealth(){
+        return health;
+    }
+    public int getMaxHealth(){
+        return maxHealth;
+    }
 
     /// <summary>
     /// Damage the character. Returns true if character is dead.
@@ -20,15 +44,16 @@ public class Health : MonoBehaviour {
     /// <param name="dmg">Damage to deal.</param>
     /// <returns>True if health less than 0, false otherwise.</returns>
     /// <exception cref="UnityException">Throws if dmg is less than 0.</exception>
-    public bool damage (int dmg) {
+    public void damage (int dmg) {
         if (dmg < 0)
             throw new UnityException ("You can't heal from damage!");
             
         health -= dmg;
-        if (health <= 0) {
-            return true;
+        publish();
+        notifyNPC();
+        if (health <= 0 && !isImmortal) {
+            death();
         }
-        return false;
     }
 
     /// <summary>
@@ -44,6 +69,28 @@ public class Health : MonoBehaviour {
             health = maxHealth;
         } else {
             health += heal;
+        }
+        publish();
+    }
+
+    public void death(){
+        if(CompareTag("OwnedNPC")){
+            MetaScript.GetNPC().removeNPC(gameObject);
+        }
+        Destroy(gameObject);
+    }
+
+    public void notifyNPC(){
+        FightFlight ff = GetComponent<FightFlight>();
+        if(ff!=null){
+            ff.gotHit();
+        }
+    }
+
+    void OnValidate() {
+        if(dealDamage){
+            dealDamage = false;
+            damage(1);
         }
     }
 }

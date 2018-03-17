@@ -7,7 +7,11 @@ public class QuestTempResource : MonoBehaviour, IActionable {
     public void recieveAction()
     {
         MetaScript.getRes().addResource(myType,1);
-		
+		SendMessage("damage",1);
+    }
+
+    public void damage(int x){
+        // empty receiver for error avoidance
     }
 
     // Use this for initialization
