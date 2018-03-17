@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FightFlight : MonoBehaviour {
 	private enum state {
@@ -16,7 +17,7 @@ public class FightFlight : MonoBehaviour {
 			convert();
 
 			// Choose Fight or Flight
-			if(prevState != state.FLEE /*&& checks for Guard switch */){
+			if(prevState != state.FLEE && GetComponent<Skills>().getValue(Skills.list.braveness)>5){
 				GetComponent<Guard>().enabled = true;
 			}else{
 
@@ -44,16 +45,25 @@ public class FightFlight : MonoBehaviour {
 	public void revert(){
 		if(prevState != state.GUARD){
 			GetComponent<Guard>().enabled = false;
-			if(prevState == state.COLLECT){
-				GetComponent<collect>().enabled = true;
-			}else if(prevState == state.FOLLOW){
-				GetComponent<follow>().enabled = true;
+			switch(prevState){
+				case state.COLLECT:
+					GetComponent<collect>().enabled = true;
+					break;
+				case state.FOLLOW:
+					GetComponent<follow>().enabled = true;
+					break;
 			}
-			prevState = state.UNSET;
 		}
+		prevState = state.UNSET;
 	}
 
 	public void flight(){
-
+		if(prevState == state.UNSET){
+			prevState = state.FLEE;
+		}
+		GameObject safety = collect.findClosestTag("Shelter",gameObject);
+		if(safety != null){
+			GetComponent<NavMeshAgent>().SetDestination(safety.transform.position);
+		}
 	}
 }

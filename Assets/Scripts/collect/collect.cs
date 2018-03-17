@@ -167,13 +167,20 @@ public class collect : MonoBehaviour
         findResource(currentbuilding);
     }
     private void findResource(GameObject g){
-        currentresource = findClosestTag(getResName(), g);
+        if(g == null){
+            findBuilding();
+        }
+        if(g != null){
+            currentresource = findClosestTag(getResName(), g);
+        }else{
+            Debug.LogError("No resource buildings found.");
+        }
     }
     private void moveTo(GameObject g){
         agent.isStopped = false;
 
         if(g == null || !agent.SetDestination(g.transform.position)){
-                Debug.LogError("Failed to go to resource. May be out of NavMesh bounds");
+                Debug.LogWarning("Failed to go to resource. May be out of NavMesh bounds");
         }
     }
     IEnumerator move(){
@@ -243,10 +250,11 @@ public class collect : MonoBehaviour
         Vector3 position = from.transform.position;
         foreach (GameObject go in gos)
         {
-            if(go.activeInHierarchy && onNavMesh(go.transform.position)){
+            NavMeshPath tempPath = new NavMeshPath();
+            if(go.activeInHierarchy && onNavMesh(go.transform.position) && NavMesh.CalculatePath(position,go.transform.position,NavMesh.AllAreas, tempPath)){
                 Vector3 diff = go.transform.position - position;
                 float curDistance = diff.sqrMagnitude;
-                if (curDistance < distance && curDistance < maxDist)
+                if (curDistance < distance && curDistance < maxDist*maxDist)
                 {
                     closest = go;
                     distance = curDistance;
