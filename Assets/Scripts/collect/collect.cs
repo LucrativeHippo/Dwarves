@@ -235,9 +235,7 @@ public class collect : MonoBehaviour
 
 
 
-    
-    public static GameObject findClosestTag(string name, GameObject from)
-    {
+    public static GameObject findClosestTag(string name, GameObject from, float maxDist){
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag(name);
         GameObject closest = null;
@@ -248,7 +246,7 @@ public class collect : MonoBehaviour
             if(go.activeInHierarchy && onNavMesh(go.transform.position)){
                 Vector3 diff = go.transform.position - position;
                 float curDistance = diff.sqrMagnitude;
-                if (curDistance < distance)
+                if (curDistance < distance && curDistance < maxDist)
                 {
                     closest = go;
                     distance = curDistance;
@@ -256,6 +254,10 @@ public class collect : MonoBehaviour
             }
         }
         return closest;
+    }
+    public static GameObject findClosestTag(string name, GameObject from)
+    {
+        return findClosestTag(name,from,Mathf.Infinity);
     }
 
 

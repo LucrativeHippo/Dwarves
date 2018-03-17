@@ -23,8 +23,14 @@ public class QuestNPC : MonoBehaviour, IActionable {
         tryQuest();
     }
 
-    private void teleportToTown(){
+    private void TakeSoul(){
+            MetaScript.GetNPC().addNPC(gameObject);
+            gameObject.tag = "OwnedNPC";
+            //teleport to town
             transform.position = GameObject.FindGameObjectWithTag("TownCenter").transform.position+new Vector3(0.5f,0,0);
+            
+            gameObject.GetComponent<collect>().enabled = true;
+            gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
             //GetComponent<NavMeshAgent>().enabled = true;
     }
     protected void tryQuest(){
@@ -32,12 +38,9 @@ public class QuestNPC : MonoBehaviour, IActionable {
             // TODO: Send message to NPC to be a vassal of PC
             Debug.Log("QUEST COMPLETED");
             GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
-            MetaScript.GetNPC().addNPC(gameObject);
             
-            teleportToTown();
+            TakeSoul();
 
-            gameObject.GetComponent<collect>().enabled = true;
-            gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
             this.enabled = false;
         }else{
 
