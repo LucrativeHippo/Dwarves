@@ -28,6 +28,8 @@ public class Guard : MonoBehaviour {
         navComponent = this.transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 	
+
+
 	// Update is called once per frame
 	void Update () {
 

@@ -14,6 +14,8 @@ public class NavMeshBuildFunction : MonoBehaviour
     // The size of the build bounds
     public Vector3 m_Size = new Vector3(80.0f, 20.0f, 80.0f);
 
+    public static Vector3 outpost_size = new Vector3(30f,4f,30f);
+
     NavMeshData m_NavMesh;
     AsyncOperation m_Operation;
     NavMeshDataInstance m_Instance;
@@ -71,6 +73,13 @@ public class NavMeshBuildFunction : MonoBehaviour
 
     public Bounds GetBounds(){
         return buildBounds;
+    }
+
+    public bool willOutpostIntersect(Vector3 pos){
+        Bounds b = new Bounds(pos,outpost_size);
+
+
+        return buildBounds.Intersects(b);
     }
 
     void OnDrawGizmosSelected()
