@@ -1,0 +1,82 @@
+[title=weatherman-tutorial-talk-start]
+Weatherman: Hey, Partner. 
+Weatherman: Looks to be quite the predicament we've got going here, huh? 
+Weatherman: Well, lucky for you, you seem neat! So I feel like helping out.
+Weatherman: I've already started studying this world's new weather patterns, and I'm starting to have a firm grasp on the situation. 
+Weatherman: [question=0]If you have any questions, ask.
+[choice]Sure thing!
+[choice]I'll think on it
+[title=weatherman-tutorial-talk-end]
+
+[title=weatherman-default-talk-start]
+Weatherman: Hey, camp leader.
+Weatherman: [question=1]What do you want to know?
+[choice]What do resources do?
+[choice]How do I make friends?
+[choice]What have you learned about the weather here?
+[choice]How do I give the people in camp tasks?
+[choice]Can I upgrade buildings?
+[choice]Do workers have stats?
+[choice]The Forecast?
+[title=weatherman-default-talk-end]
+
+[title=weatherman-option-0-picked-start]
+Weatherman: Resources? In order to build things you're going to need Resources. 
+Weatherman: These can either be collected by other people who have joined the camp, or you can do it yourself. 
+Weatherman: But why do and whine...when you can assign! 
+Weatherman: Walk up to a plot of land near the center of the camp and interact with the "build" sign to see what your resources can make. 
+Weatherman: Food is used to feed the people in the camp. Every day you and your friends will all consume 1 food. 
+Weatherman: People you see roaming around may be willing to join your camp and help out, but they'll probably want something in return. 
+Weatherman: Not everyone is as generous as yours truly. 
+Weatherman: However, it's almost always worth it when to recruit someone. 
+Weatherman: You know what they say. \nMany hands make light work.
+[title=weatherman-option-0-picked-end]
+
+[title=weatherman-option-1-picked-start]
+Weatherman: Not really my problem, kid.
+Weatherman: But, since you're so busy and never spend time at camp, I'm starting to get bored and lonely...
+Weatherman: ...
+Weatherman: Fine, I'll give you a hint. 
+Weatherman: Talk with people. 
+Weatherman: No, really. Talk with them. Just walk up to them, and hit "F".
+Weatherman: They'll probably give you a demand or two. You know, prove you can actually take care of the people at the camp.
+Weatherman: Complete that task, and they'll likely join you. 
+Weatherman: Now, go my friend! Bring back some people to play Monopoly with me!
+[title=weatherman-option-1-picked-end]
+
+[title=weatherman-option-2-picked-start]
+Weatherman: Buddy, you should probably have realized by now -- the weather can get pretty crazy here. 
+Weatherman: Some weather will have different effects such as slowing you down or hurting you.
+Weatherman: During some of the harsher weather conditions, get ready to dodge.
+Weatherman: Monsters also come out during some of the weathers, so make sure you're ready.
+Weatherman: Build a shelter to take cover, and have guards protect the camp from any monsters lurking about. 
+Weatherman: You should check in with me from time to time so I can let you know when to take shelter. Just ask for a forecast. 
+[title=weatherman-option-2-picked-end]
+
+[title=weatherman-option-3-picked-start]
+Weatherman: Pal, have you seen the "NPCs" button in the lower left corner of your screen?
+Weatherman: If you click on that, you can look at everyone's stats like health, hunger, and their job.
+Weatherman: You can assign tasks to people from there as well.
+[title=weatherman-option-3-picked-end]
+
+[title=weatherman-option-4-picked-start]
+Weatherman: Listen up, Croney! Upgrading buildings is actually fairly simple.
+Weatherman: The invisible gnomes that take care of building things for us are pretty nice about this.
+Weatherman: If a building can be upgraded, the gnomes leave a sign beside it that says "Upgrade".
+Weatherman: Walk up the sign and press "F". You should see how much it will cost to upgrade.
+Weatherman: If you have enough, you can upgrade it immediately.
+[title=weatherman-option-4-picked-end]
+
+[title=weatherman-option-5-picked-start]
+Weatherman: Why, yes, my sidekick! They do.
+Weatherman: Ever notice that some workers are better at some tasks as opposed to others? Weird, isn't it? 
+Weatherman: Turns out, people are all pretty unique. 
+Weatherman: Click that NPCs button in the lower left corner to look at a character's stats tab.
+Weatherman: It may take a bit of guesswork to figure out though. Maybe do some experimenting to see who is most effecient where? 
+Weatherman: My stats aren't on the list but they're all maxed out. 
+Weatherman: Unfotunately no one else is capable of my job, so I have to stay here.
+[title=weatherman-option-5-picked-end]
+
+[title=weatherman-option-6-picked-start]
+Weatherman: Here's the forecast for today.
+[title=weatherman-option-6-picked-end]
