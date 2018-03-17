@@ -5,6 +5,10 @@ using UnityEngine;
 public class FoodSystem : MonoBehaviour {
 
     [SerializeField] private int foodUsedPerNPC;
+    [SerializeField] private int damageForStarving;
+
+    [SerializeField] private float starvingTickTimer = 10.0F;
+    private float getNPCsTimerTime = 5.0f;
 
     private GameObject metaObject;
 
@@ -15,7 +19,7 @@ public class FoodSystem : MonoBehaviour {
 
     private List<GameObject> theNPCs;
 
-    private bool noFood;
+    [SerializeField] private bool noFood;
 
     void Start () {
         metaObject = GameObject.Find ("Meta");
@@ -26,7 +30,8 @@ public class FoodSystem : MonoBehaviour {
 
         theNPCs = new List<GameObject> ();
         noFood = false;
-        StartCoroutine (getNPCsTimer (5.0F));
+        StartCoroutine (getNPCsTimer (getNPCsTimerTime));
+        StartCoroutine (starvingTimer (starvingTickTimer));
     }
 
     private void setNPC () {
@@ -48,6 +53,20 @@ public class FoodSystem : MonoBehaviour {
         } else {
             metaObject.GetComponent<ResourceManager> ().addResource (ResourceTypes.FOOD, -currentFood);
             noFood = true;
+        }
+    }
+
+    IEnumerator starvingTimer (float waitForTime) {
+        yield return new WaitForSeconds (waitForTime);
+        if (isThereNoFood ()) {
+            starving ();
+        }
+        StartCoroutine (starvingTimer (waitForTime));
+    }
+
+    private void starving () {
+        foreach (var aNPC in theNPCs) {
+            aNPC.GetComponent<Health> ().damage (damageForStarving);
         }
     }
 
