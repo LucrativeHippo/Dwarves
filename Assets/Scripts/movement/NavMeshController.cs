@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class NavMeshController : MonoBehaviour {
     GameObject tc;
-    public Vector3 temp;
+    public Vector3 offset;
 
 	// Use this for initialization
 	void Awake () {
@@ -16,13 +16,15 @@ public class NavMeshController : MonoBehaviour {
 
     void Start()
     {
+        getOffset();
+    }
+    private void getOffset(){
         tc = GameObject.FindGameObjectWithTag("TownCenter");
-        
+        offset = tc.GetComponent<NavMeshBuildFunction>().m_Size/2;
     }
 
     private void setNav(bool t)
     {
-        GetComponent<LocalNavMeshBuilder>().enabled = t;
         GetComponent<NavMeshAgent>().enabled = t;
     }
 	
@@ -30,23 +32,33 @@ public class NavMeshController : MonoBehaviour {
 	void Update () {
         if(tc == null)
         {
-            tc = GameObject.FindGameObjectWithTag("TownCenter");
+            getOffset();
+            print("Needed update");
         }
-        if (closeToTC())
+        if (closeToTC(false))
         {
-            setNav(false);
+            setNav(true);
+            GetComponent<LocalNavMeshBuilder>().enabled = false;
+            print("TC");
            
+        }else if(closeToTC(true)){
+            setNav(false);
+            print("DEAD");
         }
         else
         {
+            GetComponent<LocalNavMeshBuilder>().enabled = true;
             setNav(true);
+            print("OUT");
         }
 	}
-
-    public bool closeToTC()
+    public bool closeToTC(bool isInDeadZone)
     {
-        Vector3 offset = tc.GetComponent<NavMeshBuildFunction>().m_Size / 2;
-        return (lessThan(transform.position, tc.transform.position + offset+temp) && greaterThan(transform.position, tc.transform.position - offset - temp)) ;
+        Vector3 deadZone = new Vector3(0.5f,0,0.5f);
+        if(isInDeadZone){
+            deadZone *= -1;
+        }
+        return (lessThan(transform.position, tc.transform.position + new Vector3(-2f,0,-2f) + offset - deadZone) && greaterThan(transform.position, tc.transform.position-new Vector3(-2f,0,-2f) - offset + deadZone)) ;
         //return !GetComponent<LocalNavMeshBuilder>().enabled && onNavMesh();
     }
 
