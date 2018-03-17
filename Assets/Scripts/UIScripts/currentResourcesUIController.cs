@@ -30,7 +30,7 @@ public class currentResourcesUIController : MonoBehaviour {
     /// </summary>
     public void updateResourcesUI () {
         for (int i = 0; i < (int)ResourceTypes.NumberOfTypes - 1; i++) {
-            textsValuesText [i].text = MetaScript.getRes ().getResource (i).ToString () + "/" + MetaScript.getRes().getMaxResource(i).ToString();
+            //textsValuesText [i].text = MetaScript.getRes ().getResource (i).ToString () + "/" + MetaScript.getRes().getMaxResource(i).ToString();
         }
     }
 }

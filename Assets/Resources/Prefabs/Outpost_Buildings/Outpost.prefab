@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 65938669992260798}
   - component: {fileID: 33075212423402174}
   - component: {fileID: 54423801806135430}
-  - component: {fileID: 114162472287769186}
   - component: {fileID: 114180749281238576}
   m_Layer: 0
   m_Name: Outpost
@@ -56,6 +55,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4255122000968034}
+  - component: {fileID: 114230704081956672}
   m_Layer: 0
   m_Name: Anchor
   m_TagString: Untagged
@@ -179,19 +179,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114162472287769186
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1099852278777766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65e7b59e9b56dc4998dd44229cb2432, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Tracked: {fileID: 0}
-  m_Size: {x: 8, y: 4, z: 8}
 --- !u!114 &114180749281238576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,3 +191,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
+--- !u!114 &114230704081956672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853703737860890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65e7b59e9b56dc4998dd44229cb2432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Tracked: {fileID: 0}
+  m_Size: {x: 8, y: 4, z: 8}

@@ -34,6 +34,14 @@ public class outPost : MonoBehaviour {
                     Instantiate(buildingPrefabsObjects[0], gameObject.transform.position, Quaternion.identity);
                     StartCoroutine(canSendTimer());
                 }
+                else
+                {
+                    Debug.Log("Already at the outpost limit");
+                }
+            }
+            else
+            {
+                Debug.Log("Campfire too close to other campfire or TC");
             }
             
         }
