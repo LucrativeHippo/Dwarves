@@ -6,6 +6,7 @@ public class door : MonoBehaviour {
 
     GameObject player;
     Vector3Int pos;
+    ParticleSystem[] ps;
 
     private Vector3 returnPoint;
 
@@ -13,6 +14,7 @@ public class door : MonoBehaviour {
     void Start () {
         
         player = GameObject.FindGameObjectWithTag("Player");
+
     }
 	
 	// Update is called once per frame
@@ -35,6 +37,15 @@ public class door : MonoBehaviour {
             player.SetActive(false);
             player.transform.position = pos;
             player.SetActive(true);
+        if (player.GetComponentInChildren<ParticleSystem>() != null)
+        {
+            ps = player.GetComponentsInChildren<ParticleSystem>();
+            for (int i = 0; i < ps.Length; i++)
+            {
+                ps[i].Play();
+            }
+        }
+        //gameObject.GetComponent<ParticleSystem>().emission.enabled = true;
             //print(xpos + zpos);
         // }
         // else

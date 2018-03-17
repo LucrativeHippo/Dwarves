@@ -864,6 +864,11 @@ Prefab:
       propertyPath: currentSeason
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceAcidRain
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04f910d73192ab9498d805b6251e66e4, type: 2}
   m_IsPrefabParent: 0

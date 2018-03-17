@@ -10,6 +10,7 @@ public class building : MonoBehaviour, IActionable {
     [SerializeField]
     private GameObject door;
 
+    ParticleSystem[] ps;
     GameObject player;
 
     private int xpos;
@@ -27,6 +28,15 @@ public class building : MonoBehaviour, IActionable {
         player.SetActive(false);
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
         player.SetActive(true);
+        if (player.GetComponentInChildren<ParticleSystem>() != null)
+        {
+            ps = player.GetComponentsInChildren<ParticleSystem>();
+            for (int i = 0; i < ps.Length; i++)
+            {
+                ps[i].Stop();
+            }
+        }
+        //player.GetComponent<ParticleSystem>().Stop();
     }
 
     // Use this for initialization
@@ -41,6 +51,7 @@ public class building : MonoBehaviour, IActionable {
         {
             Debug.Log("The player object is null.");
         }
+        ps = player.GetComponentsInChildren<ParticleSystem>();
     }
 	
 	// Update is called once per frame
