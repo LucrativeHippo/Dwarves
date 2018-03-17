@@ -76,6 +76,7 @@ public class NavMeshBuildFunction : MonoBehaviour
     }
 
     public bool willOutpostIntersect(Vector3 pos){
+        pos = Quantize(pos, new Vector3(1, 1, 1));
         Bounds b = new Bounds(pos,outpost_size);
 
 
