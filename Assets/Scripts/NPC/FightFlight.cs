@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FightFlight : MonoBehaviour {
 	private enum state {
-		COLLECT, GUARD, FOLLOW, UNSET
+		COLLECT, GUARD, FOLLOW, FLEE, UNSET
 	}
 	state prevState = state.UNSET;
 	public void gotHit(){
@@ -13,21 +13,34 @@ public class FightFlight : MonoBehaviour {
 
 		//non guards will have to decide what to do
 		if(!GetComponent<Guard>().enabled){
-			if(GetComponent<collect>().enabled){
-				prevState = state.COLLECT;
-				GetComponent<collect>().enabled = false;
+			convert();
 
-			}else if(GetComponent<follow>().enabled){
-				prevState = state.FOLLOW;
-				GetComponent<follow>().enabled = false;
+			// Choose Fight or Flight
+			if(prevState != state.FLEE /*&& checks for Guard switch */){
+				GetComponent<Guard>().enabled = true;
+			}else{
+
+				flight();
 			}
-			GetComponent<Guard>().enabled = true;
+
 		}else{
 			if(prevState != state.GUARD){
 				prevState = state.GUARD;
 			}
 		}
 	}
+
+	private void convert(){
+		if(GetComponent<collect>().enabled){
+			prevState = state.COLLECT;
+			GetComponent<collect>().enabled = false;
+
+		}else if(GetComponent<follow>().enabled){
+			prevState = state.FOLLOW;
+			GetComponent<follow>().enabled = false;
+		}
+	}
+
 	public void revert(){
 		if(prevState != state.GUARD){
 			GetComponent<Guard>().enabled = false;
@@ -38,6 +51,9 @@ public class FightFlight : MonoBehaviour {
 			}
 			prevState = state.UNSET;
 		}
-		
+	}
+
+	public void flight(){
+
 	}
 }
