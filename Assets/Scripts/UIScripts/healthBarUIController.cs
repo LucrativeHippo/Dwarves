@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class healthBarUIController : MonoBehaviour {
+public class healthBarUIController : MonoBehaviour, IHealthListener{
 
     [SerializeField] int updateTimer;
 
@@ -14,20 +14,37 @@ public class healthBarUIController : MonoBehaviour {
 
     private IEnumerator coroutine;
 
+    public void publish()
+    {
+        if(playerHealth != null)
+            updateHealth();
+    }
+
+    private Health playerHealth;
+    public void setHealth(Health h)
+    {
+        if(h != null){
+            playerHealth = h;
+            h.addSubscriber(this);
+        }
+    }
+
     void Start () {
         player = GameObject.FindWithTag ("Player");
+        setHealth(player.GetComponent<Health>());
         healthBar = this.transform.GetChild (1).gameObject;
         healthNumberText = this.transform.GetChild (2).gameObject.GetComponent<Text> ();
 
-        coroutine = WaitAndUpdate (updateTimer);
-        StartCoroutine (coroutine);
+        // coroutine = WaitAndUpdate (updateTimer);
+        // StartCoroutine (coroutine);
     }
 
     private void updateHealth () {
-        float temp = player.GetComponent<Health> ().health;
-        healthNumberText.text = System.Math.Round (temp, 0).ToString () + "%";
+        float temp = playerHealth.getHealth();
+        float fractionHealth = temp / (float)playerHealth.getMaxHealth();
 
-        float fractionHealth = temp / 100;
+        healthNumberText.text = System.Math.Round (fractionHealth*100, 0).ToString () + "%";
+
 
         healthBar.transform.localScale = new Vector3 (fractionHealth, 1.0F, 1.0F);
     }

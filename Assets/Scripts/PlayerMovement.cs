@@ -14,8 +14,10 @@ public class PlayerMovement : MonoBehaviour {
         // cam = GameObject.Find("MainCam");
     }
 
+
     void FixedUpdate() {
 		Vector3 mov = new Vector3 (0, 0);
+        bool noAnim = true;
         if(animator!=null){
             animator.SetBool("moveUp", false);
             animator.SetBool("moveDown", false);
@@ -26,32 +28,36 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.W)) 
         {
             mov += Vector3.forward;
-            if (animator != null)
+            if (animator != null && noAnim)
             {
+                noAnim = false;
                 animator.SetBool("moveUp", true);
             }
         }
         if (Input.GetKey(KeyCode.S))
         {
             mov += Vector3.back;
-            if (animator != null)
+            if (animator != null && noAnim)
             {
+                noAnim = false;
                 animator.SetBool("moveDown", true);
             }
         }
         if (Input.GetKey(KeyCode.A))
         {
             mov += Vector3.left;
-            if (animator != null)
+            if (animator != null && noAnim)
             {
+                noAnim = false;
                 animator.SetBool("moveLeft", true);
             }
         }
         if (Input.GetKey(KeyCode.D))
         {
             mov += Vector3.right;
-            if (animator != null)
+            if (animator != null && noAnim)
             {
+                noAnim = false;
                 animator.SetBool("moveRight", true);
             }
         }

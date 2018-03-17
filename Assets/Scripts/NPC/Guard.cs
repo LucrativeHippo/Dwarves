@@ -35,7 +35,7 @@ public class Guard : MonoBehaviour {
 
         if (enemyInRange)
         {
-            target = GameObject.FindWithTag("Enemy");
+            target = collect.findClosestTag("Enemy",gameObject,threatRange);
         }
         if (target != null)
         {
