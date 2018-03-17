@@ -7,7 +7,7 @@ using System;
 public class Skills : Character {
     /// All job based skills available to the NPCs
     /// Add skills 
-    public enum skillList {
+    public enum list {
         braveness,
         strength,
         charisma,
@@ -15,7 +15,7 @@ public class Skills : Character {
         skill
     };
 
-    public static int numOfSkills = Enum.GetNames (typeof(skillList)).Length;
+    public static int numOfSkills = Enum.GetNames (typeof(list)).Length;
 
     // npc skill level (translates to its cost)
     // bool if it's recruited
@@ -27,7 +27,7 @@ public class Skills : Character {
     [ReadOnly] public float rank = 0f;
     //private float maxSize = 10;
 
-    [NamedArray(typeof(skillList))] public float[] skillLevel = new float[numOfSkills];
+    [NamedArray(typeof(list))] public float[] skillLevel = new float[numOfSkills];
 
     public void Awake () {
         randomizeSkills ();
@@ -96,7 +96,7 @@ public class Skills : Character {
     /// </summary>
     /// <param name="s">Skill to be viewed</param>
     /// <returns>0->10 value</returns>
-    public float getValue (skillList s) {
+    public float getValue (list s) {
         return getValue((int)s);
     }
     /// <summary>
