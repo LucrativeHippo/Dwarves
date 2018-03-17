@@ -20,7 +20,7 @@ public class NavMeshController : MonoBehaviour {
         getOffset();
     }
     private void getOffset(){
-        center = gameObject;//GameObject.FindGameObjectWithTag("TownCenter");
+        center = GameObject.FindGameObjectWithTag("TownCenter");
         bounds = center.GetComponent<NavMeshBuildFunction>().GetBounds();
     }
 
