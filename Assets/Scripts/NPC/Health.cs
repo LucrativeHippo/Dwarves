@@ -4,17 +4,39 @@ using UnityEngine;
 
 public class Health : MonoBehaviour {
     /// The health.
-    public int health;
+    [SerializeField]
+    int health = 10;
+    [SerializeField]
     int maxHealth;
+    [SerializeField]
     bool isImmortal = false;
     public bool dealDamage = false;
+
+    LinkedList<IHealthListener> subscribers;
+
+    public void addSubscriber(IHealthListener listener){
+        subscribers.AddLast(listener);
+    }
+
+    public void publish(){
+        foreach(IHealthListener l in subscribers){
+            l.publish();
+        }
+    }
 
 
     public void Start () {
         maxHealth = health;
-
+        subscribers = new LinkedList<IHealthListener>();
     }
 
+
+    public int getHealth(){
+        return health;
+    }
+    public int getMaxHealth(){
+        return maxHealth;
+    }
 
     /// <summary>
     /// Damage the character. Returns true if character is dead.
@@ -27,6 +49,7 @@ public class Health : MonoBehaviour {
             throw new UnityException ("You can't heal from damage!");
             
         health -= dmg;
+        publish();
         notifyNPC();
         if (health <= 0 && !isImmortal) {
             death();
@@ -47,6 +70,7 @@ public class Health : MonoBehaviour {
         } else {
             health += heal;
         }
+        publish();
     }
 
     public void death(){
