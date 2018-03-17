@@ -39,7 +39,6 @@ public class NPCManager : MonoBehaviour {
     }
 
     public void enableMenu () {
-        currentResources.GetComponent<currentResourcesUIController> ().updateResourcesUI ();
         clearUI ();
         generateUI ();
         mainUIGameObject.SetActive (false);
@@ -48,6 +47,7 @@ public class NPCManager : MonoBehaviour {
     }
 
     public void disableMenu () {
+        currentResources.GetComponent<currentResourcesUIController> ().updateResourcesUI ();
         mainUIGameObject.SetActive (true);
         mainDisplayGameObject.SetActive (false);
         NPCManagerGameObject.SetActive (false);
