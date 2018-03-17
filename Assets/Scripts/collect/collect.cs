@@ -322,7 +322,7 @@ public class collect : MonoBehaviour
 
 	private void OnValidate()
 	{
-        startCollecting(findingType);
+        //startCollecting(findingType);
 	}
 }
  

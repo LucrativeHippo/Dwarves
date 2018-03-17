@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NavMeshController : MonoBehaviour {
     GameObject tc;
+    public Vector3 temp;
 
 	// Use this for initialization
 	void Awake () {
@@ -45,7 +46,7 @@ public class NavMeshController : MonoBehaviour {
     public bool closeToTC()
     {
         Vector3 offset = tc.GetComponent<NavMeshBuildFunction>().m_Size / 2;
-        return (lessThan(transform.position, tc.transform.position + offset) && greaterThan(transform.position, tc.transform.position - offset)) ;
+        return (lessThan(transform.position, tc.transform.position + offset+temp) && greaterThan(transform.position, tc.transform.position - offset - temp)) ;
         //return !GetComponent<LocalNavMeshBuilder>().enabled && onNavMesh();
     }
 

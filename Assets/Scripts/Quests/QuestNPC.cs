@@ -59,7 +59,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
         // TODO: change this to be dependent on creation
         // myQuests.addGoal(new QuestGoal(rank));
 
-        //addGoal(GetComponent<Skills>().getIntRank());
+        
 	}
 
     public void addGoal(int difficulty){

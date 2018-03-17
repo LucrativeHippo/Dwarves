@@ -18,9 +18,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _DisplaceTex:
+        m_Texture: {fileID: 2800000, guid: b0700f6021948994eb947d27cf320fc7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - _DisMagnitude: 0.005
+    - _Displace: 0
+    - _Halo: 0
+    - _HaloMagnitude: 0
+    - _SatMagnitude: 1.2685878
     m_Colors: []
