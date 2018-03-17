@@ -13,12 +13,12 @@ TagManager:
   - Diamond
   - Enemy
   - TownCenter
-  - collecter
   - food
   - gold
   - stone
   - coal
   - iron
+  - Shelter
   layers:
   - Default
   - TransparentFX

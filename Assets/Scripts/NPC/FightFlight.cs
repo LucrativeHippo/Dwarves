@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FightFlight : MonoBehaviour {
+public class FightFlight : MonoBehaviour, IHealthListener {
 	private enum state {
 		COLLECT, GUARD, FOLLOW, FLEE, UNSET
 	}
@@ -64,6 +64,24 @@ public class FightFlight : MonoBehaviour {
 		GameObject safety = collect.findClosestTag("Shelter",gameObject);
 		if(safety != null){
 			GetComponent<NavMeshAgent>().SetDestination(safety.transform.position);
+		}else{
+			Debug.Log("NPC couldn't find a nearby shelter, and is now frozen in terror");
 		}
 	}
+
+	private Health npcHealth;
+    public void setHealth(Health health)
+    {
+		npcHealth = health;
+		health.addSubscriber(this);
+    }
+
+    public void publish()
+    {
+		float percentage = 100 * (float)npcHealth.getHealth() / (float)npcHealth.getMaxHealth();
+		if(percentage<=20){
+			convert();
+			flight();
+		}
+    }
 }
