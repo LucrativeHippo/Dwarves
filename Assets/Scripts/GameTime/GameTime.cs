@@ -19,6 +19,10 @@ public class GameTime : MonoBehaviour
 
 
 
+    float timevalue=30;
+    float valueToIncreaseEverySec = 1;
+
+
     void Start()
     {
         UIObject = GameObject.Find("UIController");
@@ -29,15 +33,34 @@ public class GameTime : MonoBehaviour
         //generateMonster = temp.GetComponent<GenerateMonster> ();
 
         postProcessing = GameObject.FindObjectOfType<UseCustomImageEffect>();
-        StartCoroutine (Timer (dayTime));
+        daychange = GameObject.Find("daychange").GetComponent<Slider>();
+        IEnumerator co = Timer(dayTime);
+        StartCoroutine(co);
+        
 
         if (postProcessing != null)
         {
-            postProcessing.setDoHalo(true);
-            StartCoroutine(DayCycle(dayTime));
+            //postProcessing.setDoHalo(true);
+            //StartCoroutine(DayCycle(dayTime));
         }
-       
     }
+
+    private void Update()
+    {
+        //10 second per day
+        if (daychange.value == 8)
+        {
+            timevalue = 30;
+        }
+
+            timevalue += valueToIncreaseEverySec * Time.deltaTime;
+
+            daychange.value = timevalue / 30;
+
+        
+    }
+
+   
 
 
     private void setWeatherBasedPostProcessing()
@@ -76,17 +99,18 @@ public class GameTime : MonoBehaviour
     }
 
     private IEnumerator Timer (float time) {
+
         while (true) {
             yield return new WaitForSeconds (time);
             calendar.toNextDay ();
             //generateMonster.SpawnMonsters (calendar.getForecastWeather (0));
 
-            UIObject.GetComponent<WeatherUI> ().updateTemp (calendar.getForecastTemp (0));
-            UIObject.GetComponent<WeatherUI> ().updateWeatherName (calendar.getForecastWeather (0));
+            //UIObject.GetComponent<WeatherUI> ().updateTemp (calendar.getForecastTemp (0));
+            //UIObject.GetComponent<WeatherUI> ().updateWeatherName (calendar.getForecastWeather (0));
 
             //print (calendar.getCurrentDay ());
-            //daychangetext.text=calendar.getCurrentDay().ToString();
-            //seasonchange.text = calendar.getCurrentSeason().ToString();
+            daychangetext.text = calendar.getCurrentDay().ToString();
+            seasonchange.text = (calendar.getCurrentSeason() + 1).ToString();
             //daychange.value = calendar.getCurrentDay();
 
             Debug.Log(calendar.getCurrentDay());
