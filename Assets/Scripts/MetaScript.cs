@@ -36,15 +36,29 @@ public class MetaScript : MonoBehaviour {
 	public static NPCManager GetNPC(){
 		return GameObject.Find("npcManagerButton").GetComponent<NPCManager>();
 	}
+    public static outpost_controller getOPController()
+    {
+        return getMetaObject().GetComponent<outpost_controller>();
+    }
 
-	//  public currentResourcesUIController resourceUI;
-	public static void updateResourcesUI(){
-		currentResourcesUIController temp = GameObject.Find("CurrentResources").GetComponent<currentResourcesUIController>();
-		if(temp!=null){
-			temp.updateResourcesUI();
-		}else{
-			Debug.LogError("Couldn't find resourceUI");
-		}
+    //  public currentResourcesUIController resourceUI;
+    public static void updateResourcesUI(){
+        GameObject resObj = GameObject.Find("CurrentResources");
+        if (resObj == null)
+        {
+            Debug.LogWarning("RES UI not found!! May be due to being disabled.");
+        }
+        else
+        {
+            currentResourcesUIController temp = resObj.GetComponent<currentResourcesUIController>();
+            if (temp != null)
+            {
+                temp.updateResourcesUI();
+            }
+            else {
+                Debug.LogError("Couldn't find resourceUI");
+            }
+        }
 	}
 	// Update is called once per frame
 	void Update () {
