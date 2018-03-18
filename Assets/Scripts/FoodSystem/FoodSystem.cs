@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodSystem : MonoBehaviour {
+public class FoodSystem : MonoBehaviour, INPCListener {
 
     [SerializeField] private int foodUsedPerNPC;
     [SerializeField] private int damageForStarving;
@@ -10,48 +10,37 @@ public class FoodSystem : MonoBehaviour {
     [SerializeField] private float starvingTickTimer = 10.0F;
     private float getNPCsTimerTime = 5.0f;
 
-    private GameObject metaObject;
+    private ResourceManager resourceManager;
 
     private GameObject allUIGameObjects;
     private GameObject npcManagerGameObject;
 
-    private NPCManager theNPCManager;
+    private OwnedNPCList ownedNPC;
 
-    private List<GameObject> theNPCs;
 
     [SerializeField] private bool noFood;
 
     void Start () {
-        metaObject = GameObject.Find ("Meta");
+        resourceManager = MetaScript.getRes();
         allUIGameObjects = GameObject.Find ("AllUIObjectsCanvas");
         npcManagerGameObject = allUIGameObjects.transform.GetChild (0).GetChild (0).gameObject;
+        
+        setNPCList(MetaScript.GetNPC());
 
-        theNPCManager = npcManagerGameObject.GetComponent<NPCManager> ();
-
-        theNPCs = new List<GameObject> ();
         noFood = false;
-        StartCoroutine (getNPCsTimer (getNPCsTimerTime));
+        
         StartCoroutine (starvingTimer (starvingTickTimer));
     }
 
-    private void setNPC () {
-        theNPCs = theNPCManager.getNPCs ();
-    }
-
-    IEnumerator getNPCsTimer (float waitForTime) {
-        yield return new WaitForSeconds (waitForTime);
-        setNPC ();
-        StartCoroutine (getNPCsTimer (waitForTime));
-    }
 
     private void useFood () {
-        int currentFood = metaObject.GetComponent<ResourceManager> ().getResource (ResourceTypes.FOOD);
-        int foodCost = theNPCs.Count * foodUsedPerNPC;
-        if (currentFood - foodCost > 0) {
-            metaObject.GetComponent<ResourceManager> ().addResource (ResourceTypes.FOOD, -foodCost);
+        int currentFood = resourceManager.getResource (ResourceTypes.FOOD);
+        int foodCost = ownedNPC.getCount() * foodUsedPerNPC;
+        if(resourceManager.hasResource(ResourceTypes.FOOD,foodCost)){
+            resourceManager.addResource (ResourceTypes.FOOD, -foodCost);
             noFood = false;
         } else {
-            metaObject.GetComponent<ResourceManager> ().addResource (ResourceTypes.FOOD, -currentFood);
+            resourceManager.addResource (ResourceTypes.FOOD, -currentFood);
             noFood = true;
         }
     }
@@ -65,7 +54,7 @@ public class FoodSystem : MonoBehaviour {
     }
 
     private void starving () {
-        foreach (var aNPC in theNPCs) {
+        foreach (var aNPC in ownedNPC.getNPCs()) {
             aNPC.GetComponent<Health> ().damage (damageForStarving);
         }
     }
@@ -74,4 +63,14 @@ public class FoodSystem : MonoBehaviour {
         return noFood;
     }
 
+
+    public void setNPCList(OwnedNPCList list)
+    {
+        ownedNPC = list;
+    }
+
+    public void publish()
+    {
+        // do nothing for now?
+    }
 }
