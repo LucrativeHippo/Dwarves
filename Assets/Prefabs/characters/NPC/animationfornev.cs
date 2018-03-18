@@ -16,29 +16,29 @@ public class animationfornev : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Debug.Log(agent.velocity);
-        if(agent.velocity.x==0 && agent.velocity.z==0){
+        if(agent.velocity.x==0f){
 
             anim.SetInteger("Direction",0);
         }
-        else  if(agent.velocity.z>.2f){
-            anim.SetInteger("Direction",1);
+        if(agent.velocity.z>.01f){
+            anim.SetInteger("Direction",2);
         }
-        else if (agent.velocity.z < -.2f)
+        if (agent.velocity.z < -.01f)
         {
-            anim.SetInteger("Direction", 2);
+            anim.SetInteger("Direction", 1);
         }
-        else if (agent.velocity.x > .2f)
+        if (agent.velocity.x > .01f )
         {
             anim.SetInteger("Direction", 3);
         }
-        else if (agent.velocity.x <0 && agent.velocity.z<0)
+       if (agent.velocity.x < -.01f)
         {
             anim.SetInteger("Direction", 4);
         }
-        else if (agent.velocity.x > 0 && agent.velocity.z > 0)
-        {
-            anim.SetInteger("Direction", 3);
-        }
+     
+   
+ 
+ 
 	}
    
 }
