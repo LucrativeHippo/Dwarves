@@ -15,7 +15,7 @@ public class animationfornev : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(agent.velocity);
+        //Debug.Log(agent.velocity);
         if(agent.velocity.x==0f){
 
             anim.SetInteger("Direction",0);

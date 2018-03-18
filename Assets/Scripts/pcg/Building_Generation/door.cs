@@ -30,7 +30,9 @@ public class door : MonoBehaviour {
 
     public void recieveAction()
     {
-        
+        // }else{
+        //     player.GetComponent<DynamicGeneration>().enabled = true;
+        // }
         // if(pos != null)
         // {
             print(pos.x + "" + pos.y + "" + pos.z);
@@ -45,6 +47,7 @@ public class door : MonoBehaviour {
                 ps[i].Play();
             }
         }
+        player.GetComponent<DynamicGeneration>().enabled = true;
         //gameObject.GetComponent<ParticleSystem>().emission.enabled = true;
             //print(xpos + zpos);
         // }

@@ -25,6 +25,8 @@ public class building : MonoBehaviour, IActionable {
         
         if (!this.enabled)
             return;
+
+        player.GetComponent<DynamicGeneration>().enabled = false;
         player.SetActive(false);
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
         player.SetActive(true);
