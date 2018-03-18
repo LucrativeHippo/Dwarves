@@ -1,0 +1,11 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!91 &9100000
+AnimatorController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 28959316_2007468622825259_3333375920026157056_o_23
+  serializedVersion: 5
+  m_AnimatorParameters: []
+  m_AnimatorLayers: []
