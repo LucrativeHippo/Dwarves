@@ -19,6 +19,9 @@ public class OwnedNPCList : MonoBehaviour {
 
         foreach (var theNPC in temp) {
             NPCs.Add (theNPC);
+            
+            //remove quest
+            theNPC.GetComponent<QuestNPC>().TakeSoul();
         }
 	}
 	
