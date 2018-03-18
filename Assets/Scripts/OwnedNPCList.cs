@@ -5,7 +5,13 @@ using UnityEngine;
 public class OwnedNPCList : MonoBehaviour {
     [SerializeField]
     private List<GameObject> NPCs;
+    private LinkedList<INPCListener> subscribers = new LinkedList<INPCListener>();
 
+    private void publish(){
+        foreach(INPCListener listener in subscribers){
+            listener.publish();
+        }
+    }
 	// Use this for initialization
 	void Start () {
 		NPCs = new List<GameObject> ();
@@ -28,6 +34,7 @@ public class OwnedNPCList : MonoBehaviour {
     /// <param name="newNPC"> a NPC. </param>
     public void addNPC (GameObject newNPC) {
         NPCs.Add (newNPC);
+        publish();
     }
 	
 
@@ -37,6 +44,7 @@ public class OwnedNPCList : MonoBehaviour {
     /// <param name="aNPC">A NPC. </param>
     public void removeNPC (GameObject aNPC) {
         NPCs.Remove (aNPC);
+        publish();
     }
 	
 
@@ -46,5 +54,9 @@ public class OwnedNPCList : MonoBehaviour {
     /// <returns> A List<GameObject> of NPCs.</returns>
     public List<GameObject> getNPCs () {
         return NPCs;
+    }
+
+    public int getCount(){
+        return NPCs.Count;
     }
 }
