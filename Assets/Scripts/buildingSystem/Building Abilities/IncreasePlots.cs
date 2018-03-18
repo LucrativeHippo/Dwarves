@@ -20,9 +20,10 @@ public class IncreasePlots : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         tc = GameObject.FindGameObjectWithTag("TownCenter");
-
-        if(tc != null)
+        
+        if (tc != null)
         {
+            
             int tcx = (int)tc.transform.position.x;
             int tcz = (int)tc.transform.position.z;
             
