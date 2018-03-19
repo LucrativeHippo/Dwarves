@@ -27,19 +27,19 @@ public class collect : MonoBehaviour
     private float getRateStat(){ 
         switch (findingType){
             case ResourceTypes.COAL:
-                return GetComponent<Skills>().getValue(1);
+                return GetComponent<Skills>().getValue(Skills.list.strength);
             case ResourceTypes.GOLD:
-                return GetComponent<Skills>().getValue(1);
+                return GetComponent<Skills>().getValue(Skills.list.strength);
             case ResourceTypes.IRON:
-                return GetComponent<Skills>().getValue(1);
+                return GetComponent<Skills>().getValue(Skills.list.strength);
             case ResourceTypes.DIAMOND:
-                return GetComponent<Skills>().getValue(1);
+                return GetComponent<Skills>().getValue(Skills.list.strength);
             case ResourceTypes.STONE:
-                return GetComponent<Skills>().getValue(1);
+                return GetComponent<Skills>().getValue(Skills.list.strength);
             case ResourceTypes.FOOD:
-                return GetComponent<Skills>().getValue(3);
+                return GetComponent<Skills>().getValue(Skills.list.charisma);
             case ResourceTypes.WOOD:
-                return GetComponent<Skills>().getValue(4);
+                return GetComponent<Skills>().getValue(Skills.list.motivation);
             default:
                 return 2f;
         }
@@ -49,21 +49,21 @@ public class collect : MonoBehaviour
         switch (findingType)
         {
             case ResourceTypes.COAL:
-                return GetComponent<Skills>().getValue(3);
+                return GetComponent<Skills>().getValue(Skills.list.motivation);
             case ResourceTypes.GOLD:
-                return GetComponent<Skills>().getValue(3);
+                return GetComponent<Skills>().getValue(Skills.list.motivation);
             case ResourceTypes.IRON:
-                return GetComponent<Skills>().getValue(3);
+                return GetComponent<Skills>().getValue(Skills.list.motivation);
             case ResourceTypes.DIAMOND:
-                return GetComponent<Skills>().getValue(3);
+                return GetComponent<Skills>().getValue(Skills.list.motivation);
             case ResourceTypes.STONE:
-                return GetComponent<Skills>().getValue(3);
+                return GetComponent<Skills>().getValue(Skills.list.motivation);
             case ResourceTypes.FOOD:
-                return GetComponent<Skills>().getValue(0);
+                return GetComponent<Skills>().getValue(Skills.list.braveness);
             case ResourceTypes.WOOD:
-                return GetComponent<Skills>().getValue(1);
+                return GetComponent<Skills>().getValue(Skills.list.strength);
             default:
-                return 11f;
+                return 10f;
         }
     }
 
@@ -171,7 +171,8 @@ public class collect : MonoBehaviour
     }
     private void moveTo(GameObject g){
         agent.isStopped = false;
-        if(!agent.SetDestination(g.transform.position)){
+
+        if(g == null || !agent.SetDestination(g.transform.position)){
                 Debug.LogError("Failed to go to resource. May be out of NavMesh bounds");
         }
     }
@@ -244,12 +245,14 @@ public class collect : MonoBehaviour
         Vector3 position = from.transform.position;
         foreach (GameObject go in gos)
         {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                closest = go;
-                distance = curDistance;
+            if(go.activeInHierarchy && onNavMesh(go.transform.position)){
+                Vector3 diff = go.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
+                {
+                    closest = go;
+                    distance = curDistance;
+                }
             }
         }
         return closest;
@@ -257,7 +260,10 @@ public class collect : MonoBehaviour
 
 
 
-
+    public static bool onNavMesh(Vector3 position) {
+        NavMeshHit hit;
+        return NavMesh.SamplePosition(position,out hit, 0.3f, NavMesh.AllAreas);
+    }
 
 
     private void OnTriggerStay(Collider other)
@@ -319,10 +325,13 @@ public class collect : MonoBehaviour
         MetaScript.getRes().addResource(this.findingType,curRes);
         curRes = 0;
     }
-
+    private npcState prevState = npcState.asleep;
 	private void OnValidate()
 	{
-        //startCollecting(findingType);
+        if(prevState != state){
+            startCollecting(findingType);
+            prevState = state;
+        }
 	}
 }
  
