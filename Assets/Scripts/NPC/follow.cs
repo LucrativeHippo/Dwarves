@@ -49,7 +49,9 @@ public class follow : MonoBehaviour {
                 
             }else if(distanceToTarget >= Mathf.Pow(maxDist,2)){
                 navComponent.enabled = false;
-                transform.position = (pPos - tPos).normalized*maxDist+tPos;
+                Vector3 updatePos = (pPos - tPos).normalized*maxDist+tPos;
+                updatePos.y = tPos.y;
+                transform.position = updatePos;
                 navComponent.enabled = true;
             }else {
                 navComponent.isStopped = false;

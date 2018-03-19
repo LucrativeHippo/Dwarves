@@ -23,7 +23,10 @@ public class QuestNPC : MonoBehaviour, IActionable {
         tryQuest();
     }
 
-    private void TakeSoul(){
+    /// <summary>
+    /// Converts NPC to be an owned NPC and immediately starts gathering wood
+    /// </summary>
+    public void TakeSoul(){
             MetaScript.GetNPC().addNPC(gameObject);
             gameObject.tag = "OwnedNPC";
             //teleport to town
@@ -31,6 +34,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
             
             gameObject.GetComponent<collect>().enabled = true;
             gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);
+            Destroy(this);
             //GetComponent<NavMeshAgent>().enabled = true;
     }
     protected void tryQuest(){
@@ -41,7 +45,6 @@ public class QuestNPC : MonoBehaviour, IActionable {
             
             TakeSoul();
 
-            this.enabled = false;
         }else{
 
             Debug.Log("Attempted quest but failed. Need "+

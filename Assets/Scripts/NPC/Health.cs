@@ -12,7 +12,7 @@ public class Health : MonoBehaviour {
     bool isImmortal = false;
     public bool dealDamage = false;
 
-    LinkedList<IHealthListener> subscribers;
+    LinkedList<IHealthListener> subscribers = new LinkedList<IHealthListener>();
 
     public void addSubscriber(IHealthListener listener){
         subscribers.AddLast(listener);
@@ -27,7 +27,6 @@ public class Health : MonoBehaviour {
 
     public void Start () {
         maxHealth = health;
-        subscribers = new LinkedList<IHealthListener>();
     }
 
 

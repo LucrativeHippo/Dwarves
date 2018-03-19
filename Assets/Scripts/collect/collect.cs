@@ -173,7 +173,8 @@ public class collect : MonoBehaviour
         if(g != null){
             currentresource = findClosestTag(getResName(), g);
         }else{
-            Debug.LogError("No resource buildings found.");
+            currentresource = findClosestTag(getResName(), gameObject);
+            Debug.LogWarning("No resource buildings found, using my location as search point.");
         }
     }
     private void moveTo(GameObject g){
@@ -181,6 +182,8 @@ public class collect : MonoBehaviour
 
         if(g == null || !agent.SetDestination(g.transform.position)){
                 Debug.LogWarning("Failed to go to resource. May be out of NavMesh bounds");
+                // stop moving
+                agent.SetDestination(gameObject.transform.position);
         }
     }
     IEnumerator move(){
