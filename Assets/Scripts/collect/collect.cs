@@ -182,6 +182,8 @@ public class collect : MonoBehaviour
 
         if(g == null || !agent.SetDestination(g.transform.position)){
                 Debug.LogWarning("Failed to go to resource. May be out of NavMesh bounds");
+                // stop moving
+                agent.SetDestination(gameObject.transform.position);
         }
     }
     IEnumerator move(){

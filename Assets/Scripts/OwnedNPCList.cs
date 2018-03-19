@@ -17,11 +17,14 @@ public class OwnedNPCList : MonoBehaviour {
 		NPCs = new List<GameObject> ();
         GameObject[] temp = GameObject.FindGameObjectsWithTag ("OwnedNPC");
 
+        Transform metaParent = MetaScript.getMetaObject().transform;
+
         foreach (var theNPC in temp) {
-            NPCs.Add (theNPC);
-            
-            //remove quest
-            theNPC.GetComponent<QuestNPC>().TakeSoul();
+            // Add to my list of people
+            if(theNPC.GetComponent<QuestNPC>() != null && theNPC.transform.parent != metaParent){
+                theNPC.transform.SetParent(metaParent);
+                theNPC.GetComponent<QuestNPC>().TakeSoul();
+            }
         }
 	}
 	
