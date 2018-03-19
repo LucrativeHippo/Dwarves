@@ -32,7 +32,9 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
             if (!MetaScript.getRes ().hasResource (i, upgradeCostList [i])) {
                 canUpgrade = false;
             }
-            tempCostString += upgradeCostList [i].ToString () + "\n";
+            if (upgradeCostList [i] > 0) {
+                tempCostString += ((ResourceTypes)i).ToString () + ": " + upgradeCostList [i].ToString () + "\n";
+            }
         }
         costText.text = tempCostString;
         moreResourcesRequiredText.text = "";
