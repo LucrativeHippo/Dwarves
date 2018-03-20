@@ -27,6 +27,7 @@ public class building : MonoBehaviour, IActionable {
             return;
 
         player.GetComponent<DynamicGeneration>().enabled = false;
+        MetaScript.GetInBuilding().setPlayerInBuilding(true);
         player.SetActive(false);
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
         player.GetComponent<LocalNavMeshBuilder>().enabled = true;

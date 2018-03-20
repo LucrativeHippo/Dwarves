@@ -48,6 +48,7 @@ public class door : MonoBehaviour {
             }
         }
         player.GetComponent<DynamicGeneration>().enabled = true;
+        MetaScript.GetInBuilding().setPlayerInBuilding(true);
         //gameObject.GetComponent<ParticleSystem>().emission.enabled = true;
             //print(xpos + zpos);
         // }
