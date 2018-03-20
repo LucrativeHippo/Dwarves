@@ -452,6 +452,21 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 1.75
       objectReference: {fileID: 0}
+    - target: {fileID: 108866432059953716, guid: a52a3ed753a66f6408285b2e71240be6,
+        type: 2}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212234064189973600, guid: a52a3ed753a66f6408285b2e71240be6,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 108634959046555132, guid: a52a3ed753a66f6408285b2e71240be6,
+        type: 2}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114001330932921944, guid: a52a3ed753a66f6408285b2e71240be6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a52a3ed753a66f6408285b2e71240be6, type: 2}

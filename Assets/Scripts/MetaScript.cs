@@ -60,6 +60,10 @@ public class MetaScript : MonoBehaviour {
             }
         }
 	}
+
+	public static InBuilding GetInBuilding(){
+		return getMetaObject().GetComponent<InBuilding>();
+	}
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Alpha1)){
