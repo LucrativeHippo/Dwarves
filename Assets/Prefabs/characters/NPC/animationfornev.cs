@@ -20,18 +20,18 @@ public class animationfornev : MonoBehaviour {
 
             anim.SetInteger("Direction",0);
         }
-        if(agent.velocity.z>.01f){
+        if(agent.velocity.z>.1f){
             anim.SetInteger("Direction",2);
         }
-        if (agent.velocity.z < -.01f)
+        if (agent.velocity.z < -.1f)
         {
             anim.SetInteger("Direction", 1);
         }
-        if (agent.velocity.x > .01f )
+        if (agent.velocity.x > .1f )
         {
             anim.SetInteger("Direction", 3);
         }
-       if (agent.velocity.x < -.01f)
+       if (agent.velocity.x < -.1f)
         {
             anim.SetInteger("Direction", 4);
         }
