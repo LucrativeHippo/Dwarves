@@ -17,7 +17,7 @@ public class MetaScript : MonoBehaviour {
 	/// Static reference to location of this script
 	/// </summary>
 	/// <returns></returns>
-	private static GameObject getMetaObject(){
+	public static GameObject getMetaObject(){
 		return GameObject.Find("Meta");
 	}
 
@@ -33,8 +33,8 @@ public class MetaScript : MonoBehaviour {
 	public static ResourceManager getRes(){
 		return getMetaObject().GetComponent<ResourceManager>();
 	}
-	public static NPCManager GetNPC(){
-		return GameObject.Find("npcManagerButton").GetComponent<NPCManager>();
+	public static OwnedNPCList GetNPC(){
+		return getMetaObject().GetComponent<OwnedNPCList>();
 	}
     public static outpost_controller getOPController()
     {
@@ -59,6 +59,10 @@ public class MetaScript : MonoBehaviour {
                 Debug.LogError("Couldn't find resourceUI");
             }
         }
+	}
+
+	public static InBuilding GetInBuilding(){
+		return getMetaObject().GetComponent<InBuilding>();
 	}
 	// Update is called once per frame
 	void Update () {

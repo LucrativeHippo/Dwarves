@@ -6,7 +6,7 @@ using UnityEngine.UI;
 // works using MVC
 public class currentResourcesUIController : MonoBehaviour {
 
-    private GameObject resourceManager;
+    private ResourceManager resourceManager;
 
     private Text[] textsValuesText;
 
@@ -17,20 +17,23 @@ public class currentResourcesUIController : MonoBehaviour {
         for (int i = 0; i < (int)ResourceTypes.NumberOfTypes - 1; i++) {
             textsValuesText[i] = this.transform.GetChild(i).GetChild(0).gameObject.GetComponent<Text>();
         }
+        resourceManager = MetaScript.getRes();
         updateResourcesUI();
     }
     
     void OnEnable()
     {
-        updateResourcesUI();
+        if(resourceManager != null)
+            updateResourcesUI();
     }
 
     /// <summary>
     /// Updates the resources UI.
     /// </summary>
     public void updateResourcesUI () {
+        
         for (int i = 0; i < (int)ResourceTypes.NumberOfTypes - 1; i++) {
-            //textsValuesText [i].text = MetaScript.getRes ().getResource (i).ToString () + "/" + MetaScript.getRes().getMaxResource(i).ToString();
+            textsValuesText [i].text = resourceManager.getResource (i).ToString () + "/" + resourceManager.getMaxResource(i).ToString();
         }
     }
 }

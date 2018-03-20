@@ -494,7 +494,7 @@ public class terrainGenerator : MonoBehaviour
         loadedChunks[xPos + " " + yPos] = chunkMap;
         GameObject tempTile;
         GameObject tempResource;
-        int count = 0;
+        
         for (int y = 0; y < Chunk.SIZE; y++)
         {
             for (int x = 0; x < Chunk.SIZE; x++)

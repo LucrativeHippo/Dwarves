@@ -6,18 +6,28 @@ using UnityEngine;
 public class char_combat : MonoBehaviour {
 	//public Attributes npcStats;
 	//enemyAI enemyStats;
-	bool isEnemy = false;
+	public bool isEnemy = false;
 	bool timeControl = true;
 	public bool inCombat = false;
 	public GameObject opponent;
 	//public float opponentDamage;
+    [SerializeField]
 	public float coolDown = 1.0f;
+    [SerializeField]
+    private float damage =1.0f ;
 
 	// Use this for initialization
 	void Start () {
 		isEnemy = gameObject.tag == "Enemy";
+        if (gameObject.tag == "OwnedNPC"){
+            getNPCStat();
+        }
 	}
 
+    void getNPCStat(){
+        coolDown= 1-(gameObject.GetComponent<Skills>().getValue(0)-5)/5;
+        damage = gameObject.GetComponent<Skills>().getValue(1);
+    }
 	// Update is called once per frame
 	void Update () {
 		if (inCombat && timeControl)
