@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FightFlight : MonoBehaviour, IHealthListener {
+public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 	private enum state {
 		COLLECT, GUARD, FOLLOW, FLEE, UNSET
 	}
+	[SerializeField]
 	state prevState = state.UNSET;
+	state curState = state.UNSET;
 	public void gotHit(){
 
 		// If a guard they should path to the enemy on their own
@@ -17,19 +19,22 @@ public class FightFlight : MonoBehaviour, IHealthListener {
 			convert();
 
 			// Choose Fight or Flight
-			if(prevState != state.FLEE && GetComponent<Skills>().getValue(Skills.list.braveness)>5){
+			if(curState != state.FLEE && isBrave()){
+				curState = state.GUARD;
 				GetComponent<Guard>().enabled = true;
 			}else{
-
+				curState = state.FLEE;
 				flight();
 			}
 
 		}else{
-			if(prevState != state.GUARD){
+			if(prevState == state.UNSET){
 				prevState = state.GUARD;
 			}
 		}
 	}
+
+	private bool isBrave(){	return GetComponent<Skills>().getValue(Skills.list.braveness)>5; }
 
 	private void convert(){
 		if(GetComponent<collect>().enabled){
@@ -55,6 +60,7 @@ public class FightFlight : MonoBehaviour, IHealthListener {
 			}
 		}
 		prevState = state.UNSET;
+		curState = state.UNSET;
 	}
 
 	public void flight(){
@@ -82,6 +88,15 @@ public class FightFlight : MonoBehaviour, IHealthListener {
 		if(percentage<=20){
 			convert();
 			flight();
+		}
+    }
+
+    public void bellRang(bool safe)
+    {
+		if(!safe){
+			gotHit();
+		}else{
+			revert();
 		}
     }
 }
