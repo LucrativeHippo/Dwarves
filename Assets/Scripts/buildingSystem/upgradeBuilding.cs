@@ -6,6 +6,9 @@ using UnityEngine;
 public class upgradeBuilding : MonoBehaviour, IActionable
 {
     [SerializeField]
+    private Material upgradeMaterial;
+
+    [SerializeField]
     [NamedArray(typeof(ResourceTypes))]private int[] upgradeCostList = new int[(int)ResourceTypes.NumberOfTypes];
 
     [SerializeField]
@@ -25,8 +28,10 @@ public class upgradeBuilding : MonoBehaviour, IActionable
 
         if (canUpgrade)
         {
-            Instantiate(upgrade, gameObject.transform.parent.transform.position, Quaternion.identity);
-            Destroy(gameObject.transform.parent.gameObject);
+            GameObject temp = Instantiate(upgrade, gameObject.transform.position, Quaternion.identity);
+            temp.transform.parent = gameObject.transform.parent;
+            gameObject.transform.parent.GetComponentsInChildren<MeshRenderer>()[0].material = upgradeMaterial;
+            Destroy(gameObject);
         }
         
     }

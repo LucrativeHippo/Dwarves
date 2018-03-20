@@ -93,12 +93,14 @@ public class collect : MonoBehaviour
 
         Debug.Log("startCollecting");
         string s = getFindingType();
+        findBuilding();
         Debug.Log(s);
-        updateLocations();
+        //updateLocations();
         setSkills();
         agent.enabled = true;
         agent.isStopped = false;
         state = npcState.gotoResource;
+        findResource();
     }
 
 
@@ -164,16 +166,26 @@ public class collect : MonoBehaviour
         currentbuilding = findClosestTag(getResBuildName(),gameObject);
     }
     private void findResource(){
-        findResource(currentbuilding);
-    }
-    private void findResource(GameObject g){
-        currentresource = findClosestTag(getResName(), g);
+        
+        if(currentbuilding == null){
+            Debug.Log("A: current building wasn't assigned for some reason, searching again");
+            // currentbuilding = findClosestTag(getResBuildName(),gameObject);
+            findBuilding();
+        }
+        if(currentbuilding != null){
+            currentresource = findClosestTagInResBuilding(getResName(), currentbuilding);
+        }else{
+            currentresource = findClosestTag(getResName(), gameObject);
+            Debug.LogWarning("No resource buildings found, using my location as search point.");
+        }
     }
     private void moveTo(GameObject g){
         agent.isStopped = false;
 
         if(g == null || !agent.SetDestination(g.transform.position)){
-                Debug.LogError("Failed to go to resource. May be out of NavMesh bounds");
+                Debug.LogWarning("Failed to go to resource. May be out of NavMesh bounds");
+                // stop moving
+                agent.SetDestination(gameObject.transform.position);
         }
     }
     IEnumerator move(){
@@ -219,7 +231,7 @@ public class collect : MonoBehaviour
                 if(isFull()){
                     state = npcState.gotoBuilding;
                 }else if(currentresource == null){
-                    findResource(gameObject);
+                    //findResource();
                     updateLocations();
                 }
                 break;
@@ -235,9 +247,7 @@ public class collect : MonoBehaviour
 
 
 
-    
-    public static GameObject findClosestTag(string name, GameObject from)
-    {
+    public static GameObject findClosestTag(string name, GameObject from, float maxDist){
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag(name);
         GameObject closest = null;
@@ -245,16 +255,51 @@ public class collect : MonoBehaviour
         Vector3 position = from.transform.position;
         foreach (GameObject go in gos)
         {
-            if(go.activeInHierarchy && onNavMesh(go.transform.position)){
+            NavMeshPath tempPath = new NavMeshPath();
+            if(go.activeInHierarchy && onNavMesh(go.transform.position) && NavMesh.CalculatePath(position,go.transform.position,NavMesh.AllAreas, tempPath)){
                 Vector3 diff = go.transform.position - position;
                 float curDistance = diff.sqrMagnitude;
-                if (curDistance < distance)
+                if (curDistance < distance && curDistance < maxDist*maxDist)
                 {
                     closest = go;
                     distance = curDistance;
                 }
             }
         }
+        return closest;
+    }
+    public static GameObject findClosestTag(string name, GameObject from)
+    {
+        return findClosestTag(name,from,Mathf.Infinity);
+    }
+
+    private GameObject findClosestTagInResBuilding(string name, GameObject resBuilding){
+        GameObject [] gos = GameObject.FindGameObjectsWithTag(name);
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 pos = gameObject.transform.position;
+        if(resBuilding==null){
+            Debug.LogError("ResBuilding value of null");
+            return null;
+        }
+        Bounds bound = resBuilding.GetComponentInChildren<NavMeshBuildFunction>().GetBounds();
+
+        if(bound == null){
+            Debug.LogError("Building did not have navMesh build function");
+            return null;
+        }
+
+        foreach(GameObject g in gos){
+            float dist = (g.transform.position - pos).sqrMagnitude;
+            
+            NavMeshPath tempPath = new NavMeshPath();
+            if(dist < distance && g.activeInHierarchy && bound.Contains(g.transform.transform.position)){//} && 
+            //onNavMesh(g.transform.position) && NavMesh.CalculatePath(pos,g.transform.position,NavMesh.AllAreas, tempPath)){
+                closest = g;
+                distance = dist;
+            }
+        }
+
         return closest;
     }
 

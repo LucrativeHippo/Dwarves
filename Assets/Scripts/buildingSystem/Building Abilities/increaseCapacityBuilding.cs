@@ -14,6 +14,7 @@ public class increaseCapacityBuilding : MonoBehaviour {
         {
             MetaScript.getRes().increaseCapacity(i, maxAmount[i]);
         }
+      
         
 	}
 	

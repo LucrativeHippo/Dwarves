@@ -233,7 +233,7 @@ MonoBehaviour:
   chanceToStartAlive: 40
   deathLimit: 3
   birthLimit: 4
-  numSteps: 7
+  numSteps: 10
 --- !u!212 &533995079
 SpriteRenderer:
   m_ObjectHideFlags: 0

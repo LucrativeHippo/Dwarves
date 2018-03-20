@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4873992661210382}
   - component: {fileID: 114764075228680880}
   - component: {fileID: 114869413168698590}
+  - component: {fileID: 114246304686045304}
+  - component: {fileID: 114391510546628854}
   m_Layer: 0
   m_Name: Meta
   m_TagString: Untagged
@@ -41,6 +43,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114246304686045304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1521718052322762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab77586d7ee306b4f9f4423b4460c363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxOutPosts: 3
+--- !u!114 &114391510546628854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1521718052322762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c692b8808b2b3c4682e5d4b19ef621c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCs: []
 --- !u!114 &114764075228680880
 MonoBehaviour:
   m_ObjectHideFlags: 1

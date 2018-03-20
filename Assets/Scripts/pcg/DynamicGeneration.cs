@@ -11,14 +11,14 @@ public class DynamicGeneration : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 pos = gameObject.transform.position / Chunk.SIZE;
+		Vector3 pos = gameObject.transform.position  / (float)Chunk.SIZE;
 		
-		for(int i = -1; i < 2; i++)
-		{
-			for(int j = -1; j < 2; j++)
+			for(int i = -1; i < 2; i++)
 			{
-				generator.generateChunk(Mathf.RoundToInt(pos.x) + i, Mathf.RoundToInt(pos.z) + j);
+				for(int j = -1; j < 2; j++)
+				{
+					generator.generateChunk(Mathf.RoundToInt(pos.x) + i, Mathf.RoundToInt(pos.z) + j);
+				}
 			}
-		}
 	}
 }

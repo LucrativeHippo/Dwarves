@@ -19,8 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4293365810131172}
-  - component: {fileID: 65705560274065034}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,8 +36,7 @@ GameObject:
   - component: {fileID: 4786619050401284}
   - component: {fileID: 33982038644538054}
   - component: {fileID: 23676133247782834}
-  - component: {fileID: 208961563442272278}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,30 +111,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1496160807874078}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65705560274065034
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1457501400338522}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 12, y: 12, z: 12}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &208961563442272278
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1496160807874078}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 5, y: 0.00001, z: 5}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
