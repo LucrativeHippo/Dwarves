@@ -704,6 +704,25 @@ Light:
   m_PrefabParentObject: {fileID: 108866432059953716, guid: a52a3ed753a66f6408285b2e71240be6,
     type: 2}
   m_PrefabInternal: {fileID: 564596448}
+--- !u!1 &1368627733 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1521718052322762, guid: 94736651ba2dcd149b09fb80924d8bfb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1597887037}
+--- !u!114 &1368627734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368627733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c06d71b5103bb245b63ad0a3076f7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodSaved: 0
+  militaryAbility: 1
+  healthPool: 0
 --- !u!1001 &1421230705
 Prefab:
   m_ObjectHideFlags: 0
