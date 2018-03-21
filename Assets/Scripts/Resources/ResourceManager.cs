@@ -57,7 +57,7 @@ public class ResourceManager : MonoBehaviour {
 	}
 	
 	public void addResource(int i, int add){
-        if ((resourceList[i] + add) < maxResourceList[i])
+        if ((resourceList[i] + add) <= maxResourceList[i])
         {
 			resourceList[i] += add;
 		}
@@ -67,6 +67,15 @@ public class ResourceManager : MonoBehaviour {
         }
 		MetaScript.updateResourcesUI();
 	}
+
+    public bool roomForResource(ResourceTypes i, int add)
+    {
+        if((resourceList[(int)i] + add) <= maxResourceList[(int)i])
+        {
+            return true;
+        }
+        return false;
+    }
 
 	void setResource(ResourceTypes i, int set){
 		setResource((int)i,set);

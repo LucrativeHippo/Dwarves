@@ -39,11 +39,20 @@ public class QuestNPC : MonoBehaviour, IActionable {
     }
     protected void tryQuest(){
         if(myQuests.checkQuest()){
-            // TODO: Send message to NPC to be a vassal of PC
-            Debug.Log("QUEST COMPLETED");
-            GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
+            if(MetaScript.getRes().roomForResource(ResourceTypes.POPULATION, 1))
+            {
+                // TODO: Send message to NPC to be a vassal of PC
+                Debug.Log("QUEST COMPLETED");
+                GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
+                MetaScript.getRes().addResource(ResourceTypes.POPULATION, 1);
+                TakeSoul();
+            }
+            else
+            {
+                Debug.Log("Not enough population");
+                GetComponentInChildren<SpeechBubble>().setText("You require additional Pylons... I mean houses");
+            }
             
-            TakeSoul();
 
         }else{
 
