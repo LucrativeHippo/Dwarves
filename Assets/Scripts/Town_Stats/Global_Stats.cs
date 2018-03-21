@@ -12,6 +12,36 @@ public class Global_Stats : MonoBehaviour {
     [SerializeField]
     private float healthPool;
 
+
+    public float getFoodSaved()
+    {
+        return foodSaved;
+    }
+
+    public void setFoodSaved(float food)
+    {
+        foodSaved = food;
+    }
+
+    public float getMilitaryAbility()
+    {
+        return militaryAbility;
+    }
+
+    public void setMilitaryAbility(float military)
+    {
+        militaryAbility = military;
+    }
+
+    public float getHealthPool()
+    {
+        return healthPool;
+    }
+
+    public void setHealthPool(float health)
+    {
+        healthPool = health;
+    }
 	// Use this for initialization
 	void Start () {
 		
