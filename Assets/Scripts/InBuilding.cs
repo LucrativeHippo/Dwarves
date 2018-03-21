@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InBuilding : MonoBehaviour {
-	bool playerInBuilding = false;
+	public bool playerInBuilding = false;
 
 	public void setPlayerInBuilding(bool b){
 		playerInBuilding = b;
 	}
 
+    public bool isInBuilding()
+    {
+        return playerInBuilding;
+    }
 
 
 	// Use this for initialization
