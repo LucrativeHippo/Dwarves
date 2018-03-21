@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 54759757083807772}
   - component: {fileID: 33367914614711834}
   m_Layer: 0
-  m_Name: basic_house
+  m_Name: Hut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,7 +213,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0b6a796b448f504489aab54134005a94, type: 2}
+  - {fileID: 2100000, guid: 0e94e59645c5473489cb38a8b0a0dae3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d77e473bff2ca4eb0c8fa109ec487c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmount: 000000000000000000000000000000000000000000000000000000000000000001000000
+  maxAmount: 000000000000000000000000000000000000000000000000000000000100000001000000
 --- !u!114 &114443480238183316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -384,9 +384,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676334aad6a9de341b74b0a5d2ee2c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMaterial: {fileID: 2100000, guid: 8fbec756a9d0b69458c76daf9156c4f5, type: 2}
+  upgradeMaterial: {fileID: 2100000, guid: 0b6a796b448f504489aab54134005a94, type: 2}
   upgradeCostList: 000000000000000000000000000000000000000000000000000000000000000000000000
-  upgrade: {fileID: 1566304868529988}
+  upgrade: {fileID: 1761776412933222, guid: c65287df352a6d84bb32619e8265b1f4, type: 2}
 --- !u!114 &114859548203880064
 MonoBehaviour:
   m_ObjectHideFlags: 1
