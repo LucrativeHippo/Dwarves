@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IncreasePlots : MonoBehaviour {
-    [SerializeField]
-    private int sizeIncrease;
+    
 
     private terrainGenerator tg;
+
+    [SerializeField]
+    private int upgradeLevel = 0;
 
     private GameObject tc;
 
@@ -27,16 +29,17 @@ public class IncreasePlots : MonoBehaviour {
             int tcx = (int)tc.transform.position.x;
             int tcz = (int)tc.transform.position.z;
             
-            for (int i=(tcx - sizeIncrease); i < tcx + sizeIncrease + 1; i++)
+            for (int i= -1; i < 2; i=i+2)
             {
-                for (int j= (tcz - sizeIncrease); j < tcz + sizeIncrease + 1; j++)
+                for (int j= -1; j < 2; j=j+2)
                 {
-                    if(i == (tcx - sizeIncrease) || j == (tcz - sizeIncrease) || j == tcz + sizeIncrease || i == tcx + sizeIncrease)
-                    {
                        
-                        Instantiate(plot, new Vector3(i,0,j), Quaternion.identity);
-                        Instantiate(buildingSign, new Vector3(i, 0, j), Quaternion.identity);
-                    }
+                    Instantiate(plot, new Vector3(i*2+tcx,0,j*upgradeLevel+tcz), Quaternion.identity);
+                    Instantiate(buildingSign, new Vector3(i*2+tcx, 0, j*upgradeLevel+tcz), Quaternion.identity);
+
+                    Instantiate(plot, new Vector3(i * upgradeLevel + tcx, 0, j * 2 + tcz), Quaternion.identity);
+                    Instantiate(buildingSign, new Vector3(i * upgradeLevel + tcx, 0, j * 2 + tcz), Quaternion.identity);
+
                 }
             }
         }

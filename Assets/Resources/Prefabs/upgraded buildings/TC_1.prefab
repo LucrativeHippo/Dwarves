@@ -55,8 +55,9 @@ GameObject:
   - component: {fileID: 65318904690485436}
   - component: {fileID: 54954421423061206}
   - component: {fileID: 114109772157519232}
+  - component: {fileID: 114691179143049632}
   m_Layer: 0
-  m_Name: Town_Centre
+  m_Name: TC_1
   m_TagString: TownCenter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,7 +190,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56bace239d1e33478b8a7188343338f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeIncrease: 2
+  upgradeLevel: 0
   plot: {fileID: 1543509037345762, guid: e210b0ce47a906e4d8dd09e21f5e9889, type: 2}
   buildingSign: {fileID: 1459092173822502, guid: 619935eed59e82640a8856b76adceedc,
     type: 2}
+--- !u!114 &114691179143049632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1692466681413014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676334aad6a9de341b74b0a5d2ee2c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeMaterial: {fileID: 2100000, guid: 564c69a4ae8c500428bafb1859004e86, type: 2}
+  upgradeCostList: 0000000000000000000000000000000000000000000000000000000000000000
+  upgrade: {fileID: 1090108557339882, guid: 76063a4213ee2484d8b9b2641c0d297a, type: 2}

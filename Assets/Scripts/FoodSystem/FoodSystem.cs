@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoodSystem : MonoBehaviour, INPCListener {
 
-    [SerializeField] private int foodUsedPerNPC;
+    [SerializeField] private float foodUsedPerNPC;
     [SerializeField] private int damageForStarving;
 
     [SerializeField] private float starvingTickTimer = 10.0F;
@@ -35,9 +35,9 @@ public class FoodSystem : MonoBehaviour, INPCListener {
 
     private void useFood () {
         int currentFood = resourceManager.getResource (ResourceTypes.FOOD);
-        int foodCost = ownedNPC.getCount() * foodUsedPerNPC;
-        if(resourceManager.hasResource(ResourceTypes.FOOD,foodCost)){
-            resourceManager.addResource (ResourceTypes.FOOD, -foodCost);
+        float foodCost = ownedNPC.getCount() * foodUsedPerNPC;
+        if(resourceManager.hasResource(ResourceTypes.FOOD,(int)foodCost)){
+            resourceManager.addResource (ResourceTypes.FOOD, (int)-foodCost);
             noFood = false;
         } else {
             resourceManager.addResource (ResourceTypes.FOOD, -currentFood);
