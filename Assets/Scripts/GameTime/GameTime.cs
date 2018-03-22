@@ -16,11 +16,8 @@ public class GameTime : MonoBehaviour
     //  private GenerateMonster generateMonster;
     private GameObject UIObject;
     private UseCustomImageEffect postProcessing;
-
-
-
-    float timevalue=30;
-    float valueToIncreaseEverySec = 1;
+    private StormBringer stormBringer;
+    private float timevalue;
 
 
     void Start()
@@ -31,36 +28,34 @@ public class GameTime : MonoBehaviour
         weatherScript = gameObject.GetComponent<Weather>();
         calendar = gameObject.GetComponent<Calendar>();
         //generateMonster = temp.GetComponent<GenerateMonster> ();
-
+        stormBringer = gameObject.GetComponent<StormBringer>();
         postProcessing = GameObject.FindObjectOfType<UseCustomImageEffect>();
         daychange = GameObject.Find("daychange").GetComponent<Slider>();
+
+        stormBringer.initializeInternals();
+
         IEnumerator co = Timer(dayTime);
         StartCoroutine(co);
-        
 
-        if (postProcessing != null)
-        {
-            //postProcessing.setDoHalo(true);
-            //StartCoroutine(DayCycle(dayTime));
-        }
+        initializeCalendarUI();
+        updateTimedEffects();
     }
+
 
     private void Update()
     {
-        //10 second per day
-        if (daychange.value == 8)
-        {
-            timevalue = 30;
-        }
-
-            timevalue += valueToIncreaseEverySec * Time.deltaTime;
-
-            daychange.value = timevalue / 30;
-
-        
+        float seasonProgress = daychange.value;
+        seasonProgress += (Time.deltaTime / dayTime);
+        daychange.value = seasonProgress;
     }
 
-   
+    private void initializeCalendarUI()
+    {
+        int daysPerSeason = calendar.getDaysPerSeason();
+        daychange.maxValue = daysPerSeason;
+        daychange.minValue = 0;
+        daychange.value = 0;
+    }
 
 
     private void setWeatherBasedPostProcessing()
@@ -98,26 +93,26 @@ public class GameTime : MonoBehaviour
         visuals.updateWeatherParticles(weather);
     }
 
+    private void setWeatherBasedStorms()
+    {
+        stormBringer.resetStorms(calendar.getForecastTemp(0), calendar.getForecastWeather(0));
+    }
+
+    
+
     private IEnumerator Timer (float time) {
 
         while (true) {
             yield return new WaitForSeconds (time);
-            calendar.toNextDay ();
-            //generateMonster.SpawnMonsters (calendar.getForecastWeather (0));
+            calendar.toNextDay();
+            updateTimedEffects();
 
-            //UIObject.GetComponent<WeatherUI> ().updateTemp (calendar.getForecastTemp (0));
-            //UIObject.GetComponent<WeatherUI> ().updateWeatherName (calendar.getForecastWeather (0));
+            if (calendar.getCurrentDay() == 1)
+            {
+                daychange.value = daychange.minValue;
+            }
 
-            //print (calendar.getCurrentDay ());
-            daychangetext.text = calendar.getCurrentDay().ToString();
-            seasonchange.text = (calendar.getCurrentSeason() + 1).ToString();
-            //daychange.value = calendar.getCurrentDay();
-
-            Debug.Log(calendar.getCurrentDay());
-
-            setWeatherBasedPostProcessing();
-            setWeatherBasedParticles();
-
+            weatherScript.increaseRandomWeatherChance();
         }
 
     }
@@ -145,6 +140,23 @@ public class GameTime : MonoBehaviour
             float haloVal = Mathf.Lerp(oldVal, newVal, t);
             postProcessing.setHaloAmount(haloVal);
         }
+    }
+
+    private void updateTimedEffects()
+    {
+        //generateMonster.SpawnMonsters (calendar.getForecastWeather (0));
+
+        //UIObject.GetComponent<WeatherUI> ().updateTemp (calendar.getForecastTemp (0));
+        //UIObject.GetComponent<WeatherUI> ().updateWeatherName (calendar.getForecastWeather (0));
+
+        //print (calendar.getCurrentDay ());
+        daychangetext.text = calendar.getCurrentDay().ToString();
+        seasonchange.text = (calendar.getCurrentSeason() + 1).ToString();
+        //daychange.value = calendar.getCurrentDay();
+
+        setWeatherBasedPostProcessing();
+        setWeatherBasedParticles();
+        setWeatherBasedStorms();
     }
 }
     

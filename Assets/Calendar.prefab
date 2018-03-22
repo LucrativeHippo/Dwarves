@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 114864904364099584}
   - component: {fileID: 114945180212062536}
   - component: {fileID: 114230035695189324}
+  - component: {fileID: 114908638065943506}
+  - component: {fileID: 114512456736230126}
   m_Layer: 0
   m_Name: Calendar
   m_TagString: Untagged
@@ -55,7 +57,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b71c63d50f0a4cab465a0f719af01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayTime: 10
+  dayTime: 90
+  daychange: {fileID: 0}
+  daychangetext: {fileID: 0}
+  seasonchange: {fileID: 0}
 --- !u!114 &114230035695189324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,6 +81,31 @@ MonoBehaviour:
   minStdDeviation: 1
   seasonsInClimate: 14
   daysPerSeason: 7
+--- !u!114 &114512456736230126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfeaa6fa391bec44a97e390791955a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acidStorm: {fileID: 1469793357637692, guid: 867b7a10ade8116409804bf6e730708e, type: 2}
+  blizzardStorm: {fileID: 1458270679109066, guid: 9b9bda300974361408af75d3d92dd4d2,
+    type: 2}
+  frostbiteStorm: {fileID: 1051461150639970, guid: c9e29e8c33422e94ab169dc25a0686ff,
+    type: 2}
+  gatheringStorm: {fileID: 1791854701588256, guid: 49dc4268ebb3a6a4da4a1e09a69c7e91,
+    type: 2}
+  heatwaveStorm: {fileID: 1501683097608598, guid: 678cbfa45f9578e4bb360fb16720b5ce,
+    type: 2}
+  hellfireStorm: {fileID: 1324510729413644, guid: ebf9724186bee2047afc3f4af8ba3044,
+    type: 2}
+  perfectStorm: {fileID: 1216626778743724, guid: 7f861d7a06f23be4eb879964680572ca,
+    type: 2}
+  snowStorm: {fileID: 1763703584580854, guid: 46cf1bdbdd58b874da7fe566c1d24056, type: 2}
 --- !u!114 &114864904364099584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,7 +120,23 @@ MonoBehaviour:
   currentYear: 0
   currentSeason: 0
   currentDay: 0
-  daysToForecast: 20
+  daysToForecast: 5
+--- !u!114 &114908638065943506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe6d6bab24d792438a6cb37d7996796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acidRain: {fileID: 1233101543176140, guid: d67cace9845316e4a8b2ba12667925cd, type: 2}
+  rain: {fileID: 1007545359575978, guid: 501ed03a121cfe648b9489ed06e747c4, type: 2}
+  snow: {fileID: 1430195795610710, guid: c8ccc89d499b9654bbfa6a208ea39705, type: 2}
+  blizzard: {fileID: 1386438467517646, guid: 161341ef99a49f34292a4f6d3d37a9c1, type: 2}
+  cloudy: {fileID: 1901550055820610, guid: 0eaf817b4d17f4e498b53f49cdff22b7, type: 2}
 --- !u!114 &114945180212062536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,16 +148,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfff41637cca77041ae968ec1c03beff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chanceSunny: 10
-  chanceCloudy: 10
-  chanceRain: 10
+  chanceSunny: 20
+  chanceCloudy: 2
+  chanceRain: 2
   chanceSnow: 10
-  chanceBlizzard: 10
-  chanceHellfire: 10
-  chanceScaryLightning: 10
-  chanceAcidRain: 10
-  chanceSuperHot: 10
-  chancePerfect: 10
+  chanceBlizzard: 0
+  chanceHellfire: 0
+  chanceScaryLightning: 0
+  chanceAcidRain: 0
+  chanceSuperHot: 0
+  chancePerfect: 1
 --- !u!212 &212376008021873454
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,7 +84,7 @@ public class Weather: MonoBehaviour
             weightedChanceSum += chances[weatherTypes.BLIZZARD];
         }
 
-        int weatherPick = Random.Range(0, weightedChanceSum);
+        int weatherPick = UnityEngine.Random.Range(0, weightedChanceSum);
 
         weatherTypes weather = allowedWeather[0];
 
@@ -142,5 +143,15 @@ public class Weather: MonoBehaviour
         chances[weatherTypes.ACID_RAIN] = chanceAcidRain;
         chances[weatherTypes.SUPER_HOT] = chanceSuperHot;
         chances[weatherTypes.PERFECT_WEATHER] = chancePerfect;
+    }
+
+    public void increaseRandomWeatherChance()
+    {
+        Weather.weatherTypes[] weathers = (Weather.weatherTypes[]) Enum.GetValues(typeof(Weather.weatherTypes));
+
+        int choice = UnityEngine.Random.Range(0, weathers.Length);
+        Weather.weatherTypes weatherChoice = weathers[choice];
+
+        chances[weatherChoice] += 1;
     }
 }
