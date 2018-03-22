@@ -45,6 +45,10 @@ public class MetaScript : MonoBehaviour {
     {
         return getMetaObject().GetComponent<outpost_controller>();
     }
+    public static Global_Stats getGlobal_Stats()
+    {
+        return getMetaObject().GetComponent<Global_Stats>();
+    }
 
     //  public currentResourcesUIController resourceUI;
     public static void updateResourcesUI(){
