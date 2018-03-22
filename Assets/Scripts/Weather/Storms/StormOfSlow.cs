@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StormOfSnow : MonoBehaviour {
+public class StormOfSlow : GenericStorm {
 
     public float slowDecimal;
     public float slowDuration;
     public float slowRenewalTime;
 
     private float timeSinceLastRenewal;
-    private BuffSystem buffsys;
+    protected BuffSystem buffsys;
 
     private GameObject player;
 
@@ -28,15 +28,15 @@ public class StormOfSnow : MonoBehaviour {
 
             slow(player);
 
-            List<GameObject> NPCs = MetaScript.getMeta().GetComponent<OwnedNPCList>().getNPCs();
-            foreach (GameObject victim in NPCs)
+            List<GameObject> NPCs = MetaScript.GetNPC().getNPCs();
+            for (int i = 0; i < NPCs.Count; i++)
             {
-                slow(victim);
+                slow(NPCs[i]);
             }
         }
 	}
 
-    private void slow(GameObject victim)
+    protected virtual void slow(GameObject victim)
     {
         InBuilding shelterCheck = victim.GetComponent<InBuilding>();
         if (shelterCheck == null || !shelterCheck.getPlayerInBuilding())

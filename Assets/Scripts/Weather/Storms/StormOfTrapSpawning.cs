@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StormOfTrapSpawning : MonoBehaviour {
+public class StormOfTrapSpawning : GenericStorm {
 
     public GameObject trap;
     public float maxRadius;
