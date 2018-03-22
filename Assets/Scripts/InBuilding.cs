@@ -9,8 +9,7 @@ public class InBuilding : MonoBehaviour {
 		playerInBuilding = b;
 	}
 
-    public bool isInBuilding()
-    {
+    public bool getPlayerInBuilding(){
         return playerInBuilding;
     }
 

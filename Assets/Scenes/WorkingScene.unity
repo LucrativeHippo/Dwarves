@@ -481,6 +481,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114906374289196942, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
   m_IsPrefabParent: 0
@@ -646,7 +651,52 @@ Prefab:
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceAcidRain
-      value: 10
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceSunny
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceCloudy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceRain
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceSnow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceBlizzard
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceHellfire
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceScaryLightning
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceSuperHot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chancePerfect
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04f910d73192ab9498d805b6251e66e4, type: 2}
@@ -704,6 +754,36 @@ Light:
   m_PrefabParentObject: {fileID: 108866432059953716, guid: a52a3ed753a66f6408285b2e71240be6,
     type: 2}
   m_PrefabInternal: {fileID: 564596448}
+--- !u!1 &1368627733 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1521718052322762, guid: 94736651ba2dcd149b09fb80924d8bfb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1597887037}
+--- !u!114 &1368627734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368627733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c06d71b5103bb245b63ad0a3076f7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodSaved: 0
+  militaryAbility: 1
+  healthPool: 0
+--- !u!114 &1368627735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368627733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6d519417600de4f99140c1e279acfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1421230705
 Prefab:
   m_ObjectHideFlags: 0
@@ -742,6 +822,11 @@ Prefab:
     - target: {fileID: 4916442464805344, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
       propertyPath: m_RootOrder
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114906374289196942, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: health
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}

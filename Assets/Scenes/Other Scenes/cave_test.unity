@@ -222,13 +222,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a68cecc4c90b640b5125a0f990fda4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  caveDifficulty: 3
   CAVE_DIMENSIONS: 20
+  caveDepth: -50
+  caveEntranceVector: {x: 0, y: 0, z: 0}
   caveWall: {fileID: 1613720941434930, guid: 3c26ca62bd23fc5409c7ff37ebcb5140, type: 2}
   caveFloor: {fileID: 1543509037345762, guid: e210b0ce47a906e4d8dd09e21f5e9889, type: 2}
   caveEntrance: {fileID: 1457501400338522, guid: 7f31c510d0fc1eb4ea02e2eecf0acca8,
     type: 2}
-  enemy: {fileID: 0}
-  gold: {fileID: 0}
+  enemy: {fileID: 1965376229938936, guid: b1242e13c19c29248bc0cfc10149dde9, type: 2}
+  gold: {fileID: 1658390378154812, guid: be7c1d5bd840e7e4bbf09329a1a0a08a, type: 2}
   diamond: {fileID: 0}
   chanceToStartAlive: 40
   deathLimit: 3
