@@ -17,7 +17,15 @@ public class outpost_controller : MonoBehaviour {
         outpostList = new List<GameObject>();
 
 	}
-	
+	public void addOutpost()
+    {
+        numOutposts++;
+    }
+
+    public void destroyOutpost()
+    {
+        numOutposts--;
+    }
 
     public bool canAddOutPost()
     {

@@ -20,8 +20,8 @@ public class NavMeshController : MonoBehaviour {
         getOffset();
     }
     private void getOffset(){
-        center = GameObject.FindGameObjectWithTag("TownCenter");
-        bounds = center.GetComponent<NavMeshBuildFunction>().GetBounds();
+        center = GameObject.Find("Campfire(Clone)");
+        bounds = center.GetComponentInChildren<NavMeshBuildFunction>().GetBounds();
     }
 
     private void setNav(bool t)
