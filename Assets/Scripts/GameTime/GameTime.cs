@@ -57,7 +57,8 @@ public class GameTime : MonoBehaviour
 
             daychange.value = timevalue / 30;
 
-        
+
+        Debug.Log( calendar.getForecastWeather(0));
     }
 
    
