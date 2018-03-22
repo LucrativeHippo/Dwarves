@@ -39,7 +39,7 @@ public class StormOfSnow : MonoBehaviour {
     private void slow(GameObject victim)
     {
         InBuilding shelterCheck = victim.GetComponent<InBuilding>();
-        if (shelterCheck == null || !shelterCheck.isInBuilding())
+        if (shelterCheck == null || !shelterCheck.getPlayerInBuilding())
         {
             buffsys.slowApplyingSystem(victim, slowDuration, slowDecimal);
         }

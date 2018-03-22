@@ -16,7 +16,7 @@ public class StormOfTrapSpawning : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         InBuilding shelterCheck = gameObject.GetComponentInParent<InBuilding>();
-        if (shelterCheck == null || !shelterCheck.isInBuilding())
+        if (shelterCheck == null || !shelterCheck.getPlayerInBuilding())
         {
             timeFromLastSpawn += Time.deltaTime;
             if (timeFromLastSpawn >= timeToNextSpawn)
