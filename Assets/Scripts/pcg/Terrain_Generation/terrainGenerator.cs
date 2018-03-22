@@ -440,16 +440,21 @@ public class terrainGenerator : MonoBehaviour
                 //}
             }
         }
-        lol = GameObject.FindGameObjectsWithTag("TownCenter");
+        /*lol = GameObject.FindGameObjectsWithTag("TownCenter");
 
         if (GameObject.FindGameObjectWithTag("TownCenter")!=null)
         {
-            GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
-        }
+            print(GameObject.FindGameObjectsWithTag("TownCenter")[0].transform.name);
+            print(GameObject.FindGameObjectsWithTag("TownCenter")[1].transform.name);
+          */
+        lolz = GameObject.Find("Campfire(Clone)");
+        GameObject.Find("Campfire(Clone)").GetComponentInChildren<NavMeshBuildFunction>().build();
+        //}
         
         
 
     }
+    public GameObject lolz;
 
     /// <summary>
     /// Generates the chunk at xy chunk position.
