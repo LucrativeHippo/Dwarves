@@ -9,7 +9,7 @@ public class StormOfHeatExhaustion : StormOfSlow {
         if (!MetaScript.getGlobal_Stats().getHasHeatProtection())
         {
             InBuilding shelterCheck = victim.GetComponent<InBuilding>();
-            if (shelterCheck == null || !shelterCheck.isInBuilding())
+            if (shelterCheck == null || !shelterCheck.getPlayerInBuilding())
             {
                 buffsys.slowApplyingSystem(victim, slowDuration, slowDecimal);
             }

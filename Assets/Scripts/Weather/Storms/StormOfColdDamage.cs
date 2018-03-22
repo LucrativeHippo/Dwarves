@@ -41,7 +41,7 @@ public class StormOfColdDamage : GenericStorm {
     private void heatExhaust(GameObject victim)
     {
         InBuilding shelterCheck = victim.GetComponent<InBuilding>();
-        if (shelterCheck == null || !shelterCheck.isInBuilding())
+        if (shelterCheck == null || !shelterCheck.getPlayerInBuilding())
         {
             victim.GetComponent<Health>().damage(damagePerTick);
         }
