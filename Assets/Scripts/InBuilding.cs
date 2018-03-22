@@ -9,6 +9,10 @@ public class InBuilding : MonoBehaviour {
 		playerInBuilding = b;
 	}
 
+    public bool getPlayerInBuilding(){
+        return playerInBuilding;
+    }
+
 
 
 	// Use this for initialization

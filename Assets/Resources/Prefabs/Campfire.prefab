@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 114469130336903406}
   m_Layer: 0
   m_Name: Anchor
-  m_TagString: TownCenter
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676334aad6a9de341b74b0a5d2ee2c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMaterial: {fileID: 2100000, guid: 68e444540276e2949bd6f714c401ecfb, type: 2}
+  upgradeMaterial: {fileID: 2100000, guid: e99de93cea5a65d42a226a88f6f9f715, type: 2}
   upgradeCostList: 000000000000000000000000000000000000000000000000000000000000000000000000
   upgrade: {fileID: 1692466681413014, guid: a2dc17abdf421ee408065ddf744d857f, type: 2}
 --- !u!114 &114703587424216220

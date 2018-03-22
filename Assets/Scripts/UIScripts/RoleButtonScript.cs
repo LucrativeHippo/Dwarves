@@ -17,6 +17,10 @@ public class RoleButtonScript : MonoBehaviour {
         moreDetails = GameObject.Find ("npcManagerMoreDetailsScrollView");
     }
 
+    public void setNPC (GameObject aNPC) {
+        currentNPC = aNPC;
+    }
+
     public void setButton (GameObject aNPC, ResourceTypes theType) {
         currentNPC = aNPC;
         type = theType;
