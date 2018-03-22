@@ -5,6 +5,9 @@ using UnityEngine;
 public class MetaScript : MonoBehaviour {
 	//QuestResourceManager res;
 	// Use this for initialization
+	static GameObject meta;
+	static GameObject tc;
+	static GameObject player;
 	void Start () {
 		//gameObject.GetComponent<ResourceManager>().setFood(0);
 		//gameObject.GetComponent<ResourceManager>().setSand(0);
@@ -18,7 +21,9 @@ public class MetaScript : MonoBehaviour {
 	/// </summary>
 	/// <returns></returns>
 	public static GameObject getMetaObject(){
-		return GameObject.Find("Meta");
+		if(meta == null)
+			meta = GameObject.Find("Meta");
+		return meta;
 	}
 
 	
@@ -77,5 +82,18 @@ public class MetaScript : MonoBehaviour {
             //print(res.getWood());
         }
 		
+	}
+
+	public static GameObject getTownCenter(){
+		if(tc == null){
+			tc = GameObject.FindGameObjectWithTag("TownCenter");
+		}
+		return tc;
+	}
+	public static GameObject getPlayer(){
+		if(player == null){
+			player = GameObject.FindGameObjectWithTag("Player");
+		}
+		return player;
 	}
 }
