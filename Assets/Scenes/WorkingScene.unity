@@ -653,6 +653,51 @@ Prefab:
       propertyPath: chanceAcidRain
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceSunny
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceCloudy
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceRain
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceSnow
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceBlizzard
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceHellfire
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceScaryLightning
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceSuperHot
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chancePerfect
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04f910d73192ab9498d805b6251e66e4, type: 2}
   m_IsPrefabParent: 0
@@ -728,6 +773,17 @@ MonoBehaviour:
   foodSaved: 0
   militaryAbility: 1
   healthPool: 0
+--- !u!114 &1368627735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368627733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6d519417600de4f99140c1e279acfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1421230705
 Prefab:
   m_ObjectHideFlags: 0
