@@ -78,7 +78,6 @@ public class Quests : MonoBehaviour {
 		return false;
 	}
 
-	// TODO: add more functions
 	/// <summary>
 	/// Sees if the food is above a.
 	/// </summary>
@@ -134,7 +133,7 @@ public class Quests : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// TODO: Is the population above a/5.
+	/// Is the population above a.
 	/// </summary>
 	/// <returns><c>true</c>, if population above was ised, <c>false</c> otherwise.</returns>
 	/// <param name="a">The alpha component.</param>

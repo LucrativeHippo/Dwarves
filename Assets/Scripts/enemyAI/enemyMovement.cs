@@ -16,7 +16,7 @@ public class enemyMovement : MonoBehaviour
     private Vector3 travelDirection;
 
     public void getDirection(){
-        townCentre = GameObject.FindGameObjectWithTag("TownCenter");
+        townCentre = MetaScript.getTownCenter();
         if (townCentre != null){
             travelDirection = (townCentre.transform.position - transform.position).normalized;
         }

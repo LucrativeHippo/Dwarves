@@ -14,7 +14,7 @@ public class WeatherVisuals : MonoBehaviour {
 
     private void Start()
     {
-
+        player = MetaScript.getPlayer();
     }
 
     public void updateWeatherParticles(Weather.weatherTypes weather)

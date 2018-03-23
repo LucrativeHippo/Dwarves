@@ -7,7 +7,6 @@ public class healthBarUIController : MonoBehaviour, IHealthListener{
 
     [SerializeField] int updateTimer;
 
-    private GameObject player;
 
     private Text healthNumberText;
     private GameObject healthBar;
@@ -30,8 +29,7 @@ public class healthBarUIController : MonoBehaviour, IHealthListener{
     }
 
     void Start () {
-        player = GameObject.FindWithTag ("Player");
-        setHealth(player.GetComponent<Health>());
+        setHealth(MetaScript.getPlayer().GetComponent<Health>());
         healthBar = this.transform.GetChild (1).gameObject;
         healthNumberText = this.transform.GetChild (2).gameObject.GetComponent<Text> ();
 
