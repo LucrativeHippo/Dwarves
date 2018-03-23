@@ -773,6 +773,9 @@ MonoBehaviour:
   foodSaved: 0
   militaryAbility: 1
   healthPool: 0
+  gatherMultiplier: 0
+  hasHeatProtection: 0
+  hasColdProtection: 0
 --- !u!114 &1368627735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,6 +787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6d519417600de4f99140c1e279acfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInBuilding: 0
 --- !u!1001 &1421230705
 Prefab:
   m_ObjectHideFlags: 0

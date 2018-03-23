@@ -5,6 +5,9 @@ using UnityEngine;
 public class ChoiceCallback : MonoBehaviour {
     public RPGTalk rpgtalk;
     public RPGTalkArea weatherman;
+    public GameObject enemy;
+
+    public GameObject sheepMan;
 
     void Start()
     {
@@ -35,6 +38,9 @@ public class ChoiceCallback : MonoBehaviour {
             case 1:
                 dealWithWeathermanTalk(choiceID);
                 break;
+            case 2:
+                penguinInSheepsClothing(choiceID);
+                break; 
         }
     }
 
@@ -49,5 +55,27 @@ public class ChoiceCallback : MonoBehaviour {
     {
         weatherman.lineToStart = "weatherman-default-talk-start";
         weatherman.lineToBreak = "weatherman-default-talk-end";
+    }
+
+    private void penguinInSheepsClothing(int choiceID)
+    {
+        GameObject sheep = GameObject.Find("PenguinInSheepsClothing");
+        switch (choiceID)
+        {
+            
+            case 0:
+                MetaScript.getRes().addResource(ResourceTypes.FOOD, 10);
+                Destroy(sheep);
+                break;
+            case 1:
+                Instantiate(enemy, sheep.transform.position, Quaternion.identity);
+                Destroy(sheep);
+                break;
+            case 2:
+                Instantiate(sheepMan, sheep.transform.position, Quaternion.identity);
+                Destroy(sheep);
+                break;
+
+        }
     }
 }

@@ -94,7 +94,7 @@ public class BlizzardTrap : MonoBehaviour {
                     startingWindDirection = Random.Range(0, 2 * Mathf.PI);
                     maxWindStrength = Random.Range(minTopWindStrength, maxTopWindStrength);
 
-                    Debug.Log(currentStageDuration);
+
                     break;
                 default:
                     Debug.LogError("No stage set on blizzard trap.");
