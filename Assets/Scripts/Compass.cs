@@ -14,7 +14,7 @@ public class Compass : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(tc == null){
-			tc = GameObject.FindWithTag("TownCenter");
+			tc = MetaScript.getTownCenter();
 		}
 		
 		Vector3 targetPosLocal = tc.transform.InverseTransformPoint(player.transform.position);

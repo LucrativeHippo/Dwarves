@@ -43,7 +43,6 @@ public class QuestNPC : MonoBehaviour, IActionable {
         if(myQuests.checkQuest()){
             if(MetaScript.getRes().roomForResource(ResourceTypes.POPULATION, 1))
             {
-                // TODO: Send message to NPC to be a vassal of PC
                 Debug.Log("QUEST COMPLETED");
                 GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
                 MetaScript.getRes().addResource(ResourceTypes.POPULATION, 1);
@@ -72,10 +71,11 @@ public class QuestNPC : MonoBehaviour, IActionable {
     }
 
     // Use this for initialization
-    void Start () {
-        // TODO: change this to be dependent on creation
-        // myQuests.addGoal(new QuestGoal(rank));
+    void Update () {
 
+        if(CompareTag("OwnedNPC")){
+            GetComponent<QuestNPC>().TakeSoul();
+        }
         
 	}
 
@@ -87,11 +87,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
         myQuests.addGoal(new QuestGoal(difficulty,index));
         rank += difficulty;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
+
 
 
     public void setRank(int r){
