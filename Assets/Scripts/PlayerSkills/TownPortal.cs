@@ -22,7 +22,7 @@ public class TownPortal : MonoBehaviour {
     private void Start()
     {
         timer2 = timer;
-        player = GameObject.Find("player").gameObject.GetComponentInChildren<actor>().gameObject;
+        player = MetaScript.getPlayer().GetComponentInChildren<actor>().gameObject;
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class TownPortal : MonoBehaviour {
                 if (MetaScript.getRes().hasResource(costType, resourceCost))
                 {
                     MetaScript.getRes().addResource(costType,-resourceCost);
-                   transform.parent.transform.position = GameObject.FindGameObjectWithTag("TownCenter").transform.position + new Vector3(0.5f, 0, -0.5f);
+                   transform.parent.transform.position = MetaScript.getTownCenter().transform.position + new Vector3(0.5f, 0, -0.5f);
                 }
 
             }

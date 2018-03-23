@@ -440,16 +440,21 @@ public class terrainGenerator : MonoBehaviour
                 //}
             }
         }
-        lol = GameObject.FindGameObjectsWithTag("TownCenter");
+        /*lol = GameObject.FindGameObjectsWithTag("TownCenter");
 
         if (GameObject.FindGameObjectWithTag("TownCenter")!=null)
         {
-            GameObject.FindGameObjectWithTag("TownCenter").GetComponent<NavMeshBuildFunction>().build();
-        }
+            print(GameObject.FindGameObjectsWithTag("TownCenter")[0].transform.name);
+            print(GameObject.FindGameObjectsWithTag("TownCenter")[1].transform.name);
+          */
+        //lolz = GameObject.Find("Campfire(Clone)");
+        MetaScript.getTownCenter().GetComponentInChildren<NavMeshBuildFunction>().build();
+        //}
         
         
 
     }
+    public GameObject lolz;
 
     /// <summary>
     /// Generates the chunk at xy chunk position.
@@ -507,8 +512,13 @@ public class terrainGenerator : MonoBehaviour
                 {
                     resourceMap[key] = resource.BUILDSIGN;
                 }
+
+                if(terrainMap[key] == terrain.CAMPSITE){
+                    tempTile.name = "TownCenter";
+                }else{
+				    tempTile.transform.SetParent(chunkLoc.transform);
+                }
                 
-				tempTile.transform.SetParent(chunkLoc.transform);
                 chunkMap.addTileAt(tempTile, x, y, 0);
                 if(terrainMap[key] == terrain.CAMPSITE)
                 {
@@ -541,6 +551,7 @@ public class terrainGenerator : MonoBehaviour
 
                                 tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
                             }
+                            
                             tempResource.transform.SetParent(chunkLoc.transform);
                         }
                     }

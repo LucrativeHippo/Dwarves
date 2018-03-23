@@ -129,6 +129,11 @@ public class Calendar : MonoBehaviour {
             Debug.Log(forecastTemp[i] + " : " + forecastWeather[i]);
         }*/
     }
+
+    public int getDaysPerSeason()
+    {
+        return climate.getDaysPerSeason();
+    }
 	
 	// Update is called once per frame
 	void Update () {

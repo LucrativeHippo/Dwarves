@@ -50,6 +50,7 @@ public class basicBuilding : MonoBehaviour {
 
     private void displayMenu () {
         buildingMenu.SetActive (true);
+        buildingMenu.transform.GetChild (0).gameObject.SetActive (true);
         clearUI ();
         buildBuildingMenu ();
 
@@ -69,6 +70,7 @@ public class basicBuilding : MonoBehaviour {
 
             buildingPrefabs [buildingNumber].GetComponent<resourceCost> ().purchase ();
             // Disable Building Menu.
+            buildingMenu.transform.GetChild (0).gameObject.SetActive (false);
             buildingMenu.SetActive (false);
 
             Destroy (gameObject);

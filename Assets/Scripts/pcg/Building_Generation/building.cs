@@ -32,14 +32,14 @@ public class building : MonoBehaviour, IActionable {
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
         player.GetComponent<LocalNavMeshBuilder>().enabled = true;
         player.SetActive(true);
-        if (player.GetComponentInChildren<ParticleSystem>() != null)
-        {
-            ps = player.GetComponentsInChildren<ParticleSystem>();
-            for (int i = 0; i < ps.Length; i++)
-            {
-                ps[i].Stop();
-            }
-        }
+        //if (player.GetComponentInChildren<ParticleSystem>() != null)
+        //{
+        //    ps = player.GetComponentsInChildren<ParticleSystem>();
+        //    for (int i = 0; i < ps.Length; i++)
+        //    {
+        //        ps[i].Stop();
+        //    }
+        //}
         //player.GetComponent<ParticleSystem>().Stop();
     }
 
@@ -50,7 +50,7 @@ public class building : MonoBehaviour, IActionable {
         {
             Debug.Log("The building_generator object is null.");
         }
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = MetaScript.getPlayer();
         if (player == null)
         {
             Debug.Log("The player object is null.");
@@ -62,7 +62,19 @@ public class building : MonoBehaviour, IActionable {
 	void Update () {
         if(player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = MetaScript.getPlayer();
+            Debug.Log("Building had to find player again");
+        }
+
+        if (MetaScript.GetInBuilding().getPlayerInBuilding()){
+            if (player.GetComponentInChildren<ParticleSystem>() != null)
+            {
+                ps = player.GetComponentsInChildren<ParticleSystem>();
+                for (int i = 0; i < ps.Length; i++)
+                {
+                    ps[i].Stop();
+                }
+            }
         }
 	}
 }

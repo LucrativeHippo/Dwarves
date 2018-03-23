@@ -14,11 +14,12 @@ public class WeatherVisuals : MonoBehaviour {
 
     private void Start()
     {
-        player = GameObject.Find("player");
+        player = MetaScript.getPlayer();
     }
 
     public void updateWeatherParticles(Weather.weatherTypes weather)
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         ParticleSystem currentParticleScript = player.GetComponentInChildren<ParticleSystem>();
         GameObject currentParticle = null;
         if (currentParticleScript != null)
@@ -35,7 +36,9 @@ public class WeatherVisuals : MonoBehaviour {
             }
             if (newParticle != null)
             {
-                Instantiate(newParticle, player.transform);
+                GameObject part = Instantiate(newParticle, player.transform);
+                ParticleSystem sys = part.GetComponent<ParticleSystem>();
+                sys.collision.SetPlane(0, player.transform);
             }
         }
     }

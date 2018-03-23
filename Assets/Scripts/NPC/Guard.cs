@@ -33,7 +33,7 @@ public class Guard : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (enemyInRange)
+        if (!enemyInRange)
         {
             target = collect.findClosestTag("Enemy",gameObject,threatRange);
         }
@@ -61,6 +61,7 @@ public class Guard : MonoBehaviour {
         }
         else
         {
+            enemyInRange = false;
             Patrol();
         }
         

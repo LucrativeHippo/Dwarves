@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 114592390153207744}
   - component: {fileID: 65489157778087496}
   - component: {fileID: 54594246017360104}
+  - component: {fileID: 114211205083767800}
   m_Layer: 0
   m_Name: Berries
   m_TagString: food
@@ -170,6 +171,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114211205083767800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1633713140390822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731a8dcae6ded2449b6eaf5b709bc37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114592390153207744
 MonoBehaviour:
   m_ObjectHideFlags: 1

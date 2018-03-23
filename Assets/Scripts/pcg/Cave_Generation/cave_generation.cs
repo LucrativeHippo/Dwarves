@@ -5,7 +5,17 @@ using UnityEngine;
 public class cave_generation : MonoBehaviour {
 
     [SerializeField]
+    private int caveDifficulty = 3;
+
+    private int numEnemies = 0;
+
+    [SerializeField]
     private int CAVE_DIMENSIONS = 20;
+
+    [SerializeField]
+    private int caveDepth = -50;
+
+    public Vector3 caveEntranceVector;
 
     [SerializeField]
     GameObject caveWall;
@@ -51,34 +61,43 @@ public class cave_generation : MonoBehaviour {
             cave = updateCave();
         }
         instantiateCave();
+        spawnMonsters();
+        generatePickups();
         
     }
 
     public void instantiateCave()
     {
         
-        for (int x = 0; x < CAVE_DIMENSIONS; x++)
+        for (int x = -1; x < CAVE_DIMENSIONS+1; x++)
         {
-            
-            for (int z = 0; z < CAVE_DIMENSIONS; z++)
-            {
-                if (cave[x, z])
-                {
-                    Instantiate(caveWall, new Vector3(x, 0, z), Quaternion.identity);
-                }
-                else
-                {
-                    if (doorPlaced)
-                    {
-                        Instantiate(caveFloor, new Vector3(x, 0, z), Quaternion.identity);
 
+            for (int z = -1; z < CAVE_DIMENSIONS + 1; z++)
+            {
+                if (z == -1 || x == -1 || z == CAVE_DIMENSIONS || x == CAVE_DIMENSIONS)
+                {
+                    Instantiate(caveWall, new Vector3(x, caveDepth, z), Quaternion.identity);
+                }
+                else {
+                    if (cave[x, z])
+                    {
+                        Instantiate(caveWall, new Vector3(x, caveDepth, z), Quaternion.identity);
                     }
                     else
                     {
-                        Instantiate(caveEntrance, new Vector3(x, 0, z), Quaternion.identity);
-                        doorPlaced = true;
+                        if (doorPlaced)
+                        {
+                            Instantiate(caveFloor, new Vector3(x, caveDepth, z), Quaternion.identity);
+                            caveEntranceVector = new Vector3(x, caveDepth, z);
+
+                        }
+                        else
+                        {
+                            Instantiate(caveEntrance, new Vector3(x, caveDepth, z), Quaternion.identity);
+                            doorPlaced = true;
+                        }
+
                     }
-                    
                 }
             }
             
@@ -173,21 +192,37 @@ public class cave_generation : MonoBehaviour {
     void Update () {
 		
 	}
-
-
-    void generateCave()
+    public void generatePickups()
     {
-        int direction;
-        int count = 0;
-        int tempx = caveEntrancex;
-        int tmepy = caveEntrancez;
-        while (count < caveSize)
+        for (int i = 0; i < CAVE_DIMENSIONS; i++)
         {
-            direction = Random.Range(0, 4);
+            for (int j = 0; j < CAVE_DIMENSIONS; j++)
+            {
+                if (!cave[i, j])
+                {
+                    if (Random.Range(0, 100) < caveDifficulty * 3)
+                    {
+                        Instantiate(gold, new Vector3(i, caveDepth, j), Quaternion.identity);
+                    }
+                }
+            }
         }
-
     }
 
-
-
+    public void spawnMonsters()
+    {
+        for (int i =0; i < CAVE_DIMENSIONS; i++)
+        {
+            for (int j =0; j < CAVE_DIMENSIONS; j++)
+            {
+                if (!cave[i, j])
+                {
+                    if(Random.Range(0, 100) < caveDifficulty*3)
+                    {
+                        Instantiate(enemy, new Vector3(i,caveDepth,j), Quaternion.identity);
+                    }
+                }
+            }
+        }
+    }
 }
