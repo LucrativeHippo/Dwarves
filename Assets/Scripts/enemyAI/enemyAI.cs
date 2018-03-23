@@ -9,6 +9,8 @@ public class enemyAI : MonoBehaviour {
 
 	public float threatRange;
 
+    public float damage;
+
 
 
 	// Use this for initialization
@@ -26,11 +28,14 @@ public class enemyAI : MonoBehaviour {
 	}
     // Update is called once per frame
     void Update(){
-		if(opponent == null){
-			getDest();
-		}else{
-			setDestination();
-		}
+        if (opponent == null)
+        {
+            getDest();
+        }
+        else
+        {
+            setDestination();
+        }
     }
 
 	private void setDestination(){
@@ -66,7 +71,7 @@ public class enemyAI : MonoBehaviour {
 	void combat(){
 		Debug.Log("Combat Entered");
 		if(opponent != null){
-			opponent.GetComponent<Health>().damage(1);
+			opponent.GetComponent<Health>().damage(damage);
 
 		}
 	}
