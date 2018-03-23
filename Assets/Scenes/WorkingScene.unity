@@ -4847,6 +4847,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInBuilding: 0
+--- !u!114 &1368627741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368627733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93de89258b68c1345962215be82ac21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1380592142
 GameObject:
   m_ObjectHideFlags: 0
