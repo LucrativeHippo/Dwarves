@@ -61,6 +61,7 @@ public class Guard : MonoBehaviour {
         }
         else
         {
+            enemyInRange = false;
             Patrol();
         }
         

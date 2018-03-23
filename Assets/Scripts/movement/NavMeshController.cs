@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class NavMeshController : MonoBehaviour {
-    GameObject center;
     Bounds bounds;
     Vector3 deadZone = new Vector3(0.5f,0,0.5f);
 
@@ -20,8 +19,7 @@ public class NavMeshController : MonoBehaviour {
         getOffset();
     }
     private void getOffset(){
-        center = GameObject.Find("Campfire(Clone)");
-        bounds = center.GetComponentInChildren<NavMeshBuildFunction>().GetBounds();
+        bounds = MetaScript.getTownCenter().GetComponentInChildren<NavMeshBuildFunction>().GetBounds();
     }
 
     private void setNav(bool t)
@@ -31,11 +29,6 @@ public class NavMeshController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(center == null)
-        {
-            getOffset();
-            print("Needed update");
-        }
         if (closeToTC(false))
         {
             setNav(true);

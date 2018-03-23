@@ -447,8 +447,8 @@ public class terrainGenerator : MonoBehaviour
             print(GameObject.FindGameObjectsWithTag("TownCenter")[0].transform.name);
             print(GameObject.FindGameObjectsWithTag("TownCenter")[1].transform.name);
           */
-        lolz = GameObject.Find("Campfire(Clone)");
-        GameObject.Find("Campfire(Clone)").GetComponentInChildren<NavMeshBuildFunction>().build();
+        //lolz = GameObject.Find("Campfire(Clone)");
+        MetaScript.getTownCenter().GetComponentInChildren<NavMeshBuildFunction>().build();
         //}
         
         
@@ -512,8 +512,13 @@ public class terrainGenerator : MonoBehaviour
                 {
                     resourceMap[key] = resource.BUILDSIGN;
                 }
+
+                if(terrainMap[key] == terrain.CAMPSITE){
+                    tempTile.name = "TownCenter";
+                }else{
+				    tempTile.transform.SetParent(chunkLoc.transform);
+                }
                 
-				tempTile.transform.SetParent(chunkLoc.transform);
                 chunkMap.addTileAt(tempTile, x, y, 0);
                 if(terrainMap[key] == terrain.CAMPSITE)
                 {
@@ -546,6 +551,7 @@ public class terrainGenerator : MonoBehaviour
 
                                 tempResource = Instantiate(getResourceObject(resourceMap[key]), new Vector3(worldPos.xCoord + ((float)xtemp / 10), 0, worldPos.yCoord + ((float)ytemp / 10)), getResourceObject(resourceMap[key]).transform.rotation);
                             }
+                            
                             tempResource.transform.SetParent(chunkLoc.transform);
                         }
                     }

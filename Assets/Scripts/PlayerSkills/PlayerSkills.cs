@@ -14,7 +14,7 @@ public class PlayerSkills : MonoBehaviour {
     private void Start()
     {
         timer2 = timer;
-        player = GameObject.Find("player").gameObject.GetComponentInChildren<actor>().gameObject;
+        player = MetaScript.getPlayer().GetComponentInChildren<actor>().gameObject;
     }
 
     // Update is called once per frame

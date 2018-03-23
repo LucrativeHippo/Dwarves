@@ -14,7 +14,7 @@ public class WeatherVisuals : MonoBehaviour {
 
     private void Start()
     {
-        player = GameObject.Find("player");
+        player = MetaScript.getPlayer();
     }
 
     public void updateWeatherParticles(Weather.weatherTypes weather)

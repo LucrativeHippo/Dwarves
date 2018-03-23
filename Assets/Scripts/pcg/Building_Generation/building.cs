@@ -50,7 +50,7 @@ public class building : MonoBehaviour, IActionable {
         {
             Debug.Log("The building_generator object is null.");
         }
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = MetaScript.getPlayer();
         if (player == null)
         {
             Debug.Log("The player object is null.");
@@ -62,7 +62,8 @@ public class building : MonoBehaviour, IActionable {
 	void Update () {
         if(player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = MetaScript.getPlayer();
+            Debug.Log("Building had to find player again");
         }
 
         if (MetaScript.GetInBuilding().getPlayerInBuilding()){
