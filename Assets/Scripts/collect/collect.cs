@@ -90,6 +90,9 @@ public class collect : MonoBehaviour
         agent.isStopped = false;
         state = npcState.gotoResource;
         findResource();
+        if(currentresource== null){
+            agent.SetDestination(gameObject.transform.position);
+        }
     }
 
 
@@ -178,13 +181,13 @@ public class collect : MonoBehaviour
         }
         currentresource = findClosestResTagFromResBuilding();
         
-        if(currentresource == null){
-            currentresource = findClosestTag(getResName(), gameObject);
-            Debug.LogWarning("No resource buildings found, using my location as search point.");
-        }
+        // if(currentresource == null){
+        //     currentresource = findClosestTag(getResName(), gameObject);
+        //     Debug.LogWarning("No resource buildings found, using my location as search point.");
+        // }
         
-
-        currentresource.GetComponent<MaxCollectors>().add();
+        if(currentresource != null)
+            currentresource.GetComponent<MaxCollectors>().add();
     }
     
     private void moveTo(GameObject g){
