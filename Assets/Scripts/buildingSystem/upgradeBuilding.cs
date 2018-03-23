@@ -44,13 +44,15 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
         setListener ();
     }
 
-    void doUpgrade(){
-        if (canUpgrade)
-        {
-            GameObject temp = Instantiate(upgrade, gameObject.transform.position, Quaternion.identity);
+    void doUpgrade () {
+        if (canUpgrade) {
+            GameObject temp = Instantiate (upgrade, gameObject.transform.position, Quaternion.identity);
             temp.transform.parent = gameObject.transform.parent;
-            gameObject.transform.parent.GetComponentsInChildren<MeshRenderer>()[0].material = upgradeMaterial;
-            Destroy(gameObject);
+            gameObject.transform.parent.GetComponentsInChildren<MeshRenderer> () [0].material = upgradeMaterial;
+            Destroy (gameObject);
+            closePrompt ();
+        } else {
+            moreResourcesRequiredText.text = "More Resources Required.";
         }
     }
 
