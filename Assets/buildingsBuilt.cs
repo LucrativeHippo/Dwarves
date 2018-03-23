@@ -12,6 +12,8 @@ public class buildingsBuilt : MonoBehaviour {
 
     void Start () {
         buildingPrefabs = Resources.LoadAll ("Prefabs/buildingPrefabs", typeof(GameObject)).Cast<GameObject> ().ToArray ();
+        buildingLimits = new int[buildingPrefabs.Length];
+        currentBuildings = new int[buildingPrefabs.Length];
 
         int counter = 0;
         foreach (var building in buildingPrefabs) {
@@ -40,14 +42,15 @@ public class buildingsBuilt : MonoBehaviour {
     /// </summary>
     /// <returns><c>true</c>, if at building limit, <c>false</c> otherwise.</returns>
     /// <param name="aBuilding">A building.</param>
-    private bool buildingAtLimit (GameObject aBuilding) {
+    public bool buildingAtLimit (GameObject aBuilding) {
         int counter = 0;
         foreach (var building in buildingPrefabs) {
             if (aBuilding == building) {
-                if (currentBuildings [counter] >= buildingLimits [counter]) {
+                if ((buildingLimits [counter] != 0) && (currentBuildings [counter] >= buildingLimits [counter])) {
                     return true;
                 }
             }
+            counter++;
         }
         return false;
     }
