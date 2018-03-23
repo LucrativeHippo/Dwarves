@@ -30,7 +30,9 @@ public class QuestNPC : MonoBehaviour, IActionable {
             MetaScript.GetNPC().addNPC(gameObject);
             gameObject.tag = "OwnedNPC";
             //teleport to town
-            transform.position = GameObject.FindGameObjectWithTag("TownCenter").transform.position+new Vector3(0.5f,0,0);
+            transform.position = MetaScript.getTownCenter().transform.position+new Vector3(0.5f,0,0);
+            transform.SetParent(MetaScript.getMetaObject().transform);
+
             
             gameObject.GetComponent<collect>().enabled = true;
             gameObject.GetComponent<collect>().startCollecting(ResourceTypes.WOOD);

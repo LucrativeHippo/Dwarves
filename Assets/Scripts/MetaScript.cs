@@ -90,14 +90,20 @@ public class MetaScript : MonoBehaviour {
 
 	public static GameObject getTownCenter(){
 		if(tc == null){
-			tc = GameObject.FindGameObjectWithTag("TownCenter");
+			tc = GameObject.Find("TownCenter");
 		}
+		if(tc == null)
+			Debug.LogError("Couldn't find TownCenter");
+		
 		return tc;
 	}
 	public static GameObject getPlayer(){
 		if(player == null){
-			player = GameObject.FindGameObjectWithTag("Player");
+			player = GameObject.FindWithTag("Player");
 		}
+		if(player == null)
+			Debug.LogError("Couldn't find Player");
+		
 		return player;
 	}
 }
