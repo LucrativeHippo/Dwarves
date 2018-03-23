@@ -15,6 +15,8 @@ public class NPCManager : MonoBehaviour {
     private GameObject mainDisplayGameObject;
     private GameObject mainDisplayContent;
 
+    private GameObject currentResources;
+
     void Start () {
         AllUIObjects = GameObject.Find ("AllUIObjectsCanvas");
         mainUIGameObject = AllUIObjects.transform.GetChild (0).gameObject;
@@ -23,7 +25,14 @@ public class NPCManager : MonoBehaviour {
         mainDisplayGameObject = NPCManagerGameObject.transform.GetChild (0).gameObject;
         mainDisplayContent = mainDisplayGameObject.transform.GetChild (0).GetChild (0).gameObject;
 
-        
+        currentResources = mainUIGameObject.transform.GetChild (2).gameObject;
+
+        NPCs = new List<GameObject> ();
+        GameObject[] temp = GameObject.FindGameObjectsWithTag ("OwnedNPC");
+
+        foreach (var theNPC in temp) {
+            NPCs.Add (theNPC);
+        }
 
         this.gameObject.GetComponent<Button> ().onClick.AddListener (() => enableMenu ());
     }
@@ -37,6 +46,7 @@ public class NPCManager : MonoBehaviour {
     }
 
     public void disableMenu () {
+        currentResources.GetComponent<currentResourcesUIController> ().updateResourcesUI ();
         mainUIGameObject.SetActive (true);
         mainDisplayGameObject.SetActive (false);
         NPCManagerGameObject.SetActive (false);
