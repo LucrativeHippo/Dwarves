@@ -44,6 +44,7 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
         setListener ();
     }
 
+    void doUpgrade(){
         if (canUpgrade)
         {
             GameObject temp = Instantiate(upgrade, gameObject.transform.position, Quaternion.identity);

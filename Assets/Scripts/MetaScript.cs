@@ -9,10 +9,6 @@ public class MetaScript : MonoBehaviour {
 	static GameObject tc;
 	static GameObject player;
 	void Start () {
-		//gameObject.GetComponent<ResourceManager>().setFood(0);
-		//gameObject.GetComponent<ResourceManager>().setSand(0);
-		//gameObject.GetComponent<ResourceManager>().setWood(0);
-        //res = MetaScript.getRes();
 
 	}
 	
@@ -38,6 +34,10 @@ public class MetaScript : MonoBehaviour {
 	public static ResourceManager getRes(){
 		return getMetaObject().GetComponent<ResourceManager>();
 	}
+	/// <summary>
+	/// Returns the global OwnedNPCList
+	/// </summary>
+	/// <returns>Owned NPC List</returns>
 	public static OwnedNPCList GetNPC(){
 		return getMetaObject().GetComponent<OwnedNPCList>();
 	}
@@ -88,6 +88,10 @@ public class MetaScript : MonoBehaviour {
 		
 	}
 
+	/// <summary>
+	/// Returns the TownCenter GameObject
+	/// </summary>
+	/// <returns></returns>
 	public static GameObject getTownCenter(){
 		if(tc == null){
 			tc = GameObject.Find("TownCenter");
@@ -97,6 +101,11 @@ public class MetaScript : MonoBehaviour {
 		
 		return tc;
 	}
+
+	/// <summary>
+	/// Returns the Player GameObject
+	/// </summary>
+	/// <returns></returns>
 	public static GameObject getPlayer(){
 		if(player == null){
 			player = GameObject.FindWithTag("Player");

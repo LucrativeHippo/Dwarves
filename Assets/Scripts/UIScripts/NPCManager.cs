@@ -27,12 +27,6 @@ public class NPCManager : MonoBehaviour {
 
         currentResources = mainUIGameObject.transform.GetChild (2).gameObject;
 
-        NPCs = new List<GameObject> ();
-        GameObject[] temp = GameObject.FindGameObjectsWithTag ("OwnedNPC");
-
-        foreach (var theNPC in temp) {
-            NPCs.Add (theNPC);
-        }
 
         this.gameObject.GetComponent<Button> ().onClick.AddListener (() => enableMenu ());
     }
