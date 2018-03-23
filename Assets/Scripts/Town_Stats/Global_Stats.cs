@@ -12,6 +12,15 @@ public class Global_Stats : MonoBehaviour {
     [SerializeField]
     private float healthPool;
 
+    [SerializeField]
+    private float gatherMultiplier;
+
+    [SerializeField]
+    private bool hasHeatProtection;
+
+    [SerializeField]
+    private bool hasColdProtection;
+
 
     public float getFoodSaved()
     {
@@ -41,6 +50,40 @@ public class Global_Stats : MonoBehaviour {
     public void setHealthPool(float health)
     {
         healthPool = health;
+    }
+
+    public void setGatherMultiplier(float mult)
+    {
+        gatherMultiplier = mult;
+        if (gatherMultiplier < 0)
+        {
+            gatherMultiplier = 0;
+        }
+    }
+
+    public float getGatherMultiplier()
+    {
+        return gatherMultiplier;
+    }
+
+    public void setHasHeatProtection(bool has)
+    {
+        hasHeatProtection = has;
+    }
+
+    public bool getHasHeatProtection()
+    {
+        return hasHeatProtection;
+    }
+
+    public void setHasColdProtection(bool has)
+    {
+        hasColdProtection = has;
+    }
+
+    public bool getHasColdProtection()
+    {
+        return hasColdProtection;
     }
 	// Use this for initialization
 	void Start () {

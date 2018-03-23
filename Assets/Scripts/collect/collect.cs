@@ -375,6 +375,8 @@ public class collect : MonoBehaviour
     }
 
     private void drop(){
+        float resMult = MetaScript.getGlobal_Stats().getGatherMultiplier();
+        curRes = (int) ((float) curRes * resMult);
         MetaScript.getRes().addResource(this.findingType,curRes);
         curRes = 0;
     }
