@@ -17,7 +17,7 @@ public class MetaScript : MonoBehaviour {
 	/// Static reference to location of this script
 	/// </summary>
 	/// <returns></returns>
-	private static GameObject getMetaObject(){
+	public static GameObject getMetaObject(){
 		return GameObject.Find("Meta");
 	}
 
@@ -33,18 +33,40 @@ public class MetaScript : MonoBehaviour {
 	public static ResourceManager getRes(){
 		return getMetaObject().GetComponent<ResourceManager>();
 	}
-	public static NPCManager GetNPC(){
-		return GameObject.Find("npcManagerButton").GetComponent<NPCManager>();
+	public static OwnedNPCList GetNPC(){
+		return getMetaObject().GetComponent<OwnedNPCList>();
+	}
+    public static outpost_controller getOPController()
+    {
+        return getMetaObject().GetComponent<outpost_controller>();
+    }
+    public static Global_Stats getGlobal_Stats()
+    {
+        return getMetaObject().GetComponent<Global_Stats>();
+    }
+
+    //  public currentResourcesUIController resourceUI;
+    public static void updateResourcesUI(){
+        GameObject resObj = GameObject.Find("CurrentResources");
+        if (resObj == null)
+        {
+            Debug.LogWarning("RES UI not found!! May be due to being disabled.");
+        }
+        else
+        {
+            currentResourcesUIController temp = resObj.GetComponent<currentResourcesUIController>();
+            if (temp != null)
+            {
+                temp.updateResourcesUI();
+            }
+            else {
+                Debug.LogError("Couldn't find resourceUI");
+            }
+        }
 	}
 
-	//  public currentResourcesUIController resourceUI;
-	public static void updateResourcesUI(){
-		currentResourcesUIController temp = GameObject.Find("CurrentResources").GetComponent<currentResourcesUIController>();
-		if(temp!=null){
-			temp.updateResourcesUI();
-		}else{
-			Debug.LogError("Couldn't find resourceUI");
-		}
+	public static InBuilding GetInBuilding(){
+		return getMetaObject().GetComponent<InBuilding>();
 	}
 	// Update is called once per frame
 	void Update () {

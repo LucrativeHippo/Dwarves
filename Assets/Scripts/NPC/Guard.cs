@@ -28,12 +28,14 @@ public class Guard : MonoBehaviour {
         navComponent = this.transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 	
+
+
 	// Update is called once per frame
 	void Update () {
 
-        if (enemyInRange)
+        if (!enemyInRange)
         {
-            target = GameObject.FindWithTag("Enemy");
+            target = collect.findClosestTag("Enemy",gameObject,threatRange);
         }
         if (target != null)
         {

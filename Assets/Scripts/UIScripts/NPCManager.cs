@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class NPCManager : MonoBehaviour {
 
-    private List<GameObject> NPCs;
 
     [SerializeField] private GameObject Button_Template;
 
@@ -64,7 +63,7 @@ public class NPCManager : MonoBehaviour {
     /// </summary>
     private void generateUI () {
         GameObject tempGameObject;
-        foreach (var theNPC in NPCs) {
+        foreach (var theNPC in MetaScript.GetNPC().getNPCs()) {
             tempGameObject = Instantiate (Button_Template) as GameObject;
             tempGameObject.SetActive (true);
             mainDisplay aButtonScript = tempGameObject.GetComponent<mainDisplay> ();
@@ -73,27 +72,4 @@ public class NPCManager : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Adds a NPC to the List.
-    /// </summary>
-    /// <param name="newNPC"> a NPC. </param>
-    public void addNPC (GameObject newNPC) {
-        NPCs.Add (newNPC);
-    }
-
-    /// <summary>
-    /// Removes a NPC from the List.
-    /// </summary>
-    /// <param name="aNPC">A NPC. </param>
-    public void removeNPC (GameObject aNPC) {
-        NPCs.Remove (aNPC);
-    }
-
-    /// <summary>
-    /// Gets the NPC List.
-    /// </summary>
-    /// <returns> A List<GameObject> of NPCs.</returns>
-    public List<GameObject> getNPCs () {
-        return NPCs;
-    }
 }

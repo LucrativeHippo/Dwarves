@@ -10,6 +10,7 @@ public class building : MonoBehaviour, IActionable {
     [SerializeField]
     private GameObject door;
 
+    ParticleSystem[] ps;
     GameObject player;
 
     private int xpos;
@@ -24,9 +25,22 @@ public class building : MonoBehaviour, IActionable {
         
         if (!this.enabled)
             return;
+
+        player.GetComponent<DynamicGeneration>().enabled = false;
+        MetaScript.GetInBuilding().setPlayerInBuilding(true);
         player.SetActive(false);
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
+        player.GetComponent<LocalNavMeshBuilder>().enabled = true;
         player.SetActive(true);
+        //if (player.GetComponentInChildren<ParticleSystem>() != null)
+        //{
+        //    ps = player.GetComponentsInChildren<ParticleSystem>();
+        //    for (int i = 0; i < ps.Length; i++)
+        //    {
+        //        ps[i].Stop();
+        //    }
+        //}
+        //player.GetComponent<ParticleSystem>().Stop();
     }
 
     // Use this for initialization
@@ -41,6 +55,7 @@ public class building : MonoBehaviour, IActionable {
         {
             Debug.Log("The player object is null.");
         }
+        ps = player.GetComponentsInChildren<ParticleSystem>();
     }
 	
 	// Update is called once per frame
@@ -48,6 +63,17 @@ public class building : MonoBehaviour, IActionable {
         if(player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        if (MetaScript.GetInBuilding().getPlayerInBuilding()){
+            if (player.GetComponentInChildren<ParticleSystem>() != null)
+            {
+                ps = player.GetComponentsInChildren<ParticleSystem>();
+                for (int i = 0; i < ps.Length; i++)
+                {
+                    ps[i].Stop();
+                }
+            }
         }
 	}
 }

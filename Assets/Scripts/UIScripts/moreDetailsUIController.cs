@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class moreDetailsUIController : MonoBehaviour {
 
@@ -47,6 +48,9 @@ public class moreDetailsUIController : MonoBehaviour {
     private void buttonClicked () {
         selectRoleGameObject.SetActive (true);
         selectRoleGameObject.GetComponent<GenerateRoleSelector> ().setCurrentNPC (currentNPC);
+        foreach (Transform child in selectRoleGameObject.transform.GetChild(0)) {
+            child.gameObject.GetComponent<RoleButtonScript> ().setNPC (currentNPC);
+        }
     }
 
     public void setRole () {

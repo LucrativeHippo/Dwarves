@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class building_generator {
 
+
     private static int MAX_WIDTH = 8;
     private static int MAX_HEIGHT = 8;
     private static int MIN_WIDTH = 4;
@@ -20,6 +21,7 @@ public class building_generator {
     private int ylocation;
     private int doorxlocation;
     private int doorzlocation;
+
 
 
     //Getters and Setters

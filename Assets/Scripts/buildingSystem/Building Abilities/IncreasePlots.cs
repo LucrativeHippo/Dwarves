@@ -3,39 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IncreasePlots : MonoBehaviour {
-    [SerializeField]
-    private int sizeIncrease;
+    
 
     private terrainGenerator tg;
 
+    [SerializeField]
+    private int upgradeLevel = 0;
+
     private GameObject tc;
 
+    private bool notInstant = true;
 
     [SerializeField]
     private GameObject plot;
     [SerializeField]
     private GameObject buildingSign;
 
+    private Dictionary<string, bool> added;
+
 
 	// Use this for initialization
 	void Start () {
-        tc = GameObject.FindGameObjectWithTag("TownCenter");
-
-        if(tc != null)
+        added = new Dictionary<string, bool>();
+        tc = GameObject.Find("Campfire(Clone)");
+        //tg = GameObject.Find("Terrain Generator").GetComponent<terrainGenerator>();
+        if (tc != null)
         {
+            
             int tcx = (int)tc.transform.position.x;
             int tcz = (int)tc.transform.position.z;
             
-            for (int i=(tcx - sizeIncrease); i < tcx + sizeIncrease + 1; i++)
+            for (int i= -1; i < 2; i=i+2)
             {
-                for (int j= (tcz - sizeIncrease); j < tcz + sizeIncrease + 1; j++)
+                for (int j= -1; j < 2; j=j+2)
                 {
-                    if(i == (tcx - sizeIncrease) || j == (tcz - sizeIncrease) || j == tcz + sizeIncrease || i == tcx + sizeIncrease)
+                    
+                   if(!added.ContainsKey((i * 2 + tcx) + " " + (j * upgradeLevel + tcz)))
                     {
-                       
-                        Instantiate(plot, new Vector3(i,0,j), Quaternion.identity);
-                        Instantiate(buildingSign, new Vector3(i, 0, j), Quaternion.identity);
+                        print((i * 2 + tcx) + " " + (j * upgradeLevel + tcz));
+                        Instantiate(plot, new Vector3(i * 2 + tcx, 0, j * upgradeLevel + tcz), Quaternion.identity);
+                        Instantiate(buildingSign, new Vector3(i * 2 + tcx, 0, j * upgradeLevel + tcz), Quaternion.identity);
+                        added[(i * 2 + tcx) + " " + (j * upgradeLevel + tcz)] = true;
                     }
+                   
+                    if (!added.ContainsKey((i * upgradeLevel + tcx) + " " + (j * 2 + tcz)))
+                    {
+                        print((i * upgradeLevel + tcx) + " " + (j * 2 + tcz));
+                        Instantiate(plot, new Vector3(i * upgradeLevel + tcx, 0, j * 2 + tcz), Quaternion.identity);
+                        Instantiate(buildingSign, new Vector3(i * upgradeLevel + tcx, 0, j * 2 + tcz), Quaternion.identity);
+                        added[(i * upgradeLevel) + " " + (j * 2 + tcz)] = true;
+                    }
+
                 }
             }
         }
