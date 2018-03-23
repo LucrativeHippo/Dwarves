@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
+  buildingLimit: 1
 --- !u!212 &212758219014252418
 SpriteRenderer:
   m_ObjectHideFlags: 1

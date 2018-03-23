@@ -15,7 +15,10 @@ public class basicBuilding : MonoBehaviour {
     private GameObject buildingMenuUIContent;
     private GameObject AllUIObjects;
 
+    private GameObject Meta;
+
     void Start () {
+        Meta = GameObject.Find ("Meta");
 
         AllUIObjects = GameObject.Find ("AllUIObjectsCanvas");
         buildingMenu = AllUIObjects.transform.GetChild (2).gameObject;
@@ -35,10 +38,12 @@ public class basicBuilding : MonoBehaviour {
         GameObject tempGameObject;
         int counter = 0;
         foreach (var theBuildings in buildingPrefabs) {
-            tempGameObject = Instantiate (Button_Template) as GameObject;
-            tempGameObject.SetActive (true);
-            tempGameObject.GetComponent<buildingButtonScript> ().setButton (counter, this, buildingPrefabs [counter]);
-            tempGameObject.transform.SetParent (buildingMenuUIContent.transform, false);
+            if (!Meta.GetComponent<buildingsBuilt> ().buildingAtLimit (theBuildings)) {
+                tempGameObject = Instantiate (Button_Template) as GameObject;
+                tempGameObject.SetActive (true);
+                tempGameObject.GetComponent<buildingButtonScript> ().setButton (counter, this, buildingPrefabs [counter]);
+                tempGameObject.transform.SetParent (buildingMenuUIContent.transform, false);
+            }
             counter++;
         }
     }
@@ -59,6 +64,7 @@ public class basicBuilding : MonoBehaviour {
 
     private void createBuilding (int buildingNumber) {
         if (checkResources (buildingNumber)) {
+            Meta.GetComponent<buildingsBuilt> ().increaseBuildingCount (buildingPrefabs [buildingNumber]);
             // Create Building.
             Instantiate (buildingPrefabsObjects [buildingNumber], this.transform.position, Quaternion.identity);
 
