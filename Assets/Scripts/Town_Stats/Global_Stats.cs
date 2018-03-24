@@ -10,9 +10,11 @@ public class Global_Stats : MonoBehaviour {
     private float militaryAbility = 1;
 
     [SerializeField]
-    private float healthPool;
+    private float damageMultiplier = 1f;
 
     [SerializeField]
+    private float healthMultiplier = 1f;
+
     private float gatherMultiplier;
 
     [SerializeField]
@@ -53,6 +55,22 @@ public class Global_Stats : MonoBehaviour {
     public void setMilitaryAbility(float military)
     {
         militaryAbility = military;
+    }
+
+    public void setAtkMultiplier(float multiplier){
+        damageMultiplier += multiplier;
+    }
+
+    public float getAtkMultiplier(){
+        return damageMultiplier;
+    }
+
+    public float getHealthMultiplier(){
+        return healthMultiplier;
+    }
+
+    public void setHealthMultiplier(float multiplier){
+        healthMultiplier += multiplier;
     }
 
     public float getHealthPool()
