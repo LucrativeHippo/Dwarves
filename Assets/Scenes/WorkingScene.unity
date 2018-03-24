@@ -4833,6 +4833,7 @@ MonoBehaviour:
   militaryAbility: 1
   healthPool: 0
   gatherMultiplier: 0
+  baseGather: 0
   hasHeatProtection: 0
   hasColdProtection: 0
 --- !u!114 &1368627735
@@ -4847,6 +4848,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInBuilding: 0
+--- !u!114 &1368627736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368627733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b374de3aa5c9554e935a2ba5d031124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodUsedPerNPC: 1
+  damageForStarving: 5
+  starvingTickTimer: 10
+  noFood: 0
 --- !u!114 &1368627741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8007,7 +8023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moreDetailsGameObject: {fileID: 0}
   selectRoleGameObject: {fileID: 0}
-  nameText: {fileID: 0}
+  nameInputField: {fileID: 0}
   currentJobText: {fileID: 0}
   happynessText: {fileID: 0}
   selectRoleButton: {fileID: 0}
