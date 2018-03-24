@@ -5,7 +5,9 @@ using UnityEngine;
 public class Guard : MonoBehaviour {
 
     [SerializeField]
-    private int threatRange = 1;
+    private float threatRange = 5;
+    [SerializeField]
+    private float attackRange = 0.5f;
     private GameObject target;
     private UnityEngine.AI.NavMeshAgent navComponent;
 
@@ -42,7 +44,7 @@ public class Guard : MonoBehaviour {
 
             float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
-            if (distanceToTarget <= threatRange)
+            if (distanceToTarget <= attackRange)
             {
 
                 navComponent.isStopped = true;
@@ -61,6 +63,8 @@ public class Guard : MonoBehaviour {
         }
         else
         {
+            navComponent.isStopped = false;
+            enemyInRange = false;
             Patrol();
         }
         
@@ -102,13 +106,16 @@ public class Guard : MonoBehaviour {
     // Update is called once per frame
     void Patrol()
     {
+       
         timer += Time.deltaTime;
 
         if (timer >= patrolTimer)
         {
             Vector3 newPos = RandomNavSphere(transform.position, patrolRadius, -1);
-            navComponent.SetDestination(newPos);
-            timer = 0;
+            
+            print(navComponent.SetDestination(newPos));
+            
+                timer = 0;
         }
     }
 

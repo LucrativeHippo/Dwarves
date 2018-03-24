@@ -15,22 +15,17 @@ public class OwnedNPCList : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		NPCs = new List<GameObject> ();
-        GameObject[] temp = GameObject.FindGameObjectsWithTag ("OwnedNPC");
+        //GameObject[] temp = GameObject.FindGameObjectsWithTag ("OwnedNPC");
 
-        Transform metaParent = MetaScript.getMetaObject().transform;
+        //Transform metaParent = MetaScript.getMetaObject().transform;
 
-        foreach (var theNPC in temp) {
-            // Add to my list of people
-            if(theNPC.GetComponent<QuestNPC>() != null && theNPC.transform.parent != metaParent){
-                theNPC.transform.SetParent(metaParent);
-                theNPC.GetComponent<QuestNPC>().TakeSoul();
-            }
-        }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        // foreach (var theNPC in temp) {
+        //     // Add to my list of people
+        //     if(theNPC.GetComponent<QuestNPC>() != null && theNPC.transform.parent != metaParent){
+        //         theNPC.transform.SetParent(metaParent);
+        //         theNPC.GetComponent<QuestNPC>().TakeSoul();
+        //     }
+        // }
 	}
 
 	

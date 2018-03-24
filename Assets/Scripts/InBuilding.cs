@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InBuilding : MonoBehaviour {
-	bool playerInBuilding = false;
+	public bool playerInBuilding = false;
 
 	public void setPlayerInBuilding(bool b){
 		playerInBuilding = b;
@@ -12,16 +12,4 @@ public class InBuilding : MonoBehaviour {
     public bool getPlayerInBuilding(){
         return playerInBuilding;
     }
-
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

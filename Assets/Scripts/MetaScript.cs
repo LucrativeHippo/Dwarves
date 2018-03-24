@@ -5,11 +5,10 @@ using UnityEngine;
 public class MetaScript : MonoBehaviour {
 	//QuestResourceManager res;
 	// Use this for initialization
+	static GameObject meta;
+	static GameObject tc;
+	static GameObject player;
 	void Start () {
-		//gameObject.GetComponent<ResourceManager>().setFood(0);
-		//gameObject.GetComponent<ResourceManager>().setSand(0);
-		//gameObject.GetComponent<ResourceManager>().setWood(0);
-        //res = MetaScript.getRes();
 
 	}
 	
@@ -18,7 +17,9 @@ public class MetaScript : MonoBehaviour {
 	/// </summary>
 	/// <returns></returns>
 	public static GameObject getMetaObject(){
-		return GameObject.Find("Meta");
+		if(meta == null)
+			meta = GameObject.Find("Meta");
+		return meta;
 	}
 
 	
@@ -33,6 +34,10 @@ public class MetaScript : MonoBehaviour {
 	public static ResourceManager getRes(){
 		return getMetaObject().GetComponent<ResourceManager>();
 	}
+	/// <summary>
+	/// Returns the global OwnedNPCList
+	/// </summary>
+	/// <returns>Owned NPC List</returns>
 	public static OwnedNPCList GetNPC(){
 		return getMetaObject().GetComponent<OwnedNPCList>();
 	}
@@ -43,6 +48,11 @@ public class MetaScript : MonoBehaviour {
     public static Global_Stats getGlobal_Stats()
     {
         return getMetaObject().GetComponent<Global_Stats>();
+    }
+
+    public static FoodSystem getFoodSystem()
+    {
+        return getMetaObject().GetComponent<FoodSystem>();
     }
 
     //  public currentResourcesUIController resourceUI;
@@ -81,5 +91,48 @@ public class MetaScript : MonoBehaviour {
             //print(res.getWood());
         }
 		
+	}
+
+	/// <summary>
+	/// Returns the TownCenter GameObject
+	/// </summary>
+	/// <returns></returns>
+	public static GameObject getTownCenter(){
+		if(tc == null){
+			tc = GameObject.Find("TownCenter");
+		}
+		if(tc == null)
+			Debug.LogError("Couldn't find TownCenter");
+		
+		return tc;
+	}
+
+	/// <summary>
+	/// Returns the Player GameObject
+	/// </summary>
+	/// <returns></returns>
+	public static GameObject getPlayer(){
+		if(player == null){
+			player = GameObject.FindWithTag("Player");
+		}
+		if(player == null)
+			Debug.LogError("Couldn't find Player");
+		
+		return player;
+	}
+
+	/// <summary>
+	/// Turns off player's NavMesh in order
+	/// </summary>
+	public static void preTeleport(){
+        getPlayer().GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        getPlayer().GetComponent<LocalNavMeshBuilder>().enabled = false;
+	}
+	/// <summary>
+	/// Turns on player's NavMesh in order
+	/// </summary>
+	public static void postTeleport(){
+		getPlayer().GetComponent<LocalNavMeshBuilder>().enabled = true;
+        getPlayer().GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
 	}
 }

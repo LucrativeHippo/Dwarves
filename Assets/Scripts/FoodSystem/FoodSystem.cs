@@ -21,6 +21,7 @@ public class FoodSystem : MonoBehaviour, INPCListener {
     [SerializeField] private bool noFood;
 
     void Start () {
+        starvingTickTimer = GameObject.Find("Calendar").GetComponent<GameTime>().dayTime;
         resourceManager = MetaScript.getRes();
         allUIGameObjects = GameObject.Find ("AllUIObjectsCanvas");
         npcManagerGameObject = allUIGameObjects.transform.GetChild (0).GetChild (0).gameObject;
@@ -34,8 +35,14 @@ public class FoodSystem : MonoBehaviour, INPCListener {
 
 
     private void useFood () {
+        float foodSaved = MetaScript.getGlobal_Stats().getFoodSaved();
         int currentFood = resourceManager.getResource (ResourceTypes.FOOD);
-        float foodCost = ownedNPC.getCount() * foodUsedPerNPC;
+        float foodCost = ownedNPC.getCount() * foodUsedPerNPC - foodSaved;
+        Debug.Log("Food used =" + foodCost);
+        if(foodCost < 0)
+        {
+            foodCost = 0;
+        }
         if(resourceManager.hasResource(ResourceTypes.FOOD,(int)foodCost)){
             resourceManager.addResource (ResourceTypes.FOOD, (int)-foodCost);
             noFood = false;
@@ -47,6 +54,8 @@ public class FoodSystem : MonoBehaviour, INPCListener {
 
     IEnumerator starvingTimer (float waitForTime) {
         yield return new WaitForSeconds (waitForTime);
+        Debug.Log("Starving tick");
+        useFood();
         if (isThereNoFood ()) {
             starving ();
         }

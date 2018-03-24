@@ -10,6 +10,7 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 	[SerializeField]
 	state prevState = state.UNSET;
 	state curState = state.UNSET;
+	bool forcedFlee = false;
 	public void gotHit(){
 
 		// If a guard they should path to the enemy on their own
@@ -19,7 +20,7 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 			convert();
 
 			// Choose Fight or Flight
-			if(curState != state.FLEE && isBrave()){
+			if(curState != state.FLEE && isBrave() && !forcedFlee){
 				curState = state.GUARD;
 				GetComponent<Guard>().enabled = true;
 			}else{
@@ -33,6 +34,11 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 			}
 		}
 	}
+
+    public bool isFleeing()
+    {
+        return curState == state.FLEE;
+    }
 
 	private bool isBrave(){	return GetComponent<Skills>().getValue(Skills.list.braveness)>5; }
 
@@ -61,6 +67,7 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 		}
 		prevState = state.UNSET;
 		curState = state.UNSET;
+		forcedFlee = false;
 	}
 
 	public void flight(){
@@ -71,7 +78,13 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 		if(safety != null){
 			GetComponent<NavMeshAgent>().SetDestination(safety.transform.position);
 		}else{
-			Debug.Log("NPC couldn't find a nearby shelter, and is now frozen in terror");
+			// Frozen in terror
+			// Debug.Log("NPC:\""+name+"\" couldn't find a nearby shelter and is now frozen in terror");
+			// GetComponent<NavMeshAgent>().SetDestination(transform.position);
+
+			// Run to town center
+			Debug.Log("NPC:\""+name+"\" couldn't find a nearby shelter and is running to town center");
+			GetComponent<NavMeshAgent>().SetDestination(MetaScript.getTownCenter().transform.position);
 		}
 	}
 
@@ -91,12 +104,26 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 		}
     }
 
-    public void bellRang(bool safe)
-    {
-		if(!safe){
+	/// <summary>
+	/// Notifies all NPCs whether there is danger or not
+	/// NPC will either hide or become a guard based on it's braveness when not safe
+	/// </summary>
+	/// <param name="danger"></param>
+    public void bellRang(bool danger) {
+		if(danger){
 			gotHit();
 		}else{
 			revert();
 		}
+    }
+
+	/// <summary>
+	/// Calls bellRang with a forced flee. NPC will run and hide regardless of braveness
+	/// </summary>
+	/// <param name="hide">Whether NPC hides or reverts to daily life</param>
+    public void forceBell(bool hide)
+    {
+		forcedFlee = hide;
+		bellRang(hide);
     }
 }

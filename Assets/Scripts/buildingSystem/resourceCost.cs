@@ -5,6 +5,7 @@ using UnityEngine;
 public class resourceCost : MonoBehaviour {
 	[NamedArray(typeof(ResourceTypes))] public int[] cost = new int[(int)ResourceTypes.NumberOfTypes];
 
+    [SerializeField] private int buildingLimit = 0;
 
 
 	public bool canAfford(){
@@ -23,5 +24,8 @@ public class resourceCost : MonoBehaviour {
 			MetaScript.getRes().addResource(i,-cost[i]);
 		}
 	}
+    public int getBuildingLimit () {
+        return buildingLimit;
+    }
 
 }

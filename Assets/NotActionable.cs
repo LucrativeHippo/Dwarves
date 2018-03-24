@@ -8,14 +8,4 @@ public class NotActionable : MonoBehaviour, IActionable {
     {
         // do nothing
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

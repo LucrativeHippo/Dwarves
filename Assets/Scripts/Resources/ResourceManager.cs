@@ -88,12 +88,19 @@ public class ResourceManager : MonoBehaviour {
 	/// <summary>
 	/// True if has at least amount of resource 'i'
 	/// </summary>
-	/// <param name="i"></param>
-	/// <param name="amount"></param>
+	/// <param name="i">Resource Type</param>
+	/// <param name="amount">minimum amount</param>
 	/// <returns><c>true</c> If has enough of resource to pay amount, <c>false</c> otherwise.</returns>
 	public bool hasResource(ResourceTypes i, int amount){
 		return hasResource((int)i,amount);
 	}
+	
+	/// <summary>
+	/// True if has at least amount of resource 'i'
+	/// </summary>
+	/// <param name="i">Index value</param>
+	/// <param name="amount">minimum amount</param>
+	/// <returns><c>true</c> If has enough of resource to pay amount, <c>false</c> otherwise.</returns>
 	public bool hasResource(int i, int amount){
 		return resourceList[i] >= amount;
 	}

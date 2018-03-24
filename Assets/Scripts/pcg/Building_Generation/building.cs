@@ -28,19 +28,13 @@ public class building : MonoBehaviour, IActionable {
 
         player.GetComponent<DynamicGeneration>().enabled = false;
         MetaScript.GetInBuilding().setPlayerInBuilding(true);
-        player.SetActive(false);
+        
+        MetaScript.preTeleport();
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
-        player.GetComponent<LocalNavMeshBuilder>().enabled = true;
-        player.SetActive(true);
-        //if (player.GetComponentInChildren<ParticleSystem>() != null)
-        //{
-        //    ps = player.GetComponentsInChildren<ParticleSystem>();
-        //    for (int i = 0; i < ps.Length; i++)
-        //    {
-        //        ps[i].Stop();
-        //    }
-        //}
-        //player.GetComponent<ParticleSystem>().Stop();
+        MetaScript.postTeleport();
+
+        player.GetComponent<InBuilding>().setPlayerInBuilding(true);
+        disableParticleSystems();
     }
 
     // Use this for initialization
@@ -50,30 +44,38 @@ public class building : MonoBehaviour, IActionable {
         {
             Debug.Log("The building_generator object is null.");
         }
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = MetaScript.getPlayer();
         if (player == null)
         {
             Debug.Log("The player object is null.");
         }
-        ps = player.GetComponentsInChildren<ParticleSystem>();
+        else
+        {
+            ps = player.GetComponentsInChildren<ParticleSystem>();
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
         if(player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = MetaScript.getPlayer();
+            Debug.Log("Building had to find player again");
         }
+	}
 
-        if (MetaScript.GetInBuilding().getPlayerInBuilding()){
-            if (player.GetComponentInChildren<ParticleSystem>() != null)
+    private void disableParticleSystems()
+    {
+        if (player.GetComponent<InBuilding>().getPlayerInBuilding())
+        {
+            ps = player.GetComponentsInChildren<ParticleSystem>();
+            if (ps != null)
             {
-                ps = player.GetComponentsInChildren<ParticleSystem>();
                 for (int i = 0; i < ps.Length; i++)
                 {
                     ps[i].Stop();
                 }
             }
         }
-	}
+    }
 }
