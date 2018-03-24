@@ -32,15 +32,9 @@ public class building : MonoBehaviour, IActionable {
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
         player.GetComponent<LocalNavMeshBuilder>().enabled = true;
         player.SetActive(true);
-        //if (player.GetComponentInChildren<ParticleSystem>() != null)
-        //{
-        //    ps = player.GetComponentsInChildren<ParticleSystem>();
-        //    for (int i = 0; i < ps.Length; i++)
-        //    {
-        //        ps[i].Stop();
-        //    }
-        //}
-        //player.GetComponent<ParticleSystem>().Stop();
+
+        player.GetComponent<InBuilding>().setPlayerInBuilding(true);
+        disableParticleSystems();
     }
 
     // Use this for initialization
@@ -55,7 +49,10 @@ public class building : MonoBehaviour, IActionable {
         {
             Debug.Log("The player object is null.");
         }
-        ps = player.GetComponentsInChildren<ParticleSystem>();
+        else
+        {
+            ps = player.GetComponentsInChildren<ParticleSystem>();
+        }
     }
 	
 	// Update is called once per frame
@@ -65,16 +62,20 @@ public class building : MonoBehaviour, IActionable {
             player = MetaScript.getPlayer();
             Debug.Log("Building had to find player again");
         }
+	}
 
-        if (MetaScript.GetInBuilding().getPlayerInBuilding()){
-            if (player.GetComponentInChildren<ParticleSystem>() != null)
+    private void disableParticleSystems()
+    {
+        if (player.GetComponent<InBuilding>().getPlayerInBuilding())
+        {
+            ps = player.GetComponentsInChildren<ParticleSystem>();
+            if (ps != null)
             {
-                ps = player.GetComponentsInChildren<ParticleSystem>();
                 for (int i = 0; i < ps.Length; i++)
                 {
                     ps[i].Stop();
                 }
             }
         }
-	}
+    }
 }

@@ -35,6 +35,11 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 		}
 	}
 
+    public bool isFleeing()
+    {
+        return curState == state.FLEE;
+    }
+
 	private bool isBrave(){	return GetComponent<Skills>().getValue(Skills.list.braveness)>5; }
 
 	private void convert(){

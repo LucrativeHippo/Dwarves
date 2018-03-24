@@ -19,10 +19,16 @@ public class TownPortal : MonoBehaviour {
     [SerializeField]
     private ResourceTypes costType = ResourceTypes.DIAMOND;
 
+    private InBuilding buildingCheck;
+
     private void Start()
     {
         timer2 = timer;
         player = MetaScript.getPlayer().GetComponentInChildren<actor>().gameObject;
+        if (player != null)
+        {
+            buildingCheck = player.GetComponent<InBuilding>();
+        }
     }
 
     // Update is called once per frame
@@ -31,8 +37,13 @@ public class TownPortal : MonoBehaviour {
         {
             if (Input.GetKey(actionKey))
             {
+                bool inBuilding = false;
+                if (buildingCheck != null)
+                {
+                    inBuilding = buildingCheck.getPlayerInBuilding();
+                }
 
-                if (MetaScript.getRes().hasResource(costType, resourceCost))
+                if (MetaScript.getRes().hasResource(costType, resourceCost) && !inBuilding)
                 {
                     MetaScript.getRes().addResource(costType,-resourceCost);
                    transform.parent.transform.position = MetaScript.getTownCenter().transform.position + new Vector3(0.5f, 0, -0.5f);

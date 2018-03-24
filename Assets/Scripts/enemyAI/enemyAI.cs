@@ -35,7 +35,11 @@ public class enemyAI : MonoBehaviour {
 
 	private void setDestination(){
 		if (opponent != null) {
-			if(!withinAttackRange()){
+            if(opponent.tag.Equals("ProtectedNPC"))
+            {
+                getDest();
+            }
+			else if(!withinAttackRange()){
 				agentCtrl.isStopped = false;
 				agentCtrl.SetDestination (opponent.transform.position);
 			}else{

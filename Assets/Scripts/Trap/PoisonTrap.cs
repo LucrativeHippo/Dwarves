@@ -43,8 +43,25 @@ public class PoisonTrap : MonoBehaviour {
 
         if (valid != null)
         {
-            buffsys.dmgApplyingSystem(victim, poisonDuration, poisonTickTime, 
-                poisonDamagePerTick, BuffsAndBoons.Effects.Poison);
+            if (!checkIfInBuilding(victim))
+            {
+                buffsys.dmgApplyingSystem(victim, poisonDuration, poisonTickTime,
+                    poisonDamagePerTick, BuffsAndBoons.Effects.Poison);
+            }
+            
         } 
+    }
+
+    private bool checkIfInBuilding(GameObject victim)
+    {
+        InBuilding buildingCheck = victim.GetComponent<InBuilding>();
+        if (buildingCheck == null)
+        {
+            return false;
+        }
+        else
+        {
+            return buildingCheck.getPlayerInBuilding();
+        }
     }
 }

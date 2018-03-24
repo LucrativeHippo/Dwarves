@@ -28,7 +28,7 @@ public class WeatherVisuals : MonoBehaviour {
         }
         GameObject newParticle = getParticleFromWeather(weather);
 
-        if (currentParticle != newParticle)
+        if (!givenParticlesHaveSameName(currentParticle, newParticle))
         {
             if (currentParticle != null)
             {
@@ -39,8 +39,25 @@ public class WeatherVisuals : MonoBehaviour {
                 GameObject part = Instantiate(newParticle, player.transform);
                 ParticleSystem sys = part.GetComponent<ParticleSystem>();
                 sys.collision.SetPlane(0, player.transform);
+
+                if(player.GetComponent<InBuilding>().getPlayerInBuilding())
+                {
+                    sys.Stop();
+                }
             }
         }
+    }
+
+    private bool givenParticlesHaveSameName(GameObject a, GameObject b)
+    {
+        if (a == null || b == null)
+        {
+            return false;
+        }
+
+        string aName = a.name.Replace("(Clone)", "");
+        string bName = b.name.Replace("(Clone)", "");
+        return aName.Equals(bName);
     }
 
     private GameObject getParticleFromWeather(Weather.weatherTypes weather)
