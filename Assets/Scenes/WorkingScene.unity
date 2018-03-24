@@ -130,6 +130,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.02
+--- !u!114 &29475436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 29475426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6d519417600de4f99140c1e279acfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInBuilding: 0
 --- !u!1 &55073023
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,6 +584,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1112733852184504, guid: 04f910d73192ab9498d805b6251e66e4,
     type: 2}
   m_PrefabInternal: {fileID: 1172187363}
+--- !u!114 &155130975 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114864904364099584, guid: 04f910d73192ab9498d805b6251e66e4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1172187363}
+  m_Script: {fileID: 11500000, guid: a805517051b24ff499f15f9c434ddd5e, type: 3}
 --- !u!114 &155130981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4833,6 +4851,7 @@ MonoBehaviour:
   militaryAbility: 1
   healthPool: 0
   gatherMultiplier: 0
+  baseGather: 0
   hasHeatProtection: 0
   hasColdProtection: 0
 --- !u!114 &1368627735
@@ -6252,6 +6271,23 @@ Prefab:
       propertyPath: weatherman
       value: 
       objectReference: {fileID: 1680430702}
+    - target: {fileID: 114065626942093820, guid: 71383f95cd0610246bc8e0b68f864e30,
+        type: 2}
+      propertyPath: calendar
+      value: 
+      objectReference: {fileID: 155130975}
+    - target: {fileID: 114065626942093820, guid: 71383f95cd0610246bc8e0b68f864e30,
+        type: 2}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1965376229938936, guid: b1242e13c19c29248bc0cfc10149dde9,
+        type: 2}
+    - target: {fileID: 114065626942093820, guid: 71383f95cd0610246bc8e0b68f864e30,
+        type: 2}
+      propertyPath: sheepMan
+      value: 
+      objectReference: {fileID: 1301930158207742, guid: 7dc1f386be41d9c46995038194050a6b,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71383f95cd0610246bc8e0b68f864e30, type: 2}
   m_IsPrefabParent: 0
@@ -8007,7 +8043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moreDetailsGameObject: {fileID: 0}
   selectRoleGameObject: {fileID: 0}
-  nameText: {fileID: 0}
+  nameInputField: {fileID: 0}
   currentJobText: {fileID: 0}
   happynessText: {fileID: 0}
   selectRoleButton: {fileID: 0}
