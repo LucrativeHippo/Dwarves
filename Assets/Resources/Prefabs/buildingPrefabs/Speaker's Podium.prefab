@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114139902866654022}
   - component: {fileID: 54935472411894252}
   - component: {fileID: 33778612643291316}
+  - component: {fileID: 114336404839429908}
   m_Layer: 0
   m_Name: Speaker's Podium
   m_TagString: Untagged
@@ -360,6 +361,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
+  buildingLimit: 0
+--- !u!114 &114336404839429908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1541927149411288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199b9b5866f77d4683492a8a00c397e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114380983284943030
 MonoBehaviour:
   m_ObjectHideFlags: 1

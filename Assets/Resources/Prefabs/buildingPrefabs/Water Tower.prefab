@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 54493905600641092}
   - component: {fileID: 33738724291700680}
   - component: {fileID: 114543526964769328}
+  - component: {fileID: 114563124577381684}
   m_Layer: 0
   m_Name: Water Tower
   m_TagString: Untagged
@@ -191,6 +192,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec939a066bcf5b948af94cf56e6e4184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114563124577381684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1755475975798476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199b9b5866f77d4683492a8a00c397e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114837843899369792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
+  buildingLimit: 0
 --- !u!212 &212577910884401198
 SpriteRenderer:
   m_ObjectHideFlags: 1
