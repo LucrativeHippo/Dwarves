@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 54640336308156406}
   - component: {fileID: 33128179567621538}
   - component: {fileID: 114489665468185218}
+  - component: {fileID: 114361655072638282}
   m_Layer: 0
   m_Name: Weather Center
   m_TagString: Untagged
@@ -192,6 +193,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
+  buildingLimit: 0
+--- !u!114 &114361655072638282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1693717520432050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199b9b5866f77d4683492a8a00c397e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114489665468185218
 MonoBehaviour:
   m_ObjectHideFlags: 1
