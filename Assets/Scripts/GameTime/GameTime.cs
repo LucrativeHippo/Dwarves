@@ -33,6 +33,8 @@ public class GameTime : MonoBehaviour
         daychange = GameObject.Find("daychange").GetComponent<Slider>();
         daychangetext = GameObject.Find("totalday").GetComponent<Text>();
         seasonchange = GameObject.Find("seasontext").GetComponent<Text>();
+
+        calendar.generateNewWeatherSystem();
         stormBringer.initializeInternals();
 
         IEnumerator co = Timer(dayTime);
