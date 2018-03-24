@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using NUnit.Framework.Internal;
 
 public class moreDetailsUIController : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class moreDetailsUIController : MonoBehaviour {
     [SerializeField] private GameObject moreDetailsGameObject;
     [SerializeField] private GameObject selectRoleGameObject;
 
-    [SerializeField] private Text nameText;
+    [SerializeField] private InputField nameInputField;
     [SerializeField] private Text currentJobText;
     [SerializeField] private Text happynessText;
 
@@ -25,7 +26,9 @@ public class moreDetailsUIController : MonoBehaviour {
     public void setNPC (GameObject newNPC) {
         moreDetailsGameObject = this.gameObject;
         selectRoleGameObject = moreDetailsGameObject.transform.parent.GetChild (2).gameObject;
-        nameText = moreDetailsGameObject.transform.GetChild (0).GetChild (1).GetChild (0).gameObject.GetComponent<Text> ();
+
+        nameInputField = moreDetailsGameObject.transform.GetChild (0).GetChild (1).gameObject.GetComponent<InputField> ();
+
         currentJobText = moreDetailsGameObject.transform.GetChild (0).GetChild (2).GetChild (1).gameObject.GetComponent<Text> ();
         happynessText = moreDetailsGameObject.transform.GetChild (0).GetChild (3).GetChild (1).gameObject.GetComponent<Text> ();
         selectRoleButton = moreDetailsGameObject.transform.GetChild (0).GetChild (4).gameObject.GetComponent<Button> ();
@@ -33,12 +36,26 @@ public class moreDetailsUIController : MonoBehaviour {
         currentNPC = newNPC;
         setMoreDetails ();
         setSelectRoleButton ();
+        setInputField ();
+    }
+
+    private void setInputField () {
+        nameInputField.onValueChanged.AddListener (delegate {
+            setNewInputName (nameInputField.text);
+        });
+    }
+
+    private void setNewInputName (string text) {
+        if (text != null) {
+            currentNPC.name = text;
+            currentNPC.transform.GetChild (3).GetComponent<TextMesh> ().text = text;
+        }
     }
 
     private void setMoreDetails () {
         // TODO: get stats of NPC to set stats text.
-        nameText.text = currentNPC.name;
-        currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType();
+        nameInputField.text = currentNPC.name;
+        currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
     }
 
     private void setSelectRoleButton () {
@@ -56,7 +73,8 @@ public class moreDetailsUIController : MonoBehaviour {
     public void setRole () {
         currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
     }
-    public void setRole(string role){
+
+    public void setRole (string role) {
         currentJobText.text = role;
     }
 }

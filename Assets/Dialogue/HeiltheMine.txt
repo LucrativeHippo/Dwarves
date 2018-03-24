@@ -135,3 +135,15 @@ It looks like the temperature is going to trend colder in the coming days.
 [title=temperature-hot-forecast-start]
 It looks like the temperature is going to trend hotter in the coming days.
 [title=temperature-hot-forecast-end]
+
+[title=PISC-default-talk-start]
+Narrator: You approach three sheep in a clearing that seem to be terrified by you...
+Sheep 1: Please the other two are fatter eat them instead, I'm just skin and bones.
+Sheep 2: One of these other two is clearly not a sheep, you should kill them before they turn into monsters.
+Sheep 3: If you spare me I'll serve you faithfully for the rest of my days.
+Narrator: [question=2]Which sheep will you spare?
+[choice]The skinny sheep.
+[choice]The traitorous sheep.
+[choice]The loyal sheep.
+[title=PISC-default-talk-end]
+

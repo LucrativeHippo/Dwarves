@@ -8,12 +8,12 @@ public class StormOfResourceChange : GenericStorm {
     
 	// Use this for initialization
 	void Start () {
-		MetaScript.getGlobal_Stats().setGatherMultiplier(multiplier);
+		MetaScript.getGlobal_Stats().setGatherMultiplier(multiplier*MetaScript.getGlobal_Stats().getBaseGather());
 	}
 	
     public new void removeStorm()
     {
-        MetaScript.getMeta().GetComponent<Global_Stats>().setGatherMultiplier(1f);
+        MetaScript.getMeta().GetComponent<Global_Stats>().setGatherMultiplier(MetaScript.getGlobal_Stats().getBaseGather());
         Destroy(gameObject);
     }
 }
