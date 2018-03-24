@@ -60,7 +60,6 @@ GameObject:
   - component: {fileID: 195285048577125202}
   - component: {fileID: 114385374291097190}
   - component: {fileID: 114698019376494968}
-  - component: {fileID: 114657830436341160}
   m_Layer: 0
   m_Name: enemy1
   m_TagString: Enemy
@@ -220,19 +219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponent: {fileID: 0}
   threatRange: 1
---- !u!114 &114657830436341160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1965376229938936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba452419fdb3fc34bb22a76501ea5cc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followDistance: 1
-  maxDist: 5
 --- !u!114 &114698019376494968
 MonoBehaviour:
   m_ObjectHideFlags: 1
