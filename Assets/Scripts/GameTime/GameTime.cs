@@ -150,8 +150,8 @@ public class GameTime : MonoBehaviour
         //UIObject.GetComponent<WeatherUI> ().updateWeatherName (calendar.getForecastWeather (0));
 
         //print (calendar.getCurrentDay ());
-        //daychangetext.text = calendar.getCurrentDay().ToString();
-        //seasonchange.text = (calendar.getCurrentSeason() + 1).ToString();
+        daychangetext.text = calendar.getCurrentDay().ToString();
+        seasonchange.text = (calendar.getCurrentSeason() + 1).ToString();
         //daychange.value = calendar.getCurrentDay();
 
         setWeatherBasedPostProcessing();
