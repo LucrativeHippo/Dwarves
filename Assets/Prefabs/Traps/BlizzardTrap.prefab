@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ead87fd3a23af4ab36bfe237a6994a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slowDuration: 1
+  slowDecimal: 0.6
   maxTopWindStrength: 5
   minTopWindStrength: 1
   startingWindDirection: 0

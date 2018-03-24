@@ -16,6 +16,9 @@ public class Global_Stats : MonoBehaviour {
     private float gatherMultiplier;
 
     [SerializeField]
+    private float baseGather;
+
+    [SerializeField]
     private bool hasHeatProtection;
 
     [SerializeField]
@@ -30,6 +33,16 @@ public class Global_Stats : MonoBehaviour {
     public void setFoodSaved(float food)
     {
         foodSaved = food;
+    }
+
+    public float getBaseGather()
+    {
+        return baseGather;
+    }
+
+    public void setBaseGather(float gather)
+    {
+        baseGather = gather;
     }
 
     public float getMilitaryAbility()
