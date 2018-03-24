@@ -8,9 +8,4 @@ public class setColdResistance : MonoBehaviour {
 	void Start () {
         MetaScript.getGlobal_Stats().setHasColdProtection(true);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

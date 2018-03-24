@@ -16,11 +16,6 @@ public class door : MonoBehaviour {
         player = MetaScript.getPlayer();
 
     }
-	
-	// Update is called once per frame
-    void Update () {
-		
-	}
 
     public void setReturn(int x, int y, int z)
     {

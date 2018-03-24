@@ -8,9 +8,4 @@ public class setRPGTalkHolder : MonoBehaviour {
 	void Start () {
         gameObject.GetComponent<RPGTalkArea>().rpgtalkTarget = GameObject.Find("RPGTalkHolder").GetComponent<RPGTalk>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

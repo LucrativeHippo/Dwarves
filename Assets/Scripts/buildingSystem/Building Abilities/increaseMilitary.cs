@@ -14,9 +14,4 @@ public class increaseMilitary : MonoBehaviour {
 	void Start () {
         MetaScript.getGlobal_Stats().setMilitaryAbility(MetaScript.getGlobal_Stats().getMilitaryAbility() + militaryAbility);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
