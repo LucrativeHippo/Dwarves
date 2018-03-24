@@ -78,7 +78,13 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 		if(safety != null){
 			GetComponent<NavMeshAgent>().SetDestination(safety.transform.position);
 		}else{
-			Debug.Log("NPC couldn't find a nearby shelter, and is now frozen in terror");
+			// Frozen in terror
+			// Debug.Log("NPC:\""+name+"\" couldn't find a nearby shelter and is now frozen in terror");
+			// GetComponent<NavMeshAgent>().SetDestination(transform.position);
+
+			// Run to town center
+			Debug.Log("NPC:\""+name+"\" couldn't find a nearby shelter and is running to town center");
+			GetComponent<NavMeshAgent>().SetDestination(MetaScript.getTownCenter().transform.position);
 		}
 	}
 
@@ -99,13 +105,12 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
     }
 
 	/// <summary>
-	/// Notifies all NPCs whether it is safe or not
+	/// Notifies all NPCs whether there is danger or not
 	/// NPC will either hide or become a guard based on it's braveness when not safe
 	/// </summary>
-	/// <param name="safe"></param>
-    public void bellRang(bool safe)
-    {
-		if(!safe){
+	/// <param name="danger"></param>
+    public void bellRang(bool danger) {
+		if(danger){
 			gotHit();
 		}else{
 			revert();

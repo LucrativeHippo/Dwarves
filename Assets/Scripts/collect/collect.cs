@@ -21,7 +21,7 @@ public class collect : MonoBehaviour
     ResourceTypes findingType = ResourceTypes.WOOD;
 
     public string getFindingType(){
-        return findingType.ToString();
+        return getResourceName(findingType);
     }
 
     private float getRateStat(){ 
@@ -73,25 +73,33 @@ public class collect : MonoBehaviour
     }
     
     public void startCollecting(ResourceTypes t){
-
         // after dropping resource 
-        findingType = t;
 
 
-        curRes = 0;
 
-        Debug.Log("startCollecting");
-        string s = getFindingType();
-        findBuilding();
-        Debug.Log(s);
+        
+        // npc is not in range of current building
+        if(!isBuildingInRange(currentbuilding))
+            findBuilding();
+        
         //updateLocations();
-        setSkills();
         agent.enabled = true;
         agent.isStopped = false;
         state = npcState.gotoResource;
-        findResource();
-        if(currentresource== null){
-            agent.SetDestination(gameObject.transform.position);
+        
+        
+        if(findingType != t){
+            findingType = t;
+            curRes = 0;
+        }
+        setSkills();
+
+        // Current resource is not the right type
+        if(currentresource == null || currentresource.CompareTag(getFindingType()))
+            findResource();
+        
+        if(currentresource == null){
+            agent.SetDestination(transform.position);
         }
     }
 
@@ -159,23 +167,32 @@ public class collect : MonoBehaviour
         currentbuilding = null;
         foreach (GameObject go in gos)
         {
-            if(go.activeInHierarchy){
-                NavMeshBuildFunction f = go.GetComponent<NavMeshBuildFunction>();
-                if(f!= null && f.GetBounds().Contains(gameObject.transform.position)){
-                    currentbuilding= go;
-                    return;
-                }
+            if(isBuildingInRange(go)){
+                currentbuilding= go;
+                return;
             }
         }
-        Debug.LogError("COULDN't FIND A BUILDING ");
+        Debug.LogError("COULDN'T FIND A BUILDING");
     }
+
+    
+    private bool isBuildingInRange(GameObject building){
+        if(building!=null && building.activeInHierarchy){
+            NavMeshBuildFunction f = building.GetComponent<NavMeshBuildFunction>();
+            if(f!= null && f.GetBounds().Contains(transform.position)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void findResource(){
         if(currentresource!=null)
             currentresource.GetComponent<MaxCollectors>().remove();
 
 
         if(currentbuilding == null){
-            Debug.Log("A: current building wasn't assigned for some reason, searching again");
+            Debug.LogWarning("A current building wasn't assigned for some reason, searching again");
             // currentbuilding = findClosestTag(getResBuildName(),gameObject);
             findBuilding();
         }
@@ -311,11 +328,16 @@ public class collect : MonoBehaviour
         return closest;
     }
 
+
     
 
     public static bool onNavMesh(Vector3 position) {
         NavMeshHit hit;
         return NavMesh.SamplePosition(position,out hit, 0.3f, NavMesh.AllAreas);
+    }
+
+    void OnEnable(){
+        startCollecting(findingType);
     }
 
 
@@ -330,14 +352,11 @@ public class collect : MonoBehaviour
                 if(isFull()){
                     state = npcState.gotoBuilding;
                 }else{
-                // Keep gathering
-                    if(ready){
-                        StartCoroutine(doJob());
-                    }
+                    StartCoroutine(doJob());
                 }
             }
         }
-
+        }
         if(this.isSelectedResBuilding(other)){
             if(state == npcState.gotoBuilding){
                 state = npcState.dropRes;
@@ -350,7 +369,6 @@ public class collect : MonoBehaviour
                     }
                 }
             }
-        }
         }
     }
     private bool ready = true;

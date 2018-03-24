@@ -12,9 +12,4 @@ public class decreaseFoodConsumption : MonoBehaviour {
 	void Start () {
         MetaScript.getGlobal_Stats().setFoodSaved(MetaScript.getGlobal_Stats().getFoodSaved() + foodConsumption);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

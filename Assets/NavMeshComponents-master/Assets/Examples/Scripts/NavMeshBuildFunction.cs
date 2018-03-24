@@ -95,8 +95,4 @@ public class NavMeshBuildFunction : MonoBehaviour
         var bounds = QuantizedBounds();
         Gizmos.DrawWireCube(bounds.center, bounds.size);
     }
-
-    void Update(){
-        
-    }
 }

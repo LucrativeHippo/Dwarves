@@ -188,10 +188,6 @@ public class cave_generation : MonoBehaviour {
         }
         return count;
     }
-    // Update is called once per frame
-    void Update () {
-		
-	}
     public void generatePickups()
     {
         for (int i = 0; i < CAVE_DIMENSIONS; i++)

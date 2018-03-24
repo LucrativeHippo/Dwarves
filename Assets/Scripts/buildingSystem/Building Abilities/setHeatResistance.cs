@@ -8,9 +8,4 @@ public class setHeatResistance : MonoBehaviour {
 	void Start () {
         MetaScript.getGlobal_Stats().setHasHeatProtection(true);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
