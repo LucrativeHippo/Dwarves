@@ -50,6 +50,11 @@ public class MetaScript : MonoBehaviour {
         return getMetaObject().GetComponent<Global_Stats>();
     }
 
+    public static FoodSystem getFoodSystem()
+    {
+        return getMetaObject().GetComponent<FoodSystem>();
+    }
+
     //  public currentResourcesUIController resourceUI;
     public static void updateResourcesUI(){
         GameObject resObj = GameObject.Find("CurrentResources");
