@@ -109,7 +109,7 @@ public class Health : MonoBehaviour {
         }
     }
 
-    void displayDamage(int damage)
+    void displayDamage(float damage)
     {
         GameObject damageDealt = new GameObject();
         damageDealt.AddComponent<TextMesh>();

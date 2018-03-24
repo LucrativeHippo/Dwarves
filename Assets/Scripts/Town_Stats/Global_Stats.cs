@@ -73,15 +73,15 @@ public class Global_Stats : MonoBehaviour {
         healthMultiplier += multiplier;
     }
 
-    public float getHealthPool()
-    {
-        return healthPool;
-    }
+    //public float getHealthPool()
+    //{
+    //    return healthPool;
+    //}
 
-    public void setHealthPool(float health)
-    {
-        healthPool = health;
-    }
+    //public void setHealthPool(float health)
+    //{
+    //    healthPool = health;
+    //}
 
     public void setGatherMultiplier(float mult)
     {
