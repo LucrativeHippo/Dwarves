@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Calendar : MonoBehaviour {
 
@@ -103,6 +104,11 @@ public class Calendar : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        
+    }
+
+    public void generateNewWeatherSystem()
+    {
         climate = gameObject.GetComponent<Climate>();
         if (climate == null)
         {
@@ -123,11 +129,6 @@ public class Calendar : MonoBehaviour {
         {
             generateNewWeatherForecast();
         }
-
-        /*for (int i = 0; i < daysToForecast; i++)
-        {
-            Debug.Log(forecastTemp[i] + " : " + forecastWeather[i]);
-        }*/
     }
 
     public int getDaysPerSeason()
