@@ -9,9 +9,7 @@ public class NavMeshController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-
-        gameObject.GetComponent<LocalNavMeshBuilder>().enabled = false;
-        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        MetaScript.preTeleport();
     }
 
     void Start()

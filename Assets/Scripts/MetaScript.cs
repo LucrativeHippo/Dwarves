@@ -120,4 +120,19 @@ public class MetaScript : MonoBehaviour {
 		
 		return player;
 	}
+
+	/// <summary>
+	/// Turns off player's NavMesh in order
+	/// </summary>
+	public static void preTeleport(){
+        getPlayer().GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        getPlayer().GetComponent<LocalNavMeshBuilder>().enabled = false;
+	}
+	/// <summary>
+	/// Turns on player's NavMesh in order
+	/// </summary>
+	public static void postTeleport(){
+		getPlayer().GetComponent<LocalNavMeshBuilder>().enabled = true;
+        getPlayer().GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+	}
 }

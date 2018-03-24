@@ -36,9 +36,9 @@ public class door : MonoBehaviour {
         // if(pos != null)
         // {
             print(pos.x + "" + pos.y + "" + pos.z);
-            player.SetActive(false);
+            MetaScript.preTeleport();
             player.transform.position = pos;
-            player.SetActive(true);
+            MetaScript.postTeleport();
 
         player.GetComponent<DynamicGeneration>().enabled = true;
         player.GetComponent<InBuilding>().setPlayerInBuilding(false);
