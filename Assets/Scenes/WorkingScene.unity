@@ -773,9 +773,9 @@ MonoBehaviour:
   foodSaved: 0
   militaryAbility: 1
   healthPool: 0
-  gatherMultiplier: 0
-  hasHeatProtection: 0
-  hasColdProtection: 0
+  
+  
+  
 --- !u!114 &1368627735
 MonoBehaviour:
   m_ObjectHideFlags: 0
