@@ -28,10 +28,10 @@ public class building : MonoBehaviour, IActionable {
 
         player.GetComponent<DynamicGeneration>().enabled = false;
         MetaScript.GetInBuilding().setPlayerInBuilding(true);
-        player.SetActive(false);
+        
+        MetaScript.preTeleport();
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
-        player.GetComponent<LocalNavMeshBuilder>().enabled = true;
-        player.SetActive(true);
+        MetaScript.postTeleport();
 
         player.GetComponent<InBuilding>().setPlayerInBuilding(true);
         disableParticleSystems();
