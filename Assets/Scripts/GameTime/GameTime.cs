@@ -31,7 +31,8 @@ public class GameTime : MonoBehaviour
         stormBringer = gameObject.GetComponent<StormBringer>();
         postProcessing = GameObject.FindObjectOfType<UseCustomImageEffect>();
         daychange = GameObject.Find("daychange").GetComponent<Slider>();
-
+        daychangetext = GameObject.Find("totalday").GetComponent<Text>();
+        seasonchange = GameObject.Find("seasontext").GetComponent<Text>();
         stormBringer.initializeInternals();
 
         IEnumerator co = Timer(dayTime);

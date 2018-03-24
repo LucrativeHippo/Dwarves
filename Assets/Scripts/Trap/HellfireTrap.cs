@@ -95,8 +95,24 @@ public class HellfireTrap : MonoBehaviour {
 
         if (valid != null)
         {
-            buffsys.dmgApplyingSystem(victim, burnDuration, burnTickTime,
+            if (!checkIfInBuilding(victim))
+            {
+                buffsys.dmgApplyingSystem(victim, burnDuration, burnTickTime,
                 burnDamagePerTick, BuffsAndBoons.Effects.Burn);
+            }
+        }
+    }
+
+    private bool checkIfInBuilding(GameObject victim)
+    {
+        InBuilding buildingCheck = victim.GetComponent<InBuilding>();
+        if (buildingCheck == null)
+        {
+            return false;
+        }
+        else
+        {
+            return buildingCheck.getPlayerInBuilding();
         }
     }
 }

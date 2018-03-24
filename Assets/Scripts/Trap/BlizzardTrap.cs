@@ -149,7 +149,24 @@ public class BlizzardTrap : MonoBehaviour {
 
         if (valid != null)
         {
-            buffsys.slowApplyingSystem(victim, slowDuration, slowDecimal);
+            if (!checkIfInBuilding(victim))
+            {
+                buffsys.slowApplyingSystem(victim, slowDuration, slowDecimal);
+            }
+            
+        }
+    }
+
+    private bool checkIfInBuilding(GameObject victim)
+    {
+        InBuilding buildingCheck = victim.GetComponent<InBuilding>();
+        if (buildingCheck == null)
+        {
+            return false;
+        }
+        else
+        {
+            return buildingCheck.getPlayerInBuilding();
         }
     }
 }
