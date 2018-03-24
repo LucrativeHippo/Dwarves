@@ -95,8 +95,7 @@ public class collect : MonoBehaviour
         setSkills();
 
         // Current resource is not the right type
-        if(currentresource == null || currentresource.CompareTag(getFindingType()))
-            findResource();
+        findResource();
         
         if(currentresource == null){
             agent.SetDestination(transform.position);
