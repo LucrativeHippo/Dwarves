@@ -50,6 +50,7 @@ public class Health : MonoBehaviour {
         health -= dmg;
         publish();
         notifyNPC();
+        displayDamage(dmg);
         if (health <= 0 && !isImmortal) {
             death();
         }
@@ -91,5 +92,28 @@ public class Health : MonoBehaviour {
             dealDamage = false;
             damage(1);
         }
+    }
+
+    void displayDamage(int damage)
+    {
+        GameObject damageDealt = new GameObject();
+        damageDealt.AddComponent<TextMesh>();
+        damageDealt.AddComponent<MeshRenderer>();
+        damageDealt.AddComponent<Rigidbody>();
+        if(damage < 0)
+        {
+            damageDealt.GetComponent<MeshRenderer>().material.color = Color.green;
+        }
+        else
+        {
+            damageDealt.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+        
+        damageDealt.GetComponent<TextMesh>().text = damage.ToString();
+        damageDealt.GetComponent<TextMesh>().characterSize = 0.07f;
+        damageDealt.transform.position = gameObject.transform.position + new Vector3(0,0.6f,0);
+        damageDealt.GetComponent<Rigidbody>().AddForce(0, 50.0f, 0);
+        //damageDealt.GetComponent<Rigidbody>().useGravity = false;
+        Destroy(damageDealt, 1.5f);
     }
 }
