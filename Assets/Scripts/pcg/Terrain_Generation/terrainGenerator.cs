@@ -21,7 +21,8 @@ public class terrainGenerator : MonoBehaviour
     [SerializeField]
     private int yPlayerChunkPos;
 
-
+    [SerializeField]
+    private int NPCspawnRate = 50;
 
     [SerializeField]
     private int chunksLoaded = 3;
@@ -796,10 +797,10 @@ public class terrainGenerator : MonoBehaviour
             resourceMap.Add(key, resource.GOLD);
         }
 
-            if (!resourceMap.ContainsKey(key))
+            if (!resourceMap.ContainsKey(key) && terrainMap[key] != terrain.WATER)
         {
 
-            if (Random.Range(1, 600) == 1)
+            if (Random.Range(1, NPCspawnRate) == 1)
             {
                 resourceMap.Add(key, resource.NPC);
             }
