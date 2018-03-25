@@ -6,13 +6,14 @@ using UnityEngine.AI;
 public class enemyAI : MonoBehaviour {	
 	public GameObject opponent;
 	NavMeshAgent agentCtrl;
-
+    private Animator anim;
 	public float threatRange;
 
 
 
 	// Use this for initialization
 	void Start () {
+        anim = gameObject.GetComponentInChildren<Animator>();
 		agentCtrl = this.GetComponent<NavMeshAgent>();
 		getDest();
 		setDestination();
@@ -65,7 +66,9 @@ public class enemyAI : MonoBehaviour {
 
 	void combat(){
 		Debug.Log("Combat Entered");
+
 		if(opponent != null){
+            anim.SetBool("attack", true);
 			opponent.GetComponent<Health>().damage(1);
 
 		}
