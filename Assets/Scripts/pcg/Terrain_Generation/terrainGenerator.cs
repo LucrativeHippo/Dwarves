@@ -409,7 +409,9 @@ public class terrainGenerator : MonoBehaviour
         resourceMap = new Dictionary<string, resource>();
         int tempx = getxPlayerChunkPos() * Chunk.SIZE + getxPlayerPos();
         int tempy = getyPlayerChunkPos() * Chunk.SIZE + getyPlayerPos();
-        
+        waterAmount = PlayerPrefs.GetFloat("water");
+        terrainAmount = PlayerPrefs.GetFloat("terrain");
+        resourceAmount = PlayerPrefs.GetFloat("resource");
         for (int i = (tempx - 3); i < (tempx + 4); i++)
         {
             for (int j = (tempy - 3); j < (tempy + 4); j++)
