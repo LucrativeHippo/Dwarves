@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
             animator.SetBool("moveDown", false);
             animator.SetBool("moveLeft", false);
             animator.SetBool("moveRight", false);
+            animator.SetBool("attack", false);
         }
 
         if (Input.GetKey(KeyCode.W)) 
@@ -59,6 +60,15 @@ public class PlayerMovement : MonoBehaviour {
             {
                 noAnim = false;
                 animator.SetBool("moveRight", true);
+            }
+        }
+        if (Input.GetKey(KeyCode.F))
+        {
+          
+            if (animator != null && noAnim)
+            {
+                noAnim = false;
+                animator.SetBool("attack", true);
             }
         }
 
