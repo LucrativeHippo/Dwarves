@@ -1172,6 +1172,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 4255800718452002, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
   m_IsPrefabParent: 0
@@ -4489,6 +4493,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!1 &1320045233 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1124489161256058, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+    type: 2}
+  m_PrefabInternal: {fileID: 357748716}
+--- !u!114 &1320045247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1320045233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebec7125ecc3d4b40a9f0bbdee5014db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1321131540
 GameObject:
   m_ObjectHideFlags: 0
@@ -4682,7 +4702,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fe19957b2c95946b606b737ae299a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateTimer: 1
 --- !u!114 &1328088771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4893,8 +4912,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodSaved: 0
   militaryAbility: 1
-  healthPool: 0
-  gatherMultiplier: 0
+  damageMultiplier: 1
+  healthMultiplier: 1
   baseGather: 0
   hasHeatProtection: 0
   hasColdProtection: 0
