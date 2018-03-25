@@ -13,14 +13,4 @@ public class QuestTempResource : MonoBehaviour, IActionable {
     public void damage(int x){
         // empty receiver for error avoidance
     }
-
-    // Use this for initialization
-    void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

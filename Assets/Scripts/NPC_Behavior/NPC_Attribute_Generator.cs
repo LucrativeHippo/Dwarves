@@ -12,11 +12,4 @@ public class NPC_Attribute_Generator : MonoBehaviour {
 		//others' code
 
 		}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-		
-
 }

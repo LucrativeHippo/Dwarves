@@ -17,6 +17,8 @@ public class buildingMenuUiController : MonoBehaviour {
 
     void Update () {
         if (Input.GetKeyDown (exitKey)) {
+            buildingMenuObject.transform.GetChild (0).gameObject.SetActive (false);
+            buildingMenuObject.transform.GetChild (1).gameObject.SetActive (false);
             buildingMenuObject.SetActive (false);
         }
     }

@@ -5,12 +5,15 @@ using UnityEngine;
 public class Health : MonoBehaviour {
     /// The health.
     [SerializeField]
-    int health = 10;
+    float health = 10;
     [SerializeField]
-    int maxHealth;
+    float maxHealth;
     [SerializeField]
     bool isImmortal = false;
     public bool dealDamage = false;
+
+    float originalMaxHp = 10;
+    float originalHealthMultiplier = 1;
 
     LinkedList<IHealthListener> subscribers = new LinkedList<IHealthListener>();
 
@@ -27,13 +30,14 @@ public class Health : MonoBehaviour {
 
     public void Start () {
         maxHealth = health;
+        originalMaxHp = maxHealth;
     }
 
 
-    public int getHealth(){
+    public float getHealth(){
         return health;
     }
-    public int getMaxHealth(){
+    public float getMaxHealth(){
         return maxHealth;
     }
 
@@ -43,17 +47,29 @@ public class Health : MonoBehaviour {
     /// <param name="dmg">Damage to deal.</param>
     /// <returns>True if health less than 0, false otherwise.</returns>
     /// <exception cref="UnityException">Throws if dmg is less than 0.</exception>
-    public void damage (int dmg) {
+    public void damage (float dmg) {
         if (dmg < 0)
             throw new UnityException ("You can't heal from damage!");
             
         health -= dmg;
         publish();
         notifyNPC();
+        displayDamage(dmg);
         if (health <= 0 && !isImmortal) {
             death();
         }
     }
+
+    void Update()
+    {
+        if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag!= "Enemy")
+        {
+ 
+            originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
+            maxHealth = originalMaxHp * originalHealthMultiplier;
+            health = maxHealth;
+        }
+      }
 
     /// <summary>
     /// Heal the character. Only heals up to max health.
@@ -91,5 +107,28 @@ public class Health : MonoBehaviour {
             dealDamage = false;
             damage(1);
         }
+    }
+
+    void displayDamage(float damage)
+    {
+        GameObject damageDealt = new GameObject();
+        damageDealt.AddComponent<TextMesh>();
+        damageDealt.AddComponent<MeshRenderer>();
+        damageDealt.AddComponent<Rigidbody>();
+        if(damage < 0)
+        {
+            damageDealt.GetComponent<MeshRenderer>().material.color = Color.green;
+        }
+        else
+        {
+            damageDealt.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+        
+        damageDealt.GetComponent<TextMesh>().text = damage.ToString();
+        damageDealt.GetComponent<TextMesh>().characterSize = 0.07f;
+        damageDealt.transform.position = gameObject.transform.position + new Vector3(0,0.6f,0);
+        damageDealt.GetComponent<Rigidbody>().AddForce(0, 50.0f, 0);
+        //damageDealt.GetComponent<Rigidbody>().useGravity = false;
+        Destroy(damageDealt, 1.5f);
     }
 }

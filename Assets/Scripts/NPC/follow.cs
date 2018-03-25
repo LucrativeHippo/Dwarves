@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class follow : MonoBehaviour {
 
-    private GameObject target;
     private UnityEngine.AI.NavMeshAgent navComponent;
     // the distance in which to follow the player
     [SerializeField]
@@ -20,44 +19,33 @@ public class follow : MonoBehaviour {
     // Use this for initialization
     void Start () {
         
-        target = GameObject.FindWithTag("Player");
         navComponent = this.transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        
-
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(target == null)
-        {
-            target = GameObject.FindWithTag("Player");
-        }
+        Vector3 tPos = MetaScript.getPlayer().transform.position;
+        Vector3 pPos = transform.position;
+        navComponent.enabled = true;
+        //navComponent.SetDestination(target.transform.position);
+        float distanceToTarget = Vector3.SqrMagnitude(tPos- pPos);
         
-        if (target != null)
+        if (distanceToTarget <= Mathf.Pow(followDistance,2))
         {
-            Vector3 tPos = target.transform.position;
-            Vector3 pPos = transform.position;
-            navComponent.enabled = true;
-            //navComponent.SetDestination(target.transform.position);
-            float distanceToTarget = Vector3.SqrMagnitude(tPos- pPos);
             
-            if (distanceToTarget <= Mathf.Pow(followDistance,2))
-            {
-                
-                navComponent.isStopped = true;
-                
-            }else if(distanceToTarget >= Mathf.Pow(maxDist,2)){
-                navComponent.enabled = false;
-                Vector3 updatePos = (pPos - tPos).normalized*maxDist+tPos;
-                updatePos.y = tPos.y;
-                transform.position = updatePos;
-                navComponent.enabled = true;
-            }else {
-                navComponent.isStopped = false;
-                navComponent.SetDestination(tPos);
-                
-            }
+            navComponent.isStopped = true;
+            
+        }else if(distanceToTarget >= Mathf.Pow(maxDist,2)){
+            navComponent.enabled = false;
+            Vector3 updatePos = (pPos - tPos).normalized*maxDist+tPos;
+            updatePos.y = tPos.y;
+            transform.position = updatePos;
+            navComponent.enabled = true;
+        }else {
+            navComponent.isStopped = false;
+            navComponent.SetDestination(tPos);
+            
         }
     }
     public float maxDist = 5f;

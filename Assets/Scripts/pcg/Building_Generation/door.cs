@@ -13,26 +13,9 @@ public class door : MonoBehaviour {
     // Use this for initialization
     void Start () {
         
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = MetaScript.getPlayer();
 
     }
-	
-	// Update is called once per frame
-    void Update () {
-        Debug.Log(MetaScript.GetInBuilding().getPlayerInBuilding());
-        if (! MetaScript.GetInBuilding().getPlayerInBuilding())
-        {
-            if (player.GetComponentInChildren<ParticleSystem>() != null)
-            {
-                ps = player.GetComponentsInChildren<ParticleSystem>();
-                for (int i = 0; i < ps.Length; i++)
-                {
-                    ps[i].Play();
-                }
-            }
-        }
-		
-	}
 
     public void setReturn(int x, int y, int z)
     {
@@ -48,12 +31,12 @@ public class door : MonoBehaviour {
         // if(pos != null)
         // {
             print(pos.x + "" + pos.y + "" + pos.z);
-            player.SetActive(false);
+            MetaScript.preTeleport();
             player.transform.position = pos;
-            player.SetActive(true);
+            MetaScript.postTeleport();
 
         player.GetComponent<DynamicGeneration>().enabled = true;
-        MetaScript.GetInBuilding().setPlayerInBuilding(false);
+        player.GetComponent<InBuilding>().setPlayerInBuilding(false);
         //gameObject.GetComponent<ParticleSystem>().emission.enabled = true;
             //print(xpos + zpos);
         // }
@@ -62,5 +45,20 @@ public class door : MonoBehaviour {
             
         //     Debug.Log("The return building has not been set yet");
         // }
+    }
+
+    private void enableParticleSystems()
+    {
+        if (!player.GetComponent<InBuilding>().getPlayerInBuilding())
+        {
+            ps = ps = player.GetComponentsInChildren<ParticleSystem>();
+            if (ps != null)
+            {
+                for (int i = 0; i < ps.Length; i++)
+                {
+                    ps[i].Play();
+                }
+            }
+        }
     }
 }

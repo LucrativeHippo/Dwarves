@@ -9,6 +9,8 @@ public class enemyAI : MonoBehaviour {
     private Animator anim;
 	public float threatRange;
 
+    public float damage;
+
 
 
 	// Use this for initialization
@@ -27,16 +29,23 @@ public class enemyAI : MonoBehaviour {
 	}
     // Update is called once per frame
     void Update(){
-		if(opponent == null){
-			getDest();
-		}else{
-			setDestination();
-		}
+        if (opponent == null)
+        {
+            getDest();
+        }
+        else
+        {
+            setDestination();
+        }
     }
 
 	private void setDestination(){
 		if (opponent != null) {
-			if(!withinAttackRange()){
+            if(opponent.tag.Equals("ProtectedNPC"))
+            {
+                getDest();
+            }
+			else if(!withinAttackRange()){
 				agentCtrl.isStopped = false;
 				agentCtrl.SetDestination (opponent.transform.position);
 			}else{
@@ -69,7 +78,7 @@ public class enemyAI : MonoBehaviour {
 
 		if(opponent != null){
             anim.SetBool("attack", true);
-			opponent.GetComponent<Health>().damage(1);
+			opponent.GetComponent<Health>().damage(damage);
 
 		}
 	}

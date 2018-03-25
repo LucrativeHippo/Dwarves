@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 114774395374734380}
   - component: {fileID: 54073504715295592}
   - component: {fileID: 33829965957804318}
+  - component: {fileID: 114420386298659932}
   m_Layer: 0
   m_Name: Town_Levy
   m_TagString: Untagged
@@ -375,6 +376,17 @@ MonoBehaviour:
   upgradeMaterial: {fileID: 2100000, guid: 0b6a796b448f504489aab54134005a94, type: 2}
   upgradeCostList: 000000000000000000000000000000000000000000000000000000000000000000000000
   upgrade: {fileID: 1449137886219876, guid: 1e7b103f7f7246045b672ac6f9d099a3, type: 2}
+--- !u!114 &114420386298659932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1989634092296674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199b9b5866f77d4683492a8a00c397e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114774395374734380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -387,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
+  buildingLimit: 0
 --- !u!212 &212307772328896136
 SpriteRenderer:
   m_ObjectHideFlags: 1

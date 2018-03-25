@@ -78,5 +78,72 @@ Weatherman: Unfotunately no one else is capable of my job, so I have to stay her
 [title=weatherman-option-5-picked-end]
 
 [title=weatherman-option-6-picked-start]
-Weatherman: Here's the forecast for today.
+Weatherman: [question=9999]Do you want to know about the temperature, or the weather conditions?
+[choice]Temperature Trend
+[choice]Upcoming Weather Conditions
+[choice]Actually, nevermind.
 [title=weatherman-option-6-picked-end]
+
+[title=hellfire-forecast-start]
+HELLFIRE!
+[title=hellfire-forecast-end]
+
+[title=rain-forecast-start]
+RAIN!
+[title=rain-forecast-end
+
+[title=sunny-forecast-start]
+SUNNY!
+[title=sunny-forecast-end]
+
+[title=acid-rain-forecast-start]
+ACID RAIN!
+[title=acid-rain-forecast-end]
+
+[title=cloudy-forecast-start]
+CLOUDY!
+[title=cloudy-forecast-end]
+
+[title=snow-forecast-start]
+SNOW!
+[title=snow-forecast-end]
+
+[title=blizzard-forecast-start]
+BLIZZARD!
+[title=blizzard-forecast-end]
+
+[title=perfect-forecast-start]
+PERFECT!
+[title=perfect-forecast-end]
+
+[title=scary-lightning-forecast-start]
+SCARY LIGHTNING!
+[title=scary-lightning-forecast-end]
+
+[title=super-hot-forecast-start]
+SUPER HOT!
+[title=super-hot-forecast-end]
+
+[title=temperature-neutral-forecast-start]
+It doesn't look like the temperature is going to change much in the coming days.
+[title=temperature-neutral-forecast-end]
+
+[title=temperature-cold-forecast-start]
+It looks like the temperature is going to trend colder in the coming days.
+[title=temperature-cold-forecast-end]
+
+[title=temperature-hot-forecast-start]
+It looks like the temperature is going to trend hotter in the coming days.
+[title=temperature-hot-forecast-end]
+
+[title=PISC-default-talk-start]
+Narrator: You approach three sheep in a clearing that seem to be terrified by you...
+Sheep 1: Please the other two are fatter eat them instead, I'm just skin and bones.
+Sheep 2: One of these other two is clearly not a sheep, you should kill them before they turn into monsters.
+Sheep 3: If you spare me I'll serve you faithfully for the rest of my days.
+Narrator: [question=2]Which sheep will you spare?
+[choice]The skinny sheep.
+[choice]The traitorous sheep.
+[choice]The loyal sheep.
+[title=PISC-default-talk-end]
+

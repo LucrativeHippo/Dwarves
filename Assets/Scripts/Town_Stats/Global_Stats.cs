@@ -10,7 +10,21 @@ public class Global_Stats : MonoBehaviour {
     private float militaryAbility = 1;
 
     [SerializeField]
-    private float healthPool;
+    private float damageMultiplier = 1f;
+
+    [SerializeField]
+    private float healthMultiplier = 1f;
+
+    private float gatherMultiplier;
+
+    [SerializeField]
+    private float baseGather;
+
+    [SerializeField]
+    private bool hasHeatProtection;
+
+    [SerializeField]
+    private bool hasColdProtection;
 
 
     public float getFoodSaved()
@@ -23,6 +37,16 @@ public class Global_Stats : MonoBehaviour {
         foodSaved = food;
     }
 
+    public float getBaseGather()
+    {
+        return baseGather;
+    }
+
+    public void setBaseGather(float gather)
+    {
+        baseGather = gather;
+    }
+
     public float getMilitaryAbility()
     {
         return militaryAbility;
@@ -33,14 +57,64 @@ public class Global_Stats : MonoBehaviour {
         militaryAbility = military;
     }
 
-    public float getHealthPool()
-    {
-        return healthPool;
+    public void setAtkMultiplier(float multiplier){
+        damageMultiplier += multiplier;
     }
 
-    public void setHealthPool(float health)
+    public float getAtkMultiplier(){
+        return damageMultiplier;
+    }
+
+    public float getHealthMultiplier(){
+        return healthMultiplier;
+    }
+
+    public void setHealthMultiplier(float multiplier){
+        healthMultiplier += multiplier;
+    }
+
+    //public float getHealthPool()
+    //{
+    //    return healthPool;
+    //}
+
+    //public void setHealthPool(float health)
+    //{
+    //    healthPool = health;
+    //}
+
+    public void setGatherMultiplier(float mult)
     {
-        healthPool = health;
+        gatherMultiplier = mult;
+        if (gatherMultiplier < 0)
+        {
+            gatherMultiplier = 0;
+        }
+    }
+
+    public float getGatherMultiplier()
+    {
+        return gatherMultiplier;
+    }
+
+    public void setHasHeatProtection(bool has)
+    {
+        hasHeatProtection = has;
+    }
+
+    public bool getHasHeatProtection()
+    {
+        return hasHeatProtection;
+    }
+
+    public void setHasColdProtection(bool has)
+    {
+        hasColdProtection = has;
+    }
+
+    public bool getHasColdProtection()
+    {
+        return hasColdProtection;
     }
 	// Use this for initialization
 	void Start () {

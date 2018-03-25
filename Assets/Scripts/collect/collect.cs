@@ -21,7 +21,7 @@ public class collect : MonoBehaviour
     ResourceTypes findingType = ResourceTypes.WOOD;
 
     public string getFindingType(){
-        return findingType.ToString();
+        return getResourceName(findingType);
     }
 
     private float getRateStat(){ 
@@ -73,34 +73,33 @@ public class collect : MonoBehaviour
     }
     
     public void startCollecting(ResourceTypes t){
-        // TODO: checks to make sure we have found this resource
-
-        // TODO: Uncomment this once we have all buildings implemented
-        // Checks also needed for building destruction
-        // if(resAmount != 0 && findingType != t){
-        //     state = npcState.dropResource;
-        //     while(resAmount!=0){
-        //         // do nothing until the drop off current resource
-        //     }
-        // }
-
         // after dropping resource 
-        findingType = t;
 
-        // TODO: check this npc stats change multipliers
 
-        curRes = 0;
 
-        Debug.Log("startCollecting");
-        string s = getFindingType();
-        findBuilding();
-        Debug.Log(s);
+        
+        // npc is not in range of current building
+        if(!isBuildingInRange(currentbuilding))
+            findBuilding();
+        
         //updateLocations();
-        setSkills();
         agent.enabled = true;
         agent.isStopped = false;
         state = npcState.gotoResource;
+        
+        
+        if(findingType != t){
+            findingType = t;
+            curRes = 0;
+        }
+        setSkills();
+
+        // Current resource is not the right type
         findResource();
+        
+        if(currentresource == null){
+            agent.SetDestination(transform.position);
+        }
     }
 
 
@@ -163,22 +162,50 @@ public class collect : MonoBehaviour
     }
 
     private void findBuilding(){
-        currentbuilding = findClosestTag(getResBuildName(),gameObject);
+        GameObject[] gos = GameObject.FindGameObjectsWithTag(getResBuildName());
+        currentbuilding = null;
+        foreach (GameObject go in gos)
+        {
+            if(isBuildingInRange(go)){
+                currentbuilding= go;
+                return;
+            }
+        }
+        Debug.LogError("COULDN'T FIND A BUILDING");
     }
+
+    
+    private bool isBuildingInRange(GameObject building){
+        if(building!=null && building.activeInHierarchy){
+            NavMeshBuildFunction f = building.GetComponent<NavMeshBuildFunction>();
+            if(f!= null && f.GetBounds().Contains(transform.position)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void findResource(){
-        
+        if(currentresource!=null)
+            currentresource.GetComponent<MaxCollectors>().remove();
+
+
         if(currentbuilding == null){
-            Debug.Log("A: current building wasn't assigned for some reason, searching again");
+            Debug.LogWarning("A current building wasn't assigned for some reason, searching again");
             // currentbuilding = findClosestTag(getResBuildName(),gameObject);
             findBuilding();
         }
-        if(currentbuilding != null){
-            currentresource = findClosestTagInResBuilding(getResName(), currentbuilding);
-        }else{
-            currentresource = findClosestTag(getResName(), gameObject);
-            Debug.LogWarning("No resource buildings found, using my location as search point.");
-        }
+        currentresource = findClosestResTagFromResBuilding();
+        
+        // if(currentresource == null){
+        //     currentresource = findClosestTag(getResName(), gameObject);
+        //     Debug.LogWarning("No resource buildings found, using my location as search point.");
+        // }
+        
+        if(currentresource != null)
+            currentresource.GetComponent<MaxCollectors>().add();
     }
+    
     private void moveTo(GameObject g){
         agent.isStopped = false;
 
@@ -205,15 +232,14 @@ public class collect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(emptyBuilding() || emptyResource()){
-            updateLocations();
-        }
         switch(state){
             case npcState.gotoBuilding:
+            checkBuilding();
             moveSteps(currentbuilding);
                 break;
 
             case npcState.gotoResource:
+            checkRes();
             moveSteps(currentresource);
                 break;
             
@@ -231,8 +257,7 @@ public class collect : MonoBehaviour
                 if(isFull()){
                     state = npcState.gotoBuilding;
                 }else if(currentresource == null){
-                    //findResource();
-                    updateLocations();
+                    checkRes();
                 }
                 break;
 
@@ -242,6 +267,16 @@ public class collect : MonoBehaviour
                 break;
             default: break;
 
+        }
+    }
+
+    private void checkBuilding(){
+        if(currentbuilding == null)
+            findBuilding();
+    }
+    private void checkRes(){
+        if(currentresource == null){
+            findClosestResTagFromResBuilding();
         }
     }
 
@@ -273,27 +308,24 @@ public class collect : MonoBehaviour
         return findClosestTag(name,from,Mathf.Infinity);
     }
 
-    private GameObject findClosestTagInResBuilding(string name, GameObject resBuilding){
-        GameObject [] gos = GameObject.FindGameObjectsWithTag(name);
+    private GameObject findClosestResTagFromResBuilding(){
+        GameObject [] gos = GameObject.FindGameObjectsWithTag(getResName());
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 pos = gameObject.transform.position;
-        if(resBuilding==null){
+        if(currentbuilding==null){
             Debug.LogError("ResBuilding value of null");
             return null;
         }
-        Bounds bound = resBuilding.GetComponentInChildren<NavMeshBuildFunction>().GetBounds();
+        Bounds bound = currentbuilding.GetComponentInChildren<NavMeshBuildFunction>().GetBounds();
 
-        if(bound == null){
-            Debug.LogError("Building did not have navMesh build function");
-            return null;
-        }
 
         foreach(GameObject g in gos){
             float dist = (g.transform.position - pos).sqrMagnitude;
             
-            NavMeshPath tempPath = new NavMeshPath();
-            if(dist < distance && g.activeInHierarchy && bound.Contains(g.transform.transform.position)){//} && 
+            //NavMeshPath tempPath = new NavMeshPath();
+            if(dist < distance && g.activeInHierarchy && bound.Contains(g.transform.transform.position)
+             && g.GetComponent<MaxCollectors>().hasRoom()){//} && 
             //onNavMesh(g.transform.position) && NavMesh.CalculatePath(pos,g.transform.position,NavMesh.AllAreas, tempPath)){
                 closest = g;
                 distance = dist;
@@ -304,10 +336,15 @@ public class collect : MonoBehaviour
     }
 
 
+    
 
     public static bool onNavMesh(Vector3 position) {
         NavMeshHit hit;
         return NavMesh.SamplePosition(position,out hit, 0.3f, NavMesh.AllAreas);
+    }
+
+    void OnEnable(){
+        startCollecting(findingType);
     }
 
 
@@ -322,14 +359,11 @@ public class collect : MonoBehaviour
                 if(isFull()){
                     state = npcState.gotoBuilding;
                 }else{
-                // Keep gathering
-                    if(ready){
-                        StartCoroutine(doJob());
-                    }
+                    StartCoroutine(doJob());
                 }
             }
         }
-
+        }
         if(this.isSelectedResBuilding(other)){
             if(state == npcState.gotoBuilding){
                 state = npcState.dropRes;
@@ -342,7 +376,6 @@ public class collect : MonoBehaviour
                     }
                 }
             }
-        }
         }
     }
     private bool ready = true;
@@ -367,6 +400,8 @@ public class collect : MonoBehaviour
     }
 
     private void drop(){
+        float resMult = MetaScript.getGlobal_Stats().getGatherMultiplier();
+        curRes = (int) ((float) curRes * resMult);
         MetaScript.getRes().addResource(this.findingType,curRes);
         curRes = 0;
     }

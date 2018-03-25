@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 54620492386835788}
   - component: {fileID: 33422975946972734}
   - component: {fileID: 114635324049006734}
+  - component: {fileID: 114910493901312216}
   m_Layer: 0
   m_Name: Storage Pit
   m_TagString: Untagged
@@ -192,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
+  buildingLimit: 1
 --- !u!114 &114635324049006734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,6 +206,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmount: 00000000c8000000640000000a0000000a00000000000000000000000000000000000000
+--- !u!114 &114910493901312216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1354543329386846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199b9b5866f77d4683492a8a00c397e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212651758755361694
 SpriteRenderer:
   m_ObjectHideFlags: 1

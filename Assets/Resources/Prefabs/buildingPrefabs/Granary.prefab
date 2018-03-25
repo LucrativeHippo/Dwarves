@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 54068915023163654}
   - component: {fileID: 33537928036072016}
   - component: {fileID: 114426585356862198}
+  - component: {fileID: 114543565215089958}
   m_Layer: 0
   m_Name: Granary
   m_TagString: Untagged
@@ -192,6 +193,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmount: 640000000000000000000000000000000000000000000000000000000000000000000000
+--- !u!114 &114543565215089958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407318134520498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e199b9b5866f77d4683492a8a00c397e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114908588359147980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
+  buildingLimit: 1
 --- !u!212 &212758219014252418
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -25,7 +25,7 @@ public class IncreasePlots : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         added = new Dictionary<string, bool>();
-        tc = GameObject.Find("Campfire(Clone)");
+        tc = MetaScript.getTownCenter();
         //tg = GameObject.Find("Terrain Generator").GetComponent<terrainGenerator>();
         if (tc != null)
         {
@@ -57,10 +57,5 @@ public class IncreasePlots : MonoBehaviour {
                 }
             }
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
 	}
 }
