@@ -5,14 +5,14 @@ using UnityEngine;
 public class Health : MonoBehaviour {
     /// The health.
     [SerializeField]
-    float health = 10;
+    int health = 10;
     [SerializeField]
-    float maxHealth;
+    int maxHealth;
     [SerializeField]
     bool isImmortal = false;
     public bool dealDamage = false;
 
-    float originalMaxHp = 10;
+    int originalMaxHp;
     float originalHealthMultiplier = 1;
 
     LinkedList<IHealthListener> subscribers = new LinkedList<IHealthListener>();
@@ -47,7 +47,7 @@ public class Health : MonoBehaviour {
     /// <param name="dmg">Damage to deal.</param>
     /// <returns>True if health less than 0, false otherwise.</returns>
     /// <exception cref="UnityException">Throws if dmg is less than 0.</exception>
-    public void damage (float dmg) {
+    public void damage (int dmg) {
         if (dmg < 0)
             throw new UnityException ("You can't heal from damage!");
             
@@ -60,23 +60,12 @@ public class Health : MonoBehaviour {
         }
     }
 
-    void Update()
-    {
-        if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag!= "Enemy")
-        {
- 
-            originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
-            maxHealth = originalMaxHp * originalHealthMultiplier;
-            health = maxHealth;
-        }
-      }
-
     /// <summary>
     /// Heal the character. Only heals up to max health.
     /// </summary>
     /// <param name="heal">Amount to heal.</param>
     /// <exception cref="UnityException">Throws if heal is less than 0.</exception>
-    public void heal (int heal) {
+    public void healHealth (int heal) {
         if (heal < 0)
             throw new UnityException ("You can't damage from heal!");
 		
@@ -88,11 +77,48 @@ public class Health : MonoBehaviour {
         publish();
     }
 
+    public void damageCapacity(int dmg){
+        if(dmg < 0)
+            throw new UnityException ("You can't heal from damage!");
+
+        maxHealth -= dmg;
+        healHealth(0);
+        damage(0);
+    }
+
+    public void healCapacity(int heal){
+        if(heal < 0)
+            throw new UnityException("You can't damage from heal");
+        
+        maxHealth += heal;
+        if(maxHealth > originalMaxHp){
+            maxHealth = originalMaxHp;
+        }
+        healHealth(heal);
+    }
+
     public void death(){
         if(CompareTag("OwnedNPC")){
             MetaScript.GetNPC().removeNPC(gameObject);
         }
-        Destroy(gameObject);
+        if(CompareTag("Player")){
+            GameObject sacrifice = MetaScript.GetSacrificialNPC();
+            
+            // Stop npc from moving;
+            sacrifice.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
+            
+            MetaScript.preTeleport();
+            transform.position = sacrifice.transform.position;
+            sacrifice.transform.eulerAngles = new Vector3(0,0,90);
+            MetaScript.postTeleport();
+            
+            // TODO: Delay spawn
+            // Destroy npc
+            sacrifice.GetComponent<Health>().death();
+            health = maxHealth;
+        }else{
+            Destroy(gameObject);
+        }
     }
 
     public void notifyNPC(){
@@ -131,4 +157,17 @@ public class Health : MonoBehaviour {
         //damageDealt.GetComponent<Rigidbody>().useGravity = false;
         Destroy(damageDealt, 1.5f);
     }
+
+    
+
+    void Update()
+    {
+        if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag!= "Enemy")
+        {
+ 
+            originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
+            maxHealth = Mathf.RoundToInt(originalMaxHp * originalHealthMultiplier);
+            health = maxHealth;
+        }
+      }
 }

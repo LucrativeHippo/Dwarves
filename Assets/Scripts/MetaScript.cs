@@ -135,4 +135,46 @@ public class MetaScript : MonoBehaviour {
 		getPlayer().GetComponent<LocalNavMeshBuilder>().enabled = true;
         getPlayer().GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
 	}
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	public static GameObject GetSacrificialNPC(){
+		if(GetNPC().getCount() == 0){
+			return null;
+		}
+
+		GameObject weakestSacrifice = null;
+		GameObject townSacrifice = null;
+		Bounds tcBounds = getTownCenter().GetComponent<NavMeshBuildFunction>().GetBounds();
+
+		foreach(GameObject npc in GetNPC().getNPCs()){
+			if(weakestSacrifice == null)
+				weakestSacrifice = npc;
+			else{
+				if(weakestSacrifice.GetComponent<Skills>().getRank() < npc.GetComponent<Skills>().getRank()){
+					weakestSacrifice = npc;
+				}
+			}
+			if(tcBounds.Contains(npc.transform.position)){
+				if(townSacrifice == null)
+					townSacrifice = npc;
+				else{
+					if(townSacrifice.GetComponent<Skills>().getRank() < npc.GetComponent<Skills>().getRank()){
+						townSacrifice = npc;
+					}
+				}
+			}
+		}
+
+		if(weakestSacrifice == null)
+			throw new UnityException("Didn't find a sacrifice when there should have been one");
+		
+		if(townSacrifice == null){
+			return weakestSacrifice;;
+		}else{
+			return townSacrifice;
+		}
+	}
 }
