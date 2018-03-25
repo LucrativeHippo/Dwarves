@@ -232,15 +232,14 @@ public class collect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(emptyBuilding() || emptyResource()){
-            updateLocations();
-        }
         switch(state){
             case npcState.gotoBuilding:
+            checkBuilding();
             moveSteps(currentbuilding);
                 break;
 
             case npcState.gotoResource:
+            checkRes();
             moveSteps(currentresource);
                 break;
             
@@ -258,8 +257,7 @@ public class collect : MonoBehaviour
                 if(isFull()){
                     state = npcState.gotoBuilding;
                 }else if(currentresource == null){
-                    //findResource();
-                    updateLocations();
+                    checkRes();
                 }
                 break;
 
@@ -269,6 +267,16 @@ public class collect : MonoBehaviour
                 break;
             default: break;
 
+        }
+    }
+
+    private void checkBuilding(){
+        if(currentbuilding == null)
+            findBuilding();
+    }
+    private void checkRes(){
+        if(currentresource == null){
+            findClosestResTagFromResBuilding();
         }
     }
 
