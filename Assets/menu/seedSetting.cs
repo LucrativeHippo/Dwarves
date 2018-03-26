@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 
 public class seedSetting : MonoBehaviour {
-    private float waterValue;
-    private float resourceValue;
-    private float terrainValue;
+    private float waterValue = 1.0f;
+    private float resourceValue = 1.0f;
+    private float terrainValue = 1.0f;
 
     public Slider waterSlider;
     public Slider resourceSlider;
