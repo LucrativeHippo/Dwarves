@@ -28,10 +28,10 @@ GameObject:
   - component: {fileID: 33794285468015786}
   - component: {fileID: 23249867035453984}
   - component: {fileID: 54933235236497286}
-  - component: {fileID: 114122585006287134}
   - component: {fileID: 114998365521327150}
   - component: {fileID: 114015566182474344}
   - component: {fileID: 114259557058467334}
+  - component: {fileID: 114585376397547320}
   m_Layer: 0
   m_Name: NavNPC
   m_TagString: Untagged
@@ -267,7 +267,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1124489161256058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.4512095, y: -1.81, z: 6.7502747}
+  m_LocalPosition: {x: 2.497, y: 0.0666, z: 2.5}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 224785508109479208}
@@ -478,24 +478,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114122585006287134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1124489161256058}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 594da8df069b840738ba9f60b9d46ae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEnemy: 0
-  inCombat: 0
-  opponent: {fileID: 0}
-  coolDown: 1
-  damage: 1
-  originalMultiplier: 1
-  baseDamage: 0
 --- !u!114 &114259557058467334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -556,6 +538,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114585376397547320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1124489161256058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebec7125ecc3d4b40a9f0bbdee5014db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114615553883954010
 MonoBehaviour:
   m_ObjectHideFlags: 1
