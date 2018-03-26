@@ -108,7 +108,7 @@ public bool enemyInRange;
         float damage = gameObject.GetComponent<Skills>().damage * MetaScript.getGlobal_Stats().getMilitaryAbility();
         if (target != null)
         {
-            target.GetComponent<Health>().damage(damage);
+            target.GetComponent<Health>().damage(Mathf.RoundToInt(damage));
 
         }
     }
