@@ -13,7 +13,7 @@ public class GameTime : MonoBehaviour
     public Slider daychange;
     public Text daychangetext;
     public Text seasonchange;
-    //  private GenerateMonster generateMonster;
+    private GenerateMonster generateMonster;
     private GameObject UIObject;
     private UseCustomImageEffect postProcessing;
     private StormBringer stormBringer;
@@ -27,7 +27,7 @@ public class GameTime : MonoBehaviour
         GameObject temp = GameObject.Find("monster_generator");
         weatherScript = gameObject.GetComponent<Weather>();
         calendar = gameObject.GetComponent<Calendar>();
-        //generateMonster = temp.GetComponent<GenerateMonster> ();
+        generateMonster = temp.GetComponent<GenerateMonster> ();
         stormBringer = gameObject.GetComponent<StormBringer>();
         postProcessing = GameObject.FindObjectOfType<UseCustomImageEffect>();
         daychange = GameObject.Find("daychange").GetComponent<Slider>();
@@ -147,19 +147,23 @@ public class GameTime : MonoBehaviour
 
     private void updateTimedEffects()
     {
-        //generateMonster.SpawnMonsters (calendar.getForecastWeather (0));
+        possiblyIncreaseMonsterSpawn();
 
-        //UIObject.GetComponent<WeatherUI> ().updateTemp (calendar.getForecastTemp (0));
-        //UIObject.GetComponent<WeatherUI> ().updateWeatherName (calendar.getForecastWeather (0));
-
-        //print (calendar.getCurrentDay ());
         daychangetext.text = calendar.getCurrentDay().ToString();
         seasonchange.text = (calendar.getCurrentSeason() + 1).ToString();
-        //daychange.value = calendar.getCurrentDay();
 
         setWeatherBasedPostProcessing();
         setWeatherBasedParticles();
         setWeatherBasedStorms();
+    }
+
+    private void possiblyIncreaseMonsterSpawn()
+    {
+        if (Random.Range(0f, 1f) > 0.9f)
+        {
+            generateMonster.numEnemies++;
+        }
+        
     }
 }
     
