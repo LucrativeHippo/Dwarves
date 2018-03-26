@@ -14,7 +14,7 @@ public class char_combat : MonoBehaviour {
     [SerializeField]
 	public float coolDown = 1.0f;
     [SerializeField]
-    private float damage =1.0f ;
+    private int damage = 1;
     [SerializeField]
     private float originalMultiplier = 1.0f;
     [SerializeField]
@@ -30,7 +30,7 @@ public class char_combat : MonoBehaviour {
 
     void getNPCStat(){
         coolDown= 1-(gameObject.GetComponent<Skills>().getValue(0)-5)/5;
-        damage = gameObject.GetComponent<Skills>().getValue(1);
+        damage = (int)gameObject.GetComponent<Skills>().getValue(1);
         baseDamage = damage;
     }
 	// Update is called once per frame
@@ -39,7 +39,7 @@ public class char_combat : MonoBehaviour {
 			StartCoroutine(combatManager());
         if (originalMultiplier < MetaScript.getGlobal_Stats().getAtkMultiplier()){
             originalMultiplier = MetaScript.getGlobal_Stats().getAtkMultiplier();
-            damage = baseDamage * originalMultiplier;
+            damage = Mathf.RoundToInt(baseDamage * originalMultiplier);
         }
             
 			

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65791830392237490}
   - component: {fileID: 54795431706795390}
   - component: {fileID: 114176393949633996}
+  - component: {fileID: 114266463586208568}
   m_Layer: 0
   m_Name: Iron
   m_TagString: iron
@@ -182,6 +183,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731a8dcae6ded2449b6eaf5b709bc37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114266463586208568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509994566159360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61903d34a1a4cd441a42880e45326db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+  maxHealth: 0
+  isImmortal: 0
+  dealDamage: 0
 --- !u!114 &114270280104134976
 MonoBehaviour:
   m_ObjectHideFlags: 1

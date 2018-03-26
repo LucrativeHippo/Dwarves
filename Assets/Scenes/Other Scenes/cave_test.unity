@@ -226,9 +226,9 @@ MonoBehaviour:
   CAVE_DIMENSIONS: 20
   caveDepth: -50
   caveEntranceVector: {x: 0, y: 0, z: 0}
-  caveWall: {fileID: 1613720941434930, guid: 3c26ca62bd23fc5409c7ff37ebcb5140, type: 2}
+  caveWall: {fileID: 1730605524272802, guid: 49573fbf03990f44a86caf2a9fb3bf7a, type: 2}
   caveFloor: {fileID: 1543509037345762, guid: e210b0ce47a906e4d8dd09e21f5e9889, type: 2}
-  caveEntrance: {fileID: 1457501400338522, guid: 7f31c510d0fc1eb4ea02e2eecf0acca8,
+  caveEntrance: {fileID: 1851504002465558, guid: 186241487f152c641a856deae8c7b035,
     type: 2}
   enemy: {fileID: 1965376229938936, guid: b1242e13c19c29248bc0cfc10149dde9, type: 2}
   gold: {fileID: 1658390378154812, guid: be7c1d5bd840e7e4bbf09329a1a0a08a, type: 2}
