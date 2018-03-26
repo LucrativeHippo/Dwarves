@@ -33,6 +33,7 @@ public class outPost : MonoBehaviour {
                     buildingPrefabs[0].GetComponent<resourceCost>().purchase();
                     Instantiate(buildingPrefabsObjects[0], gameObject.transform.position, Quaternion.identity);
                     StartCoroutine(canSendTimer());
+                    MetaScript.getOPController().addOutpost();
                 }
                 else
                 {
