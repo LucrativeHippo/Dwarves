@@ -54,7 +54,11 @@ public class Health : MonoBehaviour {
         health -= dmg;
         publish();
         notifyNPC();
-        displayDamage(dmg);
+        if(CompareTag("OwnedNPC") || CompareTag("Player") || CompareTag("Enemy"))
+        {
+            displayDamage(dmg);
+        }
+       
         if (health <= 0 && !isImmortal) {
             death();
         }
