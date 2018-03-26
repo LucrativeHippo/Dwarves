@@ -9,7 +9,7 @@ public class enemyAI : MonoBehaviour {
 
 	public float threatRange;
 
-    public float damage;
+    public int damage;
 
 
 
@@ -20,11 +20,25 @@ public class enemyAI : MonoBehaviour {
 		setDestination();
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("OwnedNPC"))
         {
-            g.GetComponent<Guard>().enemyInRange = true;
+			if(g.GetComponent<Guard>().enabled)
+			    g.GetComponent<Guard>().enemyInRange = true;
         }
 	}
 	private void getDest(){
 		opponent = collect.findClosestTag("OwnedNPC",gameObject);
+        if (opponent != null)
+        {
+            float oppDist = (transform.position - opponent.transform.position).sqrMagnitude;
+            float playerDist = (transform.position - MetaScript.getPlayer().transform.position).sqrMagnitude;
+            if (playerDist < oppDist)
+            {
+                opponent = MetaScript.getPlayer();
+            }
+        }
+        else
+        {
+            opponent = MetaScript.getPlayer();
+        }
 	}
     // Update is called once per frame
     void Update(){
