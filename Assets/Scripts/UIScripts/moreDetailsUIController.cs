@@ -18,11 +18,6 @@ public class moreDetailsUIController : MonoBehaviour {
 
     [SerializeField] private Button selectRoleButton;
 
-    [SerializeField] private Text stat1;
-    [SerializeField] private Text stat2;
-    [SerializeField] private Text stat3;
-    [SerializeField] private Text stat4;
-
     public void setNPC (GameObject newNPC) {
         moreDetailsGameObject = this.gameObject;
         selectRoleGameObject = moreDetailsGameObject.transform.parent.GetChild (2).gameObject;
@@ -53,7 +48,7 @@ public class moreDetailsUIController : MonoBehaviour {
     }
 
     private void setMoreDetails () {
-        // TODO: get stats of NPC to set stats text.
+        this.transform.GetChild (0).GetComponent<statWords> ().setNPC (currentNPC);
         nameInputField.text = currentNPC.name;
         currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
     }
