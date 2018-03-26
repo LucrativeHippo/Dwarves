@@ -8,7 +8,7 @@ public class Compass : MonoBehaviour {
 	public GameObject needle;
 	// Use this for initialization
 	void Start () {
-		
+        player = MetaScript.getPlayer();
 	}
 	
 	// Update is called once per frame
