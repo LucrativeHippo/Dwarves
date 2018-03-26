@@ -121,6 +121,10 @@ public class MetaScript : MonoBehaviour {
 		return player;
 	}
 
+	public static Controls GetControls(){
+		return getMetaObject().GetComponent<Controls>();
+	}
+
 	/// <summary>
 	/// Turns off player's NavMesh in order
 	/// </summary>

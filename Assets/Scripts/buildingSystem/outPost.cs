@@ -5,7 +5,6 @@ using System.Linq;
 
 public class outPost : MonoBehaviour {
 
-    public KeyCode actionKey;
 
     public int actionCooldownSec = 5;
 
@@ -18,12 +17,13 @@ public class outPost : MonoBehaviour {
     {
         buildingPrefabs = Resources.LoadAll("Prefabs/Outpost_Buildings", typeof(GameObject)).Cast<GameObject>().ToArray();
         buildingPrefabsObjects = buildingPrefabs;
+        controls = MetaScript.GetControls();
     }
     
-
+    private Controls controls;
     // Update is called once per frame
     void Update () {
-        if (Input.GetKey(actionKey) && canSend && buildingPrefabs[0].GetComponent<resourceCost>().canAfford())
+        if (controls.keyDown(controls.Outpost) && canSend && buildingPrefabs[0].GetComponent<resourceCost>().canAfford())
         {
             if (MetaScript.getOPController().checkDistance(gameObject.transform.position))
             {
