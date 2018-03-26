@@ -53,7 +53,6 @@ public class Health : MonoBehaviour {
             
         health -= dmg;
         publish();
-        notifyNPC();
         displayDamage(dmg);
         if (health <= 0 && !isImmortal) {
             death();

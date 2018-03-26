@@ -16,8 +16,7 @@ public class Guard : MonoBehaviour {
 
     private Transform targetPosition;
     private float timer;
-
-    public bool enemyInRange = false;
+public bool enemyInRange;
 
     void Awake()
     {
@@ -31,17 +30,24 @@ public class Guard : MonoBehaviour {
     }
 	
 
+    private bool enemyGone;
+    /// This function is called when the object becomes enabled and active.
+    void OnEnable()
+    {
+        enemyGone = false;
+        target = null;
+    }
+
+    private void defeatedEnemy(){
+        GetComponent<FightFlight>().revert();
+    }
+
 
 	// Update is called once per frame
 	void Update () {
 
-        if (!enemyInRange)
+        if(target != null)
         {
-            target = collect.findClosestTag("Enemy",gameObject,threatRange);
-        }
-        if (target != null)
-        {
-
             float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
             if (distanceToTarget <= attackRange)
@@ -63,9 +69,16 @@ public class Guard : MonoBehaviour {
         }
         else
         {
-            navComponent.isStopped = false;
-            enemyInRange = false;
-            Patrol();
+            
+            if(enemyGone){
+                defeatedEnemy();
+            }else{
+                enemyGone = true;
+
+                target = collect.findClosestTag("Enemy",gameObject,threatRange);
+                navComponent.isStopped = false;
+                Patrol();
+            }
         }
         
     }
