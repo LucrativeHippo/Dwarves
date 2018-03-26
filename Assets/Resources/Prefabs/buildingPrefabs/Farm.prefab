@@ -56,8 +56,9 @@ GameObject:
   - component: {fileID: 114156351863231624}
   - component: {fileID: 54861666924478372}
   - component: {fileID: 33257987551751064}
-  - component: {fileID: 114795315573602892}
   - component: {fileID: 114127806203789870}
+  - component: {fileID: 114032481392367618}
+  - component: {fileID: 114324847431258394}
   m_Layer: 0
   m_Name: Farm
   m_TagString: food
@@ -181,6 +182,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114032481392367618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1928242316686520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c7d41cfd9fe9647b7268242984b592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
 --- !u!114 &114127806203789870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,7 +219,7 @@ MonoBehaviour:
   cost: 0000000000000000000000000000000000000000000000000000000000000000
   buildingLimit: 0
   buildingDescription: 
---- !u!114 &114795315573602892
+--- !u!114 &114324847431258394
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -214,9 +227,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928242316686520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e199b9b5866f77d4683492a8a00c397e, type: 3}
+  m_Script: {fileID: 11500000, guid: 61903d34a1a4cd441a42880e45326db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1000
+  maxHealth: 0
+  isImmortal: 1
+  dealDamage: 0
 --- !u!212 &212274685885625618
 SpriteRenderer:
   m_ObjectHideFlags: 1
