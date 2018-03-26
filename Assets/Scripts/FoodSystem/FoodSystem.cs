@@ -92,10 +92,13 @@ public class FoodSystem : MonoBehaviour, INPCListener {
 
     public void applyGlobalSlowRegen()
     {
-        foreach (var npc in ownedNPC.getNPCs())
+        if (regenPerDayWithFood > 0)
         {
-            buffSystem.regenApplyingSystem(npc, starvingTickTimer, starvingTickTimer / (float) regenPerDayWithFood, 1);
+            foreach (var npc in ownedNPC.getNPCs())
+            {
+                buffSystem.regenApplyingSystem(npc, starvingTickTimer, starvingTickTimer / (float)regenPerDayWithFood, 1);
+            }
+            buffSystem.regenApplyingSystem(player, starvingTickTimer, starvingTickTimer / (float)regenPerDayWithFood, 1);
         }
-        buffSystem.regenApplyingSystem(player, starvingTickTimer, starvingTickTimer / (float) regenPerDayWithFood, 1);
     }
 }
