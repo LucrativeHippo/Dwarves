@@ -409,6 +409,14 @@ public class terrainGenerator : MonoBehaviour
         resourceMap = new Dictionary<string, resource>();
         int tempx = getxPlayerChunkPos() * Chunk.SIZE + getxPlayerPos();
         int tempy = getyPlayerChunkPos() * Chunk.SIZE + getyPlayerPos();
+        terrainSeed = Random.Range(0, 100);
+        terrainSeed2 = Random.Range(0, 100);
+        while(terrainSeed == terrainSeed2){
+            terrainSeed = Random.Range(0, 100);
+        }
+        resourceSeed = Random.Range(0, 100);
+        resourceSeed2= Random.Range(0, 100);
+        waterSeed = Random.Range(0, 100);
         waterAmount = PlayerPrefs.GetFloat("water");
         terrainAmount = PlayerPrefs.GetFloat("terrain");
         resourceAmount = PlayerPrefs.GetFloat("resource");
@@ -828,5 +836,7 @@ public class terrainGenerator : MonoBehaviour
                 generateChunk(debugPos.xCoord, debugPos.yCoord);
             }
         }
+
+    
     }
 }
