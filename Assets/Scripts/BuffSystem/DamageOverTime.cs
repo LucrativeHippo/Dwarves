@@ -34,6 +34,8 @@ public class DamageOverTime : MonoBehaviour {
     public void removeDoT()
     {
         stopDoT();
+        disableSpriteColouring();
+        checkForOtherDoTs();
         Destroy(this);
     }
 
@@ -88,9 +90,48 @@ public class DamageOverTime : MonoBehaviour {
     {
         while(true)
         {
+            enableSpriteColouring();
             characterHealth.damage(damagePerTick);
             yield return new WaitForSeconds(tickCooldown);
         }
 
+    }
+
+    public void disableSpriteColouring()
+    {
+        SpriteRenderer[] sprites = gameObject.GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            sprites[i].color = new Color(255f, 255f, 255f);
+        }
+    }
+
+    public void enableSpriteColouring()
+    {
+        SpriteRenderer[] sprites = gameObject.GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            switch (cause)
+            {
+                case BuffsAndBoons.Effects.Burn:
+                    sprites[i].color = new Color(255f, 0f, 0f);
+                    break;
+                case BuffsAndBoons.Effects.Poison:
+                    sprites[i].color = new Color(0f, 255f, 0f);
+                    break;
+            }
+        }
+    }
+
+    private void checkForOtherDoTs()
+    {
+        DamageOverTime[] dots = gameObject.GetComponents<DamageOverTime>();
+        foreach (DamageOverTime dot in dots)
+        {
+            if (dot != this)
+            {
+                dot.enableSpriteColouring();
+            }
+        }
     }
 }

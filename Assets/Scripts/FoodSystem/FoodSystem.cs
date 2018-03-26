@@ -16,7 +16,9 @@ public class FoodSystem : MonoBehaviour, INPCListener {
     private GameObject npcManagerGameObject;
 
     private OwnedNPCList ownedNPC;
+    private GameObject player;
 
+    private BuffSystem buffSystem;
 
     [SerializeField] private bool noFood;
 
@@ -27,6 +29,8 @@ public class FoodSystem : MonoBehaviour, INPCListener {
         npcManagerGameObject = allUIGameObjects.transform.GetChild (0).GetChild (0).gameObject;
         
         setNPCList(MetaScript.GetNPC());
+        player = GameObject.FindGameObjectWithTag("Player");
+        buffSystem = new BuffSystem();
 
         noFood = false;
         
@@ -37,7 +41,7 @@ public class FoodSystem : MonoBehaviour, INPCListener {
     private void useFood () {
         float foodSaved = MetaScript.getGlobal_Stats().getFoodSaved();
         int currentFood = resourceManager.getResource (ResourceTypes.FOOD);
-        float foodCost = ownedNPC.getCount() * foodUsedPerNPC - foodSaved;
+        float foodCost = (ownedNPC.getCount() + 1) * foodUsedPerNPC - foodSaved;
         Debug.Log("Food used =" + foodCost);
         if(foodCost < 0)
         {
@@ -45,7 +49,9 @@ public class FoodSystem : MonoBehaviour, INPCListener {
         }
         if(resourceManager.hasResource(ResourceTypes.FOOD,(int)foodCost)){
             resourceManager.addResource (ResourceTypes.FOOD, (int)-foodCost);
+            applyGlobalSlowRegen();
             noFood = false;
+
         } else {
             resourceManager.addResource (ResourceTypes.FOOD, -currentFood);
             noFood = true;
@@ -81,5 +87,14 @@ public class FoodSystem : MonoBehaviour, INPCListener {
     public void publish()
     {
         // do nothing for now?
+    }
+
+    public void applyGlobalSlowRegen()
+    {
+        foreach (var npc in ownedNPC.getNPCs())
+        {
+            buffSystem.regenApplyingSystem(npc, starvingTickTimer, starvingTickTimer / 10, 1);
+        }
+        buffSystem.regenApplyingSystem(player, starvingTickTimer, starvingTickTimer / 10, 1);
     }
 }
