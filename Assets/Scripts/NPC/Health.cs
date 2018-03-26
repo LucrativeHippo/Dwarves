@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour {
+public class Health : MonoBehaviour, IStatsListener {
     /// The health.
     [SerializeField]
-    int health = 10;
+    int health = 100;
     [SerializeField]
     int maxHealth;
     [SerializeField]
     bool isImmortal = false;
+    bool isInvulnerable = false;
     public bool dealDamage = false;
 
     int originalMaxHp;
@@ -50,7 +51,10 @@ public class Health : MonoBehaviour {
     public void damage (int dmg) {
         if (dmg < 0)
             throw new UnityException ("You can't heal from damage!");
-            
+        
+        if (isInvulnerable)
+            return;
+
         health -= dmg;
         publish();
         
@@ -106,26 +110,7 @@ public class Health : MonoBehaviour {
             MetaScript.GetNPC().removeNPC(gameObject);
         }
         if(CompareTag("Player")){
-            GameObject sacrifice = MetaScript.GetSacrificialNPC();
-            if (sacrifice == null)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                // Stop npc from moving;
-                sacrifice.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
-
-                MetaScript.preTeleport();
-                transform.position = sacrifice.transform.position;
-                sacrifice.transform.eulerAngles = new Vector3(0, 0, 90);
-                MetaScript.postTeleport();
-
-                // TODO: Delay spawn
-                // Destroy npc
-                sacrifice.GetComponent<Health>().death();
-                health = maxHealth;
-            }
+            StartCoroutine(PerformRitual());
             
             
         }else{
@@ -133,6 +118,47 @@ public class Health : MonoBehaviour {
         }
     }
 
+    private void setPlayerBusy(bool busy){
+        MetaScript.GetControls().FocusedInput = busy;
+        isInvulnerable = busy;
+    }
+    IEnumerator PerformRitual()
+    {
+        GameObject sacrifice = MetaScript.GetSacrificialNPC();
+        // Disable and heal player
+        setPlayerBusy(true);
+        health = maxHealth;
+        
+        // Sacrifice failed
+        if (sacrifice == null) {
+            // Load other scene
+            Destroy(gameObject);
+        }
+        else
+        {
+            // Stop npc from moving;
+            sacrifice.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+            sacrifice.GetComponent<collect>().enabled = false;
+            sacrifice.GetComponent<Guard>().enabled = false;
+            sacrifice.GetComponent<follow>().enabled = false;
+
+            // Teleport player;
+            MetaScript.preTeleport();
+            sacrifice.transform.eulerAngles = new Vector3(45, 0, 90);
+            transform.position = sacrifice.transform.position;
+            sacrifice.transform.position = sacrifice.transform.position + new Vector3(0.25f,0,0);
+
+            // TODO: Delay spawn
+            // Destroy npc
+            yield return new WaitForSeconds(2.0f);
+            sacrifice.GetComponent<Health>().death();
+            MetaScript.postTeleport();
+            
+            
+            setPlayerBusy(false);
+        }
+        yield return null;
+    }
     public void notifyNPC(){
         FightFlight ff = GetComponent<FightFlight>();
         if(ff!=null){
@@ -172,14 +198,21 @@ public class Health : MonoBehaviour {
 
     
 
-    void Update()
-    {
-        if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag!= "Enemy")
-        {
+    // void Update()
+    // {
+    //     if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag!= "Enemy")
+    //     {
  
-            originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
-            maxHealth = Mathf.RoundToInt(originalMaxHp * originalHealthMultiplier);
-            health = maxHealth;
+    //         originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
+    //         maxHealth = Mathf.RoundToInt(originalMaxHp * originalHealthMultiplier);
+    //         health = maxHealth;
+    //     }
+    // }
+
+    public void publish(Global_Stats stats)
+    {
+        if(CompareTag("OwnedNPC")){
+            
         }
-      }
+    }
 }
