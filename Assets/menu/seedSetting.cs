@@ -1,25 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class seedSetting : MonoBehaviour {
-    public float waterSeed = 1.0f;
-    public float resourceSeed = 1.0f;
-    public float terrainSeed = 1.0f;
+    private float waterValue;
+    private float resourceValue;
+    private float terrainValue;
+
+    public Slider waterSlider;
+    public Slider resourceSlider;
+    public Slider terrainSlider;
+
 
 	// Use this for initialization
 	void Start () {
-        setSeed(waterSeed, resourceSeed, terrainSeed);
+        waterSlider.value = PlayerPrefs.GetFloat("water");
+        resourceSlider.value = PlayerPrefs.GetFloat("resource");
+        terrainSlider.value = PlayerPrefs.GetFloat("terrain");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
+        waterValue = waterSlider.value;
+        resourceValue = resourceSlider.value;
+        terrainValue = terrainSlider.value;
 	}
 
-    private void setSeed(float water, float resource, float terrain){
-        PlayerPrefs.SetFloat("water", water);
-        PlayerPrefs.SetFloat("resource", resource);
-        PlayerPrefs.SetFloat("terrain", terrain);
+    //private void setSeed(float water, float resource, float terrain){
+    //    PlayerPrefs.SetFloat("water", water);
+    //    PlayerPrefs.SetFloat("resource", resource);
+    //    PlayerPrefs.SetFloat("terrain", terrain);
+    //}
+
+    public void setWater(){
+        PlayerPrefs.SetFloat("water", waterValue);
     }
+
+    public void setResource()
+    {
+        PlayerPrefs.SetFloat("resource", resourceValue);
+    }
+    public void setTerrain()
+    {
+        PlayerPrefs.SetFloat("terrain", terrainValue);
+    }
+
 }
