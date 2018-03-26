@@ -19,6 +19,7 @@ public class FoodSystem : MonoBehaviour, INPCListener {
     private GameObject player;
 
     private BuffSystem buffSystem;
+    public int regenPerDayWithFood;
 
     [SerializeField] private bool noFood;
 
@@ -93,8 +94,8 @@ public class FoodSystem : MonoBehaviour, INPCListener {
     {
         foreach (var npc in ownedNPC.getNPCs())
         {
-            buffSystem.regenApplyingSystem(npc, starvingTickTimer, starvingTickTimer / 10, 1);
+            buffSystem.regenApplyingSystem(npc, starvingTickTimer, starvingTickTimer / (float) regenPerDayWithFood, 1);
         }
-        buffSystem.regenApplyingSystem(player, starvingTickTimer, starvingTickTimer / 10, 1);
+        buffSystem.regenApplyingSystem(player, starvingTickTimer, starvingTickTimer / (float) regenPerDayWithFood, 1);
     }
 }
