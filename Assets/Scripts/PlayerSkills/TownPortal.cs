@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TownPortal : MonoBehaviour {
 
-    public KeyCode actionKey;
+    private Controls controls;
 
     [SerializeField]
     private float timer = 2.0f;
@@ -27,11 +27,12 @@ public class TownPortal : MonoBehaviour {
         player = MetaScript.getPlayer();
         
         buildingCheck = player.GetComponent<InBuilding>();
+        controls = MetaScript.GetControls();
     }
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(actionKey))
+        if (controls.keyDown(controls.TownPortal))
         {
             bool inBuilding = false;
             if (buildingCheck != null)

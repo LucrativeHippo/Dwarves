@@ -53,7 +53,7 @@ public class Health : MonoBehaviour {
             
         health -= dmg;
         publish();
-        notifyNPC();
+        
         if(CompareTag("OwnedNPC") || CompareTag("Player") || CompareTag("Enemy"))
         {
             displayDamage(dmg);

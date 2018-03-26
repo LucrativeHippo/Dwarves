@@ -18,11 +18,7 @@ public class enemyAI : MonoBehaviour {
 		agentCtrl = this.GetComponent<NavMeshAgent>();
 		getDest();
 		setDestination();
-        foreach(GameObject g in GameObject.FindGameObjectsWithTag("OwnedNPC"))
-        {
-			if(g.GetComponent<Guard>().enabled)
-			    g.GetComponent<Guard>().enemyInRange = true;
-        }
+		tag = "Enemy";
 	}
 	private void getDest(){
 		opponent = collect.findClosestTag("OwnedNPC",gameObject);
@@ -90,7 +86,7 @@ public class enemyAI : MonoBehaviour {
 		Debug.Log("Combat Entered");
 		if(opponent != null){
 			opponent.GetComponent<Health>().damage(damage);
-
+			opponent.GetComponent<Health>().notifyNPC();
 		}
 	}
 }
