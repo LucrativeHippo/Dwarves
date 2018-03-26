@@ -26,11 +26,19 @@ public class enemyAI : MonoBehaviour {
 	}
 	private void getDest(){
 		opponent = collect.findClosestTag("OwnedNPC",gameObject);
-		float oppDist = (transform.position - opponent.transform.position).sqrMagnitude;
-		float playerDist = (transform.position - MetaScript.getPlayer().transform.position).sqrMagnitude;
-		if(playerDist< oppDist){
-			opponent = MetaScript.getPlayer();
-		}
+        if (opponent != null)
+        {
+            float oppDist = (transform.position - opponent.transform.position).sqrMagnitude;
+            float playerDist = (transform.position - MetaScript.getPlayer().transform.position).sqrMagnitude;
+            if (playerDist < oppDist)
+            {
+                opponent = MetaScript.getPlayer();
+            }
+        }
+        else
+        {
+            opponent = MetaScript.getPlayer();
+        }
 	}
     // Update is called once per frame
     void Update(){

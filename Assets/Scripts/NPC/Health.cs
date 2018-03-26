@@ -103,19 +103,27 @@ public class Health : MonoBehaviour {
         }
         if(CompareTag("Player")){
             GameObject sacrifice = MetaScript.GetSacrificialNPC();
+            if (sacrifice == null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                // Stop npc from moving;
+                sacrifice.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
+
+                MetaScript.preTeleport();
+                transform.position = sacrifice.transform.position;
+                sacrifice.transform.eulerAngles = new Vector3(0, 0, 90);
+                MetaScript.postTeleport();
+
+                // TODO: Delay spawn
+                // Destroy npc
+                sacrifice.GetComponent<Health>().death();
+                health = maxHealth;
+            }
             
-            // Stop npc from moving;
-            sacrifice.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
             
-            MetaScript.preTeleport();
-            transform.position = sacrifice.transform.position;
-            sacrifice.transform.eulerAngles = new Vector3(0,0,90);
-            MetaScript.postTeleport();
-            
-            // TODO: Delay spawn
-            // Destroy npc
-            sacrifice.GetComponent<Health>().death();
-            health = maxHealth;
         }else{
             Destroy(gameObject);
         }
