@@ -5,6 +5,10 @@ using UnityEngine;
 [DefaultExecutionOrder(-300)]
 public class terrainGenerator : MonoBehaviour
 {
+    [SerializeField]
+    private bool testing = false;
+
+
     public GameObject[] lol;
     //The map that shows the terrain value at each existing coordinate
     public Dictionary<string, terrain> terrainMap;
@@ -412,6 +416,25 @@ public class terrainGenerator : MonoBehaviour
         waterAmount = PlayerPrefs.GetFloat("water");
         terrainAmount = PlayerPrefs.GetFloat("terrain");
         resourceAmount = PlayerPrefs.GetFloat("resource");
+        if (!testing)
+        {
+
+            setterrainSeed(Random.Range(0, 100));
+            setterrainSeed2(Random.Range(0, 100));
+            while (getterrainSeed() == getterrainSeed2())
+            {
+                setterrainSeed(Random.Range(0, 100));
+            }
+            setresourceSeed(Random.Range(0, 100));
+            setresourceSeed2(Random.Range(0, 100));
+            while (getresourceSeed() == getresourceSeed2())
+            {
+                setterrainSeed(Random.Range(0, 100));
+            }
+            setwaterSeed(Random.Range(0, 100));
+        }
+        
+
         for (int i = (tempx - 3); i < (tempx + 4); i++)
         {
             for (int j = (tempy - 3); j < (tempy + 4); j++)
