@@ -92,9 +92,10 @@ public class Guard : MonoBehaviour {
     void combat()
     {
         Debug.Log("Combat Entered");
+        float damage = gameObject.GetComponent<Skills>().damage * MetaScript.getGlobal_Stats().getMilitaryAbility();
         if (target != null)
         {
-            target.GetComponent<Health>().damage(1);
+            target.GetComponent<Health>().damage(damage);
 
         }
     }
