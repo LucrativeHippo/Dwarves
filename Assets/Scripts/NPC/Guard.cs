@@ -111,6 +111,7 @@ public class Guard : MonoBehaviour {
             animator.SetBool("attack", true);
              float damage = gameObject.GetComponent<Skills>().damage * MetaScript.getGlobal_Stats().getMilitaryAbility();
             target.GetComponent<Health>().damage(Mathf.RoundToInt(damage));
+        }
     }
 
 
