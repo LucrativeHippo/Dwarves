@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 54188584863900058}
   - component: {fileID: 33504293670484096}
   - component: {fileID: 114677780241160354}
+  - component: {fileID: 114291915181305300}
   m_Layer: 0
   m_Name: Cave Entrance
   m_TagString: Untagged
@@ -179,6 +180,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114291915181305300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1219877755427976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a68cecc4c90b640b5125a0f990fda4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caveDifficulty: 3
+  CAVE_DIMENSIONS: 20
+  caveEntranceVector: {x: 0, y: 0, z: 0}
+  caveEvent: {fileID: 1199209437492220, guid: f20a1ac4cb9f2ba4b8cc37732dd7e662, type: 2}
+  caveWall: {fileID: 1730605524272802, guid: 49573fbf03990f44a86caf2a9fb3bf7a, type: 2}
+  caveFloor: {fileID: 1543509037345762, guid: e210b0ce47a906e4d8dd09e21f5e9889, type: 2}
+  caveEntrance: {fileID: 1851504002465558, guid: 186241487f152c641a856deae8c7b035,
+    type: 2}
+  enemy: {fileID: 1965376229938936, guid: b1242e13c19c29248bc0cfc10149dde9, type: 2}
+  gold: {fileID: 1658390378154812, guid: be7c1d5bd840e7e4bbf09329a1a0a08a, type: 2}
+  diamond: {fileID: 0}
+  chanceToStartAlive: 40
+  deathLimit: 3
+  birthLimit: 4
+  numSteps: 6
 --- !u!114 &114677780241160354
 MonoBehaviour:
   m_ObjectHideFlags: 1

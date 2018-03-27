@@ -15,10 +15,10 @@ public class Global_Stats : MonoBehaviour {
     [SerializeField]
     private float healthMultiplier = 1f;
 
-    private float gatherMultiplier;
+    private float gatherMultiplier = 1;
 
     [SerializeField]
-    private float baseGather;
+    private float baseGather = 1;
 
     [SerializeField]
     private bool hasHeatProtection;

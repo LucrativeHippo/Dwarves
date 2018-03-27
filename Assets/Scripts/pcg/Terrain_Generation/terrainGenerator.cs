@@ -476,7 +476,7 @@ public class terrainGenerator : MonoBehaviour
         
 
     }
-    public GameObject lolz;
+    
 
     /// <summary>
     /// Generates the chunk at xy chunk position.
