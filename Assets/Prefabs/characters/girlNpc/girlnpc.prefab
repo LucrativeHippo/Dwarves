@@ -121,6 +121,8 @@ GameObject:
   - component: {fileID: 114101463435207374}
   - component: {fileID: 114279462084748216}
   - component: {fileID: 114405881553204786}
+  - component: {fileID: 114661445488998470}
+  - component: {fileID: 114802729474798638}
   m_Layer: 0
   m_Name: girlnpc
   m_TagString: Untagged
@@ -242,13 +244,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313320856206606}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07, y: 1.5, z: -25}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: -0.07, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 4988698742810844}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!4 &4955842374303734
 Transform:
   m_ObjectHideFlags: 1
@@ -452,7 +454,6 @@ MonoBehaviour:
   attackRange: 0.5
   patrolRadius: 10
   patrolTimer: 5
-  enemyInRange: 0
 --- !u!114 &114106176395810372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -563,6 +564,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114661445488998470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587624629007354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479580ce91bc04748bfac13d6b024095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prevState: 4
+  Revert_D: 0
 --- !u!114 &114686401961595218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,6 +603,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4988698742810844}
   agent: {fileID: 195468369205771968}
+--- !u!114 &114802729474798638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587624629007354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3095647cc1e741448ae62388cbbce1ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114836245806125858
 MonoBehaviour:
   m_ObjectHideFlags: 1
