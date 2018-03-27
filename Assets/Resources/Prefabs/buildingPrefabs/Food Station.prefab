@@ -397,8 +397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ae59032527b564baabf6a8f6e7b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0000000000000000000000000000000000000000000000000000000000000000
+  cost: 6400000064000000000000001e00000000000000000000000000000000000000
   buildingLimit: 0
+  buildingDescription: 
 --- !u!212 &212945655219968238
 SpriteRenderer:
   m_ObjectHideFlags: 1
