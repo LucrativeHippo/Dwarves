@@ -240,6 +240,7 @@ public class cave_generation : MonoBehaviour, IActionable {
                     {
                         GameObject monster = Instantiate(enemy, new Vector3(i + xStart, DEPTH,j + zStart), Quaternion.identity);
                         monster.GetComponent<enemyMovement>().enabled = false;
+                        monster.GetComponent<caveMovement>().enabled = true;
                     }
                 }
             }
