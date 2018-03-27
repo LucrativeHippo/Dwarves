@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65454895298265372}
   - component: {fileID: 54443913298630508}
   - component: {fileID: 114406740844970728}
+  - component: {fileID: 114051288173228264}
   m_Layer: 0
   m_Name: Fortress
   m_TagString: Untagged
@@ -77,6 +78,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.15, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114051288173228264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734608442346860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e71a54fd005b446f9a74b7b1c613b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiplierToAdd: 1
 --- !u!114 &114406740844970728
 MonoBehaviour:
   m_ObjectHideFlags: 1
