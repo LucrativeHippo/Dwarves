@@ -16,7 +16,10 @@ public class FoodSystem : MonoBehaviour, INPCListener {
     private GameObject npcManagerGameObject;
 
     private OwnedNPCList ownedNPC;
+    private GameObject player;
 
+    private BuffSystem buffSystem;
+    public int regenPerDayWithFood;
 
     [SerializeField] private bool noFood;
 
@@ -27,17 +30,19 @@ public class FoodSystem : MonoBehaviour, INPCListener {
         npcManagerGameObject = allUIGameObjects.transform.GetChild (0).GetChild (0).gameObject;
         
         setNPCList(MetaScript.GetNPC());
+        player = GameObject.FindGameObjectWithTag("Player");
+        buffSystem = new BuffSystem();
 
         noFood = false;
         
-        StartCoroutine (starvingTimer (starvingTickTimer));
+        //StartCoroutine (starvingTimer (starvingTickTimer));
     }
 
 
     private void useFood () {
         float foodSaved = MetaScript.getGlobal_Stats().getFoodSaved();
         int currentFood = resourceManager.getResource (ResourceTypes.FOOD);
-        float foodCost = ownedNPC.getCount() * foodUsedPerNPC - foodSaved;
+        float foodCost = (ownedNPC.getCount() + 1) * foodUsedPerNPC - foodSaved;
         Debug.Log("Food used =" + foodCost);
         if(foodCost < 0)
         {
@@ -45,26 +50,36 @@ public class FoodSystem : MonoBehaviour, INPCListener {
         }
         if(resourceManager.hasResource(ResourceTypes.FOOD,(int)foodCost)){
             resourceManager.addResource (ResourceTypes.FOOD, (int)-foodCost);
+            applyGlobalSlowRegen();
             noFood = false;
+
         } else {
             resourceManager.addResource (ResourceTypes.FOOD, -currentFood);
             noFood = true;
         }
     }
 
-    IEnumerator starvingTimer (float waitForTime) {
-        yield return new WaitForSeconds (waitForTime);
+    // IEnumerator starvingTimer (float waitForTime) {
+    //     yield return new WaitForSeconds (waitForTime);
+    //     Debug.Log("Starving tick");
+    //     useFood();
+    //     if (isThereNoFood ()) {
+    //         starving ();
+    //     }
+    //     StartCoroutine (starvingTimer (waitForTime));
+    // }
+    public void tickDay(){
         Debug.Log("Starving tick");
         useFood();
         if (isThereNoFood ()) {
             starving ();
         }
-        StartCoroutine (starvingTimer (waitForTime));
     }
 
     private void starving () {
-        foreach (var aNPC in ownedNPC.getNPCs()) {
-            aNPC.GetComponent<Health> ().damage (damageForStarving);
+        foreach (var aNPC in MetaScript.GetNPC().getNPCs().ToArray()) {
+            if(aNPC != null)
+                aNPC.GetComponent<Health> ().damage (damageForStarving);
         }
     }
 
@@ -81,5 +96,17 @@ public class FoodSystem : MonoBehaviour, INPCListener {
     public void publish()
     {
         // do nothing for now?
+    }
+
+    public void applyGlobalSlowRegen()
+    {
+        if (regenPerDayWithFood > 0)
+        {
+            foreach (var npc in ownedNPC.getNPCs())
+            {
+                buffSystem.regenApplyingSystem(npc, starvingTickTimer, starvingTickTimer / (float)regenPerDayWithFood, 1);
+            }
+            buffSystem.regenApplyingSystem(player, starvingTickTimer, starvingTickTimer / (float)regenPerDayWithFood, 1);
+        }
     }
 }

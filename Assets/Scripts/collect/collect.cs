@@ -258,6 +258,7 @@ public class collect : MonoBehaviour
                     state = npcState.gotoBuilding;
                 }else if(currentresource == null){
                     checkRes();
+                    state = npcState.gotoResource;
                 }
                 break;
 
@@ -276,7 +277,7 @@ public class collect : MonoBehaviour
     }
     private void checkRes(){
         if(currentresource == null){
-            findClosestResTagFromResBuilding();
+            currentresource = findClosestResTagFromResBuilding();
         }
     }
 

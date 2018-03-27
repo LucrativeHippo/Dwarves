@@ -5,6 +5,10 @@ using UnityEngine;
 [DefaultExecutionOrder(-300)]
 public class terrainGenerator : MonoBehaviour
 {
+    [SerializeField]
+    private bool testing = false;
+
+
     public GameObject[] lol;
     //The map that shows the terrain value at each existing coordinate
     public Dictionary<string, terrain> terrainMap;
@@ -118,6 +122,8 @@ public class terrainGenerator : MonoBehaviour
     [SerializeField]
     private GameObject Coal;
 
+    [SerializeField]
+    private GameObject Cave;
 
     //Affects the types of terrain that are generated
     [SerializeField]
@@ -165,6 +171,7 @@ public class terrainGenerator : MonoBehaviour
         BUILDSIGN,
         DIAMOND,
         COAL,
+        CAVE,
         NONE
     }
 
@@ -409,7 +416,28 @@ public class terrainGenerator : MonoBehaviour
         resourceMap = new Dictionary<string, resource>();
         int tempx = getxPlayerChunkPos() * Chunk.SIZE + getxPlayerPos();
         int tempy = getyPlayerChunkPos() * Chunk.SIZE + getyPlayerPos();
+        waterAmount = PlayerPrefs.GetFloat("water");
+        terrainAmount = PlayerPrefs.GetFloat("terrain");
+        resourceAmount = PlayerPrefs.GetFloat("resource");
+        if (!testing)
+        {
+
+            setterrainSeed(Random.Range(0, 100));
+            setterrainSeed2(Random.Range(0, 100));
+            while (getterrainSeed() == getterrainSeed2())
+            {
+                setterrainSeed(Random.Range(0, 100));
+            }
+            setresourceSeed(Random.Range(0, 100));
+            setresourceSeed2(Random.Range(0, 100));
+            while (getresourceSeed() == getresourceSeed2())
+            {
+                setterrainSeed(Random.Range(0, 100));
+            }
+            setwaterSeed(Random.Range(0, 100));
+        }
         
+
         for (int i = (tempx - 3); i < (tempx + 4); i++)
         {
             for (int j = (tempy - 3); j < (tempy + 4); j++)
@@ -441,21 +469,14 @@ public class terrainGenerator : MonoBehaviour
                 //}
             }
         }
-        /*lol = GameObject.FindGameObjectsWithTag("TownCenter");
-
-        if (GameObject.FindGameObjectWithTag("TownCenter")!=null)
-        {
-            print(GameObject.FindGameObjectsWithTag("TownCenter")[0].transform.name);
-            print(GameObject.FindGameObjectsWithTag("TownCenter")[1].transform.name);
-          */
-        //lolz = GameObject.Find("Campfire(Clone)");
+        
         MetaScript.getTownCenter().GetComponentInChildren<NavMeshBuildFunction>().build();
         //}
         
         
 
     }
-    public GameObject lolz;
+    
 
     /// <summary>
     /// Generates the chunk at xy chunk position.
@@ -603,6 +624,10 @@ public class terrainGenerator : MonoBehaviour
                         }
                         chunkMap.addTileAt(tempTile, x, y, 1);
                     }
+                    if (resourceMap[key] == resource.CAVE)
+                    {
+                        Instantiate(Cave, new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
+                    }
                 }
                 
             }
@@ -746,11 +771,11 @@ public class terrainGenerator : MonoBehaviour
         else if (waterVal < getThreshold(terrain.WATER))
         {
 
-            if(Random.Range(0,30)< 2)
+            /*if(Random.Range(0,30)< 2)
             {
                 tempResource = Fish;
                 resourceMap.Add(key, resource.FISH);
-            }
+            }*/
 
         }
         else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.TREE) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.TREE))
@@ -806,6 +831,13 @@ public class terrainGenerator : MonoBehaviour
             }
             
 
+        }
+        if (terrainMap[key] == terrain.MOUNTAIN && !resourceMap.ContainsKey(key))
+        {
+            if (Random.Range(0,100) < 2)
+            {
+                resourceMap[key] = resource.CAVE;
+            }
         }
     }
 
