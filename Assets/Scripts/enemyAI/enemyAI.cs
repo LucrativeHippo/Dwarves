@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class enemyAI : MonoBehaviour {	
 	public GameObject opponent;
 	NavMeshAgent agentCtrl;
-
+    private Animator anim;
 	public float threatRange;
 
     public int damage;
@@ -15,6 +15,7 @@ public class enemyAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        anim = gameObject.GetComponentInChildren<Animator>();
 		agentCtrl = this.GetComponent<NavMeshAgent>();
 		getDest();
 		setDestination();
@@ -55,6 +56,7 @@ public class enemyAI : MonoBehaviour {
                 getDest();
             }
 			else if(!withinAttackRange()){
+                anim.SetBool("attack",false);
 				agentCtrl.isStopped = false;
 				agentCtrl.SetDestination (opponent.transform.position);
 			}else{
@@ -84,7 +86,9 @@ public class enemyAI : MonoBehaviour {
 
 	void combat(){
 		Debug.Log("Combat Entered");
+
 		if(opponent != null){
+            anim.SetBool("attack", true);
 			opponent.GetComponent<Health>().damage(damage);
 			opponent.GetComponent<Health>().notifyNPC();
 		}
