@@ -29,7 +29,7 @@ public class Quests : MonoBehaviour {
 		new QuestType(giveDiamond, 40, "diamond"),
 
 		
-		//new QuestType(isPopulationAbove,2, "population", 5),
+		new QuestType(isPopulationAbove,10, "population"),
 		//new QuestType(isTownCenterAbove,30, "town center level"),
 		//new QuestType(hasEmptyHouses,50, "empty houses"),
 
@@ -138,7 +138,7 @@ public class Quests : MonoBehaviour {
 	/// <returns><c>true</c>, if population above was ised, <c>false</c> otherwise.</returns>
 	/// <param name="a">The alpha component.</param>
 	public static bool isPopulationAbove(int a){
-		return true;//return 0 >= a;
+		return MetaScript.GetNPC().getCount()>=a;//return 0 >= a;
 	}
 
 	/// <summary>
