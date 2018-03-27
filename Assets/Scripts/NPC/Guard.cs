@@ -10,7 +10,7 @@ public class Guard : MonoBehaviour {
     private float attackRange = 0.5f;
     private GameObject target;
     private UnityEngine.AI.NavMeshAgent navComponent;
-
+    private Animator animator;
     public float patrolRadius;
     public float patrolTimer;
 
@@ -21,6 +21,7 @@ public class Guard : MonoBehaviour {
     {
         navComponent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         timer = patrolTimer;
+        animator = gameObject.GetComponentInChildren<Animator>();
     }
     // Use this for initialization
     void Start () {
@@ -104,11 +105,12 @@ public class Guard : MonoBehaviour {
     void combat()
     {
         Debug.Log("Combat Entered");
-        float damage = gameObject.GetComponent<Skills>().damage * MetaScript.getGlobal_Stats().getMilitaryAbility();
+
         if (target != null)
         {
+            animator.SetBool("attack", true);
+             float damage = gameObject.GetComponent<Skills>().damage * MetaScript.getGlobal_Stats().getMilitaryAbility();
             target.GetComponent<Health>().damage(Mathf.RoundToInt(damage));
-
         }
     }
 
