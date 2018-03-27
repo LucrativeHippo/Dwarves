@@ -35,7 +35,7 @@ public class FoodSystem : MonoBehaviour, INPCListener {
 
         noFood = false;
         
-        StartCoroutine (starvingTimer (starvingTickTimer));
+        //StartCoroutine (starvingTimer (starvingTickTimer));
     }
 
 
@@ -59,19 +59,27 @@ public class FoodSystem : MonoBehaviour, INPCListener {
         }
     }
 
-    IEnumerator starvingTimer (float waitForTime) {
-        yield return new WaitForSeconds (waitForTime);
+    // IEnumerator starvingTimer (float waitForTime) {
+    //     yield return new WaitForSeconds (waitForTime);
+    //     Debug.Log("Starving tick");
+    //     useFood();
+    //     if (isThereNoFood ()) {
+    //         starving ();
+    //     }
+    //     StartCoroutine (starvingTimer (waitForTime));
+    // }
+    public void tickDay(){
         Debug.Log("Starving tick");
         useFood();
         if (isThereNoFood ()) {
             starving ();
         }
-        StartCoroutine (starvingTimer (waitForTime));
     }
 
     private void starving () {
-        foreach (var aNPC in ownedNPC.getNPCs()) {
-            aNPC.GetComponent<Health> ().damage (damageForStarving);
+        foreach (var aNPC in MetaScript.GetNPC().getNPCs().ToArray()) {
+            if(aNPC != null)
+                aNPC.GetComponent<Health> ().damage (damageForStarving);
         }
     }
 
