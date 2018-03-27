@@ -10,7 +10,7 @@ public class cave_generation : MonoBehaviour, IActionable {
     private int numEnemies = 0;
 
     [SerializeField]
-    private int CAVE_DIMENSIONS = 20;
+    private int CAVE_DIMENSIONS = 10;
 
     public Vector3 caveEntranceVector;
 
@@ -77,6 +77,7 @@ public class cave_generation : MonoBehaviour, IActionable {
         instantiateCave();
         spawnMonsters();
         generatePickups();
+        spawnEvent();
         
     }
 
@@ -123,6 +124,7 @@ public class cave_generation : MonoBehaviour, IActionable {
             }
             
         }
+        
     }
 
     public bool [,] updateCave()
@@ -164,18 +166,19 @@ public class cave_generation : MonoBehaviour, IActionable {
         int xStart = (int)gameObject.transform.position.x * CAVE_DIMENSIONS;
         int zStart = (int)gameObject.transform.position.z * CAVE_DIMENSIONS;
         bool eventplaced = false;
-        while (eventplaced == false) { }
+        while (eventplaced == false) { 
         for (int x = 0; x < CAVE_DIMENSIONS; x++)
         {
             for (int z = 0; z < CAVE_DIMENSIONS; z++)
             {
                 int randNum = Random.Range(0, 100);
-                if (randNum < 2 && cave[x, z])
+                if (randNum < 20 && !cave[x, z])
                 {
-                    Instantiate(caveEvent, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
+                    Instantiate(caveEvent, new Vector3(x + xStart, DEPTH+0.16666f, z + zStart), Quaternion.identity);
+                    return;
                 }
             }
-        }
+        }}
     
 
     }

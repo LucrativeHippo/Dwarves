@@ -836,7 +836,7 @@ public class terrainGenerator : MonoBehaviour
         {
             if (Random.Range(0,100) < 2)
             {
-                resourceMap[key] = resource.CAVE;
+                // resourceMap[key] = resource.CAVE;
             }
         }
     }

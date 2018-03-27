@@ -40,7 +40,7 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
         return curState == state.FLEE;
     }
 
-	private bool isBrave(){	return GetComponent<Skills>().getValue(Skills.list.braveness)>5; }
+	private bool isBrave(){	return GetComponent<Skills>().getValue(Skills.list.braveness)>5 || MetaScript.GetControls().ALEX_TEST; }
 
 	private void convert(){
 		if(GetComponent<collect>().enabled){

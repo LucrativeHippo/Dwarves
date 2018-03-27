@@ -146,7 +146,7 @@ public class ChoiceCallback : MonoBehaviour {
 
     private void penguinInSheepsClothing(int choiceID)
     {
-        GameObject sheep = GameObject.Find("PenguinInSheepsClothing");
+        GameObject sheep = GameObject.Find("PenguinInSheepsClothing(Clone)");
         switch (choiceID)
         {
             

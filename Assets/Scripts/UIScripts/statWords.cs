@@ -26,9 +26,9 @@ public class statWords : MonoBehaviour {
 
         string skillWordString = "";
         for (int i = 0; i < skills.Length; i++) {
-            if (skills [i] > 7) {
+            if (skills [i] >= 7) {
                 skillWordString += "Strong " + ((Skills.list)i).ToString () + "\n"; 
-            } else if (skills [i] < 3) {
+            } else if (skills [i] <= 3) {
                 skillWordString += "Weak " + ((Skills.list)i).ToString () + "\n";
             }
         }

@@ -20,7 +20,7 @@ public class RingBell : MonoBehaviour {
 	private void ring(){
 		danger = !danger;
 		foreach(GameObject g in GetComponent<OwnedNPCList>().getNPCs()){
-			g.GetComponent<IBellListener>().forceBell(danger);
+			g.GetComponent<FightFlight>().forceBell(danger);
 		}
 	}
 }
