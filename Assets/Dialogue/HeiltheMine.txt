@@ -147,3 +147,17 @@ Narrator: [question=2]Which sheep will you spare?
 [choice]The loyal sheep.
 [title=PISC-default-talk-end]
 
+[title=event-magic-lamp-start]
+Genie: You have freed me but due to this weak economy I will only grant you 1 wish. 
+[choice]Permanent Resource Buff
+[choice]Employee of the Month
+[choice]Resource Cap Increase
+[title=event-magic-lamp-end]
+
+[title=Pentagram-default-talk-start]
+Narrator: You approach a pentagram burnt into the caves floor, something draws you closer ...
+[choice] Make the ultimate sacrifice ... (lose a random number of NPCs permanently)
+[choice] Destroy the pentagram
+[choice] Walk away
+[title=Pentagram-default-talk-end]
+

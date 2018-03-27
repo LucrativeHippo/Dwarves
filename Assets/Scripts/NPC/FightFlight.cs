@@ -117,6 +117,10 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 		}
     }
 
+	public bool shouldRevert(){
+		return prevState == state.COLLECT || prevState == state.FOLLOW;
+	}
+
 	/// <summary>
 	/// Calls bellRang with a forced flee. NPC will run and hide regardless of braveness
 	/// </summary>
@@ -126,4 +130,17 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 		forcedFlee = hide;
 		bellRang(hide);
     }
+
+	public bool Revert_D = false;
+	/// <summary>
+	/// Called when the script is loaded or a value is changed in the
+	/// inspector (Called in the editor only).
+	/// </summary>
+	void OnValidate()
+	{
+		if(Revert_D){
+			revert();
+			Revert_D = false;
+		}
+	}
 }

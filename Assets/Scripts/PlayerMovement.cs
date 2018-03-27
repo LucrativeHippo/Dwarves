@@ -6,11 +6,13 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float speed;
     private Animator animator;
+    private Controls controls;
 
     //private GameObject cam;
     private void Awake()
     {
         animator = gameObject.GetComponentInChildren<Animator>();
+        controls = MetaScript.GetControls();
         // cam = GameObject.Find("MainCam");
     }
 
@@ -25,9 +27,9 @@ public class PlayerMovement : MonoBehaviour {
             animator.SetBool("moveRight", false);
             animator.SetBool("attack", false);
         }
+        
 
-        if (Input.GetKey(KeyCode.W)) 
-        {
+        if(controls.key(controls.Forward)){
             mov += Vector3.forward;
             if (animator != null && noAnim)
             {
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
                 animator.SetBool("moveUp", true);
             }
         }
-        if (Input.GetKey(KeyCode.S))
+        if (controls.key(controls.Backward))
         {
             mov += Vector3.back;
             if (animator != null && noAnim)
@@ -44,7 +46,7 @@ public class PlayerMovement : MonoBehaviour {
                 animator.SetBool("moveDown", true);
             }
         }
-        if (Input.GetKey(KeyCode.A))
+        if (controls.key(controls.Left))
         {
             mov += Vector3.left;
             if (animator != null && noAnim)
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
                 animator.SetBool("moveLeft", true);
             }
         }
-        if (Input.GetKey(KeyCode.D))
+        if (controls.key(controls.Right))
         {
             mov += Vector3.right;
             if (animator != null && noAnim)

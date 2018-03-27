@@ -10,8 +10,13 @@ public class actor : MonoBehaviour {
 
 	public int actionCooldownSec = 5;
 
+	private Controls controls;
+	void Start(){
+		controls = MetaScript.GetControls();
+	}
+
 	void OnTriggerStay(Collider other) {
-        if (Input.GetKey(actionKey) && canSend)
+        if (controls.keyDown(controls.Action) && canSend)
         {
             canSend = false;
             other.gameObject.SendMessage("recieveAction");
@@ -23,13 +28,6 @@ public class actor : MonoBehaviour {
 	void OnTriggerExit(Collider other) {
 	}
 
-	/*void FixedUpdate() {
-		if(Input.GetKey(actionKey) && actionable && canSend) {
-			Debug.Log ("action Logged.");
-			SendMessage ();
-			StartCoroutine( canSendTimer() );
-		}
-	}*/
 
 	void SendMessage() {
 		canSend = true;

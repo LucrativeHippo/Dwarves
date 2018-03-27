@@ -76,7 +76,7 @@ public class Regen : MonoBehaviour {
     {
         while (true)
         {
-            characterHealth.heal(healingPerTick);
+            characterHealth.healHealth(healingPerTick);
             yield return new WaitForSeconds(tickCooldown);
         }
 

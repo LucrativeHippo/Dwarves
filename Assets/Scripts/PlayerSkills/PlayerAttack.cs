@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
 
-    public KeyCode actionKey;
     public GameObject projectile;
     public float cooldownDuration;
     private GameObject player;
     private GameObject spawnPoint;
 
     private bool canFire;
+    private Controls controls;
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = MetaScript.getPlayer();
         spawnPoint = gameObject;
         canFire = true;
+        controls = MetaScript.GetControls();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (player != null && Input.GetKey(actionKey) && canFire)
+        if (player != null && controls.key(controls.Attack) && canFire)
         {
             Vector3 direction = (spawnPoint.transform.localPosition.normalized);
             if (projectile != null)

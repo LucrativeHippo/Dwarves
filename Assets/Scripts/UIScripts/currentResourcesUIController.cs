@@ -12,28 +12,26 @@ public class currentResourcesUIController : MonoBehaviour {
 
     private IEnumerator coroutine;
 
-    void Start() {
-        textsValuesText = new Text[(int)ResourceTypes.NumberOfTypes - 1];
-        for (int i = 0; i < (int)ResourceTypes.NumberOfTypes - 1; i++) {
-            textsValuesText[i] = this.transform.GetChild(i).GetChild(0).gameObject.GetComponent<Text>();
+    void Start () {
+        textsValuesText = new Text[(int)ResourceTypes.NumberOfTypes];
+        for (int i = 0; i < (int)ResourceTypes.NumberOfTypes; i++) {
+            textsValuesText [i] = this.transform.GetChild (i).GetChild (0).gameObject.GetComponent<Text> ();
         }
-        resourceManager = MetaScript.getRes();
-        updateResourcesUI();
+        resourceManager = MetaScript.getRes ();
+        updateResourcesUI ();
     }
-    
-    void OnEnable()
-    {
-        if(resourceManager != null)
-            updateResourcesUI();
+
+    void OnEnable () {
+        if (resourceManager != null)
+            updateResourcesUI ();
     }
 
     /// <summary>
     /// Updates the resources UI.
     /// </summary>
     public void updateResourcesUI () {
-        
-        for (int i = 0; i < (int)ResourceTypes.NumberOfTypes - 1; i++) {
-            textsValuesText [i].text = resourceManager.getResource (i).ToString () + "/" + resourceManager.getMaxResource(i).ToString();
+        for (int i = 0; i < (int)ResourceTypes.NumberOfTypes; i++) {
+            textsValuesText [i].text = resourceManager.getResource (i).ToString () + "/" + resourceManager.getMaxResource (i).ToString ();
         }
     }
 }

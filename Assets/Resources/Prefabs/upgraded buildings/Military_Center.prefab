@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 54083442069031096}
   - component: {fileID: 114987868953804966}
   - component: {fileID: 114457811120078130}
+  - component: {fileID: 114980846701133162}
   m_Layer: 0
   m_Name: Military_Center
   m_TagString: Untagged
@@ -192,6 +193,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numGuards: 1
   militaryAbility: 0.5
+--- !u!114 &114980846701133162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1449137886219876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e71a54fd005b446f9a74b7b1c613b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiplierToAdd: 0.5
 --- !u!114 &114987868953804966
 MonoBehaviour:
   m_ObjectHideFlags: 1

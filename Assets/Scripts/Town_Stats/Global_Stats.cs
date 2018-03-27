@@ -15,10 +15,10 @@ public class Global_Stats : MonoBehaviour {
     [SerializeField]
     private float healthMultiplier = 1f;
 
-    private float gatherMultiplier;
+    private float gatherMultiplier = 1;
 
     [SerializeField]
-    private float baseGather;
+    private float baseGather = 1;
 
     [SerializeField]
     private bool hasHeatProtection;
@@ -71,6 +71,7 @@ public class Global_Stats : MonoBehaviour {
 
     public void setHealthMultiplier(float multiplier){
         healthMultiplier += multiplier;
+        publish();
     }
 
     //public float getHealthPool()
@@ -90,6 +91,7 @@ public class Global_Stats : MonoBehaviour {
         {
             gatherMultiplier = 0;
         }
+        publish();
     }
 
     public float getGatherMultiplier()
@@ -116,13 +118,12 @@ public class Global_Stats : MonoBehaviour {
     {
         return hasColdProtection;
     }
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    
+    private List<IStatsListener> subscribers = new List<IStatsListener>();
+
+    void publish(){
+        foreach(IStatsListener l in subscribers){
+            l.publish(this);
+        }
+    }
 }
