@@ -39,7 +39,8 @@ public bool enemyInRange;
     }
 
     private void defeatedEnemy(){
-        GetComponent<FightFlight>().revert();
+        if(GetComponent<FightFlight>().shouldRevert())
+            GetComponent<FightFlight>().revert();
     }
 
 
