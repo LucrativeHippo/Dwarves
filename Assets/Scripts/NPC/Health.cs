@@ -12,6 +12,7 @@ public class Health : MonoBehaviour, IStatsListener {
     bool isImmortal = false;
     bool isInvulnerable = false;
     public bool dealDamage = false;
+    private Skills npcSkill;
 
     int originalMaxHp;
     float originalHealthMultiplier = 1;
@@ -30,8 +31,18 @@ public class Health : MonoBehaviour, IStatsListener {
 
 
     public void Start () {
-        maxHealth = health;
-        originalMaxHp = maxHealth;
+        npcSkill = gameObject.GetComponent<Skills>();
+        if (npcSkill != null)
+        {
+            health = Mathf.RoundToInt(50 + (npcSkill.getValue(1) * 10));
+            maxHealth = health;
+            originalMaxHp = maxHealth;
+        }
+        else
+        {
+            maxHealth = health;
+            originalMaxHp = maxHealth;
+        }
     }
 
 
@@ -198,16 +209,17 @@ public class Health : MonoBehaviour, IStatsListener {
 
     
 
-    // void Update()
-    // {
-    //     if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag!= "Enemy")
-    //     {
- 
-    //         originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
-    //         maxHealth = Mathf.RoundToInt(originalMaxHp * originalHealthMultiplier);
-    //         health = maxHealth;
-    //     }
-    // }
+     void Update()
+     {
+         if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag!= "Enemy")
+         {
+             originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
+            Debug.Log(originalHealthMultiplier);
+            Debug.Log(MetaScript.getGlobal_Stats().getHealthMultiplier());
+             health = Mathf.RoundToInt(originalMaxHp * originalHealthMultiplier);
+             maxHealth = health;
+          }
+     }
 
     public void publish(Global_Stats stats)
     {
