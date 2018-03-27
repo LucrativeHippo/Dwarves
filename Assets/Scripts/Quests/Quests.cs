@@ -22,11 +22,12 @@ public class Quests : MonoBehaviour {
 	public static QuestType [] list = new QuestType[]{
 		// Quests to give resources
 		new QuestType(giveWood, 2, "wood"),
-		new QuestType(giveFood, 5, "food"),
-		new QuestType(giveCoal, 15, "coal"),
-		new QuestType(giveStone, 10, "stone"),
-		new QuestType(giveIron, 20, "iron"),
-		new QuestType(giveDiamond, 40, "diamond"),
+		new QuestType(giveFood, 30, "food"),
+		new QuestType(giveCoal, 60, "coal"),
+		new QuestType(giveStone, 6, "stone"),
+		new QuestType(giveIron, 60, "iron"),
+		// GOLD???
+		new QuestType(giveDiamond, 600, "diamond"),
 
 		
 		new QuestType(isPopulationAbove,10, "population"),
@@ -35,10 +36,10 @@ public class Quests : MonoBehaviour {
 
 		// Quests for food above amount
 		new QuestType(isFoodAbove, 0, "food"),
-		new QuestType(isStoneAbove, 5, "stone"),
-		new QuestType(isIronAbove,10,"iron"),
-		new QuestType(isCoalAbove,8,"coal"),
-		new QuestType(isDiamondAbove,20,"diamond"),
+		new QuestType(isStoneAbove, 3, "stone"),
+		new QuestType(isIronAbove,30,"iron"),
+		new QuestType(isCoalAbove,30,"coal"),
+		new QuestType(isDiamondAbove,300,"diamond"),
 		new QuestType(isWoodAbove, 0, "wood")
 
 	};
