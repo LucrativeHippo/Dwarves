@@ -46,6 +46,7 @@ public class enemyAI : MonoBehaviour {
                 getDest();
             }
 			else if(!withinAttackRange()){
+                anim.SetBool("attack",false);
 				agentCtrl.isStopped = false;
 				agentCtrl.SetDestination (opponent.transform.position);
 			}else{
