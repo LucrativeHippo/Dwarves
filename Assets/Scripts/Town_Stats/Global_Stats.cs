@@ -118,7 +118,10 @@ public class Global_Stats : MonoBehaviour {
     {
         return hasColdProtection;
     }
-    
+    public void Awake()
+    {
+        gatherMultiplier = baseGather;
+    }
     private List<IStatsListener> subscribers = new List<IStatsListener>();
 
     void publish(){
