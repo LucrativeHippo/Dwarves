@@ -122,6 +122,8 @@ public class terrainGenerator : MonoBehaviour
     [SerializeField]
     private GameObject Coal;
 
+    [SerializeField]
+    private GameObject Cave;
 
     //Affects the types of terrain that are generated
     [SerializeField]
@@ -169,6 +171,7 @@ public class terrainGenerator : MonoBehaviour
         BUILDSIGN,
         DIAMOND,
         COAL,
+        CAVE,
         NONE
     }
 
@@ -466,14 +469,7 @@ public class terrainGenerator : MonoBehaviour
                 //}
             }
         }
-        /*lol = GameObject.FindGameObjectsWithTag("TownCenter");
-
-        if (GameObject.FindGameObjectWithTag("TownCenter")!=null)
-        {
-            print(GameObject.FindGameObjectsWithTag("TownCenter")[0].transform.name);
-            print(GameObject.FindGameObjectsWithTag("TownCenter")[1].transform.name);
-          */
-        //lolz = GameObject.Find("Campfire(Clone)");
+        
         MetaScript.getTownCenter().GetComponentInChildren<NavMeshBuildFunction>().build();
         //}
         
@@ -628,6 +624,10 @@ public class terrainGenerator : MonoBehaviour
                         }
                         chunkMap.addTileAt(tempTile, x, y, 1);
                     }
+                    if (resourceMap[key] == resource.CAVE)
+                    {
+                        Instantiate(Cave, new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
+                    }
                 }
                 
             }
@@ -771,11 +771,11 @@ public class terrainGenerator : MonoBehaviour
         else if (waterVal < getThreshold(terrain.WATER))
         {
 
-            if(Random.Range(0,30)< 2)
+            /*if(Random.Range(0,30)< 2)
             {
                 tempResource = Fish;
                 resourceMap.Add(key, resource.FISH);
-            }
+            }*/
 
         }
         else if (0 <= resourceVal && resourceVal < getResourceThreshold(resource.TREE) && 0 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.TREE))
@@ -831,6 +831,13 @@ public class terrainGenerator : MonoBehaviour
             }
             
 
+        }
+        if (terrainMap[key] == terrain.MOUNTAIN && !resourceMap.ContainsKey(key))
+        {
+            if (Random.Range(0,100) < 2)
+            {
+                resourceMap[key] = resource.CAVE;
+            }
         }
     }
 
