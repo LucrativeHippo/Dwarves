@@ -101,7 +101,7 @@ public class GameTime : MonoBehaviour
         stormBringer.resetStorms(calendar.getForecastTemp(0), calendar.getForecastWeather(0));
     }
 
-    
+    bool foodOwed = false;
 
     private IEnumerator Timer (float time) {
 
@@ -160,6 +160,10 @@ public class GameTime : MonoBehaviour
         setWeatherBasedPostProcessing();
         setWeatherBasedParticles();
         setWeatherBasedStorms();
+        if(foodOwed){
+            MetaScript.getFoodSystem().tickDay();
+        }
+        foodOwed = true;
     }
 }
     

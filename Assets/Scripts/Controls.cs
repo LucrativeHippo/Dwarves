@@ -25,4 +25,8 @@ public class Controls : MonoBehaviour {
 	public bool key(KeyCode key){
 		return !FocusedInput && Input.GetKey(key);
 	}
+
+	public static void focused(bool yes){
+		MetaScript.GetControls().FocusedInput = yes;
+	}
 }
