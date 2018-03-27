@@ -16,7 +16,6 @@ public class Guard : MonoBehaviour {
 
     private Transform targetPosition;
     private float timer;
-public bool enemyInRange;
 
     void Awake()
     {
@@ -71,15 +70,14 @@ public bool enemyInRange;
         else
         {
             
-            if(enemyGone){
+            if(enemyGone)
                 defeatedEnemy();
-            }else{
-                enemyGone = true;
+                
+            enemyGone = true;
 
-                target = collect.findClosestTag("Enemy",gameObject,threatRange);
-                navComponent.isStopped = false;
-                Patrol();
-            }
+            target = collect.findClosestTag("Enemy",gameObject,threatRange);
+            navComponent.isStopped = false;
+            Patrol();
         }
         
     }
