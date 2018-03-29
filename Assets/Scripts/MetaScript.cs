@@ -157,7 +157,7 @@ public class MetaScript : MonoBehaviour {
 			if(weakestSacrifice == null)
 				weakestSacrifice = npc;
 			else{
-				if(weakestSacrifice.GetComponent<Skills>().getRank() < npc.GetComponent<Skills>().getRank()){
+				if(weakestSacrifice.GetComponent<Skills>().getRank() > npc.GetComponent<Skills>().getRank()){
 					weakestSacrifice = npc;
 				}
 			}
@@ -165,7 +165,7 @@ public class MetaScript : MonoBehaviour {
 				if(townSacrifice == null)
 					townSacrifice = npc;
 				else{
-					if(townSacrifice.GetComponent<Skills>().getRank() < npc.GetComponent<Skills>().getRank()){
+					if(townSacrifice.GetComponent<Skills>().getRank() > npc.GetComponent<Skills>().getRank()){
 						townSacrifice = npc;
 					}
 				}
