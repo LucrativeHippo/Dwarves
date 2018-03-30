@@ -9561,7 +9561,7 @@ Prefab:
         type: 2}
       propertyPath: NPC
       value: 
-      objectReference: {fileID: 1124489161256058, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+      objectReference: {fileID: 1587624629007354, guid: 56386d4f3c8ce4c9f818259c1374829b,
         type: 2}
     - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
         type: 2}
