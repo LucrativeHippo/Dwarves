@@ -413,7 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
   buildingLimit: 0
-  buildingDescription: 
+  buildingDescription: -Increases the townsolk's health.
 --- !u!212 &212307772328896136
 SpriteRenderer:
   m_ObjectHideFlags: 1

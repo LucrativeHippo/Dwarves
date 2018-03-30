@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
   buildingLimit: 0
+  buildingDescription: '-Reduces the effects of cold weather. '
 --- !u!114 &114361655072638282
 MonoBehaviour:
   m_ObjectHideFlags: 1

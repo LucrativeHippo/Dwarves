@@ -28,8 +28,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DisMagnitude: 0.002
-    - _Displace: 1
+    - _Displace: 0
     - _Halo: 0
     - _HaloMagnitude: 0
-    - _SatMagnitude: 1.0872021
+    - _SatMagnitude: 1.216275
     m_Colors: []
