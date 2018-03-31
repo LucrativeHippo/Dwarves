@@ -35,6 +35,7 @@ GameObject:
   - component: {fileID: 114812519985733288}
   - component: {fileID: 114253861528856944}
   - component: {fileID: 114840499879296862}
+  - component: {fileID: 114672238856942010}
   m_Layer: 0
   m_Name: NavNPC
   m_TagString: Untagged
@@ -51,7 +52,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4630488893084990}
   - component: {fileID: 212198926479906358}
-  - component: {fileID: 95658526827064774}
   - component: {fileID: 114484910141020148}
   m_Layer: 0
   m_Name: lumberjack
@@ -455,7 +455,6 @@ MonoBehaviour:
   attackRange: 0.5
   patrolRadius: 10
   patrolTimer: 5
-  enemyInRange: 0
 --- !u!114 &114095842388215212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -605,6 +604,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114672238856942010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1124489161256058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d100ce74f724901822b27bdc231e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114752613892289702
 MonoBehaviour:
   m_ObjectHideFlags: 1

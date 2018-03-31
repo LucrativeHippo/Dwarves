@@ -11,6 +11,8 @@ public class statWords : MonoBehaviour {
 
     private float[] skills;
 
+    private int[] indexRating;
+
     public void setNPC (GameObject aNPC) {
         currentNPC = aNPC;
         getSkills ();
@@ -19,6 +21,7 @@ public class statWords : MonoBehaviour {
 
     private void getSkills () {
         skills = currentNPC.GetComponent<Skills> ().skillLevel;
+        indexRating = currentNPC.GetComponent<npcJobRating>().getBestIndex();
     }
 
     private void decideStrength () {
@@ -30,6 +33,48 @@ public class statWords : MonoBehaviour {
                 skillWordString += "Strong " + ((Skills.list)i).ToString () + "\n"; 
             } else if (skills [i] <= 3) {
                 skillWordString += "Weak " + ((Skills.list)i).ToString () + "\n";
+            }
+        }
+        if (skillWordString == "")
+        {
+
+        }
+
+        else
+        {
+            skillWordString += "\n\n";
+        }
+        skillWordString += "Recommended Job: " + "\n";
+
+        switch (indexRating[0]){
+            case 0:
+                skillWordString += "Food" + "\n";
+                break;
+            case 1:
+                skillWordString += "Mining" + "\n";
+                break;
+            case 2:
+                skillWordString += "Wood\n";
+                break;
+            case 3:
+                skillWordString += "Guard\n";
+                break;
+        }
+        if (indexRating[1] != 0){
+            switch (indexRating[1])
+            {
+                case 0:
+                    skillWordString += "Food" + "\n";
+                    break;
+                case 1:
+                    skillWordString += "Mining" + "\n";
+                    break;
+                case 2:
+                    skillWordString += "Wood\n";
+                    break;
+                case 3:
+                    skillWordString += "Guard\n";
+                    break;
             }
         }
         MoreDetailsUIObject.transform.GetChild (5).GetChild (0).GetChild (0).GetChild (0).gameObject.GetComponent<Text> ().text = skillWordString;
