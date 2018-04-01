@@ -314,6 +314,26 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 67038174}
+--- !u!1 &86225519 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1419942855236744, guid: a52a3ed753a66f6408285b2e71240be6,
+    type: 2}
+  m_PrefabInternal: {fileID: 2099689874}
+--- !u!114 &86225531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 86225519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61903d34a1a4cd441a42880e45326db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 0
+  isImmortal: 0
+  dealDamage: 0
 --- !u!1 &89536908
 GameObject:
   m_ObjectHideFlags: 0

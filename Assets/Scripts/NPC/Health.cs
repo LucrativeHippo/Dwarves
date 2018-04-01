@@ -118,9 +118,11 @@ public class Health : MonoBehaviour, IStatsListener {
 
     public void death(){
         if(CompareTag("OwnedNPC")){
+			Debug.Log ("An NPC has died");
             MetaScript.GetNPC().removeNPC(gameObject);
         }
         if(CompareTag("Player")){
+			Debug.Log ("The player has died");
             StartCoroutine(PerformRitual());
             
             
