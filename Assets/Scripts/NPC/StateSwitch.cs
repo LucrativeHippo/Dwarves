@@ -15,6 +15,10 @@ public class StateSwitch : MonoBehaviour {
         moreDetails = GameObject.Find ("npcManagerMoreDetailsScrollView");
     }
 
+    public void setNPC(GameObject aNPC) {
+        currentNPC = aNPC;
+    }
+
     public void setGuardButton (GameObject aNPC) {
         currentNPC = aNPC;
 		buttonText.text = "Guard";
