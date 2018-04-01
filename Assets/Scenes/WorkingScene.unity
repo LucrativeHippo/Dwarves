@@ -4475,7 +4475,7 @@ Prefab:
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceCloudy
-      value: 100000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
