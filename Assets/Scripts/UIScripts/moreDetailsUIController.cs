@@ -65,6 +65,7 @@ public class moreDetailsUIController : MonoBehaviour, IHealthListener {
         selectRoleGameObject.GetComponent<GenerateRoleSelector> ().setCurrentNPC (currentNPC);
         foreach (Transform child in selectRoleGameObject.transform.GetChild(0)) {
             child.gameObject.GetComponent<RoleButtonScript> ().setNPC (currentNPC);
+            child.gameObject.GetComponent<StateSwitch> ().setNPC (currentNPC);
         }
     }
 
