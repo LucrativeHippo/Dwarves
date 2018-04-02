@@ -12,6 +12,7 @@ public class RingBell : MonoBehaviour {
 	// Update is called once per frame
 	void Update(){
 		if(controls.keyDown(controls.HideBell)){
+			controls.guards = false;
 			ring();
 		}
 	}
@@ -20,7 +21,7 @@ public class RingBell : MonoBehaviour {
 	private void ring(){
 		danger = !danger;
 		foreach(GameObject g in GetComponent<OwnedNPCList>().getNPCs()){
-			g.GetComponent<IBellListener>().forceBell(danger);
+			g.GetComponent<FightFlight>().forceBell(danger);
 		}
 	}
 }
