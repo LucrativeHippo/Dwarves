@@ -53,7 +53,7 @@ public class moreDetailsUIController : MonoBehaviour, IHealthListener {
     private void setMoreDetails () {
         this.transform.GetChild (0).GetComponent<statWords> ().setNPC (currentNPC);
         nameInputField.text = currentNPC.name;
-        currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
+        setRole ();
     }
 
     private void setSelectRoleButton () {
@@ -70,11 +70,15 @@ public class moreDetailsUIController : MonoBehaviour, IHealthListener {
     }
 
     public void setRole () {
-        currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
-    }
-
-    public void setRole (string role) {
-        currentJobText.text = role;
+        if (currentNPC.GetComponent<follow> ().enabled == true) {
+            Debug.Log ("Following in setRole");
+            currentJobText.text = "Following";
+        } else if (currentNPC.GetComponent<Guard> ().enabled == true) {
+            Debug.Log ("Guarding in setRole");
+            currentJobText.text = "Guarding";
+        } else {
+            currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
+        }
     }
 
     public void publish () {
