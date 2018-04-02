@@ -89,8 +89,9 @@ public class enemyAI : MonoBehaviour {
 
 		if(opponent != null){
             anim.SetBool("attack", true);
-			opponent.GetComponent<Health>().damage(damage);
-			opponent.GetComponent<Health>().notifyNPC();
+			Health h = opponent.GetComponent<Health>();
+			opponent.SendMessage("damage",damage);
+			opponent.SendMessage("notifyNPC");
 		}
 	}
 }
