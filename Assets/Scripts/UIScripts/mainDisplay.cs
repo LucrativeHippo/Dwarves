@@ -53,7 +53,15 @@ public class mainDisplay : MonoBehaviour {
     /// Sets the current job text.
     /// </summary>
     private void setCurrentJob () {
-        currentJobText.text = aNPC.GetComponent<collect> ().getFindingType ();
+        if (aNPC.GetComponent<follow> ().enabled == true) {
+            Debug.Log ("Following in setRole");
+            currentJobText.text = "Following";
+        } else if (aNPC.GetComponent<Guard> ().enabled == true) {
+            Debug.Log ("Guarding in setRole");
+            currentJobText.text = "Guarding";
+        } else {
+            currentJobText.text = aNPC.GetComponent<collect> ().getFindingType ();
+        }
     }
 
     /// <summary>
