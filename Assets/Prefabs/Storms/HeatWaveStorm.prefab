@@ -51,6 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2268f43885703844aa4b032c41609f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowDecimal: 0.1
+  slowDecimal: 0.7
   slowDuration: 3
   slowRenewalTime: 2

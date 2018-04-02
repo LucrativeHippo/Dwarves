@@ -399,6 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
   buildingLimit: 0
+  buildingDescription: -Lowers  food consumption.
 --- !u!212 &212945655219968238
 SpriteRenderer:
   m_ObjectHideFlags: 1
