@@ -474,7 +474,7 @@ public class terrainGenerator : MonoBehaviour
         //}
         
         
-
+		Debug.LogWarning ("Seed Info, S:" + SEED + " cis:" + chunkIntervalSeed + " w:" + waterSeed + " r1:" + resourceSeed + " r2:" + resourceSeed2 + " t1:" + terrainSeed + " t2:" + terrainSeed2);
     }
     
 
