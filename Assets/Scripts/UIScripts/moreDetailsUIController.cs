@@ -35,6 +35,7 @@ public class moreDetailsUIController : MonoBehaviour, IHealthListener {
         setInputField ();
 
         setHealth (currentNPC.GetComponent<Health> ());
+        updateHealth ();
     }
 
     private void setInputField () {

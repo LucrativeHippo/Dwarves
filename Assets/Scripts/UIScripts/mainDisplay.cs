@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class mainDisplay : MonoBehaviour {
+public class mainDisplay : MonoBehaviour, IHealthListener {
 
     private GameObject aNPC;
 
-    [SerializeField] private Image npcImage;
-    [SerializeField] private Text nameText;
-    [SerializeField] private Text currentJobText;
-    [SerializeField] private Text happynessText;
+    private Image npcImage;
+    private Text nameText;
+    private Text currentJobText;
+    private Text healthText;
 
-    [SerializeField] private GameObject NPCManagerCanvas;
-    [SerializeField] private GameObject mainDisplayGameObject;
-    [SerializeField] private GameObject moreDetailsGameObject;
+    private GameObject AllUIObjectsGameObject;
+    private GameObject mainDisplayGameObject;
+    private GameObject moreDetailsGameObject;
+
+    private Health npcHealth;
 
     void Start () {
-        NPCManagerCanvas = GameObject.Find ("NPCManagerCanvas");
-        mainDisplayGameObject = NPCManagerCanvas.transform.GetChild (0).gameObject;
-        moreDetailsGameObject = NPCManagerCanvas.transform.GetChild (1).gameObject;
+        AllUIObjectsGameObject = GameObject.Find ("AllUIObjectsCanvas");
+        mainDisplayGameObject = AllUIObjectsGameObject.transform.GetChild (1).GetChild (0).gameObject;
+        moreDetailsGameObject = AllUIObjectsGameObject.transform.GetChild (1).GetChild (1).gameObject;
     }
 
     /// <summary>
@@ -27,6 +29,11 @@ public class mainDisplay : MonoBehaviour {
     /// </summary>
     /// <param name="newNPC">New NP.</param>
     public void setNPC (GameObject newNPC) {
+        npcImage = this.transform.GetChild (0).gameObject.GetComponent<Image> ();
+        nameText = this.transform.GetChild (1).gameObject.GetComponent<Text> ();
+        currentJobText = this.transform.GetChild (2).gameObject.GetComponent<Text> ();
+        healthText = this.transform.GetChild (3).gameObject.GetComponent<Text> ();
+
         aNPC = newNPC;
 
         if (aNPC != null) {
@@ -34,7 +41,8 @@ public class mainDisplay : MonoBehaviour {
             // setImage ();
             setName ();
             setCurrentJob ();
-            setHappyness ();
+            setHealth (aNPC.GetComponent<Health> ());
+            updateHealth ();
         } else {
             Debug.Log ("NPC Manager Error, aNPC is Null.");
         }
@@ -64,12 +72,21 @@ public class mainDisplay : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Sets the happyness text.
-    /// </summary>
-    private void setHappyness () {
-        // TODO: connect happyness.
-        happynessText.text = "Temp";
+    public void publish () {
+        if (npcHealth != null)
+            updateHealth ();
+    }
+
+    public void setHealth (Health h) {
+        if (h != null) {
+            npcHealth = h;
+            h.addSubscriber (this);
+        }
+    }
+
+    private void updateHealth () {
+        float fractionHealth = npcHealth.getHealth () / (float)npcHealth.getMaxHealth ();
+        healthText.text = (System.Math.Round (fractionHealth * 100, 0)).ToString () + "%";
     }
 
     /// <summary>
@@ -82,7 +99,6 @@ public class mainDisplay : MonoBehaviour {
         } else {
             Debug.Log (aNPC.name + " has no Sprite to display.");
         }
-
     }
 
     /// <summary>
