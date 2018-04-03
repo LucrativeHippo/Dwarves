@@ -70,6 +70,6 @@ public class shelter : MonoBehaviour
         {
             buildingCheck = npc.AddComponent<InBuilding>();
         }
-        buildingCheck.setPlayerInBuilding(false);
+        buildingCheck.setPlayerInBuilding(val);
     }
 }

@@ -15,6 +15,7 @@ public class Global_Stats : MonoBehaviour {
     [SerializeField]
     private float healthMultiplier = 1f;
 
+    [SerializeField]
     private float gatherMultiplier = 1;
 
     [SerializeField]

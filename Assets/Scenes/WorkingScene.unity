@@ -4476,7 +4476,7 @@ Prefab:
     - target: {fileID: 114226960038818720, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: dayTime
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114226960038818720, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
@@ -4547,6 +4547,11 @@ Prefab:
         type: 2}
       propertyPath: chancePerfect
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230035695189324, guid: 04f910d73192ab9498d805b6251e66e4,
+        type: 2}
+      propertyPath: chanceOfTrendInChange
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04f910d73192ab9498d805b6251e66e4, type: 2}
@@ -5925,7 +5930,8 @@ MonoBehaviour:
   militaryAbility: 1
   damageMultiplier: 1
   healthMultiplier: 1
-  baseGather: 0
+  gatherMultiplier: 1
+  baseGather: 1
   hasHeatProtection: 0
   hasColdProtection: 0
 --- !u!114 &1368627735
