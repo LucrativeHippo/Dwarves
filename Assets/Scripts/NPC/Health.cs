@@ -121,6 +121,7 @@ public class Health : MonoBehaviour, IStatsListener {
         if(CompareTag("OwnedNPC")){
 			Debug.Log ("An NPC has died");
             MetaScript.GetNPC().removeNPC(gameObject);
+            MetaScript.Tomb(transform.position, name);
         }
         if(CompareTag("Player")){
 			Debug.Log ("The player has died");

@@ -123,6 +123,10 @@ public class MetaScript : MonoBehaviour {
 		return player;
 	}
 
+	public static NameGen GetNameGen(){
+		return getMetaObject().GetComponent<NameGen>();
+	}
+
 	public static Controls GetControls(){
 		return getMetaObject().GetComponent<Controls>();
 	}
