@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour, IStatsListener {
     /// The health.
@@ -144,7 +145,8 @@ public class Health : MonoBehaviour, IStatsListener {
         if (sacrifice == null) {
             // Load other scene
             Destroy(gameObject);
-        }
+            gameEnds();
+              }
         else
         {
             // Stop npc from moving;
@@ -226,5 +228,9 @@ public class Health : MonoBehaviour, IStatsListener {
         if(CompareTag("OwnedNPC")){
             
         }
+    }
+
+    public void gameEnds(){
+        SceneManager.LoadScene("endGame");
     }
 }
