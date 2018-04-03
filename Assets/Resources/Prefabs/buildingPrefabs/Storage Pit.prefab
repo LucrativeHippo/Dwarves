@@ -192,9 +192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ae59032527b564baabf6a8f6e7b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0000000000000000320000001900000019000000000000000000000000000000
+  cost: 0000000000000000000000000000000000000000000000000000000000000000
   buildingLimit: 1
-  buildingDescription: 
+  buildingDescription: -Increases wood, stone, coal and iron capacity.
 --- !u!114 &114635324049006734
 MonoBehaviour:
   m_ObjectHideFlags: 1

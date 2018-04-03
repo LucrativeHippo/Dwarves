@@ -360,9 +360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ae59032527b564baabf6a8f6e7b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 000000001e0000004600000000000000000000000a0000000200000000000000
+  cost: 0000000000000000000000000000000000000000000000000000000000000000
   buildingLimit: 0
-  buildingDescription: 
+  buildingDescription: -Allows a motivational speaker to motivate the town.
 --- !u!114 &114336404839429908
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -385,9 +385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ae59032527b564baabf6a8f6e7b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0000000096000000000000000000000000000000000000000000000000000000
+  cost: 0000000000000000000000000000000000000000000000000000000000000000
   buildingLimit: 0
-  buildingDescription: 
+  buildingDescription: -Increases population capacity.
 --- !u!114 &114562919767846218
 MonoBehaviour:
   m_ObjectHideFlags: 1
