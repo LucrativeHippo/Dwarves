@@ -49,16 +49,16 @@ public class statWords : MonoBehaviour {
         switch (indexRating[0])
         {
             case 0:
-                skillWordString += "Food" + "\n";
+                skillWordString += "Food" ;
                 break;
             case 1:
-                skillWordString += "Mining" + "\n";
+                skillWordString += "Mining" ;
                 break;
             case 2:
-                skillWordString += "Wood\n";
+                skillWordString += "Wood";
                 break;
             case 3:
-                skillWordString += "Guard\n";
+                skillWordString += "Guard";
                 break;
         }
         if (indexRating[1] != 0)
@@ -66,16 +66,16 @@ public class statWords : MonoBehaviour {
             switch (indexRating[1])
             {
                 case 0:
-                    skillWordString += "Food" + "\n";
+                    skillWordString += " or Food" + "\n";
                     break;
                 case 1:
-                    skillWordString += "Mining" + "\n";
+                    skillWordString += " or Mining" + "\n";
                     break;
                 case 2:
-                    skillWordString += "Wood\n";
+                    skillWordString += " or Wood\n";
                     break;
                 case 3:
-                    skillWordString += "Guard\n";
+                    skillWordString += " or Guard\n";
                     break;
             }
         }
