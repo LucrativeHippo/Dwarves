@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour, IStatsListener {
     /// The health.
@@ -118,9 +119,11 @@ public class Health : MonoBehaviour, IStatsListener {
 
     public void death(){
         if(CompareTag("OwnedNPC")){
+			Debug.Log ("An NPC has died");
             MetaScript.GetNPC().removeNPC(gameObject);
         }
         if(CompareTag("Player")){
+			Debug.Log ("The player has died");
             StartCoroutine(PerformRitual());
             
             
@@ -144,6 +147,7 @@ public class Health : MonoBehaviour, IStatsListener {
         if (sacrifice == null) {
             // Load other scene
             Destroy(gameObject);
+            endGame();
         }
         else
         {
@@ -227,4 +231,9 @@ public class Health : MonoBehaviour, IStatsListener {
             
         }
     }
+
+    public void endGame(){
+      
+            SceneManager.LoadScene("endGame");
+         }
 }

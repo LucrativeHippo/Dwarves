@@ -16,7 +16,7 @@ public class actor : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) {
-        if (controls.keyDown(controls.Action) && canSend)
+        if (controls.key(controls.Action) && canSend)
         {
             canSend = false;
             other.gameObject.SendMessage("recieveAction");

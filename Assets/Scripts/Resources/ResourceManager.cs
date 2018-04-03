@@ -20,7 +20,8 @@ public class ResourceManager : MonoBehaviour {
         maxResourceList[(int)ResourceTypes.GOLD] = 5;
         maxResourceList[(int)ResourceTypes.IRON] = 10;
         maxResourceList[(int)ResourceTypes.POPULATION] = 5;
-    }
+		InvokeRepeating ("logResources", 1.0f, 180.0f);
+	}
 
     private bool meat;
     private bool fruit;
@@ -115,7 +116,11 @@ public class ResourceManager : MonoBehaviour {
 		}
 	}
 
-	
+	void logResources(){
+		Debug.Log("Cur W:"+resourceList[0]+" F:"+resourceList[1]+" S:"+resourceList[2]+" C:"+resourceList[3]+" D:"+resourceList[4]+" G:"+resourceList[5]+" I:"+resourceList[6]+" P:"+resourceList[7]);
+		Debug.Log("Cap W:"+maxResourceList[0]+" F:"+maxResourceList[1]+" S:"+maxResourceList[2]+" C:"+maxResourceList[3]+" D:"+maxResourceList[4]+" G:"+maxResourceList[5]+" I:"+maxResourceList[6]+" P:"+maxResourceList[7]);
+	}
+
 	// Use this for initialization
 	void Start () {
 		

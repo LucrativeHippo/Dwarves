@@ -15,6 +15,10 @@ public class StateSwitch : MonoBehaviour {
         moreDetails = GameObject.Find ("npcManagerMoreDetailsScrollView");
     }
 
+    public void setNPC(GameObject aNPC) {
+        currentNPC = aNPC;
+    }
+
     public void setGuardButton (GameObject aNPC) {
         currentNPC = aNPC;
 		buttonText.text = "Guard";
@@ -32,7 +36,7 @@ public class StateSwitch : MonoBehaviour {
 		setFollow(false, currentNPC);
 		setGuard(true, currentNPC);
         this.transform.parent.parent.gameObject.SetActive (false);
-        moreDetails.GetComponent<moreDetailsUIController> ().setRole ("Guard");
+        moreDetails.GetComponent<moreDetailsUIController> ().setRole ();
 	}
 
 	private void follow_Click(){
@@ -40,7 +44,7 @@ public class StateSwitch : MonoBehaviour {
 		setGuard(false, currentNPC);
 		setFollow(true, currentNPC);
 		transform.parent.parent.gameObject.SetActive (false);
-		moreDetails.GetComponent<moreDetailsUIController>().setRole("Follow");
+		moreDetails.GetComponent<moreDetailsUIController>().setRole();
 	}
 
     private void button_Click () {

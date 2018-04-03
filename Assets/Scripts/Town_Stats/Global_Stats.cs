@@ -15,6 +15,7 @@ public class Global_Stats : MonoBehaviour {
     [SerializeField]
     private float healthMultiplier = 1f;
 
+    [SerializeField]
     private float gatherMultiplier = 1;
 
     [SerializeField]
@@ -86,6 +87,7 @@ public class Global_Stats : MonoBehaviour {
 
     public void setGatherMultiplier(float mult)
     {
+        Debug.Log("Setting Gather Mult: "+mult);
         gatherMultiplier = mult;
         if (gatherMultiplier < 0)
         {
