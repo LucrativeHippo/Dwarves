@@ -149,7 +149,7 @@ public class BlizzardTrap : MonoBehaviour {
 
         if (valid != null)
         {
-            if (!checkIfInBuilding(victim))
+            if (!checkIfInBuilding(victim) && (gameObject.tag.Equals("Player") || gameObject.tag.Equals("OwnedNPC")))
             {
                 buffsys.slowApplyingSystem(victim, slowDuration, slowDecimal);
             }
