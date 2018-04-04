@@ -5,6 +5,7 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour {
     [SerializeField]
     [NamedArray (typeof(ResourceTypes))]private int[] resourceList = new int[(int)ResourceTypes.NumberOfTypes];
+    [SerializeField]
     [NamedArray(typeof(ResourceTypes))]private int [] maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
     
 
@@ -122,7 +123,7 @@ public class ResourceManager : MonoBehaviour {
     }
 	
     // Update is called once per frame
-    void Update () {
-		
+    void OnValidate () {
+        MetaScript.updateResourcesUI();
     }
 }

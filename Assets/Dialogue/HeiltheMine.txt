@@ -161,3 +161,30 @@ Narrator: You approach a pentagram burnt into the caves floor, something draws y
 [choice] Walk away
 [title=Pentagram-default-talk-end]
 
+[title=endgame-default-talk-start]
+Weatherman: A building made out of solid gold. Vanity is alive and well in paradise.
+Weatherman: I think that about wraps it up though. Every soul looks harvestable.
+Weatherman: Oh don't look at me like that my little minion. You must have suspected something.
+Weatherman: Let me ask you this oh brave heroine, if this catastrophe you think you remember happened so long ago...
+Weatherman: Why are you just now building a town?
+Weatherman: You remember it as if it was only yesterday.. but there is no sign of ruins.
+Weatherman: Did you ever stop to ask yourself these questions?
+Weatherman: I got a real doozy for you. How come you're townsfolk aren't starving before you recruit them?
+Weatherman: The weather that plagues this world doesn't affect them when they are not bound by your jobs and order?
+Weatherman: It is because they are free. They are at a peace in the after life. 
+Weatherman: And I HATE THAT. How can I claim the souls of the free? How can I condemn them to an eternity of pain if the fires of hell won't hurt them?
+Weatherman: Vanity. Rules. Obligations. Commitments. 
+Weatherman: Now the free aren't so free. 
+Weatherman: Monsters, weather, companionship.
+Weatherman: All tools to lead the free away from a peaceful afterlife.
+Weatherman: You have been such a great little helper stripping away their freedom. 
+Weatherman: And now that you once again worship false idols like gold and indulge in the sins of the world,
+Weatherman: You are now all ready for the taking.
+Weatherman: Whats that? ....You thought you were helping them?
+Weatherman: Ha...
+Weatherman: Haha...
+Weatherman: Hahaha..
+Weatherman: HAHAHA...
+Weatherman: HAHAHAHAHAHA
+[title=endgame-default-talk-end]
+

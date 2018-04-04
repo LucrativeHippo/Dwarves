@@ -101,18 +101,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rpgtalkTarget: {fileID: 0}
-  shouldInteractWithButton: 0
+  shouldInteractWithButton: 1
   showWhenInteractionIsPossible: []
-  interactionKey: 101
-  checkIfColliderHasTag: 
+  interactionKey: 102
+  checkIfColliderHasTag: Player
   callbackScriptBeforeTalk: {fileID: 0}
   callbackFunctionBeforeTalk: 
-  lineToStart: 1
-  lineToBreak: -1
+  lineToStart: endgame-default-talk-start
+  lineToBreak: endgame-default-talk-end
   txtToParse: {fileID: 0}
   callbackScriptAfterTalk: {fileID: 0}
   callbackFunctionAfterTalk: 
-  happenOnlyOnce: 1
+  happenOnlyOnce: 0
   alreadyHappened: 0
   triggerEnter: 0
   triggerExit: 0
