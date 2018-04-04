@@ -120,7 +120,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2d138b77832657849a413b3ffbea1ba1, type: 2}
+  - {fileID: 2100000, guid: 79ba0001752de0b4784fb28219d30f8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ae59032527b564baabf6a8f6e7b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0000000000000000000000000000000000000000000000000000000000000000
+  cost: 000000006400000000000000000000001e000000000000000000000000000000
   buildingLimit: 0
   buildingDescription: '-Reduces the effects of cold weather. '
 --- !u!114 &114361655072638282

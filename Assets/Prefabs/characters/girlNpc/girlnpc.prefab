@@ -116,11 +116,9 @@ GameObject:
   - component: {fileID: 33393967186039808}
   - component: {fileID: 23423547670401452}
   - component: {fileID: 54328464999387866}
-  - component: {fileID: 114430823047013660}
   - component: {fileID: 114867831846240794}
   - component: {fileID: 114101463435207374}
   - component: {fileID: 114279462084748216}
-  - component: {fileID: 114405881553204786}
   - component: {fileID: 114661445488998470}
   - component: {fileID: 114802729474798638}
   - component: {fileID: 114465532040883588}
@@ -509,35 +507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebec7125ecc3d4b40a9f0bbdee5014db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114405881553204786
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1587624629007354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebec7125ecc3d4b40a9f0bbdee5014db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114430823047013660
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1587624629007354}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 594da8df069b840738ba9f60b9d46ae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEnemy: 0
-  inCombat: 0
-  opponent: {fileID: 0}
-  coolDown: 1
-  damage: 1
-  originalMultiplier: 1
-  baseDamage: 0
 --- !u!114 &114465532040883588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -546,7 +515,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1587624629007354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b07f9860fce4d68b1a6d8b07fa512a, type: 3}
+  m_Script: {fileID: 11500000, guid: 72d100ce74f724901822b27bdc231e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114554872595092632

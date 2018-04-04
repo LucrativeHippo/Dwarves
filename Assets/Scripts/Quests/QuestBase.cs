@@ -92,6 +92,9 @@ public class QuestBase{
 	}
 
 	public QuestGoal GetQuestGoal(){
+		if(questPath.Count==0){
+			return new QuestGoal(-1);
+		}
 		return questPath.ToArray()[0];
 	}
 }

@@ -248,7 +248,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2e9da324c1ece7c42840679d728b636f, type: 2}
+  - {fileID: 2100000, guid: 57056344f76420a4aae8138a50a113bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMaterial: {fileID: 2100000, guid: 0b6a796b448f504489aab54134005a94, type: 2}
-  upgradeCostList: 000000000000000000000000000000000000000000000000000000000000000000000000
+  upgradeCostList: 00000000c80000006400000032000000320000000a000000000000000000000000000000
   upgrade: {fileID: 1449137886219876, guid: 1e7b103f7f7246045b672ac6f9d099a3, type: 2}
 --- !u!114 &114420386298659932
 MonoBehaviour:
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ae59032527b564baabf6a8f6e7b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0000000000000000000000000000000000000000000000000000000000000000
+  cost: 000000003c00000000000000000000001e000000060000000000000000000000
   buildingLimit: 0
   buildingDescription: -Increases the townsolk's health.
 --- !u!212 &212307772328896136

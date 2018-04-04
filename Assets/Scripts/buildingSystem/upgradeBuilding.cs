@@ -68,6 +68,8 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
     }
 
     private void setListener () {
+        confirmButton.GetComponent<Button> ().onClick.RemoveAllListeners();
+        cancelButton.GetComponent<Button> ().onClick.RemoveAllListeners();
         confirmButton.GetComponent<Button> ().onClick.AddListener (() => doUpgrade ());
         cancelButton.GetComponent<Button> ().onClick.AddListener (() => closePrompt ());
     }
