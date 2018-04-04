@@ -29,8 +29,11 @@ public class Skills : Character {
 
     [NamedArray(typeof(list))] public float[] skillLevel = new float[numOfSkills];
 
+    public bool customNPC = false;
     public void Awake () {
-        randomizeSkills ();
+        if(!customNPC){
+            randomizeSkills ();
+        }
         setRank();
     }
 

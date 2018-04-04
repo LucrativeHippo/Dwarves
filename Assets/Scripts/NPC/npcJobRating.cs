@@ -14,10 +14,6 @@ public class npcJobRating : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void getSkills(){
         skillList = gameObject.GetComponent<Skills>().skillLevel;

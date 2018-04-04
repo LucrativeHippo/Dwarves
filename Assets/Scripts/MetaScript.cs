@@ -77,6 +77,14 @@ public class MetaScript : MonoBehaviour {
         }
 	}
 
+	private static globalStatsUIController globalStatsUI = null;
+	public static void updateGlobalStatsUI(){
+		
+		if(globalStatsUI == null)
+			globalStatsUI = GameObject.Find("GlobalStats").GetComponent<globalStatsUIController>();
+		globalStatsUI.updateAll();
+	}
+
 	public static InBuilding GetInBuilding(){
 		return getMetaObject().GetComponent<InBuilding>();
 	}
