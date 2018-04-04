@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   homunculusCostList: 0000000000000000000000000000000000000000000000000000000000000000
-  homunculus: {fileID: 1587624629007354, guid: 56386d4f3c8ce4c9f818259c1374829b, type: 2}
+  homunculus: {fileID: 1598030321091338, guid: 0e4db00d5d50b584998985232473806e, type: 2}
 --- !u!114 &114426095508758860
 MonoBehaviour:
   m_ObjectHideFlags: 1
