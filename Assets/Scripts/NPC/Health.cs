@@ -147,8 +147,8 @@ public class Health : MonoBehaviour, IStatsListener {
         if (sacrifice == null) {
             // Load other scene
             Destroy(gameObject);
-            endGame();
-        }
+            gameEnds();
+              }
         else
         {
             // Stop npc from moving;
@@ -232,8 +232,7 @@ public class Health : MonoBehaviour, IStatsListener {
         }
     }
 
-    public void endGame(){
-      
-            SceneManager.LoadScene("endGame");
-         }
+    public void gameEnds(){
+        SceneManager.LoadScene("endGame");
+    }
 }
