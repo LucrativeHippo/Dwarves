@@ -35,3 +35,4 @@ GameProject.sln
 GameProject.csproj
 UnityPlayer.dll
 .vscode/
+Assets/Scripts/Shaders/Hidden_ChangeSaturation.mat

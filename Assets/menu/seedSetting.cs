@@ -13,12 +13,32 @@ public class seedSetting : MonoBehaviour {
     public Slider resourceSlider;
     public Slider terrainSlider;
 
-
+	/*//Attempt at fixing default values, did not appear to work, wound up changing start values for now
+	void Awake (){
+		if (!PlayerPrefs.HasKey("water")){
+			waterSlider.value = 1.1f;
+		} else {
+			PlayerPrefs.GetFloat ("water");
+		}
+		if (!PlayerPrefs.HasKey("resource")){
+			resourceSlider.value = 1.1f;
+		} else {
+			PlayerPrefs.GetFloat ("resource");
+		}
+		if (!PlayerPrefs.HasKey("terrain")){
+			terrainSlider.value = 1.1f;
+		} else {
+			PlayerPrefs.GetFloat ("terrain");
+		}
+	}*/
 	// Use this for initialization
 	void Start () {
-        waterSlider.value = PlayerPrefs.GetFloat("water");
-        resourceSlider.value = PlayerPrefs.GetFloat("resource");
-        terrainSlider.value = PlayerPrefs.GetFloat("terrain");
+		//waterSlider.value = PlayerPrefs.GetFloat("water");
+		//resourceSlider.value = PlayerPrefs.GetFloat("resource");
+		//terrainSlider.value = PlayerPrefs.GetFloat("terrain");
+        waterSlider.value = 1.15f;
+        resourceSlider.value = 1.15f;
+        terrainSlider.value = 1.15f;
 	}
 	
 	// Update is called once per frame
