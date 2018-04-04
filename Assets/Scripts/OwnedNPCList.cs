@@ -7,25 +7,22 @@ public class OwnedNPCList : MonoBehaviour {
     private List<GameObject> NPCs;
     private LinkedList<INPCListener> subscribers = new LinkedList<INPCListener>();
 
+    private GameObject AllUIObjectsCanvas;
+    private GameObject UINPCManagerList;
+    private GameObject UINPCMoreDetails;
+
     private void publish(){
         foreach(INPCListener listener in subscribers){
             listener.publish();
         }
     }
-	// Use this for initialization
+
 	void Start () {
 		NPCs = new List<GameObject> ();
-        //GameObject[] temp = GameObject.FindGameObjectsWithTag ("OwnedNPC");
 
-        //Transform metaParent = MetaScript.getMetaObject().transform;
-
-        // foreach (var theNPC in temp) {
-        //     // Add to my list of people
-        //     if(theNPC.GetComponent<QuestNPC>() != null && theNPC.transform.parent != metaParent){
-        //         theNPC.transform.SetParent(metaParent);
-        //         theNPC.GetComponent<QuestNPC>().TakeSoul();
-        //     }
-        // }
+        AllUIObjectsCanvas = GameObject.Find ("AllUIObjectsCanvas");
+        UINPCManagerList = AllUIObjectsCanvas.transform.GetChild (1).GetChild (0).gameObject;
+        UINPCMoreDetails = AllUIObjectsCanvas.transform.GetChild (1).GetChild (1).gameObject;
 	}
 
 	
@@ -45,6 +42,14 @@ public class OwnedNPCList : MonoBehaviour {
     /// <param name="aNPC">A NPC. </param>
     public void removeNPC (GameObject aNPC) {
         NPCs.Remove (aNPC);
+
+        if (UINPCManagerList.activeSelf == true) {
+            AllUIObjectsCanvas.transform.GetChild (0).GetChild (0).gameObject.GetComponent<NPCManager> ().reloadMenu ();
+        }
+        if (UINPCMoreDetails.GetComponent<moreDetailsUIController> ().getCurrentNPC () == aNPC) {
+            UINPCMoreDetails.transform.parent.gameObject.GetComponent<npcManagerUIController> ().closeMoreDetails ();
+        }
+
         publish();
     }
 	
