@@ -3083,6 +3083,50 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 1375379734395336, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_Name
+      value: Shipely
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: rank
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: customNPC
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 102129401742110036, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: m_Text
+      value: Shipely
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
   m_IsPrefabParent: 0
