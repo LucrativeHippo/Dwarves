@@ -3,7 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ground
+  - water
+  - tree
+  - OwnedNPC
+  - Fire
+  - resBuilding
+  - Diamond
+  - Enemy
+  - TownCenter
+  - food
+  - gold
+  - stone
+  - coal
+  - iron
+  - Shelter
   layers:
   - Default
   - TransparentFX
@@ -13,7 +28,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Unwalkable
   - 
   - 
   - 

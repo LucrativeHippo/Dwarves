@@ -1,0 +1,204 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1112733852184504}
+  m_IsPrefabParent: 1
+--- !u!1 &1112733852184504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4056035352555866}
+  - component: {fileID: 212376008021873454}
+  - component: {fileID: 114226960038818720}
+  - component: {fileID: 114864904364099584}
+  - component: {fileID: 114945180212062536}
+  - component: {fileID: 114230035695189324}
+  - component: {fileID: 114908638065943506}
+  - component: {fileID: 114512456736230126}
+  m_Layer: 0
+  m_Name: Calendar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4056035352555866
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.4170475, y: 12.65144, z: -0.048202083}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114226960038818720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 852b71c63d50f0a4cab465a0f719af01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayTime: 90
+  daychange: {fileID: 0}
+  daychangetext: {fileID: 0}
+  seasonchange: {fileID: 0}
+--- !u!114 &114230035695189324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec08e16b0152bcc4ea81f000606ef6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingTempInCycle: 10
+  maxTempAllowed: 40
+  minTempAllowed: -40
+  maxTempChangePerSeason: 20
+  chanceOfTrendInChange: 26
+  maxStdDeviation: 2.6
+  minStdDeviation: 1
+  seasonsInClimate: 14
+  daysPerSeason: 7
+--- !u!114 &114512456736230126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfeaa6fa391bec44a97e390791955a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acidStorm: {fileID: 1469793357637692, guid: 867b7a10ade8116409804bf6e730708e, type: 2}
+  blizzardStorm: {fileID: 1458270679109066, guid: 9b9bda300974361408af75d3d92dd4d2,
+    type: 2}
+  frostbiteStorm: {fileID: 1051461150639970, guid: c9e29e8c33422e94ab169dc25a0686ff,
+    type: 2}
+  gatheringStorm: {fileID: 1791854701588256, guid: 49dc4268ebb3a6a4da4a1e09a69c7e91,
+    type: 2}
+  heatwaveStorm: {fileID: 1501683097608598, guid: 678cbfa45f9578e4bb360fb16720b5ce,
+    type: 2}
+  hellfireStorm: {fileID: 1324510729413644, guid: ebf9724186bee2047afc3f4af8ba3044,
+    type: 2}
+  perfectStorm: {fileID: 1216626778743724, guid: 7f861d7a06f23be4eb879964680572ca,
+    type: 2}
+  snowStorm: {fileID: 1763703584580854, guid: 46cf1bdbdd58b874da7fe566c1d24056, type: 2}
+--- !u!114 &114864904364099584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a805517051b24ff499f15f9c434ddd5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentYear: 0
+  currentSeason: 0
+  currentDay: 0
+  daysToForecast: 5
+--- !u!114 &114908638065943506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe6d6bab24d792438a6cb37d7996796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acidRain: {fileID: 1233101543176140, guid: d67cace9845316e4a8b2ba12667925cd, type: 2}
+  rain: {fileID: 1007545359575978, guid: 501ed03a121cfe648b9489ed06e747c4, type: 2}
+  snow: {fileID: 1430195795610710, guid: c8ccc89d499b9654bbfa6a208ea39705, type: 2}
+  blizzard: {fileID: 1386438467517646, guid: 161341ef99a49f34292a4f6d3d37a9c1, type: 2}
+  cloudy: {fileID: 1901550055820610, guid: 0eaf817b4d17f4e498b53f49cdff22b7, type: 2}
+--- !u!114 &114945180212062536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfff41637cca77041ae968ec1c03beff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chanceSunny: 20
+  chanceCloudy: 2
+  chanceRain: 2
+  chanceSnow: 10
+  chanceBlizzard: 0
+  chanceHellfire: 0
+  chanceScaryLightning: 0
+  chanceAcidRain: 0
+  chanceSuperHot: 0
+  chancePerfect: 1
+--- !u!212 &212376008021873454
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112733852184504}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
