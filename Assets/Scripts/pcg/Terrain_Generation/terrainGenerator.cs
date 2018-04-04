@@ -486,10 +486,14 @@ public class terrainGenerator : MonoBehaviour
     /// <param name="yPos">Y position.</param>
     public void generateChunk(int xPos, int yPos)
     {
-
+        if(loadedChunks == null){
+            Debug.LogWarning("lost chunks");
+            return;
+        }
         // If the chunk is alreaady loaded on screen return
         if (loadedChunks.ContainsKey(xPos + " " + yPos))
         {
+            loadedChunks[xPos + " " + yPos] = null;
             return;// loadedChunks [xPos + " " + yPos];
         }
 
@@ -619,6 +623,8 @@ public class terrainGenerator : MonoBehaviour
                         if (resourceMap[key] == resource.NPC)
                         {
                             tempResource.GetComponent<QuestNPC>().addGoal(tempResource.GetComponent<Skills>().getIntRank());
+                            tempResource.name = NameGen.create();
+                            tempResource.GetComponentInChildren<TextMesh>().text = tempResource.name;
                         }else{
                             tempResource.transform.SetParent(chunkLoc.transform);
                         }
