@@ -10,8 +10,8 @@ public class statWords : MonoBehaviour {
     private GameObject currentNPC;
 
     private float[] skills;
-
     private int[] indexRating;
+
 
     public void setNPC (GameObject aNPC) {
         currentNPC = aNPC;
@@ -46,9 +46,10 @@ public class statWords : MonoBehaviour {
         }
         skillWordString += "Recommended Job: " + "\n";
 
-        switch (indexRating[0]){
+        switch (indexRating[0])
+        {
             case 0:
-                skillWordString += "Food";
+                skillWordString += "Food" ;
                 break;
             case 1:
                 skillWordString += "Mining" ;
@@ -60,7 +61,8 @@ public class statWords : MonoBehaviour {
                 skillWordString += "Guard";
                 break;
         }
-        if (indexRating[1] != 0){
+        if (indexRating[1] != 0)
+        {
             switch (indexRating[1])
             {
                 case 0:
@@ -77,7 +79,7 @@ public class statWords : MonoBehaviour {
                     break;
             }
         }
-        MoreDetailsUIObject.transform.GetChild (5).GetChild (0).GetChild (0).GetChild (0).gameObject.GetComponent<Text> ().text = skillWordString;
+        MoreDetailsUIObject.transform.GetChild(5).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = skillWordString;
     }
-    
+
 }

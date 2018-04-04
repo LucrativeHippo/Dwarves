@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using NUnit.Framework.Internal;
 
 public class moreDetailsUIController : MonoBehaviour, IHealthListener {
 
@@ -36,6 +35,7 @@ public class moreDetailsUIController : MonoBehaviour, IHealthListener {
         setInputField ();
 
         setHealth (currentNPC.GetComponent<Health> ());
+        updateHealth ();
     }
 
     private void setInputField () {
@@ -54,7 +54,7 @@ public class moreDetailsUIController : MonoBehaviour, IHealthListener {
     private void setMoreDetails () {
         this.transform.GetChild (0).GetComponent<statWords> ().setNPC (currentNPC);
         nameInputField.text = currentNPC.name;
-        currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
+        setRole ();
     }
 
     private void setSelectRoleButton () {
@@ -66,15 +66,20 @@ public class moreDetailsUIController : MonoBehaviour, IHealthListener {
         selectRoleGameObject.GetComponent<GenerateRoleSelector> ().setCurrentNPC (currentNPC);
         foreach (Transform child in selectRoleGameObject.transform.GetChild(0)) {
             child.gameObject.GetComponent<RoleButtonScript> ().setNPC (currentNPC);
+            child.gameObject.GetComponent<StateSwitch> ().setNPC (currentNPC);
         }
     }
 
     public void setRole () {
-        currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
-    }
-
-    public void setRole (string role) {
-        currentJobText.text = role;
+        if (currentNPC.GetComponent<follow> ().enabled == true) {
+            Debug.Log ("Following in setRole");
+            currentJobText.text = "Following";
+        } else if (currentNPC.GetComponent<Guard> ().enabled == true) {
+            Debug.Log ("Guarding in setRole");
+            currentJobText.text = "Guarding";
+        } else {
+            currentJobText.text = currentNPC.GetComponent<collect> ().getFindingType ();
+        }
     }
 
     public void publish () {

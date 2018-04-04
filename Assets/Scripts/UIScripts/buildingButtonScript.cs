@@ -74,6 +74,7 @@ public class buildingButtonScript : MonoBehaviour, IPointerEnterHandler, IPointe
     }
 
     public void button_Click () {
+		Debug.Log ("Play built a :"+nameText.text);
         buildingScript.buttonClicked (number);
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class GenericStorm : MonoBehaviour {
 
-	public void removeStorm()
+	public virtual void removeStorm()
     {
         Destroy(gameObject);
     }

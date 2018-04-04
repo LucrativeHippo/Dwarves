@@ -59,7 +59,7 @@ public void playoption(){
     }
     public void quitgame(){
         UnityEditor.EditorApplication.isPlaying = false;
-       // Application.Quit();
+        //Application.Quit();
 
 
 
