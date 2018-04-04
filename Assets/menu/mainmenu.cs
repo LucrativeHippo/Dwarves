@@ -57,11 +57,15 @@ public void playoption(){
         objects.SetFloat("animate",1);
 
     }
+    
     public void quitgame(){
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        //Application.Quit();
+#endif
 
-
+#if UNITY_STANDALONE
+        Application.Quit();
+#endif
 
     }
     public void PlayClick()
