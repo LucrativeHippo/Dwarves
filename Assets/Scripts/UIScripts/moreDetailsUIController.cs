@@ -38,6 +38,10 @@ public class moreDetailsUIController : MonoBehaviour, IHealthListener {
         updateHealth ();
     }
 
+    public GameObject getCurrentNPC() {
+        return currentNPC;
+    }
+
     private void setInputField () {
         nameInputField.onValueChanged.AddListener (delegate {
             setNewInputName (nameInputField.text);
