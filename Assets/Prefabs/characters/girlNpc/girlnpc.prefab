@@ -381,7 +381,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95426662788822230
 Animator:
@@ -496,6 +496,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  customNPC: 0
 --- !u!114 &114279462084748216
 MonoBehaviour:
   m_ObjectHideFlags: 1

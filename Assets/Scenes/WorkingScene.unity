@@ -3127,6 +3127,21 @@ Prefab:
       propertyPath: m_Text
       value: Shipely
       objectReference: {fileID: 0}
+    - target: {fileID: 65639040815019138, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 65639040815019138, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 65639040815019138, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
   m_IsPrefabParent: 0
