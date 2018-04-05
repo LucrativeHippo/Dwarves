@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 114443480238183316}
   - component: {fileID: 54759757083807772}
   - component: {fileID: 33367914614711834}
-  - component: {fileID: 114562919767846218}
   - component: {fileID: 114393701704028684}
   - component: {fileID: 82810273245228750}
   m_Layer: 0
@@ -350,7 +349,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.2, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82810273245228750
 AudioSource:
@@ -469,17 +468,6 @@ MonoBehaviour:
   cost: 0000000096000000000000000000000000000000000000000000000000000000
   buildingLimit: 0
   buildingDescription: -Increases population capacity.
---- !u!114 &114562919767846218
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1550925290070660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e199b9b5866f77d4683492a8a00c397e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114610817422052380
 MonoBehaviour:
   m_ObjectHideFlags: 1
