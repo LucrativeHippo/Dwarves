@@ -73,7 +73,7 @@ public class mainDisplay : MonoBehaviour, IHealthListener {
     }
 
     public void publish () {
-        if (npcHealth != null)
+        if (npcHealth != null && healthText != null)
             updateHealth ();
     }
 
@@ -86,7 +86,7 @@ public class mainDisplay : MonoBehaviour, IHealthListener {
 
     private void updateHealth () {
         float fractionHealth = npcHealth.getHealth () / (float)npcHealth.getMaxHealth ();
-        healthText.text = (System.Math.Round (fractionHealth * 100, 0)).ToString () + "%";
+        healthText.text = "Health: " + (System.Math.Round (fractionHealth * 100, 0)).ToString () + "%";
     }
 
     /// <summary>

@@ -17,7 +17,9 @@ Weatherman: [question=1]What do you want to know?
 [choice]How do I give the people in camp tasks?
 [choice]Can I upgrade buildings?
 [choice]Do workers have stats?
+[choice]It seems to get dark outside camp?
 [choice]The Forecast?
+[choice]Nevermind.
 [title=weatherman-default-talk-end]
 
 [title=weatherman-option-0-picked-start]
@@ -78,62 +80,92 @@ Weatherman: Unfotunately no one else is capable of my job, so I have to stay her
 [title=weatherman-option-5-picked-end]
 
 [title=weatherman-option-6-picked-start]
+Weatherman: So, my friend. Have you seen some of your comrades be...less than willing to gather things?
+Weatherman: When you tell them to gather something, do they seem unwilling to leave camp?
+Weatherman: Well, they're afraid of the dark and need some protection.  Feel free to help them out.
+Weatherman: You can select an ally to follow you with the NPC button in the bottom left corner, 
+Weatherman: and then if you are far enough away from your village you can drop a temporary campfire with the "v" key. 
+Weatherman: This new campfire will allow your comrade to work in this area. 
+Weatherman: But remember, you can only have up to 3 campfires going at a time. Deconstruct one of them with the F key.
+[title=weatherman-option-6-picked-end]
+
+[title=weatherman-option-7-picked-start]
 Weatherman: [question=9999]Do you want to know about the temperature, or the weather conditions?
 [choice]Temperature Trend
 [choice]Upcoming Weather Conditions
 [choice]Actually, nevermind.
-[title=weatherman-option-6-picked-end]
+[title=weatherman-option-7-picked-end]
+
+[title=weatherman-option-8-picked-start]
+Weatherman: Okay. See you later.
+[title=weatherman-option-8-picked-end]
 
 [title=hellfire-forecast-start]
-HELLFIRE!
+Weatherman: ...
+Weatherman: ......
+Weatherman: Well. If my predictions are correct, we're not in for a fun time.
+Weatherman: Hellfire is on the horizon. Which means I hope you're good at dodging.
+Weatherman: I'll be just fine, but I wish you the best of luck!
 [title=hellfire-forecast-end]
 
 [title=rain-forecast-start]
-RAIN!
-[title=rain-forecast-end
+Weatherman: It'll rain pretty soon. Not too much to worry about.
+[title=rain-forecast-end]
 
 [title=sunny-forecast-start]
-SUNNY!
+Weatherman: Business as usual. Just a bit of sun to look forward to.
 [title=sunny-forecast-end]
 
 [title=acid-rain-forecast-start]
-ACID RAIN!
+Weatherman: Brace yourelf for some acid rain.
+Weatherman: The smaller rain drops aren't a major issue,
+Weatherman: but when they group together and form puddles on the ground, things become dangerous.
+Weatherman: Try to avoid stepping in any green puddles.
 [title=acid-rain-forecast-end]
 
 [title=cloudy-forecast-start]
-CLOUDY!
+Weatherman: Prepare for some fog.
+Weatherman: It's not really dangerous, but it's easy to lose your way or miss something important in it.
 [title=cloudy-forecast-end]
 
 [title=snow-forecast-start]
-SNOW!
+Weatherman: It's going to snow!
+Weatherman: Don't you just love it when it snows? 
+Weatherman: Granted, the chill means everone will move a little slower...
 [title=snow-forecast-end]
 
 [title=blizzard-forecast-start]
-BLIZZARD!
+Weatherman: It looks like a blizzard's on the horizon.
+Weatherman: They're a little dangerous if you're not prepared for them.
+Weatherman: If you haven't built any weather protection yet, you'll probably get hurt from the cold.
+Weatherman: To make matters worse, the winds and snow will probably work against you, slowing your movement.
 [title=blizzard-forecast-end]
 
 [title=perfect-forecast-start]
-PERFECT!
+Weatherman: A perfect storm is coming soon. 
+Weatherman: Perfect storm's are a bit hard to define, but the simplest way to think of them is all the conditions align just right.
+Weatherman: So, you'll probably notice that things happen a bit faster than usual. 
+Weatherman: Anybody you've got gathering resources will probably be motivated to bring a little more each trip as well.
 [title=perfect-forecast-end]
 
 [title=scary-lightning-forecast-start]
-SCARY LIGHTNING!
+Weatherman: Should be business as usual.
 [title=scary-lightning-forecast-end]
 
 [title=super-hot-forecast-start]
-SUPER HOT!
+Weatherman: Nothing much happening. But it's going to be a hot one.
 [title=super-hot-forecast-end]
 
 [title=temperature-neutral-forecast-start]
-It doesn't look like the temperature is going to change much in the coming days.
+Weatherman: It doesn't look like the temperature is going to change much in the coming days.
 [title=temperature-neutral-forecast-end]
 
 [title=temperature-cold-forecast-start]
-It looks like the temperature is going to trend colder in the coming days.
+Weatherman: It looks like the temperature is going to trend colder in the coming days.
 [title=temperature-cold-forecast-end]
 
 [title=temperature-hot-forecast-start]
-It looks like the temperature is going to trend hotter in the coming days.
+Weatherman: It looks like the temperature is going to trend hotter in the coming days.
 [title=temperature-hot-forecast-end]
 
 [title=PISC-default-talk-start]
@@ -160,4 +192,31 @@ Narrator: You approach a pentagram burnt into the caves floor, something draws y
 [choice] Destroy the pentagram
 [choice] Walk away
 [title=Pentagram-default-talk-end]
+
+[title=endgame-default-talk-start]
+Weatherman: A building made out of solid gold. Vanity is alive and well in paradise.
+Weatherman: I think that about wraps it up though. Every soul looks harvestable.
+Weatherman: Oh don't look at me like that my little minion. You must have suspected something.
+Weatherman: Let me ask you this oh brave heroine, if this catastrophe you think you remember happened so long ago...
+Weatherman: Why are you just now building a town?
+Weatherman: You remember it as if it was only yesterday.. but there is no sign of ruins.
+Weatherman: Did you ever stop to ask yourself these questions?
+Weatherman: I got a real doozy for you. How come you're townsfolk aren't starving before you recruit them?
+Weatherman: The weather that plagues this world doesn't affect them when they are not bound by your jobs and order?
+Weatherman: It is because they are free. They are at a peace in the after life. 
+Weatherman: And I HATE THAT. How can I claim the souls of the free? How can I condemn them to an eternity of pain if the fires of hell won't hurt them?
+Weatherman: Vanity. Rules. Obligations. Commitments. 
+Weatherman: Now the free aren't so free. 
+Weatherman: Monsters, weather, companionship.
+Weatherman: All tools to lead the free away from a peaceful afterlife.
+Weatherman: You have been such a great little helper stripping away their freedom. 
+Weatherman: And now that you once again worship false idols like gold and indulge in the sins of the world,
+Weatherman: You are now all ready for the taking.
+Weatherman: Whats that? ....You thought you were helping them?
+Weatherman: Ha...
+Weatherman: Haha...
+Weatherman: Hahaha..
+Weatherman: HAHAHA...
+Weatherman: HAHAHAHAHAHA
+[title=endgame-default-talk-end]
 

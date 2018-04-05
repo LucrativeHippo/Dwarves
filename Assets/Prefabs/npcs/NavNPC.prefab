@@ -49,10 +49,9 @@ GameObject:
   - component: {fileID: 114427469724465468}
   - component: {fileID: 114166379807532790}
   - component: {fileID: 114783826502956916}
-  - component: {fileID: 114981234693270564}
   - component: {fileID: 114105296929767530}
-  - component: {fileID: 114490994689275040}
   - component: {fileID: 114205920956962096}
+  - component: {fileID: 114176955818188616}
   m_Layer: 0
   m_Name: NavNPC
   m_TagString: Untagged
@@ -382,7 +381,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95625079190630116
 Animator:
@@ -461,6 +460,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  customNPC: 0
 --- !u!114 &114105296929767530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -504,6 +504,17 @@ MonoBehaviour:
   attackRange: 0.5
   patrolRadius: 10
   patrolTimer: 5
+--- !u!114 &114176955818188616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1375379734395336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d100ce74f724901822b27bdc231e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114205920956962096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -573,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba452419fdb3fc34bb22a76501ea5cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followDistance: 1
+  followDistance: 0.5
   maxDist: 5
 --- !u!114 &114461610326146270
 MonoBehaviour:
@@ -591,17 +602,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114490994689275040
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1375379734395336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebec7125ecc3d4b40a9f0bbdee5014db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114617017071077518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -747,17 +747,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114981234693270564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1375379734395336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebec7125ecc3d4b40a9f0bbdee5014db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &195251425726581250
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -767,7 +756,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.5
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0

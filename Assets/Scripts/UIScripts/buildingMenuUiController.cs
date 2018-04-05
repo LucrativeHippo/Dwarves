@@ -18,9 +18,13 @@ public class buildingMenuUiController : MonoBehaviour {
 
     void Update () {
         if (controls.keyDown(controls.ExitUI)) {
-            buildingMenuObject.transform.GetChild (0).gameObject.SetActive (false);
-            buildingMenuObject.transform.GetChild (1).gameObject.SetActive (false);
-            buildingMenuObject.SetActive (false);
+            closeBuildingUI ();
         }
+    }
+
+    public void closeBuildingUI() {
+        buildingMenuObject.transform.GetChild (0).gameObject.SetActive (false);
+        buildingMenuObject.transform.GetChild (1).gameObject.SetActive (false);
+        buildingMenuObject.SetActive (false);
     }
 }

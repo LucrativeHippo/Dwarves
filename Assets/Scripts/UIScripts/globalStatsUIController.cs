@@ -21,7 +21,7 @@ public class globalStatsUIController : MonoBehaviour {
     [SerializeField] float updateTimeRate = 1.0f;
 
     void Start () {
-        Meta = GameObject.Find ("Meta");
+        Meta = MetaScript.getMetaObject();
         AllUIGameObject = GameObject.Find ("AllUIObjectsCanvas");
         GlobalUIParent = AllUIGameObject.transform.GetChild (0).GetChild (3).gameObject;
 
@@ -33,7 +33,7 @@ public class globalStatsUIController : MonoBehaviour {
         heatProtection = GlobalUIParent.transform.GetChild (4).gameObject;
         coldProtection = GlobalUIParent.transform.GetChild (5).gameObject;
         updateAll ();
-        StartCoroutine (updateTimer (updateTimeRate));
+        // StartCoroutine (updateTimer (updateTimeRate));
     }
 
     public void updateAll () {
@@ -62,16 +62,16 @@ public class globalStatsUIController : MonoBehaviour {
     }
 
     private void updateColdProtection () {
-        heatProtection.SetActive (Meta.GetComponent<Global_Stats> ().getHasColdProtection ());
+        coldProtection.SetActive (Meta.GetComponent<Global_Stats> ().getHasColdProtection ());
     }
 
     private void updateHeatProtection () {
-        coldProtection.SetActive (Meta.GetComponent<Global_Stats> ().getHasHeatProtection ());
+        heatProtection.SetActive (Meta.GetComponent<Global_Stats> ().getHasHeatProtection ());
     }
 
-    IEnumerator updateTimer (float waitForTime) {
-        yield return new WaitForSeconds (waitForTime);
-        updateAll ();
-        StartCoroutine (updateTimer (waitForTime));
-    }
+    // IEnumerator updateTimer (float waitForTime) {
+    //     yield return new WaitForSeconds (waitForTime);
+    //     updateAll ();
+    //     StartCoroutine (updateTimer (waitForTime));
+    // }
 }
