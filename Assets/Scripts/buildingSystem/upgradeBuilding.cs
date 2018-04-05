@@ -9,7 +9,7 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
     private Material upgradeMaterial;
 
     [SerializeField]
-    [NamedArray(typeof(ResourceTypes))]private int[] upgradeCostList = new int[(int)ResourceTypes.NumberOfTypes];
+    [NamedArray (typeof(ResourceTypes))]private int[] upgradeCostList = new int[(int)ResourceTypes.NumberOfTypes];
 
     [SerializeField]
     private GameObject upgrade;
@@ -46,15 +46,23 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
     }
 
     void doUpgrade () {
-		Debug.Log ("Player upgraded to a :"+nameText.text);
         if (canUpgrade) {
+            Debug.Log ("Player upgraded to a :" + nameText.text);
+            purchase ();
             GameObject temp = Instantiate (upgrade, gameObject.transform.position, Quaternion.identity);
             temp.transform.parent = gameObject.transform.parent;
             gameObject.transform.parent.GetComponentsInChildren<MeshRenderer> () [0].material = upgradeMaterial;
             Destroy (gameObject);
             closePrompt ();
         } else {
+            Debug.Log ("Player did not have enough resources to Upgrade to: " + nameText.text);
             moreResourcesRequiredText.text = "More Resources Required.";
+        }
+    }
+
+    private void purchase () {
+        for (int i = 0; i < upgradeCostList.Length - 1; i++) {
+            MetaScript.getRes ().addResource (i, -upgradeCostList [i]);
         }
     }
 
@@ -69,8 +77,8 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
     }
 
     private void setListener () {
-        confirmButton.GetComponent<Button> ().onClick.RemoveAllListeners();
-        cancelButton.GetComponent<Button> ().onClick.RemoveAllListeners();
+        confirmButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
+        cancelButton.GetComponent<Button> ().onClick.RemoveAllListeners ();
         confirmButton.GetComponent<Button> ().onClick.AddListener (() => doUpgrade ());
         cancelButton.GetComponent<Button> ().onClick.AddListener (() => closePrompt ());
     }
