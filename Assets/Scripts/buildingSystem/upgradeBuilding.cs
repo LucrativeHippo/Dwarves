@@ -27,6 +27,7 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
     private Text moreResourcesRequiredText;
 
     public void recieveAction () {
+        canUpgrade = true;
         AllUIObjects.transform.GetChild (2).gameObject.SetActive (true);
         upgradePrompt.SetActive (true);
         nameText.text = upgrade.name.ToString ();

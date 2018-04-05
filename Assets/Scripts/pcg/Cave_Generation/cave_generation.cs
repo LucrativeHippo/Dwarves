@@ -54,6 +54,8 @@ public class cave_generation : MonoBehaviour, IActionable {
     private int entranceXPos;
     private int entranceZPos;
 
+    private GameObject caveParent;
+
     public void recieveAction()
     {
         MetaScript.preTeleport();
@@ -66,7 +68,7 @@ public class cave_generation : MonoBehaviour, IActionable {
 
 	// Use this for initialization
 	void Start () {
-
+        caveParent = new GameObject(gameObject.transform.position.x.ToString() + " + "  + gameObject.transform.position.z.ToString() +" cave");
         cave = new bool[CAVE_DIMENSIONS, CAVE_DIMENSIONS];
         initialiseCave();
         
@@ -84,6 +86,7 @@ public class cave_generation : MonoBehaviour, IActionable {
     {
         int xStart = (int)gameObject.transform.position.x * CAVE_DIMENSIONS;
         int zStart = (int)gameObject.transform.position.z * CAVE_DIMENSIONS;
+        GameObject temp;
         for (int x = -1; x < CAVE_DIMENSIONS+1; x++)
         {
 
@@ -92,30 +95,35 @@ public class cave_generation : MonoBehaviour, IActionable {
 
                 if (z == -1 || x == -1 || z == CAVE_DIMENSIONS || x == CAVE_DIMENSIONS)
                 {
-                    Instantiate(caveWall, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
+                    temp = Instantiate(caveWall, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
+                    temp.transform.SetParent(caveParent.transform);
                 }
                 else {
                     if (cave[x, z])
                     {
-                        Instantiate(caveWall, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
+                        temp = Instantiate(caveWall, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
+                        temp.transform.SetParent(caveParent.transform);
                     }
                     else
                     {
                         if (doorPlaced)
                         {
-                            Instantiate(caveFloor, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
+                            temp = Instantiate(caveFloor, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
                             caveEntranceVector = new Vector3(x + xStart, DEPTH, z + zStart);
-
+                            temp.transform.SetParent(caveParent.transform);
                         }
                         else
                         {
                             GameObject door = Instantiate(caveEntrance, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
+                            temp = Instantiate(caveFloor, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
                             doorPlaced = true;
                             entranceXPos = x + xStart;
                            
                             entranceZPos = z + zStart;
                             
                             door.GetComponentInChildren<door>().setReturn((int)gameObject.transform.position.x, 0, (int)gameObject.transform.position.z);
+                            door.transform.SetParent(caveParent.transform);
+                            temp.transform.SetParent(caveParent.transform);
                         }
 
                     }
@@ -161,6 +169,7 @@ public class cave_generation : MonoBehaviour, IActionable {
 
     public void spawnEvent()
     {
+        GameObject temp;
         int xStart = (int)gameObject.transform.position.x * CAVE_DIMENSIONS;
         int zStart = (int)gameObject.transform.position.z * CAVE_DIMENSIONS;
         bool eventplaced = false;
@@ -172,7 +181,10 @@ public class cave_generation : MonoBehaviour, IActionable {
                 int randNum = Random.Range(0, 100);
                 if (randNum < 2 && cave[x, z])
                 {
-                    Instantiate(caveEvent, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
+                    temp = Instantiate(caveEvent, new Vector3(x + xStart, DEPTH, z + zStart), Quaternion.identity);
+                    temp.transform.SetParent(caveParent.transform);
+
+
                 }
             }
         }
@@ -232,6 +244,7 @@ public class cave_generation : MonoBehaviour, IActionable {
     }
     public void generatePickups()
     {
+        GameObject temp;
         int xStart = (int)gameObject.transform.position.x * CAVE_DIMENSIONS;
         int zStart = (int)gameObject.transform.position.z * CAVE_DIMENSIONS;
         for (int i = 0; i < CAVE_DIMENSIONS; i++)
@@ -242,7 +255,8 @@ public class cave_generation : MonoBehaviour, IActionable {
                 {
                     if (Random.Range(0, 100) < caveDifficulty * 3)
                     {
-                        Instantiate(gold, new Vector3(i + xStart, DEPTH, j + zStart), Quaternion.identity);
+                        temp = Instantiate(gold, new Vector3(i + xStart, DEPTH, j + zStart), Quaternion.identity);
+                        temp.transform.SetParent(caveParent.transform);
                     }
                 }
             }
@@ -264,6 +278,7 @@ public class cave_generation : MonoBehaviour, IActionable {
                         GameObject monster = Instantiate(enemy, new Vector3(i + xStart, DEPTH,j + zStart), Quaternion.identity);
                         monster.GetComponent<enemyMovement>().enabled = false;
                         monster.GetComponent<caveMovement>().enabled = true;
+                        monster.transform.SetParent(caveParent.transform);
                     }
                 }
             }
