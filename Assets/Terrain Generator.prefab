@@ -51,16 +51,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56360064d72b4f746a5a966a59306937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPlayerPos: 0
-  yPlayerPos: 0
+  testing: 1
+  lol: []
+  xPlayerPos: 4
+  yPlayerPos: 4
   xPlayerChunkPos: 0
   yPlayerChunkPos: 0
+  NPCspawnRate: 50
+  chunksLoaded: 3
   DEBUG: 0
   xChunk: 0
   yChunk: 0
   waterAmount: 1
   terrainAmount: 1
   resourceAmount: 1
+  rareResourceRate: 10
   Water: {fileID: 1457501400338522, guid: 7f31c510d0fc1eb4ea02e2eecf0acca8, type: 2}
   Grass: {fileID: 1155792334224412, guid: ae543521f7a941547970514ee10ef834, type: 2}
   Dirt: {fileID: 1932556385968796, guid: 8416b0d41f68c314ba5f04bf544c3e2d, type: 2}
@@ -77,10 +82,13 @@ MonoBehaviour:
   Gold: {fileID: 1518998995545862, guid: 4dd0c1254d6d02a4abdc4c6efb227d77, type: 2}
   Fish: {fileID: 1111354217460792, guid: e7b4be0db07f987409b35f998ce55fb9, type: 2}
   Berries: {fileID: 1633713140390822, guid: a383142b7c6882040898fa3aff3396e8, type: 2}
-  Player: {fileID: 1294367326131454, guid: 77c6b79fc507c87468d8db05db63954e, type: 2}
-  NPC: {fileID: 1083856894513898, guid: ee9fe0916f63b0a4790c944a4e85a350, type: 2}
-  terrainSeed: 5
-  terrainSeed2: 18
-  waterSeed: 2
-  resourceSeed: 10
+  Player: {fileID: 0}
+  NPC: {fileID: 1587624629007354, guid: 56386d4f3c8ce4c9f818259c1374829b, type: 2}
+  Diamond: {fileID: 1292923283124684, guid: 97132c7446293ac4287e022af3e9aa2c, type: 2}
+  Coal: {fileID: 1833930755066644, guid: a4e768a2af2fef042a87f2bea483023a, type: 2}
+  Cave: {fileID: 1219877755427976, guid: e718b2b10e8e20545942de16d699c1c0, type: 2}
+  terrainSeed: 99
+  terrainSeed2: 1
+  waterSeed: 45
+  resourceSeed: 20
   resourceSeed2: 20
