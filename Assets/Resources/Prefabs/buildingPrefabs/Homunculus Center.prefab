@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 32000000000000006400000032000000320000000a0000000300000000000000
-  buildingLimit: 0
+  buildingLimit: 1
   buildingDescription: -Can create homunculli (weak humans) by interacting with its
     sign
 --- !u!114 &114364466633066812

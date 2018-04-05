@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 00000000640000003c0000000000000000000000000000000000000000000000
-  buildingLimit: 0
+  buildingLimit: 1
   buildingDescription: '-Reduces the effects of hot weather. '
 --- !u!212 &212577910884401198
 SpriteRenderer:
