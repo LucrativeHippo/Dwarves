@@ -325,7 +325,7 @@ MonoBehaviour:
   animatorBooleanName: talking
   animatorIntName: talker
   cutscenePosition: 6
-  textSpeed: 50
+  textSpeed: 100
   currentChar: 0
   blinkWhenReady: {fileID: 1827583058679530}
   variables: []
@@ -338,7 +338,7 @@ MonoBehaviour:
   textAudio: {fileID: 8300000, guid: 49c855462770641229c932e59dd505e5, type: 3}
   passAudio: {fileID: 8300000, guid: 49c855462770641229c932e59dd505e5, type: 3}
   passWithMouse: 1
-  passWithInputButton: Jump
+  passWithInputButton: Action
   enablePass: 1
   lineToStart: weatherman-tutorial-talk-start
   lineToBreak: weatherman-tutorial-talk-end

@@ -19,6 +19,7 @@ TagManager:
   - coal
   - iron
   - Shelter
+  - Wonder
   layers:
   - Default
   - TransparentFX
