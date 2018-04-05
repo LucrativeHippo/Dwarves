@@ -24,9 +24,10 @@ GameObject:
   - component: {fileID: 54053790393065664}
   - component: {fileID: 114213972192553688}
   - component: {fileID: 114048956828906050}
+  - component: {fileID: 114233801338822982}
   m_Layer: 0
   m_Name: Wonder
-  m_TagString: TownCenter
+  m_TagString: Wonder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rpgtalkTarget: {fileID: 0}
-  shouldInteractWithButton: 1
+  shouldInteractWithButton: 0
   showWhenInteractionIsPossible: []
   interactionKey: 102
   checkIfColliderHasTag: Player
@@ -115,8 +116,19 @@ MonoBehaviour:
   callbackFunctionAfterTalk: endGame
   happenOnlyOnce: 0
   alreadyHappened: 0
-  triggerEnter: 0
+  triggerEnter: 1
   triggerExit: 0
   shouldStayOnScreen: 0
   forbidPlayIfRpgtalkIsPlaying: 0
   timelineDirectorToPlay: {fileID: 0}
+--- !u!114 &114233801338822982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580336054601016}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb982d248ef072a4ca4770b2aa585dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

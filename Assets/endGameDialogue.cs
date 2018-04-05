@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class endGameDialogue : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject anagram;
 	// Use this for initialization
 	void Start () {
         
@@ -17,9 +19,9 @@ public class endGameDialogue : MonoBehaviour {
 
     public void endGame()
     {
-        Debug.Log("sdvsggsgsggsgsgsgsdggdsggssgdsgdgsdgssgd");
-        GameObject.Find("Calendar").GetComponent<StormBringer>().resetStorms(50, Weather.weatherTypes.HELLFIRE);
-
-        SceneManager.LoadScene("endGame");
+        GameObject.FindGameObjectWithTag("Wonder").GetComponent<endGameWonder>().enabled = true;
+        
     }
+
+    
 }
