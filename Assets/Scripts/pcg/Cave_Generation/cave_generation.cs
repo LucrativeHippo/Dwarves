@@ -59,11 +59,11 @@ public class cave_generation : MonoBehaviour, IActionable {
     public void recieveAction()
     {
         MetaScript.preTeleport();
+        MetaScript.getPlayer().GetComponent<DynamicGeneration>().enabled = false;
         MetaScript.getPlayer().transform.position = new Vector3(entranceXPos, DEPTH, entranceZPos);
+        MetaScript.getPlayer().GetComponent<InBuilding>().setPlayerInBuilding(true);
         MetaScript.postTeleport();
 
-        MetaScript.getPlayer().GetComponent<DynamicGeneration>().enabled = true;
-        MetaScript.getPlayer().GetComponent<InBuilding>().setPlayerInBuilding(true);
     }
 
 	// Use this for initialization
