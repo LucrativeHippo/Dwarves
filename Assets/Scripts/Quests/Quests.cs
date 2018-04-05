@@ -36,12 +36,12 @@ public class Quests : MonoBehaviour {
 		//new QuestType(hasEmptyHouses,50, "empty houses"),
 
 		// Quests for food above amount
-		new QuestType(isFoodAbove, 0, "food"),
-		new QuestType(isStoneAbove, 3, "stone"),
-		new QuestType(isIronAbove,30,"iron"),
-		new QuestType(isCoalAbove,30,"coal"),
-		new QuestType(isDiamondAbove,300,"diamond"),
-		new QuestType(isWoodAbove, 0, "wood")
+		// new QuestType(isFoodAbove, 0, "food"),
+		// new QuestType(isStoneAbove, 3, "stone"),
+		// new QuestType(isIronAbove,30,"iron"),
+		// new QuestType(isCoalAbove,30,"coal"),
+		// new QuestType(isDiamondAbove,300,"diamond"),
+		// new QuestType(isWoodAbove, 0, "wood")
 
 	};
 	

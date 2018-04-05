@@ -496,6 +496,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  customNPC: 0
 --- !u!114 &114279462084748216
 MonoBehaviour:
   m_ObjectHideFlags: 1
