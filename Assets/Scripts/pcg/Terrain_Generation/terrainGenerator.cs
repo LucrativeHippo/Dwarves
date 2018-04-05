@@ -556,6 +556,9 @@ public class terrainGenerator : MonoBehaviour
                     if(resourceMap[key] == resource.NONE)
                     {
                         
+                    }else if (resourceMap[key] == resource.CAVE)
+                    {
+                        Instantiate(Cave, new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                     }
                     else if (resourceMap[key] == resource.STONE)
                     {
@@ -629,10 +632,6 @@ public class terrainGenerator : MonoBehaviour
                             tempResource.transform.SetParent(chunkLoc.transform);
                         }
                         chunkMap.addTileAt(tempTile, x, y, 1);
-                    }
-                    if (resourceMap[key] == resource.CAVE)
-                    {
-                        Instantiate(Cave, new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                     }
                 }
                 
