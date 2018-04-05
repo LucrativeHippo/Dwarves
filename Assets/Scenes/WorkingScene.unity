@@ -5549,7 +5549,7 @@ Prefab:
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceHellfire
-      value: 10000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
@@ -5574,7 +5574,7 @@ Prefab:
     - target: {fileID: 114230035695189324, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: minTempAllowed
-      value: 40
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 114230035695189324, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
