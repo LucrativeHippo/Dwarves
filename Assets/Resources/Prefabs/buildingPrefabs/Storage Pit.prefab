@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0000000000000000320000001900000019000000000000000000000000000000
-  buildingLimit: 1
+  buildingLimit: 0
   buildingDescription: -Increases wood, stone, coal and iron capacity.
 --- !u!114 &114635324049006734
 MonoBehaviour:
