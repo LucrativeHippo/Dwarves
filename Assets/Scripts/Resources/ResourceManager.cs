@@ -8,37 +8,20 @@ public class ResourceManager : MonoBehaviour {
     [SerializeField]
     [NamedArray (typeof(ResourceTypes))]private int[] maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
 
-    [SerializeField] bool debugResources;
 
-    void Awake () {
-        if (debugResources) {
+    void Awake(){
             resourceList = new int[(int)ResourceTypes.NumberOfTypes];
             maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
-            maxResourceList [(int)ResourceTypes.WOOD] = 9999;
-            maxResourceList [(int)ResourceTypes.FOOD] = 9999;
-            maxResourceList [(int)ResourceTypes.STONE] = 9999;
-            maxResourceList [(int)ResourceTypes.COAL] = 9999;
-            maxResourceList [(int)ResourceTypes.DIAMOND] = 9999;
-            maxResourceList [(int)ResourceTypes.GOLD] = 9999;
-            maxResourceList [(int)ResourceTypes.IRON] = 9999;
-            maxResourceList [(int)ResourceTypes.POPULATION] = 9999;
-            for (int i = 0; i < resourceList.Length - 1; i++) {
-                resourceList [i] = 9999;
-            }
-        } else {
-            resourceList = new int[(int)ResourceTypes.NumberOfTypes];
-            maxResourceList = new int[(int)ResourceTypes.NumberOfTypes];
-            maxResourceList [(int)ResourceTypes.WOOD] = 200;
-            maxResourceList [(int)ResourceTypes.FOOD] = 100;
-            maxResourceList [(int)ResourceTypes.STONE] = 50;
-            maxResourceList [(int)ResourceTypes.COAL] = 25;
-            maxResourceList [(int)ResourceTypes.DIAMOND] = 5;
-            maxResourceList [(int)ResourceTypes.GOLD] = 5;
-            maxResourceList [(int)ResourceTypes.IRON] = 25;
-            maxResourceList [(int)ResourceTypes.POPULATION] = 5;
+        maxResourceList[(int)ResourceTypes.WOOD] = 200;
+        maxResourceList[(int)ResourceTypes.FOOD] = 100;
+        maxResourceList[(int)ResourceTypes.STONE] = 50;
+        maxResourceList[(int)ResourceTypes.COAL] = 25;
+        maxResourceList[(int)ResourceTypes.DIAMOND] = 5;
+        maxResourceList[(int)ResourceTypes.GOLD] = 5;
+        maxResourceList[(int)ResourceTypes.IRON] = 25;
+        maxResourceList[(int)ResourceTypes.POPULATION] = 5;
             InvokeRepeating ("logResources", 1.0f, 180.0f);
         }
-    }
 
     private bool meat;
     private bool fruit;
@@ -92,7 +75,6 @@ public class ResourceManager : MonoBehaviour {
 
     void setResource (ResourceTypes i, int set) {
         setResource ((int)i, set);
-        MetaScript.updateResourcesUI ();
     }
 
     void setResource (int i, int set) {
@@ -130,9 +112,9 @@ public class ResourceManager : MonoBehaviour {
         }
     }
 
-    void logResources () {
-        Debug.Log ("Cur W:" + resourceList [0] + " F:" + resourceList [1] + " S:" + resourceList [2] + " C:" + resourceList [3] + " D:" + resourceList [4] + " G:" + resourceList [5] + " I:" + resourceList [6] + " P:" + resourceList [7]);
-        Debug.Log ("Cap W:" + maxResourceList [0] + " F:" + maxResourceList [1] + " S:" + maxResourceList [2] + " C:" + maxResourceList [3] + " D:" + maxResourceList [4] + " G:" + maxResourceList [5] + " I:" + maxResourceList [6] + " P:" + maxResourceList [7]);
+	void logResources(){
+		Debug.Log("Cur W:"+resourceList[0]+" F:"+resourceList[1]+" S:"+resourceList[2]+" C:"+resourceList[3]+" D:"+resourceList[4]+" G:"+resourceList[5]+" I:"+resourceList[6]+" P:"+resourceList[7]);
+		Debug.Log("Cap W:"+maxResourceList[0]+" F:"+maxResourceList[1]+" S:"+maxResourceList[2]+" C:"+maxResourceList[3]+" D:"+maxResourceList[4]+" G:"+maxResourceList[5]+" I:"+maxResourceList[6]+" P:"+maxResourceList[7]);
     }
 
     // Use this for initialization
@@ -141,7 +123,7 @@ public class ResourceManager : MonoBehaviour {
     }
 	
     // Update is called once per frame
-    void OnValidate () {
-        MetaScript.updateResourcesUI ();
-    }
+    // void OnValidate () {
+    //     MetaScript.updateResourcesUI();
+    // }
 }
