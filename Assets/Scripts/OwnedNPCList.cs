@@ -31,6 +31,7 @@ public class OwnedNPCList : MonoBehaviour {
     /// </summary>
     /// <param name="newNPC"> a NPC. </param>
     public void addNPC (GameObject newNPC) {
+        MetaScript.getRes().addResource(ResourceTypes.POPULATION, 1);
         NPCs.Add (newNPC);
         publish();
     }
@@ -41,6 +42,7 @@ public class OwnedNPCList : MonoBehaviour {
     /// </summary>
     /// <param name="aNPC">A NPC. </param>
     public void removeNPC (GameObject aNPC) {
+        MetaScript.getRes().addResource(ResourceTypes.POPULATION, -1);
         NPCs.Remove (aNPC);
 
         if (UINPCManagerList.activeSelf == true) {
