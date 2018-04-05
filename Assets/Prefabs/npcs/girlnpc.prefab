@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba452419fdb3fc34bb22a76501ea5cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followDistance: 1
+  followDistance: 0.5
   maxDist: 5
 --- !u!114 &114874316273187184
 MonoBehaviour:
