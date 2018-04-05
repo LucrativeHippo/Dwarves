@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676334aad6a9de341b74b0a5d2ee2c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMaterial: {fileID: 2100000, guid: 68e444540276e2949bd6f714c401ecfb, type: 2}
+  upgradeMaterial: {fileID: 2100000, guid: 8669f4386adff3641ae341fea0b97582, type: 2}
   upgradeCostList: 00000000e8030000f401000032000000320000000f0000000a00000000000000
   upgrade: {fileID: 1580336054601016, guid: 33b2e1bff9c5825408f1a902e109821d, type: 2}
 --- !u!114 &114672308250782136
