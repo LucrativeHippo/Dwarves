@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   opponent: {fileID: 0}
-  threatRange: 1
+  threatRange: 0.4
   damage: 1
 --- !u!114 &114698019376494968
 MonoBehaviour:
