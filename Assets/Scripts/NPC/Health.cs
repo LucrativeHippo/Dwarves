@@ -216,7 +216,7 @@ public class Health : MonoBehaviour, IStatsListener {
 
      void Update()
      {
-         if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag == "OwnedNPC")
+         if (originalHealthMultiplier != MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag == "OwnedNPC")
          {
              originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
             Debug.Log(originalHealthMultiplier);
