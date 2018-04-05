@@ -238,11 +238,11 @@ public class terrainGenerator : MonoBehaviour
             case resource.TREE:
                 return 0.45f;
             case resource.STONE:
-                return 1.0f;
+                return 0.90f;
             case resource.MEAT:
                 return 0.10f;
             case resource.IRON:
-                return 0.5f;
+                return 0.46f;
             case resource.GOLD:
                 return 0.44f;
             case resource.DIAMOND:
@@ -486,14 +486,10 @@ public class terrainGenerator : MonoBehaviour
     /// <param name="yPos">Y position.</param>
     public void generateChunk(int xPos, int yPos)
     {
-        if(loadedChunks == null){
-            Debug.LogWarning("lost chunks");
-            return;
-        }
+
         // If the chunk is alreaady loaded on screen return
         if (loadedChunks.ContainsKey(xPos + " " + yPos))
         {
-            loadedChunks[xPos + " " + yPos] = null;
             return;// loadedChunks [xPos + " " + yPos];
         }
 
@@ -556,9 +552,6 @@ public class terrainGenerator : MonoBehaviour
                     if(resourceMap[key] == resource.NONE)
                     {
                         
-                    }else if (resourceMap[key] == resource.CAVE)
-                    {
-                        Instantiate(Cave, new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                     }
                     else if (resourceMap[key] == resource.STONE)
                     {
@@ -626,12 +619,14 @@ public class terrainGenerator : MonoBehaviour
                         if (resourceMap[key] == resource.NPC)
                         {
                             tempResource.GetComponent<QuestNPC>().addGoal(tempResource.GetComponent<Skills>().getIntRank());
-                            tempResource.name = NameGen.create();
-                            tempResource.GetComponentInChildren<TextMesh>().text = tempResource.name;
                         }else{
                             tempResource.transform.SetParent(chunkLoc.transform);
                         }
                         chunkMap.addTileAt(tempTile, x, y, 1);
+                    }
+                    if (resourceMap[key] == resource.CAVE)
+                    {
+                        Instantiate(Cave, new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                     }
                 }
                 
@@ -810,7 +805,7 @@ public class terrainGenerator : MonoBehaviour
                 resourceMap.Add(key, resource.IRON);
             }
         }
-        else if (getResourceThreshold(resource.STONE) - 0.45 <= resourceVal && resourceVal < getResourceThreshold(resource.STONE) && getResourceThreshold(resource.STONE) - 0.4 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.STONE))
+        else if (getResourceThreshold(resource.STONE) - 0.4 <= resourceVal && resourceVal < getResourceThreshold(resource.STONE) && getResourceThreshold(resource.STONE) - 0.4 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.STONE))
         {
             if (terrainMap[key] == terrain.MOUNTAIN && !resourceMap.ContainsKey(key))
             {

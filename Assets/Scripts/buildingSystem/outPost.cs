@@ -25,12 +25,10 @@ public class outPost : MonoBehaviour {
     void Update () {
         if (controls.keyDown(controls.Outpost) && canSend && buildingPrefabs[0].GetComponent<resourceCost>().canAfford())
         {
-            if (MetaScript.getOPController().checkDistance(transform.position))
+            if (MetaScript.getOPController().checkDistance(gameObject.transform.position))
             {
                 if (MetaScript.getOPController().canAddOutPost())
                 {
-                    // Build surrounding area to avoid nav issues
-                    MetaScript.getPlayer().GetComponent<DynamicGeneration>().generateSurrounding(Chunk.getChunkPos(transform.position));
                     canSend = false;
                     buildingPrefabs[0].GetComponent<resourceCost>().purchase();
                     Instantiate(buildingPrefabsObjects[0], gameObject.transform.position, Quaternion.identity);

@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237718731318530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.2, z: 2.5}
+  m_LocalPosition: {x: 2, y: 0.2, z: 1.5}
   m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children:
   - {fileID: 4647815591935554}
@@ -99,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 20, z: 0.483734}
-  m_Center: {x: 0, y: 0, z: -0.14186698}
+  m_Size: {x: 20, y: 20, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114425964922662202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,7 +140,7 @@ MonoBehaviour:
   triggerEnter: 1
   triggerExit: 0
   shouldStayOnScreen: 0
-  forbidPlayIfRpgtalkIsPlaying: 1
+  forbidPlayIfRpgtalkIsPlaying: 0
   timelineDirectorToPlay: {fileID: 0}
 --- !u!212 &212123461069401348
 SpriteRenderer:

@@ -40,29 +40,21 @@ public class IncreasePlots : MonoBehaviour {
                     
                    if(!added.ContainsKey((i * 2 + tcx) + " " + (j * upgradeLevel + tcz)))
                     {
-                        
+                        print((i * 2 + tcx) + " " + (j * upgradeLevel + tcz));
                         Instantiate(plot, new Vector3(i * 2 + tcx, 0, j * upgradeLevel + tcz), Quaternion.identity);
                         Instantiate(buildingSign, new Vector3(i * 2 + tcx, 0, j * upgradeLevel + tcz), Quaternion.identity);
                         added[(i * 2 + tcx) + " " + (j * upgradeLevel + tcz)] = true;
                     }
                    
                     if (!added.ContainsKey((i * upgradeLevel + tcx) + " " + (j * 2 + tcz)))
-                    { 
-                            Instantiate(plot, new Vector3(i * upgradeLevel + tcx, 0, j * 2 + tcz), Quaternion.identity);
-                            Instantiate(buildingSign, new Vector3(i * upgradeLevel + tcx, 0, j * 2 + tcz), Quaternion.identity);
-                            added[(i * upgradeLevel) + " " + (j * 2 + tcz)] = true;
-                        
+                    {
+                        print((i * upgradeLevel + tcx) + " " + (j * 2 + tcz));
+                        Instantiate(plot, new Vector3(i * upgradeLevel + tcx, 0, j * 2 + tcz), Quaternion.identity);
+                        Instantiate(buildingSign, new Vector3(i * upgradeLevel + tcx, 0, j * 2 + tcz), Quaternion.identity);
+                        added[(i * upgradeLevel) + " " + (j * 2 + tcz)] = true;
                     }
-                    
 
                 }
-                if (upgradeLevel == 0)
-                {
-                    Instantiate(plot, new Vector3(2 + tcx, 0, tcz), Quaternion.identity);
-                    Instantiate(buildingSign, new Vector3(2 + tcx, 0, tcz), Quaternion.identity);
-                    break;
-                }
-                    
             }
         }
 	}

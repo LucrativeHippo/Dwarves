@@ -19,9 +19,8 @@ public class QuestGoal {
         // randomly generate based on rank
         int numberOfTries = 0;
 		if(rank<=0){
-			rank = -1;
-			goalIndex = -1;
-			return;
+			rank = 1;
+			Debug.LogWarning("Tried to insert non positive rank. Defaulting to 1");
 		}
 		// randomly generate based on rank
 		do{
@@ -87,12 +86,5 @@ public class QuestGoal {
 		return threshold;
 	}
 
-	override
-	public string ToString(){
-		if(goalIndex <0){
-			return "I'm free!";
-		}
-		Quests.QuestType qt = Quests.list[goalIndex];
-		return (qt.take? "Give":"Have") + " "+getThreshold() +" " +qt.Name +".";
-	}
+
 }

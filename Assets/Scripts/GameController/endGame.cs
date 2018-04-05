@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class endGame : MonoBehaviour {
     GameObject player;
-    private Text gameOverText;
-    private Text backToMenu;
+    private GUIText gameOverText;
+    private GUIText backToMenu;
     private bool gameOver = false;
 
 	// Use this for initialization
