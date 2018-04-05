@@ -73,7 +73,7 @@ public class mainDisplay : MonoBehaviour, IHealthListener {
     }
 
     public void publish () {
-        if (npcHealth != null)
+        if (npcHealth != null && healthText != null)
             updateHealth ();
     }
 
