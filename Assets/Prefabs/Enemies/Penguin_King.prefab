@@ -101,8 +101,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1002572287492492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.67, y: 0, z: 9.9}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4898336765374080}
   - {fileID: 4651247605996526}
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   opponent: {fileID: 0}
-  threatRange: 1
+  threatRange: 0.6
   damage: 3
 --- !u!114 &114890999100639334
 MonoBehaviour:
@@ -320,7 +320,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 719e8e238d9e64f2aa75d91f1bd0a3b3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6272865, g: 0.63235295, b: 0.26503026, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

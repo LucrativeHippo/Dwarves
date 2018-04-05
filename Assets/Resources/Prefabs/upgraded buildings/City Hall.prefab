@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114672308250782136}
   - component: {fileID: 114028470125897170}
   m_Layer: 0
-  m_Name: TC_3
+  m_Name: City Hall
   m_TagString: TownCenter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 54193818877949416}
   - component: {fileID: 114296766049228548}
   m_Layer: 0
-  m_Name: stone_house
+  m_Name: Stone House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

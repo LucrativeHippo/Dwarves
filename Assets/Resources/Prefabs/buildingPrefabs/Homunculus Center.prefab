@@ -361,7 +361,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0000000000000000000000000000000000000000000000000000000000000000
   buildingLimit: 0
-  buildingDescription: -Increases population capacity.
+  buildingDescription: -Can create homunculli (weak humans) by interacting with its
+    sign
 --- !u!114 &114364466633066812
 MonoBehaviour:
   m_ObjectHideFlags: 1
