@@ -26,10 +26,10 @@ public class building : MonoBehaviour, IActionable {
         if (!this.enabled)
             return;
 
-        player.GetComponent<DynamicGeneration>().enabled = false;
-        MetaScript.GetInBuilding().setPlayerInBuilding(true);
         
         MetaScript.preTeleport();
+        player.GetComponent<DynamicGeneration>().enabled = false;
+        MetaScript.GetInBuilding().setPlayerInBuilding(true);
         player.transform.position = new Vector3(bg.getdoorxlocation() + bg.getxlocation(), bg.getylocation(), bg.getdoorzlocation() + bg.getzlocation());
         MetaScript.postTeleport();
 
