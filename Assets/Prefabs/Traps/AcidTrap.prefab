@@ -194,9 +194,9 @@ MonoBehaviour:
   maxTimeToGrow: 5
   minTimeToGrow: 3
   growthRate: 0.1
-  poisonDuration: 0
-  poisonTickTime: 0
-  poisonDamagePerTick: 0
+  poisonDuration: 20
+  poisonTickTime: 5
+  poisonDamagePerTick: 1
 --- !u!212 &212790594545808470
 SpriteRenderer:
   m_ObjectHideFlags: 1
