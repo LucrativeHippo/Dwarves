@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class endGameDialogue : MonoBehaviour {
 
@@ -17,5 +18,8 @@ public class endGameDialogue : MonoBehaviour {
     public void endGame()
     {
         Debug.Log("sdvsggsgsggsgsgsgsdggdsggssgdsgdgsdgssgd");
+        GameObject.Find("Calendar").GetComponent<StormBringer>().resetStorms(50, Weather.weatherTypes.HELLFIRE);
+
+        SceneManager.LoadScene("endGame");
     }
 }

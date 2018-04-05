@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676334aad6a9de341b74b0a5d2ee2c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMaterial: {fileID: 2100000, guid: 19ad72519674fdc46b3884352377118a, type: 2}
+  upgradeMaterial: {fileID: 2100000, guid: 4e9baee9a961c284cb30cc969e453d31, type: 2}
   upgradeCostList: 64000000c8000000c8000000190000001900000000000000000000000000000000000000
   upgrade: {fileID: 1598468253541102, guid: 04c9093836914914daad5735b2e65816, type: 2}
 --- !u!212 &212170173377015056
