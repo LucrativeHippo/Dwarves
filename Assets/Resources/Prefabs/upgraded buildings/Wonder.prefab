@@ -73,10 +73,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1580336054601016}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.15, z: 0.1}
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114048956828906050
 MonoBehaviour:
@@ -110,8 +110,9 @@ MonoBehaviour:
   lineToStart: endgame-default-talk-start
   lineToBreak: endgame-default-talk-end
   txtToParse: {fileID: 0}
-  callbackScriptAfterTalk: {fileID: 0}
-  callbackFunctionAfterTalk: 
+  callbackScriptAfterTalk: {fileID: 114551813923546494, guid: f32ab82a8f3d50b468155fd0bc8bf893,
+    type: 2}
+  callbackFunctionAfterTalk: endGame
   happenOnlyOnce: 0
   alreadyHappened: 0
   triggerEnter: 0
