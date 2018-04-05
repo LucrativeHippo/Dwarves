@@ -34,17 +34,12 @@ public class NavMeshBuildFunction : MonoBehaviour
             m_Tracked = transform;
             
         UpdateNavMesh(false);
-        // Notify player to check this navmesh
-        MetaScript.getPlayer().SendMessage("AddResMesh",this);
     }
 
     void OnDisable()
     {
         // Unload navmesh and clear handle
         m_Instance.Remove();
-
-        // Notify the player that this navmesh doesn't need to be checked
-        MetaScript.getPlayer().SendMessage("RemResMesh",this);
     }
 
     void UpdateNavMesh(bool asyncUpdate = false)
@@ -72,8 +67,7 @@ public class NavMeshBuildFunction : MonoBehaviour
     {
         // Quantize the bounds to update only when theres a 10% change in size
         var center = m_Tracked ? m_Tracked.position : transform.position;
-        // return new Bounds(Quantize(center, new Vector3(1,1,1)), m_Size);
-        return new Bounds(center, m_Size);
+        return new Bounds(Quantize(center, new Vector3(1,1,1)), m_Size);
     }
     private Bounds buildBounds;
 

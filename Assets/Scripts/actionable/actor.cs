@@ -7,40 +7,20 @@ public class actor : MonoBehaviour {
 	private bool actionable;
 	public KeyCode actionKey;
 	private bool canSend = true;
-    private bool canSendNextFrame = true;
 
-    private float timeSinceAction;
-	public float actionCooldownSec = 0.8f;
+	public int actionCooldownSec = 5;
 
 	private Controls controls;
 	void Start(){
-        timeSinceAction = 0;
 		controls = MetaScript.GetControls();
 	}
 
-    private void Update()
-    {
-        if (!canSendNextFrame)
-        {
-            canSend = false;
-        }
-        if (!canSend)
-        {
-            timeSinceAction += Time.deltaTime;
-            if (timeSinceAction >= actionCooldownSec)
-            {
-                canSend = true;
-                canSendNextFrame = true;
-                timeSinceAction = 0;
-            }
-        }
-    }
-
-    void OnTriggerStay(Collider other) {
+	void OnTriggerStay(Collider other) {
         if (controls.key(controls.Action) && canSend)
         {
-            canSendNextFrame = false;
+            canSend = false;
             other.gameObject.SendMessage("recieveAction");
+            StartCoroutine(canSendTimer());
         }
 		
 	}
@@ -51,5 +31,15 @@ public class actor : MonoBehaviour {
 
 	void SendMessage() {
 		canSend = true;
+	}
+
+	IEnumerator canSendTimer() {
+		canSend = false;
+
+		for(int i=0; i< actionCooldownSec; i++) {
+			yield return new WaitForSeconds(1.0f);
+		}
+
+		canSend=true;
 	}
 }

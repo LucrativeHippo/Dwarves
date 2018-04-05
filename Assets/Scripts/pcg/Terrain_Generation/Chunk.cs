@@ -31,17 +31,4 @@ public class Chunk{
 	public void addTileAt(GameObject g, int x, int y, int z){
 		map [x, y, z] = g;
 	}
-	public static Vector3Int getChunkPos(Vector3 pos){
-		return Vector3Int.FloorToInt(pos/(float)SIZE);
-	}
-	public static Vector3Int getRoundChunkPos(Vector3 pos){
-		return Vector3Int.RoundToInt(pos/(float)SIZE);
-	}
-
-	public static string getChunkKey(Vector3 worldPos){
-		return getChunkKey(getChunkPos(worldPos));
-	}
-	public static string getChunkKey(Vector3Int chunkPos){
-		return chunkPos.x + " " + chunkPos.z;
-	}
 }

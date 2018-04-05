@@ -17,13 +17,11 @@ public class optionmenu : MonoBehaviour {
 	void Update () {
         
         sliderValue = sliderval.value;
-      
        
         //Debug.Log("musicvolume");
 	}
     public void Musics()
     {
         PlayerPrefs.SetFloat("musicvolume", sliderValue);
-
     }
 }

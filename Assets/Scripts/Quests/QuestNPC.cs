@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 /// <summary>
 /// Builds quest for NPC, needs creation outside of start.
@@ -21,9 +20,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
         if(!this.enabled)
             return;
         
-        // Popup message
-        activateUI();
-        //tryQuest();
+        tryQuest();
     }
 
     /// <summary>
@@ -48,8 +45,7 @@ public class QuestNPC : MonoBehaviour, IActionable {
             {
                 Debug.Log("QUEST COMPLETED");
                 GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
-
-                MetaScript.Poof(transform.position);
+                MetaScript.getRes().addResource(ResourceTypes.POPULATION, 1);
                 TakeSoul();
             }
             else
@@ -75,13 +71,13 @@ public class QuestNPC : MonoBehaviour, IActionable {
     }
 
     // Use this for initialization
-    // void Update () {
+    void Update () {
 
-    //     if(CompareTag("OwnedNPC")){
-    //         GetComponent<QuestNPC>().TakeSoul();
-    //     }
+        if(CompareTag("OwnedNPC")){
+            GetComponent<QuestNPC>().TakeSoul();
+        }
         
-	// }
+	}
 
     public void addGoal(int difficulty){
         myQuests.addGoal(new QuestGoal(difficulty));
@@ -114,54 +110,5 @@ public class QuestNPC : MonoBehaviour, IActionable {
     public Quests.QuestType GetQuestType(){
         int index = myQuests.GetQuestGoal().getGoalIndex();
         return Quests.list[index];
-    }
-
-    
-    private GameObject AllUIObjects;
-    private GameObject upgradePrompt;
-
-    private GameObject confirmButton;
-    private GameObject cancelButton;
-
-    private Text nameText;
-    private Text costText;
-    private Text moreResourcesRequiredText;
-
-    public void activateUI(){
-        AllUIObjects.transform.GetChild (2).gameObject.SetActive (true);
-        upgradePrompt.SetActive (true);
-        confirmButton.GetComponentInChildren<Text>().text = "Recruit";
-        nameText.text = "Do you wish to recruit this person?";
-        costText.text = myQuests.GetQuestGoal().ToString();
-        moreResourcesRequiredText.text = "";
-        setListener ();
-    }
-
-    void doUpgrade () {
-        closePrompt ();
-        tryQuest();
-    }
-
-    void Start () {
-        AllUIObjects = GameObject.Find ("AllUIObjectsCanvas");
-        upgradePrompt = AllUIObjects.transform.GetChild (2).GetChild (1).gameObject;
-        confirmButton = upgradePrompt.transform.GetChild (0).gameObject;
-        cancelButton = upgradePrompt.transform.GetChild (1).gameObject;
-        costText = upgradePrompt.transform.GetChild (2).gameObject.GetComponent<Text> ();
-        nameText = upgradePrompt.transform.GetChild (3).gameObject.GetComponent<Text> ();
-        moreResourcesRequiredText = upgradePrompt.transform.GetChild (4).gameObject.GetComponent<Text> ();
-    }
-
-    private void setListener () {
-        confirmButton.GetComponent<Button> ().onClick.RemoveAllListeners();
-        cancelButton.GetComponent<Button> ().onClick.RemoveAllListeners();
-        confirmButton.GetComponent<Button> ().onClick.AddListener (() => doUpgrade ());
-        cancelButton.GetComponent<Button> ().onClick.AddListener (() => closePrompt ());
-    }
-
-    private void closePrompt () {
-        confirmButton.GetComponentInChildren<Text>().text = "Upgrade";
-        upgradePrompt.SetActive (false);
-        AllUIObjects.transform.GetChild (2).gameObject.SetActive (false);
     }
 }   

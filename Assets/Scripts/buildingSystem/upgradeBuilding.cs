@@ -27,7 +27,6 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
     private Text moreResourcesRequiredText;
 
     public void recieveAction () {
-        canUpgrade = true;
         AllUIObjects.transform.GetChild (2).gameObject.SetActive (true);
         upgradePrompt.SetActive (true);
         nameText.text = upgrade.name.ToString ();
@@ -46,8 +45,8 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
     }
 
     void doUpgrade () {
+		Debug.Log ("Player upgraded to a :"+nameText.text);
         if (canUpgrade) {
-			Debug.Log ("Player upgraded to a :"+nameText.text);
             GameObject temp = Instantiate (upgrade, gameObject.transform.position, Quaternion.identity);
             temp.transform.parent = gameObject.transform.parent;
             gameObject.transform.parent.GetComponentsInChildren<MeshRenderer> () [0].material = upgradeMaterial;
@@ -69,8 +68,6 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
     }
 
     private void setListener () {
-        confirmButton.GetComponent<Button> ().onClick.RemoveAllListeners();
-        cancelButton.GetComponent<Button> ().onClick.RemoveAllListeners();
         confirmButton.GetComponent<Button> ().onClick.AddListener (() => doUpgrade ());
         cancelButton.GetComponent<Button> ().onClick.AddListener (() => closePrompt ());
     }

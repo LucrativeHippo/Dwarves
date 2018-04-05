@@ -32,7 +32,8 @@ public class NPCManager : MonoBehaviour {
     }
 
     public void enableMenu () {
-        reloadMenu ();
+        clearUI ();
+        generateUI ();
         this.gameObject.SetActive (false);
         NPCManagerGameObject.SetActive (true);
         mainDisplayGameObject.SetActive (true);
@@ -43,11 +44,6 @@ public class NPCManager : MonoBehaviour {
         currentResources.GetComponent<currentResourcesUIController> ().updateResourcesUI ();
         mainDisplayGameObject.SetActive (false);
         NPCManagerGameObject.SetActive (false);
-    }
-
-    public void reloadMenu() {
-        clearUI ();
-        generateUI ();
     }
 
     private void clearUI () {

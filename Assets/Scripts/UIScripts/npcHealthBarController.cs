@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class npcHealthBarController : MonoBehaviour, IHealthListener {
 
@@ -11,7 +10,6 @@ public class npcHealthBarController : MonoBehaviour, IHealthListener {
 
     void Start () {
         setHealth (this.GetComponent<Health> ());
-        this.transform.GetChild (3).gameObject.GetComponent<TextMesh> ().text = this.name;
         healthBar = this.transform.GetChild (4).GetChild (0).gameObject;
     }
 
