@@ -46,8 +46,8 @@ public class upgradeBuilding : MonoBehaviour, IActionable {
     }
 
     void doUpgrade () {
-		Debug.Log ("Player upgraded to a :"+nameText.text);
         if (canUpgrade) {
+			Debug.Log ("Player upgraded to a :"+nameText.text);
             GameObject temp = Instantiate (upgrade, gameObject.transform.position, Quaternion.identity);
             temp.transform.parent = gameObject.transform.parent;
             gameObject.transform.parent.GetComponentsInChildren<MeshRenderer> () [0].material = upgradeMaterial;
