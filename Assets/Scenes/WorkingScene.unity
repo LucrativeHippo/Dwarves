@@ -7927,14 +7927,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 4861806170425244, guid: 71383f95cd0610246bc8e0b68f864e30, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4861806170425244, guid: 71383f95cd0610246bc8e0b68f864e30, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114065626942093820, guid: 71383f95cd0610246bc8e0b68f864e30,
         type: 2}
       propertyPath: weatherman
@@ -7945,23 +7937,6 @@ Prefab:
       propertyPath: calendar
       value: 
       objectReference: {fileID: 155130975}
-    - target: {fileID: 114065626942093820, guid: 71383f95cd0610246bc8e0b68f864e30,
-        type: 2}
-      propertyPath: enemy
-      value: 
-      objectReference: {fileID: 1965376229938936, guid: b1242e13c19c29248bc0cfc10149dde9,
-        type: 2}
-    - target: {fileID: 114065626942093820, guid: 71383f95cd0610246bc8e0b68f864e30,
-        type: 2}
-      propertyPath: sheepMan
-      value: 
-      objectReference: {fileID: 1301930158207742, guid: 7dc1f386be41d9c46995038194050a6b,
-        type: 2}
-    - target: {fileID: 82252898149622616, guid: 71383f95cd0610246bc8e0b68f864e30,
-        type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71383f95cd0610246bc8e0b68f864e30, type: 2}
   m_IsPrefabParent: 0
@@ -9068,7 +9043,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 528401833}
   m_HandleRect: {fileID: 0}
