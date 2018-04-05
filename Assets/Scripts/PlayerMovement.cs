@@ -7,12 +7,15 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed;
     private Animator animator;
     private Controls controls;
-   // public AudioSource sound;
+
+    private RPGTalk rpgtalk;
+
     //private GameObject cam;
     private void Awake()
     {
         animator = gameObject.GetComponentInChildren<Animator>();
         controls = MetaScript.GetControls();
+        rpgtalk = GameObject.FindObjectOfType<RPGTalk>();
         // cam = GameObject.Find("MainCam");
     }
 
@@ -82,6 +85,11 @@ public class PlayerMovement : MonoBehaviour {
                 noAnim = false;
                 animator.SetBool("attack", true);
             }
+        }
+
+        if (mov != Vector3.zero)
+        {
+            rpgtalk.EndTalk(true);
         }
 
 		mov.Normalize ();
