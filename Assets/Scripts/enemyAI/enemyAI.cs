@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour {	
+public class enemyAI : MonoBehaviour, IHealthListener {	
 	public GameObject opponent;
 	NavMeshAgent agentCtrl;
     private Animator anim;
@@ -17,6 +17,7 @@ public class enemyAI : MonoBehaviour {
 	void Start () {
         anim = gameObject.GetComponentInChildren<Animator>();
 		agentCtrl = this.GetComponent<NavMeshAgent>();
+		setHealth(GetComponent<Health>());
 		getDest();
 		setDestination();
 		tag = "Enemy";
@@ -94,4 +95,18 @@ public class enemyAI : MonoBehaviour {
 			opponent.SendMessage("notifyNPC");
 		}
 	}
+
+	private Health myHealth;
+    public void setHealth(Health health)
+    {
+		myHealth = health;
+		health.addSubscriber(this);
+    }
+
+    public void publish()
+    {
+		if(opponent == null || !withinAttackRange()){
+			getDest();
+		}
+    }
 }
