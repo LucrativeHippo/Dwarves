@@ -15,10 +15,10 @@ public class ResourceManager : MonoBehaviour {
         maxResourceList[(int)ResourceTypes.WOOD] = 200;
         maxResourceList[(int)ResourceTypes.FOOD] = 100;
         maxResourceList[(int)ResourceTypes.STONE] = 50;
-        maxResourceList[(int)ResourceTypes.COAL] = 10;
+        maxResourceList[(int)ResourceTypes.COAL] = 25;
         maxResourceList[(int)ResourceTypes.DIAMOND] = 5;
         maxResourceList[(int)ResourceTypes.GOLD] = 5;
-        maxResourceList[(int)ResourceTypes.IRON] = 10;
+        maxResourceList[(int)ResourceTypes.IRON] = 25;
         maxResourceList[(int)ResourceTypes.POPULATION] = 5;
 		InvokeRepeating ("logResources", 1.0f, 180.0f);
 	}

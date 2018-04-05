@@ -17,7 +17,9 @@ Weatherman: [question=1]What do you want to know?
 [choice]How do I give the people in camp tasks?
 [choice]Can I upgrade buildings?
 [choice]Do workers have stats?
+[choice]It seems to get dark outside camp?
 [choice]The Forecast?
+[choice]Nevermind.
 [title=weatherman-default-talk-end]
 
 [title=weatherman-option-0-picked-start]
@@ -78,11 +80,25 @@ Weatherman: Unfotunately no one else is capable of my job, so I have to stay her
 [title=weatherman-option-5-picked-end]
 
 [title=weatherman-option-6-picked-start]
+Weatherman: So, my friend. Have you seen some of your comrades be...less than willing to gather things?
+Weatherman: When you tell them to gather something, do they seem unwilling to leave camp?
+Weatherman: Well, they're afraid of the dark and need some protection.  Feel free to help them out.
+Weatherman: You can select an ally to follow you with the NPC button in the bottom left corner, 
+Weatherman: and then if you are far enough away from your village you can drop a temporary campfire with the "v" key. 
+Weatherman: This new campfire will allow your comrade to work in this area. 
+Weatherman: But remember, you can only have up to 3 campfires going at a time. Deconstruct one of them with the F key.
+[title=weatherman-option-6-picked-end]
+
+[title=weatherman-option-7-picked-start]
 Weatherman: [question=9999]Do you want to know about the temperature, or the weather conditions?
 [choice]Temperature Trend
 [choice]Upcoming Weather Conditions
 [choice]Actually, nevermind.
-[title=weatherman-option-6-picked-end]
+[title=weatherman-option-7-picked-end]
+
+[title=weatherman-option-8-picked-start]
+Weatherman: Okay. See you later.
+[title=weatherman-option-8-picked-end]
 
 [title=hellfire-forecast-start]
 Weatherman: ...
