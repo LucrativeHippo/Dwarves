@@ -9,35 +9,35 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1449137886219876}
+  m_RootGameObject: {fileID: 1580336054601016}
   m_IsPrefabParent: 1
---- !u!1 &1449137886219876
+--- !u!1 &1580336054601016
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4624372453605050}
-  - component: {fileID: 33633527429247826}
-  - component: {fileID: 65735387886395254}
-  - component: {fileID: 54083442069031096}
-  - component: {fileID: 114987868953804966}
-  - component: {fileID: 114457811120078130}
-  - component: {fileID: 114980846701133162}
+  - component: {fileID: 4162299943795252}
+  - component: {fileID: 33395397688108144}
+  - component: {fileID: 65130443246485580}
+  - component: {fileID: 54053790393065664}
+  - component: {fileID: 114213972192553688}
+  - component: {fileID: 114048956828906050}
+  - component: {fileID: 114233801338822982}
   m_Layer: 0
-  m_Name: Military_Center
-  m_TagString: Untagged
+  m_Name: Wonder
+  m_TagString: Wonder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4624372453605050
+--- !u!4 &4162299943795252
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449137886219876}
+  m_GameObject: {fileID: 1580336054601016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.3, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -45,19 +45,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &33633527429247826
+--- !u!33 &33395397688108144
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449137886219876}
+  m_GameObject: {fileID: 1580336054601016}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54083442069031096
+--- !u!54 &54053790393065664
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449137886219876}
+  m_GameObject: {fileID: 1580336054601016}
   serializedVersion: 2
   m_Mass: 0.0000001
   m_Drag: 0
@@ -67,54 +67,69 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &65735387886395254
+--- !u!65 &65130443246485580
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449137886219876}
+  m_GameObject: {fileID: 1580336054601016}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.15, z: 0.1}
+  m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114457811120078130
+--- !u!114 &114048956828906050
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449137886219876}
+  m_GameObject: {fileID: 1580336054601016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 944cdf1df82f5d745aecb6b5cb05ccf1, type: 3}
+  m_Script: {fileID: 11500000, guid: 06534a378e6b8df40b2a54751a4f6add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numGuards: 1
-  militaryAbility: 0.5
---- !u!114 &114980846701133162
+--- !u!114 &114213972192553688
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449137886219876}
+  m_GameObject: {fileID: 1580336054601016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e71a54fd005b446f9a74b7b1c613b90, type: 3}
+  m_Script: {fileID: 11500000, guid: 0af02b5d7648a4e8492f3b9fc160319d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplierToAdd: 0.5
---- !u!114 &114987868953804966
+  rpgtalkTarget: {fileID: 0}
+  shouldInteractWithButton: 0
+  showWhenInteractionIsPossible: []
+  interactionKey: 102
+  checkIfColliderHasTag: Player
+  callbackScriptBeforeTalk: {fileID: 114861684259629282, guid: 91638264573ffd34f80612d45c04c140,
+    type: 2}
+  callbackFunctionBeforeTalk: Stop
+  lineToStart: endgame-default-talk-start
+  lineToBreak: endgame-default-talk-end
+  txtToParse: {fileID: 0}
+  callbackScriptAfterTalk: {fileID: 114551813923546494, guid: f32ab82a8f3d50b468155fd0bc8bf893,
+    type: 2}
+  callbackFunctionAfterTalk: endGame
+  happenOnlyOnce: 0
+  alreadyHappened: 0
+  triggerEnter: 1
+  triggerExit: 1
+  shouldStayOnScreen: 0
+  forbidPlayIfRpgtalkIsPlaying: 0
+  timelineDirectorToPlay: {fileID: 0}
+--- !u!114 &114233801338822982
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449137886219876}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1580336054601016}
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676334aad6a9de341b74b0a5d2ee2c95, type: 3}
+  m_Script: {fileID: 11500000, guid: eb982d248ef072a4ca4770b2aa585dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMaterial: {fileID: 2100000, guid: 8fbec756a9d0b69458c76daf9156c4f5, type: 2}
-  upgradeCostList: 000000006400000090010000000000003200000000000000000000000000000000000000
-  upgrade: {fileID: 1734608442346860, guid: d61cc7fe7fe9c7b42886febc3490221b, type: 2}

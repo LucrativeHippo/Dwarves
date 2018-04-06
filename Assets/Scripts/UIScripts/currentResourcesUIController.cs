@@ -30,8 +30,10 @@ public class currentResourcesUIController : MonoBehaviour {
     /// Updates the resources UI.
     /// </summary>
     public void updateResourcesUI () {
-        for (int i = 0; i < (int)ResourceTypes.NumberOfTypes; i++) {
-            textsValuesText [i].text = resourceManager.getResource (i).ToString () + "/" + resourceManager.getMaxResource (i).ToString ();
+        if (textsValuesText != null) {
+            for (int i = 0; i < (int)ResourceTypes.NumberOfTypes; i++) {
+                textsValuesText [i].text = resourceManager.getResource (i).ToString () + "/" + resourceManager.getMaxResource (i).ToString ();
+            }
         }
     }
 }

@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 00000000c8000000640000000000000000000000000000000000000000000000
-  buildingLimit: 1
+  buildingLimit: 0
   buildingDescription: -Increases food capacity.
 --- !u!212 &212758219014252418
 SpriteRenderer:

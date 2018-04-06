@@ -10,7 +10,7 @@ public class Health : MonoBehaviour, IStatsListener {
     [SerializeField]
     int maxHealth;
     [SerializeField]
-    bool isImmortal = false;
+    public bool isImmortal = false;
     bool isInvulnerable = false;
     public bool dealDamage = false;
     private Skills npcSkill;

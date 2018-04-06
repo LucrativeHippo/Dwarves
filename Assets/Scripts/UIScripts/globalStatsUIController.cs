@@ -21,7 +21,7 @@ public class globalStatsUIController : MonoBehaviour {
     [SerializeField] float updateTimeRate = 1.0f;
 
     void Start () {
-        Meta = GameObject.Find ("Meta");
+        Meta = MetaScript.getMetaObject ();
         AllUIGameObject = GameObject.Find ("AllUIObjectsCanvas");
         GlobalUIParent = AllUIGameObject.transform.GetChild (0).GetChild (3).gameObject;
 
@@ -33,7 +33,7 @@ public class globalStatsUIController : MonoBehaviour {
         heatProtection = GlobalUIParent.transform.GetChild (4).gameObject;
         coldProtection = GlobalUIParent.transform.GetChild (5).gameObject;
         updateAll ();
-        StartCoroutine (updateTimer (updateTimeRate));
+        // StartCoroutine (updateTimer (updateTimeRate));
     }
 
     public void updateAll () {
@@ -46,32 +46,44 @@ public class globalStatsUIController : MonoBehaviour {
     }
 
     private void updateFoodSaved () {
-        foodSaved.text = Meta.GetComponent<Global_Stats> ().getFoodSaved ().ToString ();
+        if (foodSaved != null) {
+            foodSaved.text = Meta.GetComponent<Global_Stats> ().getFoodSaved ().ToString ();
+        }
     }
 
     private void updateMilitaryAbility () {
-        militaryAbility.text = Meta.GetComponent<Global_Stats> ().getMilitaryAbility ().ToString ();
+        if (militaryAbility != null) {
+            militaryAbility.text = Meta.GetComponent<Global_Stats> ().getMilitaryAbility ().ToString ();
+        }
     }
 
     private void updateHealthMultiplier () {
-        healthMultiplier.text = Meta.GetComponent<Global_Stats> ().getHealthMultiplier ().ToString ();
+        if (healthMultiplier != null) {
+            healthMultiplier.text = Meta.GetComponent<Global_Stats> ().getHealthMultiplier ().ToString ();
+        }
     }
 
     private void updateBaseGather () {
-        baseGather.text = Meta.GetComponent<Global_Stats> ().getBaseGather ().ToString ();
+        if (baseGather != null) {
+            baseGather.text = Meta.GetComponent<Global_Stats> ().getBaseGather ().ToString ();
+        }
     }
 
     private void updateColdProtection () {
-        heatProtection.SetActive (Meta.GetComponent<Global_Stats> ().getHasColdProtection ());
+        if (coldProtection != null) {
+            coldProtection.SetActive (Meta.GetComponent<Global_Stats> ().getHasColdProtection ());
+        }
     }
 
     private void updateHeatProtection () {
-        coldProtection.SetActive (Meta.GetComponent<Global_Stats> ().getHasHeatProtection ());
+        if (heatProtection != null) {
+            heatProtection.SetActive (Meta.GetComponent<Global_Stats> ().getHasHeatProtection ());
+        }
     }
 
-    IEnumerator updateTimer (float waitForTime) {
-        yield return new WaitForSeconds (waitForTime);
-        updateAll ();
-        StartCoroutine (updateTimer (waitForTime));
-    }
+    // IEnumerator updateTimer (float waitForTime) {
+    //     yield return new WaitForSeconds (waitForTime);
+    //     updateAll ();
+    //     StartCoroutine (updateTimer (waitForTime));
+    // }
 }
