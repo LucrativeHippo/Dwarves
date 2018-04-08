@@ -11,15 +11,10 @@ public class mainmenu : MonoBehaviour {
     public GameObject positionsforplay;
     public GameObject positionsforsetting;
     public GameObject positionsforreturn;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    [SerializeField] private GameObject controlsCanvas;
+    [SerializeField] private GameObject settingsCanvas;
+
 public void playoption(){
        
         newgamebt.SetActive(true);
@@ -51,10 +46,19 @@ public void playoption(){
     {
         objects.SetFloat("animate",0);
     }
+
     public void position2(){
+        settingsCanvas.SetActive (true);
+        controlsCanvas.SetActive (false);
         closeplayoption();
         objects.SetFloat("animate",1);
+    }
 
+    public void position3() {
+        controlsCanvas.SetActive (true);
+        settingsCanvas.SetActive (false);
+        closeplayoption ();
+        objects.SetFloat ("animate", 1);
     }
     
     public void quitgame(){
