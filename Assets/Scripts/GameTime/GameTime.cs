@@ -39,7 +39,7 @@ public class GameTime : MonoBehaviour
         calendar.generateNewWeatherSystem();
         stormBringer.initializeInternals();
 
-        IEnumerator co = Timer(dayTime * gracePeriod);
+        IEnumerator co = Timer(dayTime);
         StartCoroutine(co);
 
         initializeCalendarUI();
@@ -116,8 +116,15 @@ public class GameTime : MonoBehaviour
             {
                 daychange.value = daychange.minValue;
             }
-
-            weatherScript.increaseRandomWeatherChance();
+            if(gracePeriod == 0)
+            {
+                weatherScript.increaseRandomWeatherChance();
+            }
+            else
+            {
+                gracePeriod--;
+            }
+            
         }
 
     }
@@ -157,12 +164,13 @@ public class GameTime : MonoBehaviour
         //print (calendar.getCurrentDay ());
         daychangetext.text = calendar.getCurrentDay().ToString();
         seasonchange.text = (calendar.getCurrentSeason() + 1).ToString();
-        //daychange.value = calendar.getCurrentDay();
+        daychange.value = calendar.getCurrentDay();
 
         setWeatherBasedPostProcessing();
         setWeatherBasedParticles();
         setWeatherBasedStorms();
         if(foodOwed){
+            
             MetaScript.getFoodSystem().tickDay();
         }
         foodOwed = true;
