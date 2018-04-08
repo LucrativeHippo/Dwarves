@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponent: {fileID: 0}
   threatRange: 0.6
-  damage: 3
+  damage: 4
 --- !u!114 &114890999100639334
 MonoBehaviour:
   m_ObjectHideFlags: 1

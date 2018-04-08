@@ -151,7 +151,10 @@ public class Weather: MonoBehaviour
 
         int choice = UnityEngine.Random.Range(0, weathers.Length);
         Weather.weatherTypes weatherChoice = weathers[choice];
-
-        chances[weatherChoice] += 1;
+        foreach(Weather.weatherTypes i in weathers)
+        {
+            chances[i] += 3;
+        }
+        
     }
 }

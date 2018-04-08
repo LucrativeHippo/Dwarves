@@ -18,6 +18,8 @@ public class GameTime : MonoBehaviour
     private UseCustomImageEffect postProcessing;
     private StormBringer stormBringer;
     private float timevalue;
+    //Change the number of days before a bad weather increase chance
+    public int gracePeriod = 7;
 
 
     void Start()
@@ -37,7 +39,7 @@ public class GameTime : MonoBehaviour
         calendar.generateNewWeatherSystem();
         stormBringer.initializeInternals();
 
-        IEnumerator co = Timer(dayTime);
+        IEnumerator co = Timer(dayTime * gracePeriod);
         StartCoroutine(co);
 
         initializeCalendarUI();

@@ -4981,12 +4981,12 @@ Prefab:
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceAcidRain
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceSunny
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
@@ -4996,32 +4996,32 @@ Prefab:
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceRain
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceSnow
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceBlizzard
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceHellfire
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceScaryLightning
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceSuperHot
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
