@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   townCentre: {fileID: 0}
   NPC: {fileID: 0}
-  speed: 3
+  speed: 5
 --- !u!114 &114091625499717464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponent: {fileID: 0}
   threatRange: 0.4
-  damage: 1
+  damage: 2
 --- !u!114 &114698019376494968
 MonoBehaviour:
   m_ObjectHideFlags: 1
