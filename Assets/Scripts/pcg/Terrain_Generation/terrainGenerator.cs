@@ -242,7 +242,7 @@ public class terrainGenerator : MonoBehaviour
             case resource.MEAT:
                 return 0.10f;
             case resource.IRON:
-                return 0.5f;
+                return 0.48f;
             case resource.GOLD:
                 return 0.44f;
             case resource.DIAMOND:
@@ -442,7 +442,7 @@ public class terrainGenerator : MonoBehaviour
         {
             for (int j = (tempy - 3); j < (tempy + 4); j++)
             {
-                string key = (tempx + i) + " " + (tempy + j);
+                string key = i + " " + j;
                 if (resourceMap.ContainsKey(key))
                 {
                     resourceMap[key] = resource.NONE;
@@ -810,7 +810,7 @@ public class terrainGenerator : MonoBehaviour
                 resourceMap.Add(key, resource.IRON);
             }
         }
-        else if (getResourceThreshold(resource.STONE) - 0.45 <= resourceVal && resourceVal < getResourceThreshold(resource.STONE) && getResourceThreshold(resource.STONE) - 0.4 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.STONE))
+        else if (getResourceThreshold(resource.IRON) <= resourceVal && resourceVal < getResourceThreshold(resource.STONE) && getResourceThreshold(resource.IRON)<= resourceVal2 && resourceVal2 < getResourceThreshold(resource.STONE))
         {
             if (terrainMap[key] == terrain.MOUNTAIN && !resourceMap.ContainsKey(key))
             {
