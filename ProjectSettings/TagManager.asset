@@ -20,6 +20,7 @@ TagManager:
   - iron
   - Shelter
   - Wonder
+  - ProtectedNPC
   layers:
   - Default
   - TransparentFX

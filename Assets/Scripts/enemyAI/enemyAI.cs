@@ -40,7 +40,7 @@ public class enemyAI : MonoBehaviour, IHealthListener {
 	}
     // Update is called once per frame
     void Update(){
-        if (opponent == null)
+        if (opponent.tag != "Player" && opponent.tag != "OwnedNPC")
         {
             getDest();
         }
