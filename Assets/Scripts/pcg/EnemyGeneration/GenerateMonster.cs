@@ -104,5 +104,6 @@ public class GenerateMonster : MonoBehaviour {
             print(temp.transform.position);
             currentEnemies++;
         }
+		GetComponent<AudioSource> ().Play();
     }
 }

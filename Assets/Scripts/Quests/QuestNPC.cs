@@ -154,14 +154,14 @@ public class QuestNPC : MonoBehaviour, IActionable {
         costText = upgradePrompt.transform.GetChild (2).gameObject.GetComponent<Text> ();
         nameText = upgradePrompt.transform.GetChild (3).gameObject.GetComponent<Text> ();
         moreResourcesRequiredText = upgradePrompt.transform.GetChild (4).gameObject.GetComponent<Text> ();
-		Invoke ("unSpoke", 10);
+		Invoke ("unSpoke", 3);
     }
 
 	void Update() {
 		if ((!spoke)&&hasSound) {
 			GetComponent<AudioSource> ().Play ();
 			spoke = true;
-			Invoke ("unSpoke", 15); //Time till we nexxt play the SFX
+			Invoke ("unSpoke", 45); //Time till we nexxt play the SFX
 		}
 	}
 
