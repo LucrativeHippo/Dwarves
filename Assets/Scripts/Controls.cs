@@ -18,12 +18,17 @@ public class Controls : MonoBehaviour {
 	public KeyCode Collect = KeyCode.Alpha1;
 	public KeyCode Guard = KeyCode.Alpha2;
 	public KeyCode Follow = KeyCode.Alpha3;
+    public KeyCode ControlsDisplay = KeyCode.F1;
 
 	public bool FocusedInput = false;
 
 	public bool keyDown(KeyCode key){
 		return !FocusedInput && Input.GetKeyDown(key);
 	}
+
+    public bool keyUp(KeyCode key) {
+        return !FocusedInput && Input.GetKeyUp (key);
+    }
 
 	public bool key(KeyCode key){
 		return !FocusedInput && Input.GetKey(key);
