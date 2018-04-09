@@ -164,7 +164,7 @@ public class GameTime : MonoBehaviour
         //print (calendar.getCurrentDay ());
         daychangetext.text = calendar.getCurrentDay().ToString();
         seasonchange.text = (calendar.getCurrentSeason() + 1).ToString();
-        daychange.value = calendar.getCurrentDay();
+        daychange.value = calendar.getCurrentDay() - 1;
 
         setWeatherBasedPostProcessing();
         setWeatherBasedParticles();
