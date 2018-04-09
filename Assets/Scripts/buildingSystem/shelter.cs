@@ -9,11 +9,14 @@ public class shelter : MonoBehaviour
     {
         if (other.tag.Equals("OwnedNPC"))
         {
+            
             FightFlight ff = other.GetComponent<FightFlight>();
             if (ff != null)
             {
+                
                 if (ff.isFleeing())
                 {
+                    
                     beginToShelterNPC(other.gameObject);
                 }
             }
