@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeather: 4
-  numEnemies: 2
+  numEnemies: 4
   evilPenguin: {fileID: 0}
   king: {fileID: 0}
 --- !u!212 &212637568036033698
