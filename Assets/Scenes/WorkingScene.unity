@@ -5340,7 +5340,7 @@ Prefab:
     - target: {fileID: 114226960038818720, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: dayTime
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114226960038818720, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
@@ -5400,7 +5400,7 @@ Prefab:
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
       propertyPath: chanceScaryLightning
-      value: 1000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114945180212062536, guid: 04f910d73192ab9498d805b6251e66e4,
         type: 2}
@@ -10617,6 +10617,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1219877755427976, guid: e718b2b10e8e20545942de16d699c1c0,
         type: 2}
+    - target: {fileID: 114622711548311490, guid: f4b52197e853c7042a369c9dfec13683,
+        type: 2}
+      propertyPath: NPCspawnRate
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f4b52197e853c7042a369c9dfec13683, type: 2}
   m_IsPrefabParent: 0
