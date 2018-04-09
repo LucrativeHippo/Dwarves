@@ -13,9 +13,10 @@ public class QuestNPC : MonoBehaviour, IActionable {
     public int rank = 0;//Random.Range(1,50);
     [SerializeField]
     private QuestBase myQuests = new QuestBase();
-
     [SerializeField]
     public bool finishQuest = false;
+	bool hasSound = false;
+	bool spoke = true;
     public void recieveAction()
     {
         if(!this.enabled)
@@ -143,15 +144,31 @@ public class QuestNPC : MonoBehaviour, IActionable {
     }
 
     void Start () {
-        AllUIObjects = GameObject.Find ("AllUIObjectsCanvas");
+		if (GetComponent<AudioSource> () != null) {
+			hasSound = true;
+		}
+		AllUIObjects = GameObject.Find ("AllUIObjectsCanvas");
         upgradePrompt = AllUIObjects.transform.GetChild (2).GetChild (1).gameObject;
         confirmButton = upgradePrompt.transform.GetChild (0).gameObject;
         cancelButton = upgradePrompt.transform.GetChild (1).gameObject;
         costText = upgradePrompt.transform.GetChild (2).gameObject.GetComponent<Text> ();
         nameText = upgradePrompt.transform.GetChild (3).gameObject.GetComponent<Text> ();
         moreResourcesRequiredText = upgradePrompt.transform.GetChild (4).gameObject.GetComponent<Text> ();
+		Invoke ("unSpoke", 10);
     }
 
+	void Update() {
+		if ((!spoke)&&hasSound) {
+			GetComponent<AudioSource> ().Play ();
+			spoke = true;
+			Invoke ("unSpoke", 15); //Time till we nexxt play the SFX
+		}
+	}
+
+	void unSpoke(){
+		spoke = false;
+	}
+	
     private void setListener () {
         confirmButton.GetComponent<Button> ().onClick.RemoveAllListeners();
         cancelButton.GetComponent<Button> ().onClick.RemoveAllListeners();
