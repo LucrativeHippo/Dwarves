@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4560414495276882}
   - component: {fileID: 212637568036033698}
   - component: {fileID: 114911447123818168}
+  - component: {fileID: 82833881422978812}
   m_Layer: 0
   m_Name: monster_generator
   m_TagString: Untagged
@@ -41,6 +42,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82833881422978812
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241819462201440}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a919198daa3f752449322896f8e678ce, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114911447123818168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,16 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeather: 4
   numEnemies: 2
-  heatMonster: {fileID: 1965376229938936, guid: b1242e13c19c29248bc0cfc10149dde9,
-    type: 2}
-  snowMonster: {fileID: 1965376229938936, guid: b1242e13c19c29248bc0cfc10149dde9,
-    type: 2}
-  acidMonster: {fileID: 1965376229938936, guid: b1242e13c19c29248bc0cfc10149dde9,
-    type: 2}
-  devilMonster: {fileID: 1697624545938354, guid: efd1e6620a7cc01489394657c929eab0,
-    type: 2}
-  lightningMonster: {fileID: 1697624545938354, guid: efd1e6620a7cc01489394657c929eab0,
-    type: 2}
+  evilPenguin: {fileID: 0}
+  king: {fileID: 0}
 --- !u!212 &212637568036033698
 SpriteRenderer:
   m_ObjectHideFlags: 1
