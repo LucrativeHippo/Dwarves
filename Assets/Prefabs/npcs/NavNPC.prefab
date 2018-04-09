@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 114105296929767530}
   - component: {fileID: 114205920956962096}
   - component: {fileID: 114176955818188616}
+  - component: {fileID: 114313692711629074}
   m_Layer: 0
   m_Name: NavNPC
   m_TagString: Untagged
@@ -544,6 +545,17 @@ MonoBehaviour:
   pickupTime: 2
   state: 0
   findingType: 1
+--- !u!114 &114313692711629074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1375379734395336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269019c0a11f96c40a418ea6eaedf478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114319105983287012
 MonoBehaviour:
   m_ObjectHideFlags: 1

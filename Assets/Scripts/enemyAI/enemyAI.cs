@@ -23,6 +23,9 @@ public class enemyAI : MonoBehaviour, IHealthListener {
 		tag = "Enemy";
 	}
 	private void getDest(){
+		if(opponent!=null)
+			opponent.SendMessage("stopTargeted",gameObject);
+
 		opponent = collect.findClosestTag("OwnedNPC",gameObject);
         if (opponent != null)
         {
@@ -37,6 +40,9 @@ public class enemyAI : MonoBehaviour, IHealthListener {
         {
             opponent = MetaScript.getPlayer();
         }
+		if(opponent != null){
+			opponent.SendMessage("beingTargeted",gameObject);
+		}
 	}
     // Update is called once per frame
     void Update(){
@@ -109,4 +115,8 @@ public class enemyAI : MonoBehaviour, IHealthListener {
 			getDest();
 		}
     }
+
+	public void opponentIsSafe(){
+		opponent = null;
+	}
 }

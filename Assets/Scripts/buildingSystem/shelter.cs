@@ -42,7 +42,7 @@ public class shelter : MonoBehaviour
         {
             sprite.enabled = false;
         }
-
+        GetComponent<EnemyNotify>().safe();
         setBuildingCheckOnNPC(npc, true);
     }
 
