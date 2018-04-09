@@ -48,7 +48,6 @@ public class QuestNPC : MonoBehaviour, IActionable {
             {
                 Debug.Log("QUEST COMPLETED");
                 GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
-                MetaScript.getRes().addResource(ResourceTypes.POPULATION, 1);
 
                 MetaScript.Poof(transform.position);
                 TakeSoul();

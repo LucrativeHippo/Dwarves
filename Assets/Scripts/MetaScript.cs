@@ -203,7 +203,7 @@ public class MetaScript : MonoBehaviour {
 	}
 	public static void Tomb(Vector3 pos, string enslaved){
 		Vector3 tombPos = pos;
-		tombPos.y = 0.3f;
+		tombPos.y = 0.1f;
 		GameObject tomb = Instantiate(MetaScript.getMeta().Tombstone,tombPos,Quaternion.identity);
 		tomb.GetComponent<Tomb>().setName(enslaved);
 		MetaScript.getMeta().souls.AddLast(enslaved);

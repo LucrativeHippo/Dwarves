@@ -238,11 +238,11 @@ public class terrainGenerator : MonoBehaviour
             case resource.TREE:
                 return 0.45f;
             case resource.STONE:
-                return 0.90f;
+                return 1.0f;
             case resource.MEAT:
                 return 0.10f;
             case resource.IRON:
-                return 0.46f;
+                return 0.48f;
             case resource.GOLD:
                 return 0.44f;
             case resource.DIAMOND:
@@ -442,7 +442,7 @@ public class terrainGenerator : MonoBehaviour
         {
             for (int j = (tempy - 3); j < (tempy + 4); j++)
             {
-                string key = (tempx + i) + " " + (tempy + j);
+                string key = i + " " + j;
                 if (resourceMap.ContainsKey(key))
                 {
                     resourceMap[key] = resource.NONE;
@@ -556,6 +556,9 @@ public class terrainGenerator : MonoBehaviour
                     if(resourceMap[key] == resource.NONE)
                     {
                         
+                    }else if (resourceMap[key] == resource.CAVE)
+                    {
+                        Instantiate(Cave, new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                     }
                     else if (resourceMap[key] == resource.STONE)
                     {
@@ -629,10 +632,6 @@ public class terrainGenerator : MonoBehaviour
                             tempResource.transform.SetParent(chunkLoc.transform);
                         }
                         chunkMap.addTileAt(tempTile, x, y, 1);
-                    }
-                    if (resourceMap[key] == resource.CAVE)
-                    {
-                        Instantiate(Cave, new Vector3(worldPos.xCoord, 0, worldPos.yCoord), Quaternion.identity);
                     }
                 }
                 
@@ -811,7 +810,7 @@ public class terrainGenerator : MonoBehaviour
                 resourceMap.Add(key, resource.IRON);
             }
         }
-        else if (getResourceThreshold(resource.STONE) - 0.4 <= resourceVal && resourceVal < getResourceThreshold(resource.STONE) && getResourceThreshold(resource.STONE) - 0.4 <= resourceVal2 && resourceVal2 < getResourceThreshold(resource.STONE))
+        else if (getResourceThreshold(resource.IRON) <= resourceVal && resourceVal < getResourceThreshold(resource.STONE) && getResourceThreshold(resource.IRON)<= resourceVal2 && resourceVal2 < getResourceThreshold(resource.STONE))
         {
             if (terrainMap[key] == terrain.MOUNTAIN && !resourceMap.ContainsKey(key))
             {

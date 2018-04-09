@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 114661445488998470}
   - component: {fileID: 114802729474798638}
   - component: {fileID: 114465532040883588}
+  - component: {fileID: 114947678421908238}
   m_Layer: 0
   m_Name: girlnpc
   m_TagString: Untagged
@@ -243,13 +244,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313320856206606}
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
   m_LocalPosition: {x: -0.07, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 4988698742810844}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!4 &4955842374303734
 Transform:
   m_ObjectHideFlags: 1
@@ -270,8 +271,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1587624629007354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.159, y: 0.073, z: 2.5}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 2.8129, y: 0.0739, z: 2.25}
+  m_LocalScale: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
   m_Children:
   - {fileID: 224943576196451122}
   - {fileID: 4849509890234920}
@@ -381,7 +382,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95426662788822230
 Animator:
@@ -496,6 +497,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  customNPC: 0
 --- !u!114 &114279462084748216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -638,7 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba452419fdb3fc34bb22a76501ea5cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followDistance: 1
+  followDistance: 0.5
   maxDist: 5
 --- !u!114 &114874316273187184
 MonoBehaviour:
@@ -719,6 +721,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.9
   m_Text: 
+--- !u!114 &114947678421908238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587624629007354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269019c0a11f96c40a418ea6eaedf478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114952825246644502
 MonoBehaviour:
   m_ObjectHideFlags: 1

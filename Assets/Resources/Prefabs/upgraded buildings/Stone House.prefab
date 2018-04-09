@@ -9,34 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1734608442346860}
+  m_RootGameObject: {fileID: 1924212335498946}
   m_IsPrefabParent: 1
---- !u!1 &1734608442346860
+--- !u!1 &1924212335498946
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4720133391274720}
-  - component: {fileID: 33902257793532812}
-  - component: {fileID: 65454895298265372}
-  - component: {fileID: 54443913298630508}
-  - component: {fileID: 114406740844970728}
-  - component: {fileID: 114051288173228264}
+  - component: {fileID: 4334879990603834}
+  - component: {fileID: 33323174696937132}
+  - component: {fileID: 65129886096836116}
+  - component: {fileID: 54193818877949416}
+  - component: {fileID: 114296766049228548}
   m_Layer: 0
-  m_Name: Fortress
+  m_Name: Stone House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4720133391274720
+--- !u!4 &4334879990603834
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1734608442346860}
+  m_GameObject: {fileID: 1924212335498946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.3, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -44,19 +43,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &33902257793532812
+--- !u!33 &33323174696937132
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1734608442346860}
+  m_GameObject: {fileID: 1924212335498946}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54443913298630508
+--- !u!54 &54193818877949416
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1734608442346860}
+  m_GameObject: {fileID: 1924212335498946}
   serializedVersion: 2
   m_Mass: 0.0000001
   m_Drag: 0
@@ -66,40 +65,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &65454895298265372
+--- !u!65 &65129886096836116
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1734608442346860}
+  m_GameObject: {fileID: 1924212335498946}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.15, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114051288173228264
+--- !u!114 &114296766049228548
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1734608442346860}
+  m_GameObject: {fileID: 1924212335498946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e71a54fd005b446f9a74b7b1c613b90, type: 3}
+  m_Script: {fileID: 11500000, guid: e1d77e473bff2ca4eb0c8fa109ec487c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplierToAdd: 1
---- !u!114 &114406740844970728
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1734608442346860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 944cdf1df82f5d745aecb6b5cb05ccf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numGuards: 2
-  militaryAbility: 1
+  maxAmount: 000000000000000000000000000000000000000000000000000000000200000001000000

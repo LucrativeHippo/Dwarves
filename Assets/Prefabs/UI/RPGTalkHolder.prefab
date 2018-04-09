@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 224272536382011322}
   - component: {fileID: 222469607466705170}
   - component: {fileID: 114878867138207236}
-  - component: {fileID: 95835033157805146}
   m_Layer: 5
   m_Name: ReallyPhoto
   m_TagString: Untagged
@@ -262,23 +261,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95835033157805146
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1185645674657288}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a8988ecf2781c4548b1f13d9eb419a24, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114065626942093820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -325,7 +307,7 @@ MonoBehaviour:
   animatorBooleanName: talking
   animatorIntName: talker
   cutscenePosition: 6
-  textSpeed: 50
+  textSpeed: 100
   currentChar: 0
   blinkWhenReady: {fileID: 1827583058679530}
   variables: []
@@ -338,7 +320,7 @@ MonoBehaviour:
   textAudio: {fileID: 8300000, guid: 49c855462770641229c932e59dd505e5, type: 3}
   passAudio: {fileID: 8300000, guid: 49c855462770641229c932e59dd505e5, type: 3}
   passWithMouse: 1
-  passWithInputButton: Jump
+  passWithInputButton: Action
   enablePass: 1
   lineToStart: weatherman-tutorial-talk-start
   lineToBreak: weatherman-tutorial-talk-end
@@ -585,7 +567,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300004, guid: 29abebc8e9c7048819f3d2245a2a92be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c74f2a25a248c5f4f96459cf8ecb0aac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

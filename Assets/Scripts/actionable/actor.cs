@@ -20,6 +20,10 @@ public class actor : MonoBehaviour {
 
     private void Update()
     {
+        if (!canSendNextFrame)
+        {
+            canSend = false;
+        }
         if (!canSend)
         {
             timeSinceAction += Time.deltaTime;
@@ -33,10 +37,6 @@ public class actor : MonoBehaviour {
     }
 
     void OnTriggerStay(Collider other) {
-        if (!canSendNextFrame)
-        {
-            canSend = false;
-        }
         if (controls.key(controls.Action) && canSend)
         {
             canSendNextFrame = false;

@@ -426,6 +426,8 @@ MonoBehaviour:
   opponent: {fileID: 0}
   coolDown: 1
   damage: 1
+  originalMultiplier: 1
+  baseDamage: 0
 --- !u!114 &114692181444338704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -438,9 +440,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threatRange: 1
+  attackRange: 0.5
   patrolRadius: 10
   patrolTimer: 5
-  enemyInRange: 0
 --- !u!114 &114730291933337960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -456,13 +458,14 @@ MonoBehaviour:
   atkSpeed: 2
   isEnemy: 0
   gatherSpeed: 2
-  rank: 0
+  rank: 138.2
   skillLevel:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 2
+  - 8
+  - 2
+  - 9
+  - 5
+  customNPC: 1
 --- !u!114 &114733853192007592
 MonoBehaviour:
   m_ObjectHideFlags: 1

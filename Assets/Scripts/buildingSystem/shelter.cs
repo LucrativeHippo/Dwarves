@@ -9,11 +9,14 @@ public class shelter : MonoBehaviour
     {
         if (other.tag.Equals("OwnedNPC"))
         {
+            
             FightFlight ff = other.GetComponent<FightFlight>();
             if (ff != null)
             {
+                
                 if (ff.isFleeing())
                 {
+                    
                     beginToShelterNPC(other.gameObject);
                 }
             }
@@ -39,7 +42,7 @@ public class shelter : MonoBehaviour
         {
             sprite.enabled = false;
         }
-
+        GetComponent<EnemyNotify>().safe();
         setBuildingCheckOnNPC(npc, true);
     }
 

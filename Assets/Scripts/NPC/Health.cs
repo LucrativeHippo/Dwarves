@@ -10,7 +10,7 @@ public class Health : MonoBehaviour, IStatsListener {
     [SerializeField]
     int maxHealth;
     [SerializeField]
-    bool isImmortal = false;
+    public bool isImmortal = false;
     bool isInvulnerable = false;
     public bool dealDamage = false;
     private Skills npcSkill;
@@ -216,14 +216,17 @@ public class Health : MonoBehaviour, IStatsListener {
 
      void Update()
      {
-         if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag!= "Enemy")
+         if (originalHealthMultiplier != MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag == "OwnedNPC")
          {
              originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
-            Debug.Log(originalHealthMultiplier);
-            Debug.Log(MetaScript.getGlobal_Stats().getHealthMultiplier());
+             Debug.Log(originalHealthMultiplier);
+             Debug.Log(MetaScript.getGlobal_Stats().getHealthMultiplier());
              health = Mathf.RoundToInt(originalMaxHp * originalHealthMultiplier);
              maxHealth = health;
           }
+		  if (health <= 0 && !isImmortal) {
+             death();
+	      }
      }
 
     public void publish(Global_Stats stats)
