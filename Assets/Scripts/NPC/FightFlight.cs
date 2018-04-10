@@ -77,6 +77,7 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
 		GameObject safety = collect.findClosestTag("Shelter",gameObject);
 		if(safety != null){
 			GetComponent<NavMeshAgent>().SetDestination(safety.transform.position);
+            curState = state.FLEE;
 		}else{
 			// Frozen in terror
 			// Debug.Log("NPC:\""+name+"\" couldn't find a nearby shelter and is now frozen in terror");

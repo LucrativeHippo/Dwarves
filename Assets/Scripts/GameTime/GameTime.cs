@@ -18,6 +18,8 @@ public class GameTime : MonoBehaviour
     private UseCustomImageEffect postProcessing;
     private StormBringer stormBringer;
     private float timevalue;
+    //Change the number of days before a bad weather increase chance
+    public int gracePeriod = 7;
 
 
     void Start()
@@ -114,8 +116,15 @@ public class GameTime : MonoBehaviour
             {
                 daychange.value = daychange.minValue;
             }
-
-            weatherScript.increaseRandomWeatherChance();
+            if(gracePeriod == 0)
+            {
+                weatherScript.increaseRandomWeatherChance();
+            }
+            else
+            {
+                gracePeriod--;
+            }
+            
         }
 
     }
@@ -155,12 +164,13 @@ public class GameTime : MonoBehaviour
         //print (calendar.getCurrentDay ());
         daychangetext.text = calendar.getCurrentDay().ToString();
         seasonchange.text = (calendar.getCurrentSeason() + 1).ToString();
-        //daychange.value = calendar.getCurrentDay();
+        daychange.value = calendar.getCurrentDay() - 1;
 
         setWeatherBasedPostProcessing();
         setWeatherBasedParticles();
         setWeatherBasedStorms();
         if(foodOwed){
+            
             MetaScript.getFoodSystem().tickDay();
         }
         foodOwed = true;
