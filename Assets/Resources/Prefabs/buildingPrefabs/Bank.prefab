@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ae59032527b564baabf6a8f6e7b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0000000000000000960000000000000032000000000000000000000000000000
+  cost: 0000000000000000320000000000000014000000000000000000000000000000
   buildingLimit: 0
   buildingDescription: '- Increases gold and diamond capacity.'
 --- !u!114 &114650666467532174
