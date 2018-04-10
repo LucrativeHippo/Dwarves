@@ -18,7 +18,6 @@ public class GenerateMonster : MonoBehaviour {
 
     //Monster types
     public GameObject evilPenguin;
-    public GameObject king;
     //public GameObject snowMonster;
     //public GameObject acidMonster;
     //public GameObject devilMonster;
@@ -86,7 +85,6 @@ public class GenerateMonster : MonoBehaviour {
         {
             ydirection = Random.Range(0, 2);
         }
-        int numKings = numEnemies/10;
         
         int currentEnemies = 0;
             while (currentEnemies < numEnemies)
@@ -96,14 +94,5 @@ public class GenerateMonster : MonoBehaviour {
             print(temp.transform.position);
             currentEnemies++;
             }
-        int currentKings = 0;
-        while (currentKings < numKings)
-        {
-
-            GameObject temp = Instantiate(king, new Vector3(range[xdirection] * Chunk.SIZE, 0.06666667f, range[ydirection] * Chunk.SIZE), Quaternion.identity);
-            print(temp.transform.position);
-            currentEnemies++;
-        }
-		GetComponent<AudioSource> ().Play();
     }
 }

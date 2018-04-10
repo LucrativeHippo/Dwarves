@@ -129,14 +129,7 @@ public class FightFlight : MonoBehaviour, IHealthListener, IBellListener {
     public void forceBell(bool hide)
     {
 		forcedFlee = hide;
-		// bellRang(hide);
-
-		if(hide){
-			convert();
-			flight();
-		}else{
-			revert();
-		}
+		bellRang(hide);
     }
 
 	public bool Revert_D = false;

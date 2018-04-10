@@ -43,7 +43,7 @@ public class PoisonTrap : MonoBehaviour {
 
         if (valid != null)
         {
-            if (!checkIfInBuilding(victim) && (victim.tag.Equals("Player") || victim.tag.Equals("OwnedNPC")))
+            if (!checkIfInBuilding(victim) && (gameObject.tag.Equals("Player") || gameObject.tag.Equals("OwnedNPC")))
             {
                 buffsys.dmgApplyingSystem(victim, poisonDuration, poisonTickTime,
                     poisonDamagePerTick, BuffsAndBoons.Effects.Poison);

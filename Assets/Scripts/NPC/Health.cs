@@ -121,7 +121,6 @@ public class Health : MonoBehaviour, IStatsListener {
         if(CompareTag("OwnedNPC")){
 			Debug.Log ("An NPC has died");
             MetaScript.GetNPC().removeNPC(gameObject);
-            MetaScript.Tomb(transform.position, name);
         }
         if(CompareTag("Player")){
 			Debug.Log ("The player has died");
@@ -148,8 +147,8 @@ public class Health : MonoBehaviour, IStatsListener {
         if (sacrifice == null) {
             // Load other scene
             Destroy(gameObject);
-            gameEnds();
-              }
+            endGame();
+        }
         else
         {
             // Stop npc from moving;
@@ -216,17 +215,14 @@ public class Health : MonoBehaviour, IStatsListener {
 
      void Update()
      {
-         if (originalHealthMultiplier != MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag == "OwnedNPC")
+         if (originalHealthMultiplier < MetaScript.getGlobal_Stats().getHealthMultiplier() && gameObject.tag!= "Enemy")
          {
              originalHealthMultiplier = MetaScript.getGlobal_Stats().getHealthMultiplier();
-             Debug.Log(originalHealthMultiplier);
-             Debug.Log(MetaScript.getGlobal_Stats().getHealthMultiplier());
+            Debug.Log(originalHealthMultiplier);
+            Debug.Log(MetaScript.getGlobal_Stats().getHealthMultiplier());
              health = Mathf.RoundToInt(originalMaxHp * originalHealthMultiplier);
              maxHealth = health;
           }
-		  if (health <= 0 && !isImmortal) {
-             death();
-	      }
      }
 
     public void publish(Global_Stats stats)
@@ -236,7 +232,8 @@ public class Health : MonoBehaviour, IStatsListener {
         }
     }
 
-    public void gameEnds(){
-        SceneManager.LoadScene("endGame");
-    }
+    public void endGame(){
+      
+            SceneManager.LoadScene("endGame");
+         }
 }

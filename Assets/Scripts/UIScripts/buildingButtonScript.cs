@@ -37,7 +37,7 @@ public class buildingButtonScript : MonoBehaviour, IPointerEnterHandler, IPointe
         setCost ();
         setListener ();
         setDescription ();
-        setImage ();
+//        setImage ();
     }
 
     private void setName () {
@@ -61,7 +61,8 @@ public class buildingButtonScript : MonoBehaviour, IPointerEnterHandler, IPointe
     }
 
     private void setImage () {
-        buildingImage.GetComponent<Image> ().sprite = theBuilding.transform.GetChild (0).GetComponent<SpriteRenderer> ().sprite;
+        buildingImage.GetComponent<Image> ().material = theBuilding.transform.GetChild (0).GetChild (0).GetComponent<MeshRenderer> ().sharedMaterial;
+//        buildingImage.GetComponent<Image>().material.shader = 
     }
 
     private void setListener () {

@@ -7,41 +7,40 @@ using UnityEngine;
 public class Quests : MonoBehaviour {
 	[System.Serializable]
 	public class QuestType{
-		public Goal goal;public int difficulty;public bool take; 
+		public Goal goal;public int difficulty; 
 		public string Name;
 		public Sprite img;
-		public QuestType(Goal g, int diff, string msg, bool give=false){
+		public QuestType(Goal g, int diff, string msg){
 			this.goal = g;
 			this.difficulty = diff;
 			this.Name = msg;
-			this.take = give;
 			this.img = null;
 		}
 	};
-	
+
 	// For use with generation
 	public static QuestType [] list = new QuestType[]{
 		// Quests to give resources
-		new QuestType(giveWood, 2, "wood",true),
-		new QuestType(giveFood, 30, "food",true),
-		new QuestType(giveCoal, 60, "coal",true),
-		new QuestType(giveStone, 6, "stone",true),
-		new QuestType(giveIron, 60, "iron",true),
+		new QuestType(giveWood, 2, "wood"),
+		new QuestType(giveFood, 30, "food"),
+		new QuestType(giveCoal, 60, "coal"),
+		new QuestType(giveStone, 6, "stone"),
+		new QuestType(giveIron, 60, "iron"),
 		// GOLD???
-		new QuestType(giveDiamond, 600, "diamond",true),
+		new QuestType(giveDiamond, 600, "diamond"),
 
 		
-		//new QuestType(isPopulationAbove,10, "population"),
+		new QuestType(isPopulationAbove,10, "population"),
 		//new QuestType(isTownCenterAbove,30, "town center level"),
 		//new QuestType(hasEmptyHouses,50, "empty houses"),
 
 		// Quests for food above amount
-		// new QuestType(isFoodAbove, 0, "food"),
-		// new QuestType(isStoneAbove, 3, "stone"),
-		// new QuestType(isIronAbove,30,"iron"),
-		// new QuestType(isCoalAbove,30,"coal"),
-		// new QuestType(isDiamondAbove,300,"diamond"),
-		// new QuestType(isWoodAbove, 0, "wood")
+		new QuestType(isFoodAbove, 0, "food"),
+		new QuestType(isStoneAbove, 3, "stone"),
+		new QuestType(isIronAbove,30,"iron"),
+		new QuestType(isCoalAbove,30,"coal"),
+		new QuestType(isDiamondAbove,300,"diamond"),
+		new QuestType(isWoodAbove, 0, "wood")
 
 	};
 	

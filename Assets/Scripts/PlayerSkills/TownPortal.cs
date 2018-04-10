@@ -46,7 +46,6 @@ public class TownPortal : MonoBehaviour {
                 MetaScript.preTeleport();
                 transform.parent.transform.position = MetaScript.getTownCenter().transform.position + new Vector3(0.5f, 0, -0.5f);
                 MetaScript.postTeleport();
-                MetaScript.Poof(MetaScript.getPlayer().transform.position);
             }
 
         }
