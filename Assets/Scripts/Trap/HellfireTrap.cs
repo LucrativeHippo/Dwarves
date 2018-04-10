@@ -95,7 +95,7 @@ public class HellfireTrap : MonoBehaviour {
 
         if (valid != null)
         {
-            if (!checkIfInBuilding(victim) && (gameObject.tag.Equals("Player") || gameObject.tag.Equals("OwnedNPC")))
+            if (!checkIfInBuilding(victim) && (victim.tag.Equals("Player") || victim.tag.Equals("OwnedNPC")))
             {
                 buffsys.dmgApplyingSystem(victim, burnDuration, burnTickTime,
                 burnDamagePerTick, BuffsAndBoons.Effects.Burn);

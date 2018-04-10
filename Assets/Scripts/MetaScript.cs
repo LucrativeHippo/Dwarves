@@ -8,6 +8,8 @@ public class MetaScript : MonoBehaviour {
 	static GameObject meta;
 	static GameObject tc;
 	static GameObject player;
+	public GameObject PoofAnimation;
+	public GameObject Tombstone;
 	void Start () {
 
 	}
@@ -75,6 +77,14 @@ public class MetaScript : MonoBehaviour {
         }
 	}
 
+	private static globalStatsUIController globalStatsUI = null;
+	public static void updateGlobalStatsUI(){
+		
+		if(globalStatsUI == null)
+			globalStatsUI = GameObject.Find("GlobalStats").GetComponent<globalStatsUIController>();
+		globalStatsUI.updateAll();
+	}
+
 	public static InBuilding GetInBuilding(){
 		return getMetaObject().GetComponent<InBuilding>();
 	}
@@ -119,6 +129,10 @@ public class MetaScript : MonoBehaviour {
 			Debug.LogError("Couldn't find Player");
 		
 		return player;
+	}
+
+	public static NameGen GetNameGen(){
+		return getMetaObject().GetComponent<NameGen>();
 	}
 
 	public static Controls GetControls(){
@@ -181,4 +195,19 @@ public class MetaScript : MonoBehaviour {
 			return townSacrifice;
 		}
 	}
+
+	public static void Poof(Vector3 pos){
+		Vector3 poofPos = pos;
+		poofPos.y = 0.3f;
+		Instantiate(MetaScript.getMeta().PoofAnimation,poofPos,Quaternion.identity);
+	}
+	public static void Tomb(Vector3 pos, string enslaved){
+		Vector3 tombPos = pos;
+		tombPos.y = 0.1f;
+		GameObject tomb = Instantiate(MetaScript.getMeta().Tombstone,tombPos,Quaternion.identity);
+		tomb.GetComponent<Tomb>().setName(enslaved);
+		MetaScript.getMeta().souls.AddLast(enslaved);
+	}
+
+	public LinkedList<string> souls = new LinkedList<string>();
 }

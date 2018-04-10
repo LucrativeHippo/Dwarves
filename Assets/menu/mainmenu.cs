@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class mainmenu : MonoBehaviour {
-    public GameObject continuebt;
+  
     public GameObject newgamebt;
-    public GameObject loadgamebt;
     public Animator objects;
     public GameObject clicksound;
     public GameObject particlesystem;
@@ -17,16 +16,16 @@ public class mainmenu : MonoBehaviour {
     [SerializeField] private GameObject settingsCanvas;
 
 public void playoption(){
-        continuebt.SetActive(true);
+       
         newgamebt.SetActive(true);
-        loadgamebt.SetActive(true);
+       
     }
 
     public void closeplayoption()
     {
-        continuebt.SetActive(false);
+
         newgamebt.SetActive(false);
-        loadgamebt.SetActive(false);
+       
     }
     public void openparticle(){
         
@@ -61,11 +60,15 @@ public void playoption(){
         closeplayoption ();
         objects.SetFloat ("animate", 1);
     }
+    
     public void quitgame(){
-        // UnityEditor.EditorApplication.isPlaying = false;
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
+#if UNITY_STANDALONE
         Application.Quit();
-
-
+#endif
 
     }
     public void PlayClick()

@@ -27,13 +27,25 @@ public class npcManagerUIController : MonoBehaviour {
     void Update () {
         if (controls.keyDown(controls.ExitUI)) {
             if (npcDisplay.activeSelf) {
-                npcManager.GetComponent<NPCManager> ().disableMenu ();
+                closeNPCManager ();
             } else if (roleSelect.activeSelf) {
-                roleSelect.SetActive (false);
+                closeRoleSelect ();
             } else if (moreDetails.activeSelf) {
-                moreDetails.SetActive (false);
-                npcManager.GetComponent<NPCManager> ().enableMenu ();
+
             }
         }
+    }
+
+    public void closeNPCManager() {
+        npcManager.GetComponent<NPCManager> ().disableMenu ();
+    }
+
+    public void closeRoleSelect() {
+        roleSelect.SetActive (false);
+    }
+
+    public void closeMoreDetails() {
+        moreDetails.SetActive (false);
+        npcManager.GetComponent<NPCManager> ().enableMenu ();
     }
 }

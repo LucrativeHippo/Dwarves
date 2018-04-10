@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4197312921469272}
-  - component: {fileID: 212945655219968238}
+  - component: {fileID: 212438438356651364}
   m_Layer: 0
   m_Name: Anchor
   m_TagString: Untagged
@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 54693225606177904}
   - component: {fileID: 33925440746637104}
   - component: {fileID: 114024983610734718}
+  - component: {fileID: 82804606481576562}
   m_Layer: 0
   m_Name: Food Station
   m_TagString: Untagged
@@ -123,7 +124,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1870529105268762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.6924677, y: -3.0621674, z: 8.711596}
+  m_LocalPosition: {x: 754.17487, y: 207.32028, z: 8.711596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4197312921469272}
@@ -247,7 +248,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2e9da324c1ece7c42840679d728b636f, type: 2}
+  - {fileID: 2100000, guid: 7f34638f8b92e3a41aa7e42aa1283e86, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -349,6 +350,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.15, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82804606481576562
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1870529105268762}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bc5fefd2545a1804cb0e89dd1f38942d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114024983610734718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676334aad6a9de341b74b0a5d2ee2c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMaterial: {fileID: 2100000, guid: 19ad72519674fdc46b3884352377118a, type: 2}
+  upgradeMaterial: {fileID: 2100000, guid: 59e0c623f435324419c391454ddc3f2b, type: 2}
   upgradeCostList: 640000005e01000032000000000000000000000000000000000000000000000000000000
   upgrade: {fileID: 1368450630352490, guid: 8bdd5ffd8240af7419aa4fc4a03ba04c, type: 2}
 --- !u!114 &114287286649850916
@@ -397,16 +478,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ae59032527b564baabf6a8f6e7b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 6400000064000000000000001e00000000000000000000000000000000000000
+  cost: 6400000064000000000000001900000000000000000000000000000000000000
   buildingLimit: 0
   buildingDescription: -Lowers  food consumption.
---- !u!212 &212945655219968238
+--- !u!212 &212438438356651364
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375530712731332}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -434,13 +515,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: bff913134625f2f418fb2bf9e78ee5dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 25.6, y: 25.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0

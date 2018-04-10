@@ -8,11 +8,14 @@ public class PlayerMovement : MonoBehaviour {
     private Animator animator;
     private Controls controls;
 
+    private RPGTalk rpgtalk;
+
     //private GameObject cam;
     private void Awake()
     {
         animator = gameObject.GetComponentInChildren<Animator>();
         controls = MetaScript.GetControls();
+        rpgtalk = GameObject.FindObjectOfType<RPGTalk>();
         // cam = GameObject.Find("MainCam");
     }
 
@@ -21,6 +24,7 @@ public class PlayerMovement : MonoBehaviour {
 		Vector3 mov = new Vector3 (0, 0);
         bool noAnim = true;
         if(animator!=null){
+            GetComponent<AudioSource>().Pause();
             animator.SetBool("moveUp", false);
             animator.SetBool("moveDown", false);
             animator.SetBool("moveLeft", false);
@@ -30,12 +34,16 @@ public class PlayerMovement : MonoBehaviour {
         
 
         if(controls.key(controls.Forward)){
+            
             mov += Vector3.forward;
             if (animator != null && noAnim)
-            {
+            {GetComponent<AudioSource>().UnPause();
                 noAnim = false;
-                animator.SetBool("moveUp", true);
+               
+               animator.SetBool("moveUp", true);
+               
             }
+          
         }
         if (controls.key(controls.Backward))
         {
@@ -43,15 +51,19 @@ public class PlayerMovement : MonoBehaviour {
             if (animator != null && noAnim)
             {
                 noAnim = false;
+                GetComponent<AudioSource>().UnPause();
                 animator.SetBool("moveDown", true);
             }
         }
         if (controls.key(controls.Left))
         {
+           
             mov += Vector3.left;
             if (animator != null && noAnim)
             {
+               
                 noAnim = false;
+                GetComponent<AudioSource>().UnPause();
                 animator.SetBool("moveLeft", true);
             }
         }
@@ -61,6 +73,7 @@ public class PlayerMovement : MonoBehaviour {
             if (animator != null && noAnim)
             {
                 noAnim = false;
+                GetComponent<AudioSource>().UnPause();
                 animator.SetBool("moveRight", true);
             }
         }
@@ -74,6 +87,11 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 
+        if (mov != Vector3.zero)
+        {
+            rpgtalk.EndTalk(true);
+        }
+
 		mov.Normalize ();
 
 		transform.Translate (mov * speed);
@@ -83,4 +101,5 @@ public class PlayerMovement : MonoBehaviour {
 
         GetComponentInChildren<actionManagerPlayerRotation>().setRotation(mov);
     }
+  
 }

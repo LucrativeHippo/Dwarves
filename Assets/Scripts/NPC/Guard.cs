@@ -54,6 +54,7 @@ public class Guard : MonoBehaviour {
             if (distanceToTarget <= attackRange)
             {
 
+            animator.SetBool("attack", false);
                 navComponent.isStopped = true;
                 if (canAttack)
                 {

@@ -19,6 +19,8 @@ TagManager:
   - coal
   - iron
   - Shelter
+  - Wonder
+  - ProtectedNPC
   layers:
   - Default
   - TransparentFX
