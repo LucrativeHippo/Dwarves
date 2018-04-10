@@ -153,7 +153,7 @@ public class Weather: MonoBehaviour
         Weather.weatherTypes weatherChoice = weathers[choice];
         foreach(Weather.weatherTypes i in weathers)
         {
-            chances[i] += 3;
+            chances[i] += 1;
         }
         
     }
