@@ -11536,6 +11536,104 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2010317125}
+--- !u!1001 &2022260714
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4837939467907140, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.497
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837939467907140, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.0666
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837939467907140, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837939467907140, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837939467907140, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837939467907140, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837939467907140, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837939467907140, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375379734395336, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_Name
+      value: ShipelyNumber2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: rank
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: skillLevel.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051739896573670, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: customNPC
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 102129401742110036, guid: 2ef2434f8995ce244ba58ba1f3d9edd0,
+        type: 2}
+      propertyPath: m_Text
+      value: Shipely
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461288493169064, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.08715578
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461288493169064, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.9961947
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461288493169064, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2ef2434f8995ce244ba58ba1f3d9edd0, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2051841295
 GameObject:
   m_ObjectHideFlags: 0
