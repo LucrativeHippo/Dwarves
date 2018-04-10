@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 /// <summary>
 /// Builds quest for NPC, needs creation outside of start.
@@ -12,15 +13,18 @@ public class QuestNPC : MonoBehaviour, IActionable {
     public int rank = 0;//Random.Range(1,50);
     [SerializeField]
     private QuestBase myQuests = new QuestBase();
-
     [SerializeField]
     public bool finishQuest = false;
+	bool hasSound = false;
+	bool spoke = true;
     public void recieveAction()
     {
         if(!this.enabled)
             return;
         
-        tryQuest();
+        // Popup message
+        activateUI();
+        //tryQuest();
     }
 
     /// <summary>
@@ -45,7 +49,8 @@ public class QuestNPC : MonoBehaviour, IActionable {
             {
                 Debug.Log("QUEST COMPLETED");
                 GetComponentInChildren<SpeechBubble>().setText("Quest Completed");
-                MetaScript.getRes().addResource(ResourceTypes.POPULATION, 1);
+
+                MetaScript.Poof(transform.position);
                 TakeSoul();
             }
             else
@@ -71,13 +76,13 @@ public class QuestNPC : MonoBehaviour, IActionable {
     }
 
     // Use this for initialization
-    void Update () {
+    // void Update () {
 
-        if(CompareTag("OwnedNPC")){
-            GetComponent<QuestNPC>().TakeSoul();
-        }
+    //     if(CompareTag("OwnedNPC")){
+    //         GetComponent<QuestNPC>().TakeSoul();
+    //     }
         
-	}
+	// }
 
     public void addGoal(int difficulty){
         myQuests.addGoal(new QuestGoal(difficulty));
@@ -110,5 +115,70 @@ public class QuestNPC : MonoBehaviour, IActionable {
     public Quests.QuestType GetQuestType(){
         int index = myQuests.GetQuestGoal().getGoalIndex();
         return Quests.list[index];
+    }
+
+    
+    private GameObject AllUIObjects;
+    private GameObject upgradePrompt;
+
+    private GameObject confirmButton;
+    private GameObject cancelButton;
+
+    private Text nameText;
+    private Text costText;
+    private Text moreResourcesRequiredText;
+
+    public void activateUI(){
+        AllUIObjects.transform.GetChild (2).gameObject.SetActive (true);
+        upgradePrompt.SetActive (true);
+        confirmButton.GetComponentInChildren<Text>().text = "Recruit";
+        nameText.text = "Do you wish to recruit this person?";
+        costText.text = myQuests.GetQuestGoal().ToString();
+        moreResourcesRequiredText.text = "";
+        setListener ();
+    }
+
+    void doUpgrade () {
+        closePrompt ();
+        tryQuest();
+    }
+
+    void Start () {
+		if (GetComponent<AudioSource> () != null) {
+			hasSound = true;
+		}
+		AllUIObjects = GameObject.Find ("AllUIObjectsCanvas");
+        upgradePrompt = AllUIObjects.transform.GetChild (2).GetChild (1).gameObject;
+        confirmButton = upgradePrompt.transform.GetChild (0).gameObject;
+        cancelButton = upgradePrompt.transform.GetChild (1).gameObject;
+        costText = upgradePrompt.transform.GetChild (2).gameObject.GetComponent<Text> ();
+        nameText = upgradePrompt.transform.GetChild (3).gameObject.GetComponent<Text> ();
+        moreResourcesRequiredText = upgradePrompt.transform.GetChild (4).gameObject.GetComponent<Text> ();
+		Invoke ("unSpoke", 3);
+    }
+
+	void Update() {
+		if ((!spoke)&&hasSound) {
+			GetComponent<AudioSource> ().Play ();
+			spoke = true;
+			Invoke ("unSpoke", 45); //Time till we nexxt play the SFX
+		}
+	}
+
+	void unSpoke(){
+		spoke = false;
+	}
+	
+    private void setListener () {
+        confirmButton.GetComponent<Button> ().onClick.RemoveAllListeners();
+        cancelButton.GetComponent<Button> ().onClick.RemoveAllListeners();
+        confirmButton.GetComponent<Button> ().onClick.AddListener (() => doUpgrade ());
+        cancelButton.GetComponent<Button> ().onClick.AddListener (() => closePrompt ());
+    }
+
+    private void closePrompt () {
+        confirmButton.GetComponentInChildren<Text>().text = "Upgrade";
+        upgradePrompt.SetActive (false);
+        AllUIObjects.transform.GetChild (2).gameObject.SetActive (false);
     }
 }   

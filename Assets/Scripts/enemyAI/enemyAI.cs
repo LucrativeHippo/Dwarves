@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour {	
+public class enemyAI : MonoBehaviour, IHealthListener {	
 	public GameObject opponent;
 	NavMeshAgent agentCtrl;
     private Animator anim;
@@ -17,11 +17,15 @@ public class enemyAI : MonoBehaviour {
 	void Start () {
         anim = gameObject.GetComponentInChildren<Animator>();
 		agentCtrl = this.GetComponent<NavMeshAgent>();
+		setHealth(GetComponent<Health>());
 		getDest();
 		setDestination();
 		tag = "Enemy";
 	}
 	private void getDest(){
+		if(opponent!=null)
+			opponent.SendMessage("stopTargeted",gameObject);
+
 		opponent = collect.findClosestTag("OwnedNPC",gameObject);
         if (opponent != null)
         {
@@ -36,10 +40,13 @@ public class enemyAI : MonoBehaviour {
         {
             opponent = MetaScript.getPlayer();
         }
+		if(opponent != null){
+			opponent.SendMessage("beingTargeted",gameObject);
+		}
 	}
     // Update is called once per frame
     void Update(){
-        if (opponent == null)
+        if (opponent.tag != "Player" && opponent.tag != "OwnedNPC")
         {
             getDest();
         }
@@ -93,5 +100,23 @@ public class enemyAI : MonoBehaviour {
 			opponent.SendMessage("damage",damage);
 			opponent.SendMessage("notifyNPC");
 		}
+	}
+
+	private Health myHealth;
+    public void setHealth(Health health)
+    {
+		myHealth = health;
+		health.addSubscriber(this);
+    }
+
+    public void publish()
+    {
+		if(opponent == null || !withinAttackRange()){
+			getDest();
+		}
+    }
+
+	public void opponentIsSafe(){
+		opponent = null;
 	}
 }

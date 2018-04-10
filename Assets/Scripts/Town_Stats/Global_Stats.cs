@@ -36,6 +36,7 @@ public class Global_Stats : MonoBehaviour {
     public void setFoodSaved(float food)
     {
         foodSaved = food;
+        publish();
     }
 
     public float getBaseGather()
@@ -46,6 +47,7 @@ public class Global_Stats : MonoBehaviour {
     public void setBaseGather(float gather)
     {
         baseGather = gather;
+        publish();
     }
 
     public float getMilitaryAbility()
@@ -56,10 +58,12 @@ public class Global_Stats : MonoBehaviour {
     public void setMilitaryAbility(float military)
     {
         militaryAbility = military;
+        publish();
     }
 
     public void setAtkMultiplier(float multiplier){
         damageMultiplier += multiplier;
+        publish();
     }
 
     public float getAtkMultiplier(){
@@ -104,6 +108,7 @@ public class Global_Stats : MonoBehaviour {
     public void setHasHeatProtection(bool has)
     {
         hasHeatProtection = has;
+        publish();
     }
 
     public bool getHasHeatProtection()
@@ -114,6 +119,7 @@ public class Global_Stats : MonoBehaviour {
     public void setHasColdProtection(bool has)
     {
         hasColdProtection = has;
+        publish();
     }
 
     public bool getHasColdProtection()
@@ -127,5 +133,6 @@ public class Global_Stats : MonoBehaviour {
         foreach(IStatsListener l in subscribers){
             l.publish(this);
         }
+        MetaScript.updateGlobalStatsUI();
     }
 }
