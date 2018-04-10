@@ -8,8 +8,8 @@ Testing Lead:   Skyler Sampson
 Artist:         Baljinder Bhinder
 Programmer:     Michael Ruffel
 Programmer:     Alexander Russell
-Programmer:     Jinyang Lui
-Programmer:     Yanzhhao Lui
+Programmer:     Jinyang Liu
+Programmer:     Yanzhhao Liu
 Programmer:     William Revell
 
 
