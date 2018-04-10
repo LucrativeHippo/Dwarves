@@ -7454,7 +7454,7 @@ Prefab:
     - target: {fileID: 114911447123818168, guid: 59c95204b2062b1488bd096f4d62ca61,
         type: 2}
       propertyPath: numEnemies
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1241819462201440, guid: 59c95204b2062b1488bd096f4d62ca61, type: 2}
       propertyPath: m_IsActive
